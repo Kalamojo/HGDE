@@ -2,6 +2,12 @@
 
 # Project Title: ???
 
+# Background
+
+# Literature Review
+
+# Project Goals
+
 **Project Objective:** To develop a framework for semi-automatic data clustering that is receptive to change suggestions by users. The resulting product should allow for the dynamic clustering and search of desired subgroups in a number of datasets across multiple modalities (text, image, video, audio, etc.). If time permits, we also hope to develop further specialized applications utilizing this technique
 
 **Features:**
@@ -19,7 +25,7 @@ Gemini Embedding 2
 ImageBind
 
 
-**Methodology:**
+# Approach
 
 User input (multimodial files)
 Gemini Embedding 2 to get files to a general shared embedding space
@@ -38,3 +44,13 @@ Recluster
 
 
 Goal: Learn the users objective / what features matter to them
+
+# Documentation
+
+# Validation Methods
+
+# Deliverables
+
+# Justification
+
+# Timeline
