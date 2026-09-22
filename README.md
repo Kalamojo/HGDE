@@ -1,6 +1,4 @@
-# Pinterest But Better
-
-# Project Title: ???
+# Human Guided Dynamic Embeddings
 
 # Background
 
