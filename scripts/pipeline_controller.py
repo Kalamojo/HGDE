@@ -16,6 +16,7 @@ Usage:
 import sys
 from pathlib import Path
 import numpy as np
+from datetime import datetime
 
 # Dynamically append the repository root to the system path
 current_dir = Path(__file__).resolve().parent
@@ -93,6 +94,12 @@ def run_active_learning_loop(initial_embeddings, ground_truth, target_accuracy=0
     return user.history
 
 if __name__ == "__main__":
+    # Import the graphing function dynamically
+    try:
+        from scripts.visualize_metrics import plot_convergence
+    except ImportError:
+        from visualize_metrics import plot_convergence
+
     # Mock data to run the file directly
     dummy_embeddings = np.array([[0.1, 0.2], [0.15, 0.25], [0.8, 0.9], [0.85, 0.95], [0.4, 0.4], [0.45, 0.45]])
     dummy_ground_truth = [0, 0, 1, 1, 2, 2] #item 0 is in group 0, item 1 is in group 0, item 2 is in group 1, etc.
@@ -102,3 +109,14 @@ if __name__ == "__main__":
     print("\nStarting learning loop...\n")
     final_history = run_active_learning_loop(dummy_embeddings, dummy_ground_truth)
     print("\nFinal Logged History:", final_history)
+
+    # Generate a unique timestamp string formatted with hyphens
+    timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+
+    # Dynamically resolve a portable path for the final graph output
+    current_dir = Path(__file__).resolve().parent
+    repo_root = current_dir.parent
+    graph_output_path = repo_root / "results" / f"final-convergence-{timestamp}.png"
+    
+    # Generate and save the graph
+    plot_convergence(final_history, save_path=str(graph_output_path))
