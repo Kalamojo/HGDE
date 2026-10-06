@@ -1,0 +1,5127 @@
+[
+  {
+    "dex_num": "0001",
+    "name": "Bulbasaur",
+    "page_title": "Bulbasaur (Pokémon)"
+  },
+  {
+    "dex_num": "0002",
+    "name": "Ivysaur",
+    "page_title": "Ivysaur (Pokémon)"
+  },
+  {
+    "dex_num": "0003",
+    "name": "Venusaur",
+    "page_title": "Venusaur (Pokémon)"
+  },
+  {
+    "dex_num": "0004",
+    "name": "Charmander",
+    "page_title": "Charmander (Pokémon)"
+  },
+  {
+    "dex_num": "0005",
+    "name": "Charmeleon",
+    "page_title": "Charmeleon (Pokémon)"
+  },
+  {
+    "dex_num": "0006",
+    "name": "Charizard",
+    "page_title": "Charizard (Pokémon)"
+  },
+  {
+    "dex_num": "0007",
+    "name": "Squirtle",
+    "page_title": "Squirtle (Pokémon)"
+  },
+  {
+    "dex_num": "0008",
+    "name": "Wartortle",
+    "page_title": "Wartortle (Pokémon)"
+  },
+  {
+    "dex_num": "0009",
+    "name": "Blastoise",
+    "page_title": "Blastoise (Pokémon)"
+  },
+  {
+    "dex_num": "0010",
+    "name": "Caterpie",
+    "page_title": "Caterpie (Pokémon)"
+  },
+  {
+    "dex_num": "0011",
+    "name": "Metapod",
+    "page_title": "Metapod (Pokémon)"
+  },
+  {
+    "dex_num": "0012",
+    "name": "Butterfree",
+    "page_title": "Butterfree (Pokémon)"
+  },
+  {
+    "dex_num": "0013",
+    "name": "Weedle",
+    "page_title": "Weedle (Pokémon)"
+  },
+  {
+    "dex_num": "0014",
+    "name": "Kakuna",
+    "page_title": "Kakuna (Pokémon)"
+  },
+  {
+    "dex_num": "0015",
+    "name": "Beedrill",
+    "page_title": "Beedrill (Pokémon)"
+  },
+  {
+    "dex_num": "0016",
+    "name": "Pidgey",
+    "page_title": "Pidgey (Pokémon)"
+  },
+  {
+    "dex_num": "0017",
+    "name": "Pidgeotto",
+    "page_title": "Pidgeotto (Pokémon)"
+  },
+  {
+    "dex_num": "0018",
+    "name": "Pidgeot",
+    "page_title": "Pidgeot (Pokémon)"
+  },
+  {
+    "dex_num": "0019",
+    "name": "Rattata",
+    "page_title": "Rattata (Pokémon)"
+  },
+  {
+    "dex_num": "0020",
+    "name": "Raticate",
+    "page_title": "Raticate (Pokémon)"
+  },
+  {
+    "dex_num": "0021",
+    "name": "Spearow",
+    "page_title": "Spearow (Pokémon)"
+  },
+  {
+    "dex_num": "0022",
+    "name": "Fearow",
+    "page_title": "Fearow (Pokémon)"
+  },
+  {
+    "dex_num": "0023",
+    "name": "Ekans",
+    "page_title": "Ekans (Pokémon)"
+  },
+  {
+    "dex_num": "0024",
+    "name": "Arbok",
+    "page_title": "Arbok (Pokémon)"
+  },
+  {
+    "dex_num": "0025",
+    "name": "Pikachu",
+    "page_title": "Pikachu (Pokémon)"
+  },
+  {
+    "dex_num": "0026",
+    "name": "Raichu",
+    "page_title": "Raichu (Pokémon)"
+  },
+  {
+    "dex_num": "0027",
+    "name": "Sandshrew",
+    "page_title": "Sandshrew (Pokémon)"
+  },
+  {
+    "dex_num": "0028",
+    "name": "Sandslash",
+    "page_title": "Sandslash (Pokémon)"
+  },
+  {
+    "dex_num": "0029",
+    "name": "Nidoran♀",
+    "page_title": "Nidoran♀ (Pokémon)"
+  },
+  {
+    "dex_num": "0030",
+    "name": "Nidorina",
+    "page_title": "Nidorina (Pokémon)"
+  },
+  {
+    "dex_num": "0031",
+    "name": "Nidoqueen",
+    "page_title": "Nidoqueen (Pokémon)"
+  },
+  {
+    "dex_num": "0032",
+    "name": "Nidoran♂",
+    "page_title": "Nidoran♂ (Pokémon)"
+  },
+  {
+    "dex_num": "0033",
+    "name": "Nidorino",
+    "page_title": "Nidorino (Pokémon)"
+  },
+  {
+    "dex_num": "0034",
+    "name": "Nidoking",
+    "page_title": "Nidoking (Pokémon)"
+  },
+  {
+    "dex_num": "0035",
+    "name": "Clefairy",
+    "page_title": "Clefairy (Pokémon)"
+  },
+  {
+    "dex_num": "0036",
+    "name": "Clefable",
+    "page_title": "Clefable (Pokémon)"
+  },
+  {
+    "dex_num": "0037",
+    "name": "Vulpix",
+    "page_title": "Vulpix (Pokémon)"
+  },
+  {
+    "dex_num": "0038",
+    "name": "Ninetales",
+    "page_title": "Ninetales (Pokémon)"
+  },
+  {
+    "dex_num": "0039",
+    "name": "Jigglypuff",
+    "page_title": "Jigglypuff (Pokémon)"
+  },
+  {
+    "dex_num": "0040",
+    "name": "Wigglytuff",
+    "page_title": "Wigglytuff (Pokémon)"
+  },
+  {
+    "dex_num": "0041",
+    "name": "Zubat",
+    "page_title": "Zubat (Pokémon)"
+  },
+  {
+    "dex_num": "0042",
+    "name": "Golbat",
+    "page_title": "Golbat (Pokémon)"
+  },
+  {
+    "dex_num": "0043",
+    "name": "Oddish",
+    "page_title": "Oddish (Pokémon)"
+  },
+  {
+    "dex_num": "0044",
+    "name": "Gloom",
+    "page_title": "Gloom (Pokémon)"
+  },
+  {
+    "dex_num": "0045",
+    "name": "Vileplume",
+    "page_title": "Vileplume (Pokémon)"
+  },
+  {
+    "dex_num": "0046",
+    "name": "Paras",
+    "page_title": "Paras (Pokémon)"
+  },
+  {
+    "dex_num": "0047",
+    "name": "Parasect",
+    "page_title": "Parasect (Pokémon)"
+  },
+  {
+    "dex_num": "0048",
+    "name": "Venonat",
+    "page_title": "Venonat (Pokémon)"
+  },
+  {
+    "dex_num": "0049",
+    "name": "Venomoth",
+    "page_title": "Venomoth (Pokémon)"
+  },
+  {
+    "dex_num": "0050",
+    "name": "Diglett",
+    "page_title": "Diglett (Pokémon)"
+  },
+  {
+    "dex_num": "0051",
+    "name": "Dugtrio",
+    "page_title": "Dugtrio (Pokémon)"
+  },
+  {
+    "dex_num": "0052",
+    "name": "Meowth",
+    "page_title": "Meowth (Pokémon)"
+  },
+  {
+    "dex_num": "0053",
+    "name": "Persian",
+    "page_title": "Persian (Pokémon)"
+  },
+  {
+    "dex_num": "0054",
+    "name": "Psyduck",
+    "page_title": "Psyduck (Pokémon)"
+  },
+  {
+    "dex_num": "0055",
+    "name": "Golduck",
+    "page_title": "Golduck (Pokémon)"
+  },
+  {
+    "dex_num": "0056",
+    "name": "Mankey",
+    "page_title": "Mankey (Pokémon)"
+  },
+  {
+    "dex_num": "0057",
+    "name": "Primeape",
+    "page_title": "Primeape (Pokémon)"
+  },
+  {
+    "dex_num": "0058",
+    "name": "Growlithe",
+    "page_title": "Growlithe (Pokémon)"
+  },
+  {
+    "dex_num": "0059",
+    "name": "Arcanine",
+    "page_title": "Arcanine (Pokémon)"
+  },
+  {
+    "dex_num": "0060",
+    "name": "Poliwag",
+    "page_title": "Poliwag (Pokémon)"
+  },
+  {
+    "dex_num": "0061",
+    "name": "Poliwhirl",
+    "page_title": "Poliwhirl (Pokémon)"
+  },
+  {
+    "dex_num": "0062",
+    "name": "Poliwrath",
+    "page_title": "Poliwrath (Pokémon)"
+  },
+  {
+    "dex_num": "0063",
+    "name": "Abra",
+    "page_title": "Abra (Pokémon)"
+  },
+  {
+    "dex_num": "0064",
+    "name": "Kadabra",
+    "page_title": "Kadabra (Pokémon)"
+  },
+  {
+    "dex_num": "0065",
+    "name": "Alakazam",
+    "page_title": "Alakazam (Pokémon)"
+  },
+  {
+    "dex_num": "0066",
+    "name": "Machop",
+    "page_title": "Machop (Pokémon)"
+  },
+  {
+    "dex_num": "0067",
+    "name": "Machoke",
+    "page_title": "Machoke (Pokémon)"
+  },
+  {
+    "dex_num": "0068",
+    "name": "Machamp",
+    "page_title": "Machamp (Pokémon)"
+  },
+  {
+    "dex_num": "0069",
+    "name": "Bellsprout",
+    "page_title": "Bellsprout (Pokémon)"
+  },
+  {
+    "dex_num": "0070",
+    "name": "Weepinbell",
+    "page_title": "Weepinbell (Pokémon)"
+  },
+  {
+    "dex_num": "0071",
+    "name": "Victreebel",
+    "page_title": "Victreebel (Pokémon)"
+  },
+  {
+    "dex_num": "0072",
+    "name": "Tentacool",
+    "page_title": "Tentacool (Pokémon)"
+  },
+  {
+    "dex_num": "0073",
+    "name": "Tentacruel",
+    "page_title": "Tentacruel (Pokémon)"
+  },
+  {
+    "dex_num": "0074",
+    "name": "Geodude",
+    "page_title": "Geodude (Pokémon)"
+  },
+  {
+    "dex_num": "0075",
+    "name": "Graveler",
+    "page_title": "Graveler (Pokémon)"
+  },
+  {
+    "dex_num": "0076",
+    "name": "Golem",
+    "page_title": "Golem (Pokémon)"
+  },
+  {
+    "dex_num": "0077",
+    "name": "Ponyta",
+    "page_title": "Ponyta (Pokémon)"
+  },
+  {
+    "dex_num": "0078",
+    "name": "Rapidash",
+    "page_title": "Rapidash (Pokémon)"
+  },
+  {
+    "dex_num": "0079",
+    "name": "Slowpoke",
+    "page_title": "Slowpoke (Pokémon)"
+  },
+  {
+    "dex_num": "0080",
+    "name": "Slowbro",
+    "page_title": "Slowbro (Pokémon)"
+  },
+  {
+    "dex_num": "0081",
+    "name": "Magnemite",
+    "page_title": "Magnemite (Pokémon)"
+  },
+  {
+    "dex_num": "0082",
+    "name": "Magneton",
+    "page_title": "Magneton (Pokémon)"
+  },
+  {
+    "dex_num": "0083",
+    "name": "Farfetch'd",
+    "page_title": "Farfetch'd (Pokémon)"
+  },
+  {
+    "dex_num": "0084",
+    "name": "Doduo",
+    "page_title": "Doduo (Pokémon)"
+  },
+  {
+    "dex_num": "0085",
+    "name": "Dodrio",
+    "page_title": "Dodrio (Pokémon)"
+  },
+  {
+    "dex_num": "0086",
+    "name": "Seel",
+    "page_title": "Seel (Pokémon)"
+  },
+  {
+    "dex_num": "0087",
+    "name": "Dewgong",
+    "page_title": "Dewgong (Pokémon)"
+  },
+  {
+    "dex_num": "0088",
+    "name": "Grimer",
+    "page_title": "Grimer (Pokémon)"
+  },
+  {
+    "dex_num": "0089",
+    "name": "Muk",
+    "page_title": "Muk (Pokémon)"
+  },
+  {
+    "dex_num": "0090",
+    "name": "Shellder",
+    "page_title": "Shellder (Pokémon)"
+  },
+  {
+    "dex_num": "0091",
+    "name": "Cloyster",
+    "page_title": "Cloyster (Pokémon)"
+  },
+  {
+    "dex_num": "0092",
+    "name": "Gastly",
+    "page_title": "Gastly (Pokémon)"
+  },
+  {
+    "dex_num": "0093",
+    "name": "Haunter",
+    "page_title": "Haunter (Pokémon)"
+  },
+  {
+    "dex_num": "0094",
+    "name": "Gengar",
+    "page_title": "Gengar (Pokémon)"
+  },
+  {
+    "dex_num": "0095",
+    "name": "Onix",
+    "page_title": "Onix (Pokémon)"
+  },
+  {
+    "dex_num": "0096",
+    "name": "Drowzee",
+    "page_title": "Drowzee (Pokémon)"
+  },
+  {
+    "dex_num": "0097",
+    "name": "Hypno",
+    "page_title": "Hypno (Pokémon)"
+  },
+  {
+    "dex_num": "0098",
+    "name": "Krabby",
+    "page_title": "Krabby (Pokémon)"
+  },
+  {
+    "dex_num": "0099",
+    "name": "Kingler",
+    "page_title": "Kingler (Pokémon)"
+  },
+  {
+    "dex_num": "0100",
+    "name": "Voltorb",
+    "page_title": "Voltorb (Pokémon)"
+  },
+  {
+    "dex_num": "0101",
+    "name": "Electrode",
+    "page_title": "Electrode (Pokémon)"
+  },
+  {
+    "dex_num": "0102",
+    "name": "Exeggcute",
+    "page_title": "Exeggcute (Pokémon)"
+  },
+  {
+    "dex_num": "0103",
+    "name": "Exeggutor",
+    "page_title": "Exeggutor (Pokémon)"
+  },
+  {
+    "dex_num": "0104",
+    "name": "Cubone",
+    "page_title": "Cubone (Pokémon)"
+  },
+  {
+    "dex_num": "0105",
+    "name": "Marowak",
+    "page_title": "Marowak (Pokémon)"
+  },
+  {
+    "dex_num": "0106",
+    "name": "Hitmonlee",
+    "page_title": "Hitmonlee (Pokémon)"
+  },
+  {
+    "dex_num": "0107",
+    "name": "Hitmonchan",
+    "page_title": "Hitmonchan (Pokémon)"
+  },
+  {
+    "dex_num": "0108",
+    "name": "Lickitung",
+    "page_title": "Lickitung (Pokémon)"
+  },
+  {
+    "dex_num": "0109",
+    "name": "Koffing",
+    "page_title": "Koffing (Pokémon)"
+  },
+  {
+    "dex_num": "0110",
+    "name": "Weezing",
+    "page_title": "Weezing (Pokémon)"
+  },
+  {
+    "dex_num": "0111",
+    "name": "Rhyhorn",
+    "page_title": "Rhyhorn (Pokémon)"
+  },
+  {
+    "dex_num": "0112",
+    "name": "Rhydon",
+    "page_title": "Rhydon (Pokémon)"
+  },
+  {
+    "dex_num": "0113",
+    "name": "Chansey",
+    "page_title": "Chansey (Pokémon)"
+  },
+  {
+    "dex_num": "0114",
+    "name": "Tangela",
+    "page_title": "Tangela (Pokémon)"
+  },
+  {
+    "dex_num": "0115",
+    "name": "Kangaskhan",
+    "page_title": "Kangaskhan (Pokémon)"
+  },
+  {
+    "dex_num": "0116",
+    "name": "Horsea",
+    "page_title": "Horsea (Pokémon)"
+  },
+  {
+    "dex_num": "0117",
+    "name": "Seadra",
+    "page_title": "Seadra (Pokémon)"
+  },
+  {
+    "dex_num": "0118",
+    "name": "Goldeen",
+    "page_title": "Goldeen (Pokémon)"
+  },
+  {
+    "dex_num": "0119",
+    "name": "Seaking",
+    "page_title": "Seaking (Pokémon)"
+  },
+  {
+    "dex_num": "0120",
+    "name": "Staryu",
+    "page_title": "Staryu (Pokémon)"
+  },
+  {
+    "dex_num": "0121",
+    "name": "Starmie",
+    "page_title": "Starmie (Pokémon)"
+  },
+  {
+    "dex_num": "0122",
+    "name": "Mr. Mime",
+    "page_title": "Mr. Mime (Pokémon)"
+  },
+  {
+    "dex_num": "0123",
+    "name": "Scyther",
+    "page_title": "Scyther (Pokémon)"
+  },
+  {
+    "dex_num": "0124",
+    "name": "Jynx",
+    "page_title": "Jynx (Pokémon)"
+  },
+  {
+    "dex_num": "0125",
+    "name": "Electabuzz",
+    "page_title": "Electabuzz (Pokémon)"
+  },
+  {
+    "dex_num": "0126",
+    "name": "Magmar",
+    "page_title": "Magmar (Pokémon)"
+  },
+  {
+    "dex_num": "0127",
+    "name": "Pinsir",
+    "page_title": "Pinsir (Pokémon)"
+  },
+  {
+    "dex_num": "0128",
+    "name": "Tauros",
+    "page_title": "Tauros (Pokémon)"
+  },
+  {
+    "dex_num": "0129",
+    "name": "Magikarp",
+    "page_title": "Magikarp (Pokémon)"
+  },
+  {
+    "dex_num": "0130",
+    "name": "Gyarados",
+    "page_title": "Gyarados (Pokémon)"
+  },
+  {
+    "dex_num": "0131",
+    "name": "Lapras",
+    "page_title": "Lapras (Pokémon)"
+  },
+  {
+    "dex_num": "0132",
+    "name": "Ditto",
+    "page_title": "Ditto (Pokémon)"
+  },
+  {
+    "dex_num": "0133",
+    "name": "Eevee",
+    "page_title": "Eevee (Pokémon)"
+  },
+  {
+    "dex_num": "0134",
+    "name": "Vaporeon",
+    "page_title": "Vaporeon (Pokémon)"
+  },
+  {
+    "dex_num": "0135",
+    "name": "Jolteon",
+    "page_title": "Jolteon (Pokémon)"
+  },
+  {
+    "dex_num": "0136",
+    "name": "Flareon",
+    "page_title": "Flareon (Pokémon)"
+  },
+  {
+    "dex_num": "0137",
+    "name": "Porygon",
+    "page_title": "Porygon (Pokémon)"
+  },
+  {
+    "dex_num": "0138",
+    "name": "Omanyte",
+    "page_title": "Omanyte (Pokémon)"
+  },
+  {
+    "dex_num": "0139",
+    "name": "Omastar",
+    "page_title": "Omastar (Pokémon)"
+  },
+  {
+    "dex_num": "0140",
+    "name": "Kabuto",
+    "page_title": "Kabuto (Pokémon)"
+  },
+  {
+    "dex_num": "0141",
+    "name": "Kabutops",
+    "page_title": "Kabutops (Pokémon)"
+  },
+  {
+    "dex_num": "0142",
+    "name": "Aerodactyl",
+    "page_title": "Aerodactyl (Pokémon)"
+  },
+  {
+    "dex_num": "0143",
+    "name": "Snorlax",
+    "page_title": "Snorlax (Pokémon)"
+  },
+  {
+    "dex_num": "0144",
+    "name": "Articuno",
+    "page_title": "Articuno (Pokémon)"
+  },
+  {
+    "dex_num": "0145",
+    "name": "Zapdos",
+    "page_title": "Zapdos (Pokémon)"
+  },
+  {
+    "dex_num": "0146",
+    "name": "Moltres",
+    "page_title": "Moltres (Pokémon)"
+  },
+  {
+    "dex_num": "0147",
+    "name": "Dratini",
+    "page_title": "Dratini (Pokémon)"
+  },
+  {
+    "dex_num": "0148",
+    "name": "Dragonair",
+    "page_title": "Dragonair (Pokémon)"
+  },
+  {
+    "dex_num": "0149",
+    "name": "Dragonite",
+    "page_title": "Dragonite (Pokémon)"
+  },
+  {
+    "dex_num": "0150",
+    "name": "Mewtwo",
+    "page_title": "Mewtwo (Pokémon)"
+  },
+  {
+    "dex_num": "0151",
+    "name": "Mew",
+    "page_title": "Mew (Pokémon)"
+  },
+  {
+    "dex_num": "0152",
+    "name": "Chikorita",
+    "page_title": "Chikorita (Pokémon)"
+  },
+  {
+    "dex_num": "0153",
+    "name": "Bayleef",
+    "page_title": "Bayleef (Pokémon)"
+  },
+  {
+    "dex_num": "0154",
+    "name": "Meganium",
+    "page_title": "Meganium (Pokémon)"
+  },
+  {
+    "dex_num": "0155",
+    "name": "Cyndaquil",
+    "page_title": "Cyndaquil (Pokémon)"
+  },
+  {
+    "dex_num": "0156",
+    "name": "Quilava",
+    "page_title": "Quilava (Pokémon)"
+  },
+  {
+    "dex_num": "0157",
+    "name": "Typhlosion",
+    "page_title": "Typhlosion (Pokémon)"
+  },
+  {
+    "dex_num": "0158",
+    "name": "Totodile",
+    "page_title": "Totodile (Pokémon)"
+  },
+  {
+    "dex_num": "0159",
+    "name": "Croconaw",
+    "page_title": "Croconaw (Pokémon)"
+  },
+  {
+    "dex_num": "0160",
+    "name": "Feraligatr",
+    "page_title": "Feraligatr (Pokémon)"
+  },
+  {
+    "dex_num": "0161",
+    "name": "Sentret",
+    "page_title": "Sentret (Pokémon)"
+  },
+  {
+    "dex_num": "0162",
+    "name": "Furret",
+    "page_title": "Furret (Pokémon)"
+  },
+  {
+    "dex_num": "0163",
+    "name": "Hoothoot",
+    "page_title": "Hoothoot (Pokémon)"
+  },
+  {
+    "dex_num": "0164",
+    "name": "Noctowl",
+    "page_title": "Noctowl (Pokémon)"
+  },
+  {
+    "dex_num": "0165",
+    "name": "Ledyba",
+    "page_title": "Ledyba (Pokémon)"
+  },
+  {
+    "dex_num": "0166",
+    "name": "Ledian",
+    "page_title": "Ledian (Pokémon)"
+  },
+  {
+    "dex_num": "0167",
+    "name": "Spinarak",
+    "page_title": "Spinarak (Pokémon)"
+  },
+  {
+    "dex_num": "0168",
+    "name": "Ariados",
+    "page_title": "Ariados (Pokémon)"
+  },
+  {
+    "dex_num": "0169",
+    "name": "Crobat",
+    "page_title": "Crobat (Pokémon)"
+  },
+  {
+    "dex_num": "0170",
+    "name": "Chinchou",
+    "page_title": "Chinchou (Pokémon)"
+  },
+  {
+    "dex_num": "0171",
+    "name": "Lanturn",
+    "page_title": "Lanturn (Pokémon)"
+  },
+  {
+    "dex_num": "0172",
+    "name": "Pichu",
+    "page_title": "Pichu (Pokémon)"
+  },
+  {
+    "dex_num": "0173",
+    "name": "Cleffa",
+    "page_title": "Cleffa (Pokémon)"
+  },
+  {
+    "dex_num": "0174",
+    "name": "Igglybuff",
+    "page_title": "Igglybuff (Pokémon)"
+  },
+  {
+    "dex_num": "0175",
+    "name": "Togepi",
+    "page_title": "Togepi (Pokémon)"
+  },
+  {
+    "dex_num": "0176",
+    "name": "Togetic",
+    "page_title": "Togetic (Pokémon)"
+  },
+  {
+    "dex_num": "0177",
+    "name": "Natu",
+    "page_title": "Natu (Pokémon)"
+  },
+  {
+    "dex_num": "0178",
+    "name": "Xatu",
+    "page_title": "Xatu (Pokémon)"
+  },
+  {
+    "dex_num": "0179",
+    "name": "Mareep",
+    "page_title": "Mareep (Pokémon)"
+  },
+  {
+    "dex_num": "0180",
+    "name": "Flaaffy",
+    "page_title": "Flaaffy (Pokémon)"
+  },
+  {
+    "dex_num": "0181",
+    "name": "Ampharos",
+    "page_title": "Ampharos (Pokémon)"
+  },
+  {
+    "dex_num": "0182",
+    "name": "Bellossom",
+    "page_title": "Bellossom (Pokémon)"
+  },
+  {
+    "dex_num": "0183",
+    "name": "Marill",
+    "page_title": "Marill (Pokémon)"
+  },
+  {
+    "dex_num": "0184",
+    "name": "Azumarill",
+    "page_title": "Azumarill (Pokémon)"
+  },
+  {
+    "dex_num": "0185",
+    "name": "Sudowoodo",
+    "page_title": "Sudowoodo (Pokémon)"
+  },
+  {
+    "dex_num": "0186",
+    "name": "Politoed",
+    "page_title": "Politoed (Pokémon)"
+  },
+  {
+    "dex_num": "0187",
+    "name": "Hoppip",
+    "page_title": "Hoppip (Pokémon)"
+  },
+  {
+    "dex_num": "0188",
+    "name": "Skiploom",
+    "page_title": "Skiploom (Pokémon)"
+  },
+  {
+    "dex_num": "0189",
+    "name": "Jumpluff",
+    "page_title": "Jumpluff (Pokémon)"
+  },
+  {
+    "dex_num": "0190",
+    "name": "Aipom",
+    "page_title": "Aipom (Pokémon)"
+  },
+  {
+    "dex_num": "0191",
+    "name": "Sunkern",
+    "page_title": "Sunkern (Pokémon)"
+  },
+  {
+    "dex_num": "0192",
+    "name": "Sunflora",
+    "page_title": "Sunflora (Pokémon)"
+  },
+  {
+    "dex_num": "0193",
+    "name": "Yanma",
+    "page_title": "Yanma (Pokémon)"
+  },
+  {
+    "dex_num": "0194",
+    "name": "Wooper",
+    "page_title": "Wooper (Pokémon)"
+  },
+  {
+    "dex_num": "0195",
+    "name": "Quagsire",
+    "page_title": "Quagsire (Pokémon)"
+  },
+  {
+    "dex_num": "0196",
+    "name": "Espeon",
+    "page_title": "Espeon (Pokémon)"
+  },
+  {
+    "dex_num": "0197",
+    "name": "Umbreon",
+    "page_title": "Umbreon (Pokémon)"
+  },
+  {
+    "dex_num": "0198",
+    "name": "Murkrow",
+    "page_title": "Murkrow (Pokémon)"
+  },
+  {
+    "dex_num": "0199",
+    "name": "Slowking",
+    "page_title": "Slowking (Pokémon)"
+  },
+  {
+    "dex_num": "0200",
+    "name": "Misdreavus",
+    "page_title": "Misdreavus (Pokémon)"
+  },
+  {
+    "dex_num": "0201",
+    "name": "Unown",
+    "page_title": "Unown (Pokémon)"
+  },
+  {
+    "dex_num": "0202",
+    "name": "Wobbuffet",
+    "page_title": "Wobbuffet (Pokémon)"
+  },
+  {
+    "dex_num": "0203",
+    "name": "Girafarig",
+    "page_title": "Girafarig (Pokémon)"
+  },
+  {
+    "dex_num": "0204",
+    "name": "Pineco",
+    "page_title": "Pineco (Pokémon)"
+  },
+  {
+    "dex_num": "0205",
+    "name": "Forretress",
+    "page_title": "Forretress (Pokémon)"
+  },
+  {
+    "dex_num": "0206",
+    "name": "Dunsparce",
+    "page_title": "Dunsparce (Pokémon)"
+  },
+  {
+    "dex_num": "0207",
+    "name": "Gligar",
+    "page_title": "Gligar (Pokémon)"
+  },
+  {
+    "dex_num": "0208",
+    "name": "Steelix",
+    "page_title": "Steelix (Pokémon)"
+  },
+  {
+    "dex_num": "0209",
+    "name": "Snubbull",
+    "page_title": "Snubbull (Pokémon)"
+  },
+  {
+    "dex_num": "0210",
+    "name": "Granbull",
+    "page_title": "Granbull (Pokémon)"
+  },
+  {
+    "dex_num": "0211",
+    "name": "Qwilfish",
+    "page_title": "Qwilfish (Pokémon)"
+  },
+  {
+    "dex_num": "0212",
+    "name": "Scizor",
+    "page_title": "Scizor (Pokémon)"
+  },
+  {
+    "dex_num": "0213",
+    "name": "Shuckle",
+    "page_title": "Shuckle (Pokémon)"
+  },
+  {
+    "dex_num": "0214",
+    "name": "Heracross",
+    "page_title": "Heracross (Pokémon)"
+  },
+  {
+    "dex_num": "0215",
+    "name": "Sneasel",
+    "page_title": "Sneasel (Pokémon)"
+  },
+  {
+    "dex_num": "0216",
+    "name": "Teddiursa",
+    "page_title": "Teddiursa (Pokémon)"
+  },
+  {
+    "dex_num": "0217",
+    "name": "Ursaring",
+    "page_title": "Ursaring (Pokémon)"
+  },
+  {
+    "dex_num": "0218",
+    "name": "Slugma",
+    "page_title": "Slugma (Pokémon)"
+  },
+  {
+    "dex_num": "0219",
+    "name": "Magcargo",
+    "page_title": "Magcargo (Pokémon)"
+  },
+  {
+    "dex_num": "0220",
+    "name": "Swinub",
+    "page_title": "Swinub (Pokémon)"
+  },
+  {
+    "dex_num": "0221",
+    "name": "Piloswine",
+    "page_title": "Piloswine (Pokémon)"
+  },
+  {
+    "dex_num": "0222",
+    "name": "Corsola",
+    "page_title": "Corsola (Pokémon)"
+  },
+  {
+    "dex_num": "0223",
+    "name": "Remoraid",
+    "page_title": "Remoraid (Pokémon)"
+  },
+  {
+    "dex_num": "0224",
+    "name": "Octillery",
+    "page_title": "Octillery (Pokémon)"
+  },
+  {
+    "dex_num": "0225",
+    "name": "Delibird",
+    "page_title": "Delibird (Pokémon)"
+  },
+  {
+    "dex_num": "0226",
+    "name": "Mantine",
+    "page_title": "Mantine (Pokémon)"
+  },
+  {
+    "dex_num": "0227",
+    "name": "Skarmory",
+    "page_title": "Skarmory (Pokémon)"
+  },
+  {
+    "dex_num": "0228",
+    "name": "Houndour",
+    "page_title": "Houndour (Pokémon)"
+  },
+  {
+    "dex_num": "0229",
+    "name": "Houndoom",
+    "page_title": "Houndoom (Pokémon)"
+  },
+  {
+    "dex_num": "0230",
+    "name": "Kingdra",
+    "page_title": "Kingdra (Pokémon)"
+  },
+  {
+    "dex_num": "0231",
+    "name": "Phanpy",
+    "page_title": "Phanpy (Pokémon)"
+  },
+  {
+    "dex_num": "0232",
+    "name": "Donphan",
+    "page_title": "Donphan (Pokémon)"
+  },
+  {
+    "dex_num": "0233",
+    "name": "Porygon2",
+    "page_title": "Porygon2 (Pokémon)"
+  },
+  {
+    "dex_num": "0234",
+    "name": "Stantler",
+    "page_title": "Stantler (Pokémon)"
+  },
+  {
+    "dex_num": "0235",
+    "name": "Smeargle",
+    "page_title": "Smeargle (Pokémon)"
+  },
+  {
+    "dex_num": "0236",
+    "name": "Tyrogue",
+    "page_title": "Tyrogue (Pokémon)"
+  },
+  {
+    "dex_num": "0237",
+    "name": "Hitmontop",
+    "page_title": "Hitmontop (Pokémon)"
+  },
+  {
+    "dex_num": "0238",
+    "name": "Smoochum",
+    "page_title": "Smoochum (Pokémon)"
+  },
+  {
+    "dex_num": "0239",
+    "name": "Elekid",
+    "page_title": "Elekid (Pokémon)"
+  },
+  {
+    "dex_num": "0240",
+    "name": "Magby",
+    "page_title": "Magby (Pokémon)"
+  },
+  {
+    "dex_num": "0241",
+    "name": "Miltank",
+    "page_title": "Miltank (Pokémon)"
+  },
+  {
+    "dex_num": "0242",
+    "name": "Blissey",
+    "page_title": "Blissey (Pokémon)"
+  },
+  {
+    "dex_num": "0243",
+    "name": "Raikou",
+    "page_title": "Raikou (Pokémon)"
+  },
+  {
+    "dex_num": "0244",
+    "name": "Entei",
+    "page_title": "Entei (Pokémon)"
+  },
+  {
+    "dex_num": "0245",
+    "name": "Suicune",
+    "page_title": "Suicune (Pokémon)"
+  },
+  {
+    "dex_num": "0246",
+    "name": "Larvitar",
+    "page_title": "Larvitar (Pokémon)"
+  },
+  {
+    "dex_num": "0247",
+    "name": "Pupitar",
+    "page_title": "Pupitar (Pokémon)"
+  },
+  {
+    "dex_num": "0248",
+    "name": "Tyranitar",
+    "page_title": "Tyranitar (Pokémon)"
+  },
+  {
+    "dex_num": "0249",
+    "name": "Lugia",
+    "page_title": "Lugia (Pokémon)"
+  },
+  {
+    "dex_num": "0250",
+    "name": "Ho-Oh",
+    "page_title": "Ho-Oh (Pokémon)"
+  },
+  {
+    "dex_num": "0251",
+    "name": "Celebi",
+    "page_title": "Celebi (Pokémon)"
+  },
+  {
+    "dex_num": "0252",
+    "name": "Treecko",
+    "page_title": "Treecko (Pokémon)"
+  },
+  {
+    "dex_num": "0253",
+    "name": "Grovyle",
+    "page_title": "Grovyle (Pokémon)"
+  },
+  {
+    "dex_num": "0254",
+    "name": "Sceptile",
+    "page_title": "Sceptile (Pokémon)"
+  },
+  {
+    "dex_num": "0255",
+    "name": "Torchic",
+    "page_title": "Torchic (Pokémon)"
+  },
+  {
+    "dex_num": "0256",
+    "name": "Combusken",
+    "page_title": "Combusken (Pokémon)"
+  },
+  {
+    "dex_num": "0257",
+    "name": "Blaziken",
+    "page_title": "Blaziken (Pokémon)"
+  },
+  {
+    "dex_num": "0258",
+    "name": "Mudkip",
+    "page_title": "Mudkip (Pokémon)"
+  },
+  {
+    "dex_num": "0259",
+    "name": "Marshtomp",
+    "page_title": "Marshtomp (Pokémon)"
+  },
+  {
+    "dex_num": "0260",
+    "name": "Swampert",
+    "page_title": "Swampert (Pokémon)"
+  },
+  {
+    "dex_num": "0261",
+    "name": "Poochyena",
+    "page_title": "Poochyena (Pokémon)"
+  },
+  {
+    "dex_num": "0262",
+    "name": "Mightyena",
+    "page_title": "Mightyena (Pokémon)"
+  },
+  {
+    "dex_num": "0263",
+    "name": "Zigzagoon",
+    "page_title": "Zigzagoon (Pokémon)"
+  },
+  {
+    "dex_num": "0264",
+    "name": "Linoone",
+    "page_title": "Linoone (Pokémon)"
+  },
+  {
+    "dex_num": "0265",
+    "name": "Wurmple",
+    "page_title": "Wurmple (Pokémon)"
+  },
+  {
+    "dex_num": "0266",
+    "name": "Silcoon",
+    "page_title": "Silcoon (Pokémon)"
+  },
+  {
+    "dex_num": "0267",
+    "name": "Beautifly",
+    "page_title": "Beautifly (Pokémon)"
+  },
+  {
+    "dex_num": "0268",
+    "name": "Cascoon",
+    "page_title": "Cascoon (Pokémon)"
+  },
+  {
+    "dex_num": "0269",
+    "name": "Dustox",
+    "page_title": "Dustox (Pokémon)"
+  },
+  {
+    "dex_num": "0270",
+    "name": "Lotad",
+    "page_title": "Lotad (Pokémon)"
+  },
+  {
+    "dex_num": "0271",
+    "name": "Lombre",
+    "page_title": "Lombre (Pokémon)"
+  },
+  {
+    "dex_num": "0272",
+    "name": "Ludicolo",
+    "page_title": "Ludicolo (Pokémon)"
+  },
+  {
+    "dex_num": "0273",
+    "name": "Seedot",
+    "page_title": "Seedot (Pokémon)"
+  },
+  {
+    "dex_num": "0274",
+    "name": "Nuzleaf",
+    "page_title": "Nuzleaf (Pokémon)"
+  },
+  {
+    "dex_num": "0275",
+    "name": "Shiftry",
+    "page_title": "Shiftry (Pokémon)"
+  },
+  {
+    "dex_num": "0276",
+    "name": "Taillow",
+    "page_title": "Taillow (Pokémon)"
+  },
+  {
+    "dex_num": "0277",
+    "name": "Swellow",
+    "page_title": "Swellow (Pokémon)"
+  },
+  {
+    "dex_num": "0278",
+    "name": "Wingull",
+    "page_title": "Wingull (Pokémon)"
+  },
+  {
+    "dex_num": "0279",
+    "name": "Pelipper",
+    "page_title": "Pelipper (Pokémon)"
+  },
+  {
+    "dex_num": "0280",
+    "name": "Ralts",
+    "page_title": "Ralts (Pokémon)"
+  },
+  {
+    "dex_num": "0281",
+    "name": "Kirlia",
+    "page_title": "Kirlia (Pokémon)"
+  },
+  {
+    "dex_num": "0282",
+    "name": "Gardevoir",
+    "page_title": "Gardevoir (Pokémon)"
+  },
+  {
+    "dex_num": "0283",
+    "name": "Surskit",
+    "page_title": "Surskit (Pokémon)"
+  },
+  {
+    "dex_num": "0284",
+    "name": "Masquerain",
+    "page_title": "Masquerain (Pokémon)"
+  },
+  {
+    "dex_num": "0285",
+    "name": "Shroomish",
+    "page_title": "Shroomish (Pokémon)"
+  },
+  {
+    "dex_num": "0286",
+    "name": "Breloom",
+    "page_title": "Breloom (Pokémon)"
+  },
+  {
+    "dex_num": "0287",
+    "name": "Slakoth",
+    "page_title": "Slakoth (Pokémon)"
+  },
+  {
+    "dex_num": "0288",
+    "name": "Vigoroth",
+    "page_title": "Vigoroth (Pokémon)"
+  },
+  {
+    "dex_num": "0289",
+    "name": "Slaking",
+    "page_title": "Slaking (Pokémon)"
+  },
+  {
+    "dex_num": "0290",
+    "name": "Nincada",
+    "page_title": "Nincada (Pokémon)"
+  },
+  {
+    "dex_num": "0291",
+    "name": "Ninjask",
+    "page_title": "Ninjask (Pokémon)"
+  },
+  {
+    "dex_num": "0292",
+    "name": "Shedinja",
+    "page_title": "Shedinja (Pokémon)"
+  },
+  {
+    "dex_num": "0293",
+    "name": "Whismur",
+    "page_title": "Whismur (Pokémon)"
+  },
+  {
+    "dex_num": "0294",
+    "name": "Loudred",
+    "page_title": "Loudred (Pokémon)"
+  },
+  {
+    "dex_num": "0295",
+    "name": "Exploud",
+    "page_title": "Exploud (Pokémon)"
+  },
+  {
+    "dex_num": "0296",
+    "name": "Makuhita",
+    "page_title": "Makuhita (Pokémon)"
+  },
+  {
+    "dex_num": "0297",
+    "name": "Hariyama",
+    "page_title": "Hariyama (Pokémon)"
+  },
+  {
+    "dex_num": "0298",
+    "name": "Azurill",
+    "page_title": "Azurill (Pokémon)"
+  },
+  {
+    "dex_num": "0299",
+    "name": "Nosepass",
+    "page_title": "Nosepass (Pokémon)"
+  },
+  {
+    "dex_num": "0300",
+    "name": "Skitty",
+    "page_title": "Skitty (Pokémon)"
+  },
+  {
+    "dex_num": "0301",
+    "name": "Delcatty",
+    "page_title": "Delcatty (Pokémon)"
+  },
+  {
+    "dex_num": "0302",
+    "name": "Sableye",
+    "page_title": "Sableye (Pokémon)"
+  },
+  {
+    "dex_num": "0303",
+    "name": "Mawile",
+    "page_title": "Mawile (Pokémon)"
+  },
+  {
+    "dex_num": "0304",
+    "name": "Aron",
+    "page_title": "Aron (Pokémon)"
+  },
+  {
+    "dex_num": "0305",
+    "name": "Lairon",
+    "page_title": "Lairon (Pokémon)"
+  },
+  {
+    "dex_num": "0306",
+    "name": "Aggron",
+    "page_title": "Aggron (Pokémon)"
+  },
+  {
+    "dex_num": "0307",
+    "name": "Meditite",
+    "page_title": "Meditite (Pokémon)"
+  },
+  {
+    "dex_num": "0308",
+    "name": "Medicham",
+    "page_title": "Medicham (Pokémon)"
+  },
+  {
+    "dex_num": "0309",
+    "name": "Electrike",
+    "page_title": "Electrike (Pokémon)"
+  },
+  {
+    "dex_num": "0310",
+    "name": "Manectric",
+    "page_title": "Manectric (Pokémon)"
+  },
+  {
+    "dex_num": "0311",
+    "name": "Plusle",
+    "page_title": "Plusle (Pokémon)"
+  },
+  {
+    "dex_num": "0312",
+    "name": "Minun",
+    "page_title": "Minun (Pokémon)"
+  },
+  {
+    "dex_num": "0313",
+    "name": "Volbeat",
+    "page_title": "Volbeat (Pokémon)"
+  },
+  {
+    "dex_num": "0314",
+    "name": "Illumise",
+    "page_title": "Illumise (Pokémon)"
+  },
+  {
+    "dex_num": "0315",
+    "name": "Roselia",
+    "page_title": "Roselia (Pokémon)"
+  },
+  {
+    "dex_num": "0316",
+    "name": "Gulpin",
+    "page_title": "Gulpin (Pokémon)"
+  },
+  {
+    "dex_num": "0317",
+    "name": "Swalot",
+    "page_title": "Swalot (Pokémon)"
+  },
+  {
+    "dex_num": "0318",
+    "name": "Carvanha",
+    "page_title": "Carvanha (Pokémon)"
+  },
+  {
+    "dex_num": "0319",
+    "name": "Sharpedo",
+    "page_title": "Sharpedo (Pokémon)"
+  },
+  {
+    "dex_num": "0320",
+    "name": "Wailmer",
+    "page_title": "Wailmer (Pokémon)"
+  },
+  {
+    "dex_num": "0321",
+    "name": "Wailord",
+    "page_title": "Wailord (Pokémon)"
+  },
+  {
+    "dex_num": "0322",
+    "name": "Numel",
+    "page_title": "Numel (Pokémon)"
+  },
+  {
+    "dex_num": "0323",
+    "name": "Camerupt",
+    "page_title": "Camerupt (Pokémon)"
+  },
+  {
+    "dex_num": "0324",
+    "name": "Torkoal",
+    "page_title": "Torkoal (Pokémon)"
+  },
+  {
+    "dex_num": "0325",
+    "name": "Spoink",
+    "page_title": "Spoink (Pokémon)"
+  },
+  {
+    "dex_num": "0326",
+    "name": "Grumpig",
+    "page_title": "Grumpig (Pokémon)"
+  },
+  {
+    "dex_num": "0327",
+    "name": "Spinda",
+    "page_title": "Spinda (Pokémon)"
+  },
+  {
+    "dex_num": "0328",
+    "name": "Trapinch",
+    "page_title": "Trapinch (Pokémon)"
+  },
+  {
+    "dex_num": "0329",
+    "name": "Vibrava",
+    "page_title": "Vibrava (Pokémon)"
+  },
+  {
+    "dex_num": "0330",
+    "name": "Flygon",
+    "page_title": "Flygon (Pokémon)"
+  },
+  {
+    "dex_num": "0331",
+    "name": "Cacnea",
+    "page_title": "Cacnea (Pokémon)"
+  },
+  {
+    "dex_num": "0332",
+    "name": "Cacturne",
+    "page_title": "Cacturne (Pokémon)"
+  },
+  {
+    "dex_num": "0333",
+    "name": "Swablu",
+    "page_title": "Swablu (Pokémon)"
+  },
+  {
+    "dex_num": "0334",
+    "name": "Altaria",
+    "page_title": "Altaria (Pokémon)"
+  },
+  {
+    "dex_num": "0335",
+    "name": "Zangoose",
+    "page_title": "Zangoose (Pokémon)"
+  },
+  {
+    "dex_num": "0336",
+    "name": "Seviper",
+    "page_title": "Seviper (Pokémon)"
+  },
+  {
+    "dex_num": "0337",
+    "name": "Lunatone",
+    "page_title": "Lunatone (Pokémon)"
+  },
+  {
+    "dex_num": "0338",
+    "name": "Solrock",
+    "page_title": "Solrock (Pokémon)"
+  },
+  {
+    "dex_num": "0339",
+    "name": "Barboach",
+    "page_title": "Barboach (Pokémon)"
+  },
+  {
+    "dex_num": "0340",
+    "name": "Whiscash",
+    "page_title": "Whiscash (Pokémon)"
+  },
+  {
+    "dex_num": "0341",
+    "name": "Corphish",
+    "page_title": "Corphish (Pokémon)"
+  },
+  {
+    "dex_num": "0342",
+    "name": "Crawdaunt",
+    "page_title": "Crawdaunt (Pokémon)"
+  },
+  {
+    "dex_num": "0343",
+    "name": "Baltoy",
+    "page_title": "Baltoy (Pokémon)"
+  },
+  {
+    "dex_num": "0344",
+    "name": "Claydol",
+    "page_title": "Claydol (Pokémon)"
+  },
+  {
+    "dex_num": "0345",
+    "name": "Lileep",
+    "page_title": "Lileep (Pokémon)"
+  },
+  {
+    "dex_num": "0346",
+    "name": "Cradily",
+    "page_title": "Cradily (Pokémon)"
+  },
+  {
+    "dex_num": "0347",
+    "name": "Anorith",
+    "page_title": "Anorith (Pokémon)"
+  },
+  {
+    "dex_num": "0348",
+    "name": "Armaldo",
+    "page_title": "Armaldo (Pokémon)"
+  },
+  {
+    "dex_num": "0349",
+    "name": "Feebas",
+    "page_title": "Feebas (Pokémon)"
+  },
+  {
+    "dex_num": "0350",
+    "name": "Milotic",
+    "page_title": "Milotic (Pokémon)"
+  },
+  {
+    "dex_num": "0351",
+    "name": "Castform",
+    "page_title": "Castform (Pokémon)"
+  },
+  {
+    "dex_num": "0352",
+    "name": "Kecleon",
+    "page_title": "Kecleon (Pokémon)"
+  },
+  {
+    "dex_num": "0353",
+    "name": "Shuppet",
+    "page_title": "Shuppet (Pokémon)"
+  },
+  {
+    "dex_num": "0354",
+    "name": "Banette",
+    "page_title": "Banette (Pokémon)"
+  },
+  {
+    "dex_num": "0355",
+    "name": "Duskull",
+    "page_title": "Duskull (Pokémon)"
+  },
+  {
+    "dex_num": "0356",
+    "name": "Dusclops",
+    "page_title": "Dusclops (Pokémon)"
+  },
+  {
+    "dex_num": "0357",
+    "name": "Tropius",
+    "page_title": "Tropius (Pokémon)"
+  },
+  {
+    "dex_num": "0358",
+    "name": "Chimecho",
+    "page_title": "Chimecho (Pokémon)"
+  },
+  {
+    "dex_num": "0359",
+    "name": "Absol",
+    "page_title": "Absol (Pokémon)"
+  },
+  {
+    "dex_num": "0360",
+    "name": "Wynaut",
+    "page_title": "Wynaut (Pokémon)"
+  },
+  {
+    "dex_num": "0361",
+    "name": "Snorunt",
+    "page_title": "Snorunt (Pokémon)"
+  },
+  {
+    "dex_num": "0362",
+    "name": "Glalie",
+    "page_title": "Glalie (Pokémon)"
+  },
+  {
+    "dex_num": "0363",
+    "name": "Spheal",
+    "page_title": "Spheal (Pokémon)"
+  },
+  {
+    "dex_num": "0364",
+    "name": "Sealeo",
+    "page_title": "Sealeo (Pokémon)"
+  },
+  {
+    "dex_num": "0365",
+    "name": "Walrein",
+    "page_title": "Walrein (Pokémon)"
+  },
+  {
+    "dex_num": "0366",
+    "name": "Clamperl",
+    "page_title": "Clamperl (Pokémon)"
+  },
+  {
+    "dex_num": "0367",
+    "name": "Huntail",
+    "page_title": "Huntail (Pokémon)"
+  },
+  {
+    "dex_num": "0368",
+    "name": "Gorebyss",
+    "page_title": "Gorebyss (Pokémon)"
+  },
+  {
+    "dex_num": "0369",
+    "name": "Relicanth",
+    "page_title": "Relicanth (Pokémon)"
+  },
+  {
+    "dex_num": "0370",
+    "name": "Luvdisc",
+    "page_title": "Luvdisc (Pokémon)"
+  },
+  {
+    "dex_num": "0371",
+    "name": "Bagon",
+    "page_title": "Bagon (Pokémon)"
+  },
+  {
+    "dex_num": "0372",
+    "name": "Shelgon",
+    "page_title": "Shelgon (Pokémon)"
+  },
+  {
+    "dex_num": "0373",
+    "name": "Salamence",
+    "page_title": "Salamence (Pokémon)"
+  },
+  {
+    "dex_num": "0374",
+    "name": "Beldum",
+    "page_title": "Beldum (Pokémon)"
+  },
+  {
+    "dex_num": "0375",
+    "name": "Metang",
+    "page_title": "Metang (Pokémon)"
+  },
+  {
+    "dex_num": "0376",
+    "name": "Metagross",
+    "page_title": "Metagross (Pokémon)"
+  },
+  {
+    "dex_num": "0377",
+    "name": "Regirock",
+    "page_title": "Regirock (Pokémon)"
+  },
+  {
+    "dex_num": "0378",
+    "name": "Regice",
+    "page_title": "Regice (Pokémon)"
+  },
+  {
+    "dex_num": "0379",
+    "name": "Registeel",
+    "page_title": "Registeel (Pokémon)"
+  },
+  {
+    "dex_num": "0380",
+    "name": "Latias",
+    "page_title": "Latias (Pokémon)"
+  },
+  {
+    "dex_num": "0381",
+    "name": "Latios",
+    "page_title": "Latios (Pokémon)"
+  },
+  {
+    "dex_num": "0382",
+    "name": "Kyogre",
+    "page_title": "Kyogre (Pokémon)"
+  },
+  {
+    "dex_num": "0383",
+    "name": "Groudon",
+    "page_title": "Groudon (Pokémon)"
+  },
+  {
+    "dex_num": "0384",
+    "name": "Rayquaza",
+    "page_title": "Rayquaza (Pokémon)"
+  },
+  {
+    "dex_num": "0385",
+    "name": "Jirachi",
+    "page_title": "Jirachi (Pokémon)"
+  },
+  {
+    "dex_num": "0386",
+    "name": "Deoxys",
+    "page_title": "Deoxys (Pokémon)"
+  },
+  {
+    "dex_num": "0387",
+    "name": "Turtwig",
+    "page_title": "Turtwig (Pokémon)"
+  },
+  {
+    "dex_num": "0388",
+    "name": "Grotle",
+    "page_title": "Grotle (Pokémon)"
+  },
+  {
+    "dex_num": "0389",
+    "name": "Torterra",
+    "page_title": "Torterra (Pokémon)"
+  },
+  {
+    "dex_num": "0390",
+    "name": "Chimchar",
+    "page_title": "Chimchar (Pokémon)"
+  },
+  {
+    "dex_num": "0391",
+    "name": "Monferno",
+    "page_title": "Monferno (Pokémon)"
+  },
+  {
+    "dex_num": "0392",
+    "name": "Infernape",
+    "page_title": "Infernape (Pokémon)"
+  },
+  {
+    "dex_num": "0393",
+    "name": "Piplup",
+    "page_title": "Piplup (Pokémon)"
+  },
+  {
+    "dex_num": "0394",
+    "name": "Prinplup",
+    "page_title": "Prinplup (Pokémon)"
+  },
+  {
+    "dex_num": "0395",
+    "name": "Empoleon",
+    "page_title": "Empoleon (Pokémon)"
+  },
+  {
+    "dex_num": "0396",
+    "name": "Starly",
+    "page_title": "Starly (Pokémon)"
+  },
+  {
+    "dex_num": "0397",
+    "name": "Staravia",
+    "page_title": "Staravia (Pokémon)"
+  },
+  {
+    "dex_num": "0398",
+    "name": "Staraptor",
+    "page_title": "Staraptor (Pokémon)"
+  },
+  {
+    "dex_num": "0399",
+    "name": "Bidoof",
+    "page_title": "Bidoof (Pokémon)"
+  },
+  {
+    "dex_num": "0400",
+    "name": "Bibarel",
+    "page_title": "Bibarel (Pokémon)"
+  },
+  {
+    "dex_num": "0401",
+    "name": "Kricketot",
+    "page_title": "Kricketot (Pokémon)"
+  },
+  {
+    "dex_num": "0402",
+    "name": "Kricketune",
+    "page_title": "Kricketune (Pokémon)"
+  },
+  {
+    "dex_num": "0403",
+    "name": "Shinx",
+    "page_title": "Shinx (Pokémon)"
+  },
+  {
+    "dex_num": "0404",
+    "name": "Luxio",
+    "page_title": "Luxio (Pokémon)"
+  },
+  {
+    "dex_num": "0405",
+    "name": "Luxray",
+    "page_title": "Luxray (Pokémon)"
+  },
+  {
+    "dex_num": "0406",
+    "name": "Budew",
+    "page_title": "Budew (Pokémon)"
+  },
+  {
+    "dex_num": "0407",
+    "name": "Roserade",
+    "page_title": "Roserade (Pokémon)"
+  },
+  {
+    "dex_num": "0408",
+    "name": "Cranidos",
+    "page_title": "Cranidos (Pokémon)"
+  },
+  {
+    "dex_num": "0409",
+    "name": "Rampardos",
+    "page_title": "Rampardos (Pokémon)"
+  },
+  {
+    "dex_num": "0410",
+    "name": "Shieldon",
+    "page_title": "Shieldon (Pokémon)"
+  },
+  {
+    "dex_num": "0411",
+    "name": "Bastiodon",
+    "page_title": "Bastiodon (Pokémon)"
+  },
+  {
+    "dex_num": "0412",
+    "name": "Burmy",
+    "page_title": "Burmy (Pokémon)"
+  },
+  {
+    "dex_num": "0413",
+    "name": "Wormadam",
+    "page_title": "Wormadam (Pokémon)"
+  },
+  {
+    "dex_num": "0414",
+    "name": "Mothim",
+    "page_title": "Mothim (Pokémon)"
+  },
+  {
+    "dex_num": "0415",
+    "name": "Combee",
+    "page_title": "Combee (Pokémon)"
+  },
+  {
+    "dex_num": "0416",
+    "name": "Vespiquen",
+    "page_title": "Vespiquen (Pokémon)"
+  },
+  {
+    "dex_num": "0417",
+    "name": "Pachirisu",
+    "page_title": "Pachirisu (Pokémon)"
+  },
+  {
+    "dex_num": "0418",
+    "name": "Buizel",
+    "page_title": "Buizel (Pokémon)"
+  },
+  {
+    "dex_num": "0419",
+    "name": "Floatzel",
+    "page_title": "Floatzel (Pokémon)"
+  },
+  {
+    "dex_num": "0420",
+    "name": "Cherubi",
+    "page_title": "Cherubi (Pokémon)"
+  },
+  {
+    "dex_num": "0421",
+    "name": "Cherrim",
+    "page_title": "Cherrim (Pokémon)"
+  },
+  {
+    "dex_num": "0422",
+    "name": "Shellos",
+    "page_title": "Shellos (Pokémon)"
+  },
+  {
+    "dex_num": "0423",
+    "name": "Gastrodon",
+    "page_title": "Gastrodon (Pokémon)"
+  },
+  {
+    "dex_num": "0424",
+    "name": "Ambipom",
+    "page_title": "Ambipom (Pokémon)"
+  },
+  {
+    "dex_num": "0425",
+    "name": "Drifloon",
+    "page_title": "Drifloon (Pokémon)"
+  },
+  {
+    "dex_num": "0426",
+    "name": "Drifblim",
+    "page_title": "Drifblim (Pokémon)"
+  },
+  {
+    "dex_num": "0427",
+    "name": "Buneary",
+    "page_title": "Buneary (Pokémon)"
+  },
+  {
+    "dex_num": "0428",
+    "name": "Lopunny",
+    "page_title": "Lopunny (Pokémon)"
+  },
+  {
+    "dex_num": "0429",
+    "name": "Mismagius",
+    "page_title": "Mismagius (Pokémon)"
+  },
+  {
+    "dex_num": "0430",
+    "name": "Honchkrow",
+    "page_title": "Honchkrow (Pokémon)"
+  },
+  {
+    "dex_num": "0431",
+    "name": "Glameow",
+    "page_title": "Glameow (Pokémon)"
+  },
+  {
+    "dex_num": "0432",
+    "name": "Purugly",
+    "page_title": "Purugly (Pokémon)"
+  },
+  {
+    "dex_num": "0433",
+    "name": "Chingling",
+    "page_title": "Chingling (Pokémon)"
+  },
+  {
+    "dex_num": "0434",
+    "name": "Stunky",
+    "page_title": "Stunky (Pokémon)"
+  },
+  {
+    "dex_num": "0435",
+    "name": "Skuntank",
+    "page_title": "Skuntank (Pokémon)"
+  },
+  {
+    "dex_num": "0436",
+    "name": "Bronzor",
+    "page_title": "Bronzor (Pokémon)"
+  },
+  {
+    "dex_num": "0437",
+    "name": "Bronzong",
+    "page_title": "Bronzong (Pokémon)"
+  },
+  {
+    "dex_num": "0438",
+    "name": "Bonsly",
+    "page_title": "Bonsly (Pokémon)"
+  },
+  {
+    "dex_num": "0439",
+    "name": "Mime Jr.",
+    "page_title": "Mime Jr. (Pokémon)"
+  },
+  {
+    "dex_num": "0440",
+    "name": "Happiny",
+    "page_title": "Happiny (Pokémon)"
+  },
+  {
+    "dex_num": "0441",
+    "name": "Chatot",
+    "page_title": "Chatot (Pokémon)"
+  },
+  {
+    "dex_num": "0442",
+    "name": "Spiritomb",
+    "page_title": "Spiritomb (Pokémon)"
+  },
+  {
+    "dex_num": "0443",
+    "name": "Gible",
+    "page_title": "Gible (Pokémon)"
+  },
+  {
+    "dex_num": "0444",
+    "name": "Gabite",
+    "page_title": "Gabite (Pokémon)"
+  },
+  {
+    "dex_num": "0445",
+    "name": "Garchomp",
+    "page_title": "Garchomp (Pokémon)"
+  },
+  {
+    "dex_num": "0446",
+    "name": "Munchlax",
+    "page_title": "Munchlax (Pokémon)"
+  },
+  {
+    "dex_num": "0447",
+    "name": "Riolu",
+    "page_title": "Riolu (Pokémon)"
+  },
+  {
+    "dex_num": "0448",
+    "name": "Lucario",
+    "page_title": "Lucario (Pokémon)"
+  },
+  {
+    "dex_num": "0449",
+    "name": "Hippopotas",
+    "page_title": "Hippopotas (Pokémon)"
+  },
+  {
+    "dex_num": "0450",
+    "name": "Hippowdon",
+    "page_title": "Hippowdon (Pokémon)"
+  },
+  {
+    "dex_num": "0451",
+    "name": "Skorupi",
+    "page_title": "Skorupi (Pokémon)"
+  },
+  {
+    "dex_num": "0452",
+    "name": "Drapion",
+    "page_title": "Drapion (Pokémon)"
+  },
+  {
+    "dex_num": "0453",
+    "name": "Croagunk",
+    "page_title": "Croagunk (Pokémon)"
+  },
+  {
+    "dex_num": "0454",
+    "name": "Toxicroak",
+    "page_title": "Toxicroak (Pokémon)"
+  },
+  {
+    "dex_num": "0455",
+    "name": "Carnivine",
+    "page_title": "Carnivine (Pokémon)"
+  },
+  {
+    "dex_num": "0456",
+    "name": "Finneon",
+    "page_title": "Finneon (Pokémon)"
+  },
+  {
+    "dex_num": "0457",
+    "name": "Lumineon",
+    "page_title": "Lumineon (Pokémon)"
+  },
+  {
+    "dex_num": "0458",
+    "name": "Mantyke",
+    "page_title": "Mantyke (Pokémon)"
+  },
+  {
+    "dex_num": "0459",
+    "name": "Snover",
+    "page_title": "Snover (Pokémon)"
+  },
+  {
+    "dex_num": "0460",
+    "name": "Abomasnow",
+    "page_title": "Abomasnow (Pokémon)"
+  },
+  {
+    "dex_num": "0461",
+    "name": "Weavile",
+    "page_title": "Weavile (Pokémon)"
+  },
+  {
+    "dex_num": "0462",
+    "name": "Magnezone",
+    "page_title": "Magnezone (Pokémon)"
+  },
+  {
+    "dex_num": "0463",
+    "name": "Lickilicky",
+    "page_title": "Lickilicky (Pokémon)"
+  },
+  {
+    "dex_num": "0464",
+    "name": "Rhyperior",
+    "page_title": "Rhyperior (Pokémon)"
+  },
+  {
+    "dex_num": "0465",
+    "name": "Tangrowth",
+    "page_title": "Tangrowth (Pokémon)"
+  },
+  {
+    "dex_num": "0466",
+    "name": "Electivire",
+    "page_title": "Electivire (Pokémon)"
+  },
+  {
+    "dex_num": "0467",
+    "name": "Magmortar",
+    "page_title": "Magmortar (Pokémon)"
+  },
+  {
+    "dex_num": "0468",
+    "name": "Togekiss",
+    "page_title": "Togekiss (Pokémon)"
+  },
+  {
+    "dex_num": "0469",
+    "name": "Yanmega",
+    "page_title": "Yanmega (Pokémon)"
+  },
+  {
+    "dex_num": "0470",
+    "name": "Leafeon",
+    "page_title": "Leafeon (Pokémon)"
+  },
+  {
+    "dex_num": "0471",
+    "name": "Glaceon",
+    "page_title": "Glaceon (Pokémon)"
+  },
+  {
+    "dex_num": "0472",
+    "name": "Gliscor",
+    "page_title": "Gliscor (Pokémon)"
+  },
+  {
+    "dex_num": "0473",
+    "name": "Mamoswine",
+    "page_title": "Mamoswine (Pokémon)"
+  },
+  {
+    "dex_num": "0474",
+    "name": "Porygon-Z",
+    "page_title": "Porygon-Z (Pokémon)"
+  },
+  {
+    "dex_num": "0475",
+    "name": "Gallade",
+    "page_title": "Gallade (Pokémon)"
+  },
+  {
+    "dex_num": "0476",
+    "name": "Probopass",
+    "page_title": "Probopass (Pokémon)"
+  },
+  {
+    "dex_num": "0477",
+    "name": "Dusknoir",
+    "page_title": "Dusknoir (Pokémon)"
+  },
+  {
+    "dex_num": "0478",
+    "name": "Froslass",
+    "page_title": "Froslass (Pokémon)"
+  },
+  {
+    "dex_num": "0479",
+    "name": "Rotom",
+    "page_title": "Rotom (Pokémon)"
+  },
+  {
+    "dex_num": "0480",
+    "name": "Uxie",
+    "page_title": "Uxie (Pokémon)"
+  },
+  {
+    "dex_num": "0481",
+    "name": "Mesprit",
+    "page_title": "Mesprit (Pokémon)"
+  },
+  {
+    "dex_num": "0482",
+    "name": "Azelf",
+    "page_title": "Azelf (Pokémon)"
+  },
+  {
+    "dex_num": "0483",
+    "name": "Dialga",
+    "page_title": "Dialga (Pokémon)"
+  },
+  {
+    "dex_num": "0484",
+    "name": "Palkia",
+    "page_title": "Palkia (Pokémon)"
+  },
+  {
+    "dex_num": "0485",
+    "name": "Heatran",
+    "page_title": "Heatran (Pokémon)"
+  },
+  {
+    "dex_num": "0486",
+    "name": "Regigigas",
+    "page_title": "Regigigas (Pokémon)"
+  },
+  {
+    "dex_num": "0487",
+    "name": "Giratina",
+    "page_title": "Giratina (Pokémon)"
+  },
+  {
+    "dex_num": "0488",
+    "name": "Cresselia",
+    "page_title": "Cresselia (Pokémon)"
+  },
+  {
+    "dex_num": "0489",
+    "name": "Phione",
+    "page_title": "Phione (Pokémon)"
+  },
+  {
+    "dex_num": "0490",
+    "name": "Manaphy",
+    "page_title": "Manaphy (Pokémon)"
+  },
+  {
+    "dex_num": "0491",
+    "name": "Darkrai",
+    "page_title": "Darkrai (Pokémon)"
+  },
+  {
+    "dex_num": "0492",
+    "name": "Shaymin",
+    "page_title": "Shaymin (Pokémon)"
+  },
+  {
+    "dex_num": "0493",
+    "name": "Arceus",
+    "page_title": "Arceus (Pokémon)"
+  },
+  {
+    "dex_num": "0494",
+    "name": "Victini",
+    "page_title": "Victini (Pokémon)"
+  },
+  {
+    "dex_num": "0495",
+    "name": "Snivy",
+    "page_title": "Snivy (Pokémon)"
+  },
+  {
+    "dex_num": "0496",
+    "name": "Servine",
+    "page_title": "Servine (Pokémon)"
+  },
+  {
+    "dex_num": "0497",
+    "name": "Serperior",
+    "page_title": "Serperior (Pokémon)"
+  },
+  {
+    "dex_num": "0498",
+    "name": "Tepig",
+    "page_title": "Tepig (Pokémon)"
+  },
+  {
+    "dex_num": "0499",
+    "name": "Pignite",
+    "page_title": "Pignite (Pokémon)"
+  },
+  {
+    "dex_num": "0500",
+    "name": "Emboar",
+    "page_title": "Emboar (Pokémon)"
+  },
+  {
+    "dex_num": "0501",
+    "name": "Oshawott",
+    "page_title": "Oshawott (Pokémon)"
+  },
+  {
+    "dex_num": "0502",
+    "name": "Dewott",
+    "page_title": "Dewott (Pokémon)"
+  },
+  {
+    "dex_num": "0503",
+    "name": "Samurott",
+    "page_title": "Samurott (Pokémon)"
+  },
+  {
+    "dex_num": "0504",
+    "name": "Patrat",
+    "page_title": "Patrat (Pokémon)"
+  },
+  {
+    "dex_num": "0505",
+    "name": "Watchog",
+    "page_title": "Watchog (Pokémon)"
+  },
+  {
+    "dex_num": "0506",
+    "name": "Lillipup",
+    "page_title": "Lillipup (Pokémon)"
+  },
+  {
+    "dex_num": "0507",
+    "name": "Herdier",
+    "page_title": "Herdier (Pokémon)"
+  },
+  {
+    "dex_num": "0508",
+    "name": "Stoutland",
+    "page_title": "Stoutland (Pokémon)"
+  },
+  {
+    "dex_num": "0509",
+    "name": "Purrloin",
+    "page_title": "Purrloin (Pokémon)"
+  },
+  {
+    "dex_num": "0510",
+    "name": "Liepard",
+    "page_title": "Liepard (Pokémon)"
+  },
+  {
+    "dex_num": "0511",
+    "name": "Pansage",
+    "page_title": "Pansage (Pokémon)"
+  },
+  {
+    "dex_num": "0512",
+    "name": "Simisage",
+    "page_title": "Simisage (Pokémon)"
+  },
+  {
+    "dex_num": "0513",
+    "name": "Pansear",
+    "page_title": "Pansear (Pokémon)"
+  },
+  {
+    "dex_num": "0514",
+    "name": "Simisear",
+    "page_title": "Simisear (Pokémon)"
+  },
+  {
+    "dex_num": "0515",
+    "name": "Panpour",
+    "page_title": "Panpour (Pokémon)"
+  },
+  {
+    "dex_num": "0516",
+    "name": "Simipour",
+    "page_title": "Simipour (Pokémon)"
+  },
+  {
+    "dex_num": "0517",
+    "name": "Munna",
+    "page_title": "Munna (Pokémon)"
+  },
+  {
+    "dex_num": "0518",
+    "name": "Musharna",
+    "page_title": "Musharna (Pokémon)"
+  },
+  {
+    "dex_num": "0519",
+    "name": "Pidove",
+    "page_title": "Pidove (Pokémon)"
+  },
+  {
+    "dex_num": "0520",
+    "name": "Tranquill",
+    "page_title": "Tranquill (Pokémon)"
+  },
+  {
+    "dex_num": "0521",
+    "name": "Unfezant",
+    "page_title": "Unfezant (Pokémon)"
+  },
+  {
+    "dex_num": "0522",
+    "name": "Blitzle",
+    "page_title": "Blitzle (Pokémon)"
+  },
+  {
+    "dex_num": "0523",
+    "name": "Zebstrika",
+    "page_title": "Zebstrika (Pokémon)"
+  },
+  {
+    "dex_num": "0524",
+    "name": "Roggenrola",
+    "page_title": "Roggenrola (Pokémon)"
+  },
+  {
+    "dex_num": "0525",
+    "name": "Boldore",
+    "page_title": "Boldore (Pokémon)"
+  },
+  {
+    "dex_num": "0526",
+    "name": "Gigalith",
+    "page_title": "Gigalith (Pokémon)"
+  },
+  {
+    "dex_num": "0527",
+    "name": "Woobat",
+    "page_title": "Woobat (Pokémon)"
+  },
+  {
+    "dex_num": "0528",
+    "name": "Swoobat",
+    "page_title": "Swoobat (Pokémon)"
+  },
+  {
+    "dex_num": "0529",
+    "name": "Drilbur",
+    "page_title": "Drilbur (Pokémon)"
+  },
+  {
+    "dex_num": "0530",
+    "name": "Excadrill",
+    "page_title": "Excadrill (Pokémon)"
+  },
+  {
+    "dex_num": "0531",
+    "name": "Audino",
+    "page_title": "Audino (Pokémon)"
+  },
+  {
+    "dex_num": "0532",
+    "name": "Timburr",
+    "page_title": "Timburr (Pokémon)"
+  },
+  {
+    "dex_num": "0533",
+    "name": "Gurdurr",
+    "page_title": "Gurdurr (Pokémon)"
+  },
+  {
+    "dex_num": "0534",
+    "name": "Conkeldurr",
+    "page_title": "Conkeldurr (Pokémon)"
+  },
+  {
+    "dex_num": "0535",
+    "name": "Tympole",
+    "page_title": "Tympole (Pokémon)"
+  },
+  {
+    "dex_num": "0536",
+    "name": "Palpitoad",
+    "page_title": "Palpitoad (Pokémon)"
+  },
+  {
+    "dex_num": "0537",
+    "name": "Seismitoad",
+    "page_title": "Seismitoad (Pokémon)"
+  },
+  {
+    "dex_num": "0538",
+    "name": "Throh",
+    "page_title": "Throh (Pokémon)"
+  },
+  {
+    "dex_num": "0539",
+    "name": "Sawk",
+    "page_title": "Sawk (Pokémon)"
+  },
+  {
+    "dex_num": "0540",
+    "name": "Sewaddle",
+    "page_title": "Sewaddle (Pokémon)"
+  },
+  {
+    "dex_num": "0541",
+    "name": "Swadloon",
+    "page_title": "Swadloon (Pokémon)"
+  },
+  {
+    "dex_num": "0542",
+    "name": "Leavanny",
+    "page_title": "Leavanny (Pokémon)"
+  },
+  {
+    "dex_num": "0543",
+    "name": "Venipede",
+    "page_title": "Venipede (Pokémon)"
+  },
+  {
+    "dex_num": "0544",
+    "name": "Whirlipede",
+    "page_title": "Whirlipede (Pokémon)"
+  },
+  {
+    "dex_num": "0545",
+    "name": "Scolipede",
+    "page_title": "Scolipede (Pokémon)"
+  },
+  {
+    "dex_num": "0546",
+    "name": "Cottonee",
+    "page_title": "Cottonee (Pokémon)"
+  },
+  {
+    "dex_num": "0547",
+    "name": "Whimsicott",
+    "page_title": "Whimsicott (Pokémon)"
+  },
+  {
+    "dex_num": "0548",
+    "name": "Petilil",
+    "page_title": "Petilil (Pokémon)"
+  },
+  {
+    "dex_num": "0549",
+    "name": "Lilligant",
+    "page_title": "Lilligant (Pokémon)"
+  },
+  {
+    "dex_num": "0550",
+    "name": "Basculin",
+    "page_title": "Basculin (Pokémon)"
+  },
+  {
+    "dex_num": "0551",
+    "name": "Sandile",
+    "page_title": "Sandile (Pokémon)"
+  },
+  {
+    "dex_num": "0552",
+    "name": "Krokorok",
+    "page_title": "Krokorok (Pokémon)"
+  },
+  {
+    "dex_num": "0553",
+    "name": "Krookodile",
+    "page_title": "Krookodile (Pokémon)"
+  },
+  {
+    "dex_num": "0554",
+    "name": "Darumaka",
+    "page_title": "Darumaka (Pokémon)"
+  },
+  {
+    "dex_num": "0555",
+    "name": "Darmanitan",
+    "page_title": "Darmanitan (Pokémon)"
+  },
+  {
+    "dex_num": "0556",
+    "name": "Maractus",
+    "page_title": "Maractus (Pokémon)"
+  },
+  {
+    "dex_num": "0557",
+    "name": "Dwebble",
+    "page_title": "Dwebble (Pokémon)"
+  },
+  {
+    "dex_num": "0558",
+    "name": "Crustle",
+    "page_title": "Crustle (Pokémon)"
+  },
+  {
+    "dex_num": "0559",
+    "name": "Scraggy",
+    "page_title": "Scraggy (Pokémon)"
+  },
+  {
+    "dex_num": "0560",
+    "name": "Scrafty",
+    "page_title": "Scrafty (Pokémon)"
+  },
+  {
+    "dex_num": "0561",
+    "name": "Sigilyph",
+    "page_title": "Sigilyph (Pokémon)"
+  },
+  {
+    "dex_num": "0562",
+    "name": "Yamask",
+    "page_title": "Yamask (Pokémon)"
+  },
+  {
+    "dex_num": "0563",
+    "name": "Cofagrigus",
+    "page_title": "Cofagrigus (Pokémon)"
+  },
+  {
+    "dex_num": "0564",
+    "name": "Tirtouga",
+    "page_title": "Tirtouga (Pokémon)"
+  },
+  {
+    "dex_num": "0565",
+    "name": "Carracosta",
+    "page_title": "Carracosta (Pokémon)"
+  },
+  {
+    "dex_num": "0566",
+    "name": "Archen",
+    "page_title": "Archen (Pokémon)"
+  },
+  {
+    "dex_num": "0567",
+    "name": "Archeops",
+    "page_title": "Archeops (Pokémon)"
+  },
+  {
+    "dex_num": "0568",
+    "name": "Trubbish",
+    "page_title": "Trubbish (Pokémon)"
+  },
+  {
+    "dex_num": "0569",
+    "name": "Garbodor",
+    "page_title": "Garbodor (Pokémon)"
+  },
+  {
+    "dex_num": "0570",
+    "name": "Zorua",
+    "page_title": "Zorua (Pokémon)"
+  },
+  {
+    "dex_num": "0571",
+    "name": "Zoroark",
+    "page_title": "Zoroark (Pokémon)"
+  },
+  {
+    "dex_num": "0572",
+    "name": "Minccino",
+    "page_title": "Minccino (Pokémon)"
+  },
+  {
+    "dex_num": "0573",
+    "name": "Cinccino",
+    "page_title": "Cinccino (Pokémon)"
+  },
+  {
+    "dex_num": "0574",
+    "name": "Gothita",
+    "page_title": "Gothita (Pokémon)"
+  },
+  {
+    "dex_num": "0575",
+    "name": "Gothorita",
+    "page_title": "Gothorita (Pokémon)"
+  },
+  {
+    "dex_num": "0576",
+    "name": "Gothitelle",
+    "page_title": "Gothitelle (Pokémon)"
+  },
+  {
+    "dex_num": "0577",
+    "name": "Solosis",
+    "page_title": "Solosis (Pokémon)"
+  },
+  {
+    "dex_num": "0578",
+    "name": "Duosion",
+    "page_title": "Duosion (Pokémon)"
+  },
+  {
+    "dex_num": "0579",
+    "name": "Reuniclus",
+    "page_title": "Reuniclus (Pokémon)"
+  },
+  {
+    "dex_num": "0580",
+    "name": "Ducklett",
+    "page_title": "Ducklett (Pokémon)"
+  },
+  {
+    "dex_num": "0581",
+    "name": "Swanna",
+    "page_title": "Swanna (Pokémon)"
+  },
+  {
+    "dex_num": "0582",
+    "name": "Vanillite",
+    "page_title": "Vanillite (Pokémon)"
+  },
+  {
+    "dex_num": "0583",
+    "name": "Vanillish",
+    "page_title": "Vanillish (Pokémon)"
+  },
+  {
+    "dex_num": "0584",
+    "name": "Vanilluxe",
+    "page_title": "Vanilluxe (Pokémon)"
+  },
+  {
+    "dex_num": "0585",
+    "name": "Deerling",
+    "page_title": "Deerling (Pokémon)"
+  },
+  {
+    "dex_num": "0586",
+    "name": "Sawsbuck",
+    "page_title": "Sawsbuck (Pokémon)"
+  },
+  {
+    "dex_num": "0587",
+    "name": "Emolga",
+    "page_title": "Emolga (Pokémon)"
+  },
+  {
+    "dex_num": "0588",
+    "name": "Karrablast",
+    "page_title": "Karrablast (Pokémon)"
+  },
+  {
+    "dex_num": "0589",
+    "name": "Escavalier",
+    "page_title": "Escavalier (Pokémon)"
+  },
+  {
+    "dex_num": "0590",
+    "name": "Foongus",
+    "page_title": "Foongus (Pokémon)"
+  },
+  {
+    "dex_num": "0591",
+    "name": "Amoonguss",
+    "page_title": "Amoonguss (Pokémon)"
+  },
+  {
+    "dex_num": "0592",
+    "name": "Frillish",
+    "page_title": "Frillish (Pokémon)"
+  },
+  {
+    "dex_num": "0593",
+    "name": "Jellicent",
+    "page_title": "Jellicent (Pokémon)"
+  },
+  {
+    "dex_num": "0594",
+    "name": "Alomomola",
+    "page_title": "Alomomola (Pokémon)"
+  },
+  {
+    "dex_num": "0595",
+    "name": "Joltik",
+    "page_title": "Joltik (Pokémon)"
+  },
+  {
+    "dex_num": "0596",
+    "name": "Galvantula",
+    "page_title": "Galvantula (Pokémon)"
+  },
+  {
+    "dex_num": "0597",
+    "name": "Ferroseed",
+    "page_title": "Ferroseed (Pokémon)"
+  },
+  {
+    "dex_num": "0598",
+    "name": "Ferrothorn",
+    "page_title": "Ferrothorn (Pokémon)"
+  },
+  {
+    "dex_num": "0599",
+    "name": "Klink",
+    "page_title": "Klink (Pokémon)"
+  },
+  {
+    "dex_num": "0600",
+    "name": "Klang",
+    "page_title": "Klang (Pokémon)"
+  },
+  {
+    "dex_num": "0601",
+    "name": "Klinklang",
+    "page_title": "Klinklang (Pokémon)"
+  },
+  {
+    "dex_num": "0602",
+    "name": "Tynamo",
+    "page_title": "Tynamo (Pokémon)"
+  },
+  {
+    "dex_num": "0603",
+    "name": "Eelektrik",
+    "page_title": "Eelektrik (Pokémon)"
+  },
+  {
+    "dex_num": "0604",
+    "name": "Eelektross",
+    "page_title": "Eelektross (Pokémon)"
+  },
+  {
+    "dex_num": "0605",
+    "name": "Elgyem",
+    "page_title": "Elgyem (Pokémon)"
+  },
+  {
+    "dex_num": "0606",
+    "name": "Beheeyem",
+    "page_title": "Beheeyem (Pokémon)"
+  },
+  {
+    "dex_num": "0607",
+    "name": "Litwick",
+    "page_title": "Litwick (Pokémon)"
+  },
+  {
+    "dex_num": "0608",
+    "name": "Lampent",
+    "page_title": "Lampent (Pokémon)"
+  },
+  {
+    "dex_num": "0609",
+    "name": "Chandelure",
+    "page_title": "Chandelure (Pokémon)"
+  },
+  {
+    "dex_num": "0610",
+    "name": "Axew",
+    "page_title": "Axew (Pokémon)"
+  },
+  {
+    "dex_num": "0611",
+    "name": "Fraxure",
+    "page_title": "Fraxure (Pokémon)"
+  },
+  {
+    "dex_num": "0612",
+    "name": "Haxorus",
+    "page_title": "Haxorus (Pokémon)"
+  },
+  {
+    "dex_num": "0613",
+    "name": "Cubchoo",
+    "page_title": "Cubchoo (Pokémon)"
+  },
+  {
+    "dex_num": "0614",
+    "name": "Beartic",
+    "page_title": "Beartic (Pokémon)"
+  },
+  {
+    "dex_num": "0615",
+    "name": "Cryogonal",
+    "page_title": "Cryogonal (Pokémon)"
+  },
+  {
+    "dex_num": "0616",
+    "name": "Shelmet",
+    "page_title": "Shelmet (Pokémon)"
+  },
+  {
+    "dex_num": "0617",
+    "name": "Accelgor",
+    "page_title": "Accelgor (Pokémon)"
+  },
+  {
+    "dex_num": "0618",
+    "name": "Stunfisk",
+    "page_title": "Stunfisk (Pokémon)"
+  },
+  {
+    "dex_num": "0619",
+    "name": "Mienfoo",
+    "page_title": "Mienfoo (Pokémon)"
+  },
+  {
+    "dex_num": "0620",
+    "name": "Mienshao",
+    "page_title": "Mienshao (Pokémon)"
+  },
+  {
+    "dex_num": "0621",
+    "name": "Druddigon",
+    "page_title": "Druddigon (Pokémon)"
+  },
+  {
+    "dex_num": "0622",
+    "name": "Golett",
+    "page_title": "Golett (Pokémon)"
+  },
+  {
+    "dex_num": "0623",
+    "name": "Golurk",
+    "page_title": "Golurk (Pokémon)"
+  },
+  {
+    "dex_num": "0624",
+    "name": "Pawniard",
+    "page_title": "Pawniard (Pokémon)"
+  },
+  {
+    "dex_num": "0625",
+    "name": "Bisharp",
+    "page_title": "Bisharp (Pokémon)"
+  },
+  {
+    "dex_num": "0626",
+    "name": "Bouffalant",
+    "page_title": "Bouffalant (Pokémon)"
+  },
+  {
+    "dex_num": "0627",
+    "name": "Rufflet",
+    "page_title": "Rufflet (Pokémon)"
+  },
+  {
+    "dex_num": "0628",
+    "name": "Braviary",
+    "page_title": "Braviary (Pokémon)"
+  },
+  {
+    "dex_num": "0629",
+    "name": "Vullaby",
+    "page_title": "Vullaby (Pokémon)"
+  },
+  {
+    "dex_num": "0630",
+    "name": "Mandibuzz",
+    "page_title": "Mandibuzz (Pokémon)"
+  },
+  {
+    "dex_num": "0631",
+    "name": "Heatmor",
+    "page_title": "Heatmor (Pokémon)"
+  },
+  {
+    "dex_num": "0632",
+    "name": "Durant",
+    "page_title": "Durant (Pokémon)"
+  },
+  {
+    "dex_num": "0633",
+    "name": "Deino",
+    "page_title": "Deino (Pokémon)"
+  },
+  {
+    "dex_num": "0634",
+    "name": "Zweilous",
+    "page_title": "Zweilous (Pokémon)"
+  },
+  {
+    "dex_num": "0635",
+    "name": "Hydreigon",
+    "page_title": "Hydreigon (Pokémon)"
+  },
+  {
+    "dex_num": "0636",
+    "name": "Larvesta",
+    "page_title": "Larvesta (Pokémon)"
+  },
+  {
+    "dex_num": "0637",
+    "name": "Volcarona",
+    "page_title": "Volcarona (Pokémon)"
+  },
+  {
+    "dex_num": "0638",
+    "name": "Cobalion",
+    "page_title": "Cobalion (Pokémon)"
+  },
+  {
+    "dex_num": "0639",
+    "name": "Terrakion",
+    "page_title": "Terrakion (Pokémon)"
+  },
+  {
+    "dex_num": "0640",
+    "name": "Virizion",
+    "page_title": "Virizion (Pokémon)"
+  },
+  {
+    "dex_num": "0641",
+    "name": "Tornadus",
+    "page_title": "Tornadus (Pokémon)"
+  },
+  {
+    "dex_num": "0642",
+    "name": "Thundurus",
+    "page_title": "Thundurus (Pokémon)"
+  },
+  {
+    "dex_num": "0643",
+    "name": "Reshiram",
+    "page_title": "Reshiram (Pokémon)"
+  },
+  {
+    "dex_num": "0644",
+    "name": "Zekrom",
+    "page_title": "Zekrom (Pokémon)"
+  },
+  {
+    "dex_num": "0645",
+    "name": "Landorus",
+    "page_title": "Landorus (Pokémon)"
+  },
+  {
+    "dex_num": "0646",
+    "name": "Kyurem",
+    "page_title": "Kyurem (Pokémon)"
+  },
+  {
+    "dex_num": "0647",
+    "name": "Keldeo",
+    "page_title": "Keldeo (Pokémon)"
+  },
+  {
+    "dex_num": "0648",
+    "name": "Meloetta",
+    "page_title": "Meloetta (Pokémon)"
+  },
+  {
+    "dex_num": "0649",
+    "name": "Genesect",
+    "page_title": "Genesect (Pokémon)"
+  },
+  {
+    "dex_num": "0650",
+    "name": "Chespin",
+    "page_title": "Chespin (Pokémon)"
+  },
+  {
+    "dex_num": "0651",
+    "name": "Quilladin",
+    "page_title": "Quilladin (Pokémon)"
+  },
+  {
+    "dex_num": "0652",
+    "name": "Chesnaught",
+    "page_title": "Chesnaught (Pokémon)"
+  },
+  {
+    "dex_num": "0653",
+    "name": "Fennekin",
+    "page_title": "Fennekin (Pokémon)"
+  },
+  {
+    "dex_num": "0654",
+    "name": "Braixen",
+    "page_title": "Braixen (Pokémon)"
+  },
+  {
+    "dex_num": "0655",
+    "name": "Delphox",
+    "page_title": "Delphox (Pokémon)"
+  },
+  {
+    "dex_num": "0656",
+    "name": "Froakie",
+    "page_title": "Froakie (Pokémon)"
+  },
+  {
+    "dex_num": "0657",
+    "name": "Frogadier",
+    "page_title": "Frogadier (Pokémon)"
+  },
+  {
+    "dex_num": "0658",
+    "name": "Greninja",
+    "page_title": "Greninja (Pokémon)"
+  },
+  {
+    "dex_num": "0659",
+    "name": "Bunnelby",
+    "page_title": "Bunnelby (Pokémon)"
+  },
+  {
+    "dex_num": "0660",
+    "name": "Diggersby",
+    "page_title": "Diggersby (Pokémon)"
+  },
+  {
+    "dex_num": "0661",
+    "name": "Fletchling",
+    "page_title": "Fletchling (Pokémon)"
+  },
+  {
+    "dex_num": "0662",
+    "name": "Fletchinder",
+    "page_title": "Fletchinder (Pokémon)"
+  },
+  {
+    "dex_num": "0663",
+    "name": "Talonflame",
+    "page_title": "Talonflame (Pokémon)"
+  },
+  {
+    "dex_num": "0664",
+    "name": "Scatterbug",
+    "page_title": "Scatterbug (Pokémon)"
+  },
+  {
+    "dex_num": "0665",
+    "name": "Spewpa",
+    "page_title": "Spewpa (Pokémon)"
+  },
+  {
+    "dex_num": "0666",
+    "name": "Vivillon",
+    "page_title": "Vivillon (Pokémon)"
+  },
+  {
+    "dex_num": "0667",
+    "name": "Litleo",
+    "page_title": "Litleo (Pokémon)"
+  },
+  {
+    "dex_num": "0668",
+    "name": "Pyroar",
+    "page_title": "Pyroar (Pokémon)"
+  },
+  {
+    "dex_num": "0669",
+    "name": "Flabébé",
+    "page_title": "Flabébé (Pokémon)"
+  },
+  {
+    "dex_num": "0670",
+    "name": "Floette",
+    "page_title": "Floette (Pokémon)"
+  },
+  {
+    "dex_num": "0671",
+    "name": "Florges",
+    "page_title": "Florges (Pokémon)"
+  },
+  {
+    "dex_num": "0672",
+    "name": "Skiddo",
+    "page_title": "Skiddo (Pokémon)"
+  },
+  {
+    "dex_num": "0673",
+    "name": "Gogoat",
+    "page_title": "Gogoat (Pokémon)"
+  },
+  {
+    "dex_num": "0674",
+    "name": "Pancham",
+    "page_title": "Pancham (Pokémon)"
+  },
+  {
+    "dex_num": "0675",
+    "name": "Pangoro",
+    "page_title": "Pangoro (Pokémon)"
+  },
+  {
+    "dex_num": "0676",
+    "name": "Furfrou",
+    "page_title": "Furfrou (Pokémon)"
+  },
+  {
+    "dex_num": "0677",
+    "name": "Espurr",
+    "page_title": "Espurr (Pokémon)"
+  },
+  {
+    "dex_num": "0678",
+    "name": "Meowstic",
+    "page_title": "Meowstic (Pokémon)"
+  },
+  {
+    "dex_num": "0679",
+    "name": "Honedge",
+    "page_title": "Honedge (Pokémon)"
+  },
+  {
+    "dex_num": "0680",
+    "name": "Doublade",
+    "page_title": "Doublade (Pokémon)"
+  },
+  {
+    "dex_num": "0681",
+    "name": "Aegislash",
+    "page_title": "Aegislash (Pokémon)"
+  },
+  {
+    "dex_num": "0682",
+    "name": "Spritzee",
+    "page_title": "Spritzee (Pokémon)"
+  },
+  {
+    "dex_num": "0683",
+    "name": "Aromatisse",
+    "page_title": "Aromatisse (Pokémon)"
+  },
+  {
+    "dex_num": "0684",
+    "name": "Swirlix",
+    "page_title": "Swirlix (Pokémon)"
+  },
+  {
+    "dex_num": "0685",
+    "name": "Slurpuff",
+    "page_title": "Slurpuff (Pokémon)"
+  },
+  {
+    "dex_num": "0686",
+    "name": "Inkay",
+    "page_title": "Inkay (Pokémon)"
+  },
+  {
+    "dex_num": "0687",
+    "name": "Malamar",
+    "page_title": "Malamar (Pokémon)"
+  },
+  {
+    "dex_num": "0688",
+    "name": "Binacle",
+    "page_title": "Binacle (Pokémon)"
+  },
+  {
+    "dex_num": "0689",
+    "name": "Barbaracle",
+    "page_title": "Barbaracle (Pokémon)"
+  },
+  {
+    "dex_num": "0690",
+    "name": "Skrelp",
+    "page_title": "Skrelp (Pokémon)"
+  },
+  {
+    "dex_num": "0691",
+    "name": "Dragalge",
+    "page_title": "Dragalge (Pokémon)"
+  },
+  {
+    "dex_num": "0692",
+    "name": "Clauncher",
+    "page_title": "Clauncher (Pokémon)"
+  },
+  {
+    "dex_num": "0693",
+    "name": "Clawitzer",
+    "page_title": "Clawitzer (Pokémon)"
+  },
+  {
+    "dex_num": "0694",
+    "name": "Helioptile",
+    "page_title": "Helioptile (Pokémon)"
+  },
+  {
+    "dex_num": "0695",
+    "name": "Heliolisk",
+    "page_title": "Heliolisk (Pokémon)"
+  },
+  {
+    "dex_num": "0696",
+    "name": "Tyrunt",
+    "page_title": "Tyrunt (Pokémon)"
+  },
+  {
+    "dex_num": "0697",
+    "name": "Tyrantrum",
+    "page_title": "Tyrantrum (Pokémon)"
+  },
+  {
+    "dex_num": "0698",
+    "name": "Amaura",
+    "page_title": "Amaura (Pokémon)"
+  },
+  {
+    "dex_num": "0699",
+    "name": "Aurorus",
+    "page_title": "Aurorus (Pokémon)"
+  },
+  {
+    "dex_num": "0700",
+    "name": "Sylveon",
+    "page_title": "Sylveon (Pokémon)"
+  },
+  {
+    "dex_num": "0701",
+    "name": "Hawlucha",
+    "page_title": "Hawlucha (Pokémon)"
+  },
+  {
+    "dex_num": "0702",
+    "name": "Dedenne",
+    "page_title": "Dedenne (Pokémon)"
+  },
+  {
+    "dex_num": "0703",
+    "name": "Carbink",
+    "page_title": "Carbink (Pokémon)"
+  },
+  {
+    "dex_num": "0704",
+    "name": "Goomy",
+    "page_title": "Goomy (Pokémon)"
+  },
+  {
+    "dex_num": "0705",
+    "name": "Sliggoo",
+    "page_title": "Sliggoo (Pokémon)"
+  },
+  {
+    "dex_num": "0706",
+    "name": "Goodra",
+    "page_title": "Goodra (Pokémon)"
+  },
+  {
+    "dex_num": "0707",
+    "name": "Klefki",
+    "page_title": "Klefki (Pokémon)"
+  },
+  {
+    "dex_num": "0708",
+    "name": "Phantump",
+    "page_title": "Phantump (Pokémon)"
+  },
+  {
+    "dex_num": "0709",
+    "name": "Trevenant",
+    "page_title": "Trevenant (Pokémon)"
+  },
+  {
+    "dex_num": "0710",
+    "name": "Pumpkaboo",
+    "page_title": "Pumpkaboo (Pokémon)"
+  },
+  {
+    "dex_num": "0711",
+    "name": "Gourgeist",
+    "page_title": "Gourgeist (Pokémon)"
+  },
+  {
+    "dex_num": "0712",
+    "name": "Bergmite",
+    "page_title": "Bergmite (Pokémon)"
+  },
+  {
+    "dex_num": "0713",
+    "name": "Avalugg",
+    "page_title": "Avalugg (Pokémon)"
+  },
+  {
+    "dex_num": "0714",
+    "name": "Noibat",
+    "page_title": "Noibat (Pokémon)"
+  },
+  {
+    "dex_num": "0715",
+    "name": "Noivern",
+    "page_title": "Noivern (Pokémon)"
+  },
+  {
+    "dex_num": "0716",
+    "name": "Xerneas",
+    "page_title": "Xerneas (Pokémon)"
+  },
+  {
+    "dex_num": "0717",
+    "name": "Yveltal",
+    "page_title": "Yveltal (Pokémon)"
+  },
+  {
+    "dex_num": "0718",
+    "name": "Zygarde",
+    "page_title": "Zygarde (Pokémon)"
+  },
+  {
+    "dex_num": "0719",
+    "name": "Diancie",
+    "page_title": "Diancie (Pokémon)"
+  },
+  {
+    "dex_num": "0720",
+    "name": "Hoopa",
+    "page_title": "Hoopa (Pokémon)"
+  },
+  {
+    "dex_num": "0721",
+    "name": "Volcanion",
+    "page_title": "Volcanion (Pokémon)"
+  },
+  {
+    "dex_num": "0722",
+    "name": "Rowlet",
+    "page_title": "Rowlet (Pokémon)"
+  },
+  {
+    "dex_num": "0723",
+    "name": "Dartrix",
+    "page_title": "Dartrix (Pokémon)"
+  },
+  {
+    "dex_num": "0724",
+    "name": "Decidueye",
+    "page_title": "Decidueye (Pokémon)"
+  },
+  {
+    "dex_num": "0725",
+    "name": "Litten",
+    "page_title": "Litten (Pokémon)"
+  },
+  {
+    "dex_num": "0726",
+    "name": "Torracat",
+    "page_title": "Torracat (Pokémon)"
+  },
+  {
+    "dex_num": "0727",
+    "name": "Incineroar",
+    "page_title": "Incineroar (Pokémon)"
+  },
+  {
+    "dex_num": "0728",
+    "name": "Popplio",
+    "page_title": "Popplio (Pokémon)"
+  },
+  {
+    "dex_num": "0729",
+    "name": "Brionne",
+    "page_title": "Brionne (Pokémon)"
+  },
+  {
+    "dex_num": "0730",
+    "name": "Primarina",
+    "page_title": "Primarina (Pokémon)"
+  },
+  {
+    "dex_num": "0731",
+    "name": "Pikipek",
+    "page_title": "Pikipek (Pokémon)"
+  },
+  {
+    "dex_num": "0732",
+    "name": "Trumbeak",
+    "page_title": "Trumbeak (Pokémon)"
+  },
+  {
+    "dex_num": "0733",
+    "name": "Toucannon",
+    "page_title": "Toucannon (Pokémon)"
+  },
+  {
+    "dex_num": "0734",
+    "name": "Yungoos",
+    "page_title": "Yungoos (Pokémon)"
+  },
+  {
+    "dex_num": "0735",
+    "name": "Gumshoos",
+    "page_title": "Gumshoos (Pokémon)"
+  },
+  {
+    "dex_num": "0736",
+    "name": "Grubbin",
+    "page_title": "Grubbin (Pokémon)"
+  },
+  {
+    "dex_num": "0737",
+    "name": "Charjabug",
+    "page_title": "Charjabug (Pokémon)"
+  },
+  {
+    "dex_num": "0738",
+    "name": "Vikavolt",
+    "page_title": "Vikavolt (Pokémon)"
+  },
+  {
+    "dex_num": "0739",
+    "name": "Crabrawler",
+    "page_title": "Crabrawler (Pokémon)"
+  },
+  {
+    "dex_num": "0740",
+    "name": "Crabominable",
+    "page_title": "Crabominable (Pokémon)"
+  },
+  {
+    "dex_num": "0741",
+    "name": "Oricorio",
+    "page_title": "Oricorio (Pokémon)"
+  },
+  {
+    "dex_num": "0742",
+    "name": "Cutiefly",
+    "page_title": "Cutiefly (Pokémon)"
+  },
+  {
+    "dex_num": "0743",
+    "name": "Ribombee",
+    "page_title": "Ribombee (Pokémon)"
+  },
+  {
+    "dex_num": "0744",
+    "name": "Rockruff",
+    "page_title": "Rockruff (Pokémon)"
+  },
+  {
+    "dex_num": "0745",
+    "name": "Lycanroc",
+    "page_title": "Lycanroc (Pokémon)"
+  },
+  {
+    "dex_num": "0746",
+    "name": "Wishiwashi",
+    "page_title": "Wishiwashi (Pokémon)"
+  },
+  {
+    "dex_num": "0747",
+    "name": "Mareanie",
+    "page_title": "Mareanie (Pokémon)"
+  },
+  {
+    "dex_num": "0748",
+    "name": "Toxapex",
+    "page_title": "Toxapex (Pokémon)"
+  },
+  {
+    "dex_num": "0749",
+    "name": "Mudbray",
+    "page_title": "Mudbray (Pokémon)"
+  },
+  {
+    "dex_num": "0750",
+    "name": "Mudsdale",
+    "page_title": "Mudsdale (Pokémon)"
+  },
+  {
+    "dex_num": "0751",
+    "name": "Dewpider",
+    "page_title": "Dewpider (Pokémon)"
+  },
+  {
+    "dex_num": "0752",
+    "name": "Araquanid",
+    "page_title": "Araquanid (Pokémon)"
+  },
+  {
+    "dex_num": "0753",
+    "name": "Fomantis",
+    "page_title": "Fomantis (Pokémon)"
+  },
+  {
+    "dex_num": "0754",
+    "name": "Lurantis",
+    "page_title": "Lurantis (Pokémon)"
+  },
+  {
+    "dex_num": "0755",
+    "name": "Morelull",
+    "page_title": "Morelull (Pokémon)"
+  },
+  {
+    "dex_num": "0756",
+    "name": "Shiinotic",
+    "page_title": "Shiinotic (Pokémon)"
+  },
+  {
+    "dex_num": "0757",
+    "name": "Salandit",
+    "page_title": "Salandit (Pokémon)"
+  },
+  {
+    "dex_num": "0758",
+    "name": "Salazzle",
+    "page_title": "Salazzle (Pokémon)"
+  },
+  {
+    "dex_num": "0759",
+    "name": "Stufful",
+    "page_title": "Stufful (Pokémon)"
+  },
+  {
+    "dex_num": "0760",
+    "name": "Bewear",
+    "page_title": "Bewear (Pokémon)"
+  },
+  {
+    "dex_num": "0761",
+    "name": "Bounsweet",
+    "page_title": "Bounsweet (Pokémon)"
+  },
+  {
+    "dex_num": "0762",
+    "name": "Steenee",
+    "page_title": "Steenee (Pokémon)"
+  },
+  {
+    "dex_num": "0763",
+    "name": "Tsareena",
+    "page_title": "Tsareena (Pokémon)"
+  },
+  {
+    "dex_num": "0764",
+    "name": "Comfey",
+    "page_title": "Comfey (Pokémon)"
+  },
+  {
+    "dex_num": "0765",
+    "name": "Oranguru",
+    "page_title": "Oranguru (Pokémon)"
+  },
+  {
+    "dex_num": "0766",
+    "name": "Passimian",
+    "page_title": "Passimian (Pokémon)"
+  },
+  {
+    "dex_num": "0767",
+    "name": "Wimpod",
+    "page_title": "Wimpod (Pokémon)"
+  },
+  {
+    "dex_num": "0768",
+    "name": "Golisopod",
+    "page_title": "Golisopod (Pokémon)"
+  },
+  {
+    "dex_num": "0769",
+    "name": "Sandygast",
+    "page_title": "Sandygast (Pokémon)"
+  },
+  {
+    "dex_num": "0770",
+    "name": "Palossand",
+    "page_title": "Palossand (Pokémon)"
+  },
+  {
+    "dex_num": "0771",
+    "name": "Pyukumuku",
+    "page_title": "Pyukumuku (Pokémon)"
+  },
+  {
+    "dex_num": "0772",
+    "name": "Type: Null",
+    "page_title": "Type: Null (Pokémon)"
+  },
+  {
+    "dex_num": "0773",
+    "name": "Silvally",
+    "page_title": "Silvally (Pokémon)"
+  },
+  {
+    "dex_num": "0774",
+    "name": "Minior",
+    "page_title": "Minior (Pokémon)"
+  },
+  {
+    "dex_num": "0775",
+    "name": "Komala",
+    "page_title": "Komala (Pokémon)"
+  },
+  {
+    "dex_num": "0776",
+    "name": "Turtonator",
+    "page_title": "Turtonator (Pokémon)"
+  },
+  {
+    "dex_num": "0777",
+    "name": "Togedemaru",
+    "page_title": "Togedemaru (Pokémon)"
+  },
+  {
+    "dex_num": "0778",
+    "name": "Mimikyu",
+    "page_title": "Mimikyu (Pokémon)"
+  },
+  {
+    "dex_num": "0779",
+    "name": "Bruxish",
+    "page_title": "Bruxish (Pokémon)"
+  },
+  {
+    "dex_num": "0780",
+    "name": "Drampa",
+    "page_title": "Drampa (Pokémon)"
+  },
+  {
+    "dex_num": "0781",
+    "name": "Dhelmise",
+    "page_title": "Dhelmise (Pokémon)"
+  },
+  {
+    "dex_num": "0782",
+    "name": "Jangmo-o",
+    "page_title": "Jangmo-o (Pokémon)"
+  },
+  {
+    "dex_num": "0783",
+    "name": "Hakamo-o",
+    "page_title": "Hakamo-o (Pokémon)"
+  },
+  {
+    "dex_num": "0784",
+    "name": "Kommo-o",
+    "page_title": "Kommo-o (Pokémon)"
+  },
+  {
+    "dex_num": "0785",
+    "name": "Tapu Koko",
+    "page_title": "Tapu Koko (Pokémon)"
+  },
+  {
+    "dex_num": "0786",
+    "name": "Tapu Lele",
+    "page_title": "Tapu Lele (Pokémon)"
+  },
+  {
+    "dex_num": "0787",
+    "name": "Tapu Bulu",
+    "page_title": "Tapu Bulu (Pokémon)"
+  },
+  {
+    "dex_num": "0788",
+    "name": "Tapu Fini",
+    "page_title": "Tapu Fini (Pokémon)"
+  },
+  {
+    "dex_num": "0789",
+    "name": "Cosmog",
+    "page_title": "Cosmog (Pokémon)"
+  },
+  {
+    "dex_num": "0790",
+    "name": "Cosmoem",
+    "page_title": "Cosmoem (Pokémon)"
+  },
+  {
+    "dex_num": "0791",
+    "name": "Solgaleo",
+    "page_title": "Solgaleo (Pokémon)"
+  },
+  {
+    "dex_num": "0792",
+    "name": "Lunala",
+    "page_title": "Lunala (Pokémon)"
+  },
+  {
+    "dex_num": "0793",
+    "name": "Nihilego",
+    "page_title": "Nihilego (Pokémon)"
+  },
+  {
+    "dex_num": "0794",
+    "name": "Buzzwole",
+    "page_title": "Buzzwole (Pokémon)"
+  },
+  {
+    "dex_num": "0795",
+    "name": "Pheromosa",
+    "page_title": "Pheromosa (Pokémon)"
+  },
+  {
+    "dex_num": "0796",
+    "name": "Xurkitree",
+    "page_title": "Xurkitree (Pokémon)"
+  },
+  {
+    "dex_num": "0797",
+    "name": "Celesteela",
+    "page_title": "Celesteela (Pokémon)"
+  },
+  {
+    "dex_num": "0798",
+    "name": "Kartana",
+    "page_title": "Kartana (Pokémon)"
+  },
+  {
+    "dex_num": "0799",
+    "name": "Guzzlord",
+    "page_title": "Guzzlord (Pokémon)"
+  },
+  {
+    "dex_num": "0800",
+    "name": "Necrozma",
+    "page_title": "Necrozma (Pokémon)"
+  },
+  {
+    "dex_num": "0801",
+    "name": "Magearna",
+    "page_title": "Magearna (Pokémon)"
+  },
+  {
+    "dex_num": "0802",
+    "name": "Marshadow",
+    "page_title": "Marshadow (Pokémon)"
+  },
+  {
+    "dex_num": "0803",
+    "name": "Poipole",
+    "page_title": "Poipole (Pokémon)"
+  },
+  {
+    "dex_num": "0804",
+    "name": "Naganadel",
+    "page_title": "Naganadel (Pokémon)"
+  },
+  {
+    "dex_num": "0805",
+    "name": "Stakataka",
+    "page_title": "Stakataka (Pokémon)"
+  },
+  {
+    "dex_num": "0806",
+    "name": "Blacephalon",
+    "page_title": "Blacephalon (Pokémon)"
+  },
+  {
+    "dex_num": "0807",
+    "name": "Zeraora",
+    "page_title": "Zeraora (Pokémon)"
+  },
+  {
+    "dex_num": "0808",
+    "name": "Meltan",
+    "page_title": "Meltan (Pokémon)"
+  },
+  {
+    "dex_num": "0809",
+    "name": "Melmetal",
+    "page_title": "Melmetal (Pokémon)"
+  },
+  {
+    "dex_num": "0810",
+    "name": "Grookey",
+    "page_title": "Grookey (Pokémon)"
+  },
+  {
+    "dex_num": "0811",
+    "name": "Thwackey",
+    "page_title": "Thwackey (Pokémon)"
+  },
+  {
+    "dex_num": "0812",
+    "name": "Rillaboom",
+    "page_title": "Rillaboom (Pokémon)"
+  },
+  {
+    "dex_num": "0813",
+    "name": "Scorbunny",
+    "page_title": "Scorbunny (Pokémon)"
+  },
+  {
+    "dex_num": "0814",
+    "name": "Raboot",
+    "page_title": "Raboot (Pokémon)"
+  },
+  {
+    "dex_num": "0815",
+    "name": "Cinderace",
+    "page_title": "Cinderace (Pokémon)"
+  },
+  {
+    "dex_num": "0816",
+    "name": "Sobble",
+    "page_title": "Sobble (Pokémon)"
+  },
+  {
+    "dex_num": "0817",
+    "name": "Drizzile",
+    "page_title": "Drizzile (Pokémon)"
+  },
+  {
+    "dex_num": "0818",
+    "name": "Inteleon",
+    "page_title": "Inteleon (Pokémon)"
+  },
+  {
+    "dex_num": "0819",
+    "name": "Skwovet",
+    "page_title": "Skwovet (Pokémon)"
+  },
+  {
+    "dex_num": "0820",
+    "name": "Greedent",
+    "page_title": "Greedent (Pokémon)"
+  },
+  {
+    "dex_num": "0821",
+    "name": "Rookidee",
+    "page_title": "Rookidee (Pokémon)"
+  },
+  {
+    "dex_num": "0822",
+    "name": "Corvisquire",
+    "page_title": "Corvisquire (Pokémon)"
+  },
+  {
+    "dex_num": "0823",
+    "name": "Corviknight",
+    "page_title": "Corviknight (Pokémon)"
+  },
+  {
+    "dex_num": "0824",
+    "name": "Blipbug",
+    "page_title": "Blipbug (Pokémon)"
+  },
+  {
+    "dex_num": "0825",
+    "name": "Dottler",
+    "page_title": "Dottler (Pokémon)"
+  },
+  {
+    "dex_num": "0826",
+    "name": "Orbeetle",
+    "page_title": "Orbeetle (Pokémon)"
+  },
+  {
+    "dex_num": "0827",
+    "name": "Nickit",
+    "page_title": "Nickit (Pokémon)"
+  },
+  {
+    "dex_num": "0828",
+    "name": "Thievul",
+    "page_title": "Thievul (Pokémon)"
+  },
+  {
+    "dex_num": "0829",
+    "name": "Gossifleur",
+    "page_title": "Gossifleur (Pokémon)"
+  },
+  {
+    "dex_num": "0830",
+    "name": "Eldegoss",
+    "page_title": "Eldegoss (Pokémon)"
+  },
+  {
+    "dex_num": "0831",
+    "name": "Wooloo",
+    "page_title": "Wooloo (Pokémon)"
+  },
+  {
+    "dex_num": "0832",
+    "name": "Dubwool",
+    "page_title": "Dubwool (Pokémon)"
+  },
+  {
+    "dex_num": "0833",
+    "name": "Chewtle",
+    "page_title": "Chewtle (Pokémon)"
+  },
+  {
+    "dex_num": "0834",
+    "name": "Drednaw",
+    "page_title": "Drednaw (Pokémon)"
+  },
+  {
+    "dex_num": "0835",
+    "name": "Yamper",
+    "page_title": "Yamper (Pokémon)"
+  },
+  {
+    "dex_num": "0836",
+    "name": "Boltund",
+    "page_title": "Boltund (Pokémon)"
+  },
+  {
+    "dex_num": "0837",
+    "name": "Rolycoly",
+    "page_title": "Rolycoly (Pokémon)"
+  },
+  {
+    "dex_num": "0838",
+    "name": "Carkol",
+    "page_title": "Carkol (Pokémon)"
+  },
+  {
+    "dex_num": "0839",
+    "name": "Coalossal",
+    "page_title": "Coalossal (Pokémon)"
+  },
+  {
+    "dex_num": "0840",
+    "name": "Applin",
+    "page_title": "Applin (Pokémon)"
+  },
+  {
+    "dex_num": "0841",
+    "name": "Flapple",
+    "page_title": "Flapple (Pokémon)"
+  },
+  {
+    "dex_num": "0842",
+    "name": "Appletun",
+    "page_title": "Appletun (Pokémon)"
+  },
+  {
+    "dex_num": "0843",
+    "name": "Silicobra",
+    "page_title": "Silicobra (Pokémon)"
+  },
+  {
+    "dex_num": "0844",
+    "name": "Sandaconda",
+    "page_title": "Sandaconda (Pokémon)"
+  },
+  {
+    "dex_num": "0845",
+    "name": "Cramorant",
+    "page_title": "Cramorant (Pokémon)"
+  },
+  {
+    "dex_num": "0846",
+    "name": "Arrokuda",
+    "page_title": "Arrokuda (Pokémon)"
+  },
+  {
+    "dex_num": "0847",
+    "name": "Barraskewda",
+    "page_title": "Barraskewda (Pokémon)"
+  },
+  {
+    "dex_num": "0848",
+    "name": "Toxel",
+    "page_title": "Toxel (Pokémon)"
+  },
+  {
+    "dex_num": "0849",
+    "name": "Toxtricity",
+    "page_title": "Toxtricity (Pokémon)"
+  },
+  {
+    "dex_num": "0850",
+    "name": "Sizzlipede",
+    "page_title": "Sizzlipede (Pokémon)"
+  },
+  {
+    "dex_num": "0851",
+    "name": "Centiskorch",
+    "page_title": "Centiskorch (Pokémon)"
+  },
+  {
+    "dex_num": "0852",
+    "name": "Clobbopus",
+    "page_title": "Clobbopus (Pokémon)"
+  },
+  {
+    "dex_num": "0853",
+    "name": "Grapploct",
+    "page_title": "Grapploct (Pokémon)"
+  },
+  {
+    "dex_num": "0854",
+    "name": "Sinistea",
+    "page_title": "Sinistea (Pokémon)"
+  },
+  {
+    "dex_num": "0855",
+    "name": "Polteageist",
+    "page_title": "Polteageist (Pokémon)"
+  },
+  {
+    "dex_num": "0856",
+    "name": "Hatenna",
+    "page_title": "Hatenna (Pokémon)"
+  },
+  {
+    "dex_num": "0857",
+    "name": "Hattrem",
+    "page_title": "Hattrem (Pokémon)"
+  },
+  {
+    "dex_num": "0858",
+    "name": "Hatterene",
+    "page_title": "Hatterene (Pokémon)"
+  },
+  {
+    "dex_num": "0859",
+    "name": "Impidimp",
+    "page_title": "Impidimp (Pokémon)"
+  },
+  {
+    "dex_num": "0860",
+    "name": "Morgrem",
+    "page_title": "Morgrem (Pokémon)"
+  },
+  {
+    "dex_num": "0861",
+    "name": "Grimmsnarl",
+    "page_title": "Grimmsnarl (Pokémon)"
+  },
+  {
+    "dex_num": "0862",
+    "name": "Obstagoon",
+    "page_title": "Obstagoon (Pokémon)"
+  },
+  {
+    "dex_num": "0863",
+    "name": "Perrserker",
+    "page_title": "Perrserker (Pokémon)"
+  },
+  {
+    "dex_num": "0864",
+    "name": "Cursola",
+    "page_title": "Cursola (Pokémon)"
+  },
+  {
+    "dex_num": "0865",
+    "name": "Sirfetch'd",
+    "page_title": "Sirfetch'd (Pokémon)"
+  },
+  {
+    "dex_num": "0866",
+    "name": "Mr. Rime",
+    "page_title": "Mr. Rime (Pokémon)"
+  },
+  {
+    "dex_num": "0867",
+    "name": "Runerigus",
+    "page_title": "Runerigus (Pokémon)"
+  },
+  {
+    "dex_num": "0868",
+    "name": "Milcery",
+    "page_title": "Milcery (Pokémon)"
+  },
+  {
+    "dex_num": "0869",
+    "name": "Alcremie",
+    "page_title": "Alcremie (Pokémon)"
+  },
+  {
+    "dex_num": "0870",
+    "name": "Falinks",
+    "page_title": "Falinks (Pokémon)"
+  },
+  {
+    "dex_num": "0871",
+    "name": "Pincurchin",
+    "page_title": "Pincurchin (Pokémon)"
+  },
+  {
+    "dex_num": "0872",
+    "name": "Snom",
+    "page_title": "Snom (Pokémon)"
+  },
+  {
+    "dex_num": "0873",
+    "name": "Frosmoth",
+    "page_title": "Frosmoth (Pokémon)"
+  },
+  {
+    "dex_num": "0874",
+    "name": "Stonjourner",
+    "page_title": "Stonjourner (Pokémon)"
+  },
+  {
+    "dex_num": "0875",
+    "name": "Eiscue",
+    "page_title": "Eiscue (Pokémon)"
+  },
+  {
+    "dex_num": "0876",
+    "name": "Indeedee",
+    "page_title": "Indeedee (Pokémon)"
+  },
+  {
+    "dex_num": "0877",
+    "name": "Morpeko",
+    "page_title": "Morpeko (Pokémon)"
+  },
+  {
+    "dex_num": "0878",
+    "name": "Cufant",
+    "page_title": "Cufant (Pokémon)"
+  },
+  {
+    "dex_num": "0879",
+    "name": "Copperajah",
+    "page_title": "Copperajah (Pokémon)"
+  },
+  {
+    "dex_num": "0880",
+    "name": "Dracozolt",
+    "page_title": "Dracozolt (Pokémon)"
+  },
+  {
+    "dex_num": "0881",
+    "name": "Arctozolt",
+    "page_title": "Arctozolt (Pokémon)"
+  },
+  {
+    "dex_num": "0882",
+    "name": "Dracovish",
+    "page_title": "Dracovish (Pokémon)"
+  },
+  {
+    "dex_num": "0883",
+    "name": "Arctovish",
+    "page_title": "Arctovish (Pokémon)"
+  },
+  {
+    "dex_num": "0884",
+    "name": "Duraludon",
+    "page_title": "Duraludon (Pokémon)"
+  },
+  {
+    "dex_num": "0885",
+    "name": "Dreepy",
+    "page_title": "Dreepy (Pokémon)"
+  },
+  {
+    "dex_num": "0886",
+    "name": "Drakloak",
+    "page_title": "Drakloak (Pokémon)"
+  },
+  {
+    "dex_num": "0887",
+    "name": "Dragapult",
+    "page_title": "Dragapult (Pokémon)"
+  },
+  {
+    "dex_num": "0888",
+    "name": "Zacian",
+    "page_title": "Zacian (Pokémon)"
+  },
+  {
+    "dex_num": "0889",
+    "name": "Zamazenta",
+    "page_title": "Zamazenta (Pokémon)"
+  },
+  {
+    "dex_num": "0890",
+    "name": "Eternatus",
+    "page_title": "Eternatus (Pokémon)"
+  },
+  {
+    "dex_num": "0891",
+    "name": "Kubfu",
+    "page_title": "Kubfu (Pokémon)"
+  },
+  {
+    "dex_num": "0892",
+    "name": "Urshifu",
+    "page_title": "Urshifu (Pokémon)"
+  },
+  {
+    "dex_num": "0893",
+    "name": "Zarude",
+    "page_title": "Zarude (Pokémon)"
+  },
+  {
+    "dex_num": "0894",
+    "name": "Regieleki",
+    "page_title": "Regieleki (Pokémon)"
+  },
+  {
+    "dex_num": "0895",
+    "name": "Regidrago",
+    "page_title": "Regidrago (Pokémon)"
+  },
+  {
+    "dex_num": "0896",
+    "name": "Glastrier",
+    "page_title": "Glastrier (Pokémon)"
+  },
+  {
+    "dex_num": "0897",
+    "name": "Spectrier",
+    "page_title": "Spectrier (Pokémon)"
+  },
+  {
+    "dex_num": "0898",
+    "name": "Calyrex",
+    "page_title": "Calyrex (Pokémon)"
+  },
+  {
+    "dex_num": "0899",
+    "name": "Wyrdeer",
+    "page_title": "Wyrdeer (Pokémon)"
+  },
+  {
+    "dex_num": "0900",
+    "name": "Kleavor",
+    "page_title": "Kleavor (Pokémon)"
+  },
+  {
+    "dex_num": "0901",
+    "name": "Ursaluna",
+    "page_title": "Ursaluna (Pokémon)"
+  },
+  {
+    "dex_num": "0902",
+    "name": "Basculegion",
+    "page_title": "Basculegion (Pokémon)"
+  },
+  {
+    "dex_num": "0903",
+    "name": "Sneasler",
+    "page_title": "Sneasler (Pokémon)"
+  },
+  {
+    "dex_num": "0904",
+    "name": "Overqwil",
+    "page_title": "Overqwil (Pokémon)"
+  },
+  {
+    "dex_num": "0905",
+    "name": "Enamorus",
+    "page_title": "Enamorus (Pokémon)"
+  },
+  {
+    "dex_num": "0906",
+    "name": "Sprigatito",
+    "page_title": "Sprigatito (Pokémon)"
+  },
+  {
+    "dex_num": "0907",
+    "name": "Floragato",
+    "page_title": "Floragato (Pokémon)"
+  },
+  {
+    "dex_num": "0908",
+    "name": "Meowscarada",
+    "page_title": "Meowscarada (Pokémon)"
+  },
+  {
+    "dex_num": "0909",
+    "name": "Fuecoco",
+    "page_title": "Fuecoco (Pokémon)"
+  },
+  {
+    "dex_num": "0910",
+    "name": "Crocalor",
+    "page_title": "Crocalor (Pokémon)"
+  },
+  {
+    "dex_num": "0911",
+    "name": "Skeledirge",
+    "page_title": "Skeledirge (Pokémon)"
+  },
+  {
+    "dex_num": "0912",
+    "name": "Quaxly",
+    "page_title": "Quaxly (Pokémon)"
+  },
+  {
+    "dex_num": "0913",
+    "name": "Quaxwell",
+    "page_title": "Quaxwell (Pokémon)"
+  },
+  {
+    "dex_num": "0914",
+    "name": "Quaquaval",
+    "page_title": "Quaquaval (Pokémon)"
+  },
+  {
+    "dex_num": "0915",
+    "name": "Lechonk",
+    "page_title": "Lechonk (Pokémon)"
+  },
+  {
+    "dex_num": "0916",
+    "name": "Oinkologne",
+    "page_title": "Oinkologne (Pokémon)"
+  },
+  {
+    "dex_num": "0917",
+    "name": "Tarountula",
+    "page_title": "Tarountula (Pokémon)"
+  },
+  {
+    "dex_num": "0918",
+    "name": "Spidops",
+    "page_title": "Spidops (Pokémon)"
+  },
+  {
+    "dex_num": "0919",
+    "name": "Nymble",
+    "page_title": "Nymble (Pokémon)"
+  },
+  {
+    "dex_num": "0920",
+    "name": "Lokix",
+    "page_title": "Lokix (Pokémon)"
+  },
+  {
+    "dex_num": "0921",
+    "name": "Pawmi",
+    "page_title": "Pawmi (Pokémon)"
+  },
+  {
+    "dex_num": "0922",
+    "name": "Pawmo",
+    "page_title": "Pawmo (Pokémon)"
+  },
+  {
+    "dex_num": "0923",
+    "name": "Pawmot",
+    "page_title": "Pawmot (Pokémon)"
+  },
+  {
+    "dex_num": "0924",
+    "name": "Tandemaus",
+    "page_title": "Tandemaus (Pokémon)"
+  },
+  {
+    "dex_num": "0925",
+    "name": "Maushold",
+    "page_title": "Maushold (Pokémon)"
+  },
+  {
+    "dex_num": "0926",
+    "name": "Fidough",
+    "page_title": "Fidough (Pokémon)"
+  },
+  {
+    "dex_num": "0927",
+    "name": "Dachsbun",
+    "page_title": "Dachsbun (Pokémon)"
+  },
+  {
+    "dex_num": "0928",
+    "name": "Smoliv",
+    "page_title": "Smoliv (Pokémon)"
+  },
+  {
+    "dex_num": "0929",
+    "name": "Dolliv",
+    "page_title": "Dolliv (Pokémon)"
+  },
+  {
+    "dex_num": "0930",
+    "name": "Arboliva",
+    "page_title": "Arboliva (Pokémon)"
+  },
+  {
+    "dex_num": "0931",
+    "name": "Squawkabilly",
+    "page_title": "Squawkabilly (Pokémon)"
+  },
+  {
+    "dex_num": "0932",
+    "name": "Nacli",
+    "page_title": "Nacli (Pokémon)"
+  },
+  {
+    "dex_num": "0933",
+    "name": "Naclstack",
+    "page_title": "Naclstack (Pokémon)"
+  },
+  {
+    "dex_num": "0934",
+    "name": "Garganacl",
+    "page_title": "Garganacl (Pokémon)"
+  },
+  {
+    "dex_num": "0935",
+    "name": "Charcadet",
+    "page_title": "Charcadet (Pokémon)"
+  },
+  {
+    "dex_num": "0936",
+    "name": "Armarouge",
+    "page_title": "Armarouge (Pokémon)"
+  },
+  {
+    "dex_num": "0937",
+    "name": "Ceruledge",
+    "page_title": "Ceruledge (Pokémon)"
+  },
+  {
+    "dex_num": "0938",
+    "name": "Tadbulb",
+    "page_title": "Tadbulb (Pokémon)"
+  },
+  {
+    "dex_num": "0939",
+    "name": "Bellibolt",
+    "page_title": "Bellibolt (Pokémon)"
+  },
+  {
+    "dex_num": "0940",
+    "name": "Wattrel",
+    "page_title": "Wattrel (Pokémon)"
+  },
+  {
+    "dex_num": "0941",
+    "name": "Kilowattrel",
+    "page_title": "Kilowattrel (Pokémon)"
+  },
+  {
+    "dex_num": "0942",
+    "name": "Maschiff",
+    "page_title": "Maschiff (Pokémon)"
+  },
+  {
+    "dex_num": "0943",
+    "name": "Mabosstiff",
+    "page_title": "Mabosstiff (Pokémon)"
+  },
+  {
+    "dex_num": "0944",
+    "name": "Shroodle",
+    "page_title": "Shroodle (Pokémon)"
+  },
+  {
+    "dex_num": "0945",
+    "name": "Grafaiai",
+    "page_title": "Grafaiai (Pokémon)"
+  },
+  {
+    "dex_num": "0946",
+    "name": "Bramblin",
+    "page_title": "Bramblin (Pokémon)"
+  },
+  {
+    "dex_num": "0947",
+    "name": "Brambleghast",
+    "page_title": "Brambleghast (Pokémon)"
+  },
+  {
+    "dex_num": "0948",
+    "name": "Toedscool",
+    "page_title": "Toedscool (Pokémon)"
+  },
+  {
+    "dex_num": "0949",
+    "name": "Toedscruel",
+    "page_title": "Toedscruel (Pokémon)"
+  },
+  {
+    "dex_num": "0950",
+    "name": "Klawf",
+    "page_title": "Klawf (Pokémon)"
+  },
+  {
+    "dex_num": "0951",
+    "name": "Capsakid",
+    "page_title": "Capsakid (Pokémon)"
+  },
+  {
+    "dex_num": "0952",
+    "name": "Scovillain",
+    "page_title": "Scovillain (Pokémon)"
+  },
+  {
+    "dex_num": "0953",
+    "name": "Rellor",
+    "page_title": "Rellor (Pokémon)"
+  },
+  {
+    "dex_num": "0954",
+    "name": "Rabsca",
+    "page_title": "Rabsca (Pokémon)"
+  },
+  {
+    "dex_num": "0955",
+    "name": "Flittle",
+    "page_title": "Flittle (Pokémon)"
+  },
+  {
+    "dex_num": "0956",
+    "name": "Espathra",
+    "page_title": "Espathra (Pokémon)"
+  },
+  {
+    "dex_num": "0957",
+    "name": "Tinkatink",
+    "page_title": "Tinkatink (Pokémon)"
+  },
+  {
+    "dex_num": "0958",
+    "name": "Tinkatuff",
+    "page_title": "Tinkatuff (Pokémon)"
+  },
+  {
+    "dex_num": "0959",
+    "name": "Tinkaton",
+    "page_title": "Tinkaton (Pokémon)"
+  },
+  {
+    "dex_num": "0960",
+    "name": "Wiglett",
+    "page_title": "Wiglett (Pokémon)"
+  },
+  {
+    "dex_num": "0961",
+    "name": "Wugtrio",
+    "page_title": "Wugtrio (Pokémon)"
+  },
+  {
+    "dex_num": "0962",
+    "name": "Bombirdier",
+    "page_title": "Bombirdier (Pokémon)"
+  },
+  {
+    "dex_num": "0963",
+    "name": "Finizen",
+    "page_title": "Finizen (Pokémon)"
+  },
+  {
+    "dex_num": "0964",
+    "name": "Palafin",
+    "page_title": "Palafin (Pokémon)"
+  },
+  {
+    "dex_num": "0965",
+    "name": "Varoom",
+    "page_title": "Varoom (Pokémon)"
+  },
+  {
+    "dex_num": "0966",
+    "name": "Revavroom",
+    "page_title": "Revavroom (Pokémon)"
+  },
+  {
+    "dex_num": "0967",
+    "name": "Cyclizar",
+    "page_title": "Cyclizar (Pokémon)"
+  },
+  {
+    "dex_num": "0968",
+    "name": "Orthworm",
+    "page_title": "Orthworm (Pokémon)"
+  },
+  {
+    "dex_num": "0969",
+    "name": "Glimmet",
+    "page_title": "Glimmet (Pokémon)"
+  },
+  {
+    "dex_num": "0970",
+    "name": "Glimmora",
+    "page_title": "Glimmora (Pokémon)"
+  },
+  {
+    "dex_num": "0971",
+    "name": "Greavard",
+    "page_title": "Greavard (Pokémon)"
+  },
+  {
+    "dex_num": "0972",
+    "name": "Houndstone",
+    "page_title": "Houndstone (Pokémon)"
+  },
+  {
+    "dex_num": "0973",
+    "name": "Flamigo",
+    "page_title": "Flamigo (Pokémon)"
+  },
+  {
+    "dex_num": "0974",
+    "name": "Cetoddle",
+    "page_title": "Cetoddle (Pokémon)"
+  },
+  {
+    "dex_num": "0975",
+    "name": "Cetitan",
+    "page_title": "Cetitan (Pokémon)"
+  },
+  {
+    "dex_num": "0976",
+    "name": "Veluza",
+    "page_title": "Veluza (Pokémon)"
+  },
+  {
+    "dex_num": "0977",
+    "name": "Dondozo",
+    "page_title": "Dondozo (Pokémon)"
+  },
+  {
+    "dex_num": "0978",
+    "name": "Tatsugiri",
+    "page_title": "Tatsugiri (Pokémon)"
+  },
+  {
+    "dex_num": "0979",
+    "name": "Annihilape",
+    "page_title": "Annihilape (Pokémon)"
+  },
+  {
+    "dex_num": "0980",
+    "name": "Clodsire",
+    "page_title": "Clodsire (Pokémon)"
+  },
+  {
+    "dex_num": "0981",
+    "name": "Farigiraf",
+    "page_title": "Farigiraf (Pokémon)"
+  },
+  {
+    "dex_num": "0982",
+    "name": "Dudunsparce",
+    "page_title": "Dudunsparce (Pokémon)"
+  },
+  {
+    "dex_num": "0983",
+    "name": "Kingambit",
+    "page_title": "Kingambit (Pokémon)"
+  },
+  {
+    "dex_num": "0984",
+    "name": "Great Tusk",
+    "page_title": "Great Tusk (Pokémon)"
+  },
+  {
+    "dex_num": "0985",
+    "name": "Scream Tail",
+    "page_title": "Scream Tail (Pokémon)"
+  },
+  {
+    "dex_num": "0986",
+    "name": "Brute Bonnet",
+    "page_title": "Brute Bonnet (Pokémon)"
+  },
+  {
+    "dex_num": "0987",
+    "name": "Flutter Mane",
+    "page_title": "Flutter Mane (Pokémon)"
+  },
+  {
+    "dex_num": "0988",
+    "name": "Slither Wing",
+    "page_title": "Slither Wing (Pokémon)"
+  },
+  {
+    "dex_num": "0989",
+    "name": "Sandy Shocks",
+    "page_title": "Sandy Shocks (Pokémon)"
+  },
+  {
+    "dex_num": "0990",
+    "name": "Iron Treads",
+    "page_title": "Iron Treads (Pokémon)"
+  },
+  {
+    "dex_num": "0991",
+    "name": "Iron Bundle",
+    "page_title": "Iron Bundle (Pokémon)"
+  },
+  {
+    "dex_num": "0992",
+    "name": "Iron Hands",
+    "page_title": "Iron Hands (Pokémon)"
+  },
+  {
+    "dex_num": "0993",
+    "name": "Iron Jugulis",
+    "page_title": "Iron Jugulis (Pokémon)"
+  },
+  {
+    "dex_num": "0994",
+    "name": "Iron Moth",
+    "page_title": "Iron Moth (Pokémon)"
+  },
+  {
+    "dex_num": "0995",
+    "name": "Iron Thorns",
+    "page_title": "Iron Thorns (Pokémon)"
+  },
+  {
+    "dex_num": "0996",
+    "name": "Frigibax",
+    "page_title": "Frigibax (Pokémon)"
+  },
+  {
+    "dex_num": "0997",
+    "name": "Arctibax",
+    "page_title": "Arctibax (Pokémon)"
+  },
+  {
+    "dex_num": "0998",
+    "name": "Baxcalibur",
+    "page_title": "Baxcalibur (Pokémon)"
+  },
+  {
+    "dex_num": "0999",
+    "name": "Gimmighoul",
+    "page_title": "Gimmighoul (Pokémon)"
+  },
+  {
+    "dex_num": "1000",
+    "name": "Gholdengo",
+    "page_title": "Gholdengo (Pokémon)"
+  },
+  {
+    "dex_num": "1001",
+    "name": "Wo-Chien",
+    "page_title": "Wo-Chien (Pokémon)"
+  },
+  {
+    "dex_num": "1002",
+    "name": "Chien-Pao",
+    "page_title": "Chien-Pao (Pokémon)"
+  },
+  {
+    "dex_num": "1003",
+    "name": "Ting-Lu",
+    "page_title": "Ting-Lu (Pokémon)"
+  },
+  {
+    "dex_num": "1004",
+    "name": "Chi-Yu",
+    "page_title": "Chi-Yu (Pokémon)"
+  },
+  {
+    "dex_num": "1005",
+    "name": "Roaring Moon",
+    "page_title": "Roaring Moon (Pokémon)"
+  },
+  {
+    "dex_num": "1006",
+    "name": "Iron Valiant",
+    "page_title": "Iron Valiant (Pokémon)"
+  },
+  {
+    "dex_num": "1007",
+    "name": "Koraidon",
+    "page_title": "Koraidon (Pokémon)"
+  },
+  {
+    "dex_num": "1008",
+    "name": "Miraidon",
+    "page_title": "Miraidon (Pokémon)"
+  },
+  {
+    "dex_num": "1009",
+    "name": "Walking Wake",
+    "page_title": "Walking Wake (Pokémon)"
+  },
+  {
+    "dex_num": "1010",
+    "name": "Iron Leaves",
+    "page_title": "Iron Leaves (Pokémon)"
+  },
+  {
+    "dex_num": "1011",
+    "name": "Dipplin",
+    "page_title": "Dipplin (Pokémon)"
+  },
+  {
+    "dex_num": "1012",
+    "name": "Poltchageist",
+    "page_title": "Poltchageist (Pokémon)"
+  },
+  {
+    "dex_num": "1013",
+    "name": "Sinistcha",
+    "page_title": "Sinistcha (Pokémon)"
+  },
+  {
+    "dex_num": "1014",
+    "name": "Okidogi",
+    "page_title": "Okidogi (Pokémon)"
+  },
+  {
+    "dex_num": "1015",
+    "name": "Munkidori",
+    "page_title": "Munkidori (Pokémon)"
+  },
+  {
+    "dex_num": "1016",
+    "name": "Fezandipiti",
+    "page_title": "Fezandipiti (Pokémon)"
+  },
+  {
+    "dex_num": "1017",
+    "name": "Ogerpon",
+    "page_title": "Ogerpon (Pokémon)"
+  },
+  {
+    "dex_num": "1018",
+    "name": "Archaludon",
+    "page_title": "Archaludon (Pokémon)"
+  },
+  {
+    "dex_num": "1019",
+    "name": "Hydrapple",
+    "page_title": "Hydrapple (Pokémon)"
+  },
+  {
+    "dex_num": "1020",
+    "name": "Gouging Fire",
+    "page_title": "Gouging Fire (Pokémon)"
+  },
+  {
+    "dex_num": "1021",
+    "name": "Raging Bolt",
+    "page_title": "Raging Bolt (Pokémon)"
+  },
+  {
+    "dex_num": "1022",
+    "name": "Iron Boulder",
+    "page_title": "Iron Boulder (Pokémon)"
+  },
+  {
+    "dex_num": "1023",
+    "name": "Iron Crown",
+    "page_title": "Iron Crown (Pokémon)"
+  },
+  {
+    "dex_num": "1024",
+    "name": "Terapagos",
+    "page_title": "Terapagos (Pokémon)"
+  },
+  {
+    "dex_num": "1025",
+    "name": "Pecharunt",
+    "page_title": "Pecharunt (Pokémon)"
+  }
+]
