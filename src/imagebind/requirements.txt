@@ -1,0 +1,5 @@
+jupyter
+
+git+https://github.com/facebookresearch/ImageBind.git#egg=imagebind
+setuptools<82
+torchcodec
