@@ -31,7 +31,7 @@ API_URL = "https://bulbapedia.bulbagarden.net/w/api.php"
 BASE_WIKI = "https://bulbapedia.bulbagarden.net/wiki/"
 LIST_PAGE = "List of Pokémon by National Pokédex number"
 
-OUT_DIR = Path("output")
+OUT_DIR = Path("data/pokemon_data")
 IMG_DIR = OUT_DIR / "images"
 MANIFEST = OUT_DIR / "manifest.jsonl"
 FAILURES = OUT_DIR / "failures.jsonl"
@@ -93,7 +93,7 @@ def build_pokemon_list():
                 continue
             page_title = href_to_title(name_link["href"])
             display_name = name_link.get("title", name_link.text).strip()
-            dex_match = re.search(r"#?(\d{3,4})", cells[0].get_text())
+            dex_match = re.search(r"#?(\d{3,4})", cells[0].get_text()) # heck naw, gonna replace this regex logic
             dex_num = dex_match.group(1) if dex_match else None
             key = (dex_num, page_title)
             if dex_num and page_title and key not in seen:
@@ -133,23 +133,27 @@ def get_biology_text(page_title: str) -> str | None:
     html = sec_data["parse"]["text"]["*"]
     soup = BeautifulSoup(html, "html.parser")
     paragraphs = [p.get_text(" ", strip=True) for p in soup.find_all("p")]
-    paragraphs = [p for p in paragraphs if p]
-    return " ".join(paragraphs) if paragraphs else None
+    paragraph = next(p for p in paragraphs if p)
+    return paragraph if paragraph else None
 
 
-def get_main_image_url(page_title: str, dex_num: str) -> str | None:
+def get_main_image_url(page_title: str, dex_num: str, name: str) -> str | None:
     imgs = api_get({"action": "query", "titles": page_title, "prop": "images", "imlimit": 50})
     pages = imgs.get("query", {}).get("pages", {})
-    candidates = []
-    for page in pages.values():
-        for im in page.get("images", []):
-            candidates.append(im["title"])  # e.g. "File:001Bulbasaur.png"
 
     # Prefer the canonical "<dexnum><name>.png" artwork file over icons/sprites
-    padded = dex_num.zfill(3)
-    best = next((c for c in candidates if c.startswith(f"File:{padded}")), None)
+    padded = dex_num.zfill(4)
+    target_file = f"File:{padded}{name}.png"
+    last_candidate = None
+    best = None
+    for page in pages.values():
+        for im in page.get("images", []):
+            if im["title"] == target_file:
+                best = im["title"]
+            last_candidate = im["title"] # e.g. "File:0001Bulbasaur.png"
+
     if not best:
-        best = next((c for c in candidates if c.lower().endswith(".png")), None)
+        best = last_candidate
     if not best:
         return None
 
@@ -209,7 +213,7 @@ def scrape_all(limit: int | None = None):
             continue
         try:
             text = get_biology_text(title)
-            img_url = get_main_image_url(title, dex_num)
+            img_url = get_main_image_url(title, dex_num, name)
             if not text or not img_url:
                 raise ValueError(f"missing text={bool(text)} image={bool(img_url)}")
 
