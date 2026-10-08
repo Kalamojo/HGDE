@@ -150,7 +150,8 @@ def get_main_image_url(page_title: str, dex_num: str, name: str) -> str | None:
         for im in page.get("images", []):
             if im["title"] == target_file:
                 best = im["title"]
-            last_candidate = im["title"] # e.g. "File:0001Bulbasaur.png"
+            if im["title"].startswith(f"File:{padded}"):
+                last_candidate = im["title"] # e.g. "File:0001Bulbasaur.png"
 
     if not best:
         best = last_candidate
