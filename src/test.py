@@ -4,6 +4,7 @@ import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader
 import numpy as np
 import sys
+from pathlib import Path
 
 class Net(nn.Module):
 
@@ -37,9 +38,9 @@ def main():
         print("invalid")
     elif sys.argv[1] == "data":
         train, labels, user = generate()
-        torch.save(train, "train.pt")
-        torch.save(labels, "labels.pt")
-        torch.save(user, "user.pt")
+        torch.save(train, str(Path.cwd()) + "/test_data/train.pt")
+        torch.save(labels, str(Path.cwd()) + "/test_data/labels.pt")
+        torch.save(user, str(Path.cwd()) + "/test_data/user.pt")
         return
     elif sys.argv[1] == "test":
         if len(sys.argv) < 3:
