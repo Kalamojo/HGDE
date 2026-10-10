@@ -1,3 +1,35 @@
+"""
+File: embedding_transformer.py
+Author: John Ross
+Description:
+    This file contains the architecture of the MLP embedding transformer and the train loop.
+    The loop uses Pytorch's feed forward Neural Network and Pytorch's built in DataLoader.
+    The Model takes in 3 torch tensors for its data, 1 the embedding, 2 the cluster, and 3
+    the user's specification.
+    Then it has multiple options for the loss function and finally it outputs a saved torch
+    model.pt file to the given path
+
+Usage:
+    run 'python3 embedding_transformer.py datapath.pt loss_function_name model_file.pt
+
+    the datapath file should be formatted as follows
+    data = {
+        "train": N x D torch tensor where N is the number of datapoints and D is the dimensionality of the embeddings
+        "labels": N x 1 torch tensor containing the cluster each point was assigned to
+        "user": N x 1 torch tensor containing must-link pairs
+    }
+    torch.save(data, "datapath.pt")
+
+    Options for loss_function_name
+        default: the default option is an arbitrary loss function meant to test functionality of the training loop
+
+    This script will output a pt file which can be loaded in another file as follows
+
+    from embedding_transformer import Net
+    model = torch.load(model_file, weights_only=False)
+
+"""
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -6,6 +38,8 @@ import numpy as np
 import sys
 
 # Architecture of the model (can change)
+# This sets it up to have 1 hidden layer and the input and output dimensions are the dimensions of the embeddings
+# part of PyTorch's standard protocol
 class Net(nn.Module):
 
     def __init__(self, dimensions: int):
@@ -21,6 +55,8 @@ class Net(nn.Module):
         out = nn.functional.sigmoid(x)
         return out
 
+# pytorch's built in dataset class, this allows us to train in batches and seperate the torch tensors
+# part of PyTorch's standard protocol
 class ClusterDataset(Dataset):
     def __init__(self, inputs, labels, user_specified, mode = 'train'):
         self.mode = mode
@@ -36,42 +72,42 @@ class ClusterDataset(Dataset):
         if self.mode == 'train':
           return {'input': self.train[idx], 'label': self.train_labels[idx], 'user_specified': self.user_specified[idx]}
 
+# This gives us the dataloader for the training loop, part of PyTorch's standard protocol
 def load_data(inputs, clusters, user_specified, batch_size):
     train_set = ClusterDataset(inputs, clusters, user_specified)
     train_dataloader = DataLoader(train_set, batch_size=batch_size, shuffle=True)
 
     return train_dataloader
 
+# This is the training loop for the model
 def train_loop(data, epochs, loss_function, optim, batch_size, model):
-    inputs, clusters, user_specified = data
-    train_dataloader = load_data(inputs, clusters, user_specified, batch_size)
-    init_train_losses = []
-    for epoch in range(1,epochs+1):
+    inputs, clusters, user_specified = data['train'], data['labels'], data['user'] # seperate data
+    train_dataloader = load_data(inputs, clusters, user_specified, batch_size) # get a dataloader with data
+    init_train_losses = [] # to keep track of losses
+    for epoch in range(1,epochs+1): # for the given epochs
 
         #Training phase
         model.train()  #Setting the model to train phase
-        train_loss = []
-        train_acc = 0.
+        train_loss = [] # loss for this current epoch
 
-        for idx, batch in enumerate(train_dataloader):
+        for _, batch in enumerate(train_dataloader): # get a batch from dataloader
 
             inputs = batch['input']
             labels = batch['label']
             user = batch['user_specified']
-            outputs = torch.squeeze(model(inputs.float()))
+            outputs = torch.squeeze(model(inputs.float())) # pass embeddings through the model
 
-            loss = loss_function(outputs, labels.float(), user_specified)
-            loss.backward()
-            optim.step()
-            train_loss.append(loss.item())
-            optim.zero_grad()
-        train_acc = train_acc / len(inputs)
+            loss = loss_function(outputs, labels.float(), user) # calculate loss
+            loss.backward() # backpropogate through the model
+            optim.step() # using an Adam optimizer changes the learning rate so we take an optimizer step
+            train_loss.append(loss.item()) # append the loss number
+            optim.zero_grad() # zero gradients between batches
         
-        if epoch%10==0:
+        if epoch%10==0: # every 10 epochs print out current progress
             print("Epoch : {}, Train loss: {}".format(epoch, np.mean(train_loss)))
-            init_train_losses.append(np.mean(train_loss))
+            init_train_losses.append(np.mean(train_loss)) # keep a list of losses per epoch for a graph potentially
 
-
+# default arbitrary loss function
 def temp_loss(outputs, labels, user_specified):
     loss = 0
     for i in range(0, len(outputs) - 1):
@@ -84,31 +120,26 @@ def temp_loss(outputs, labels, user_specified):
 
 def main():
     if sys.argv[1] == "help":
-        print("run the script with arguments in the following order, -> python3 embedding_transformer data.pt labels.pt user.pt loss_name save_file_path")
+        print("run the script with arguments in the following order, -> python3 embedding_transformer.py data.pt loss_name save_file_path")
         return
     else:
-        if len(sys.argv) < 6:
+        if len(sys.argv) < 4:
             print("incorrect formatting of arguments, run 'python3 embedding_transformer help' to see format or look at file")
             return
     datapath = sys.argv[1]
-    labelpath = sys.argv[2]
-    userpath = sys.argv[3]
-    loss_name = sys.argv[4]
-    save_path = sys.argv[5]
+    loss_name = sys.argv[2]
+    save_path = sys.argv[3]
 
-    train = torch.load(datapath)
-    labels = torch.load(labelpath)
-    user = torch.load(userpath)
+    data = torch.load(datapath)
     loss = None
     if loss_name == "specific function":
         x = 1 # temp
     else:
         loss = temp_loss
-    model = Net(len(train[0]))
+    model = Net(len(data['train'][0]))
     batch_size = 32
     epochs = 100
     optim = torch.optim.Adam(model.parameters(), lr = 0.01)
-    data = (train, labels, user)
     train_loop(data, epochs, loss, optim, batch_size, model)
     torch.save(model, save_path)
     return

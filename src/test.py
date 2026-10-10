@@ -1,25 +1,8 @@
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from torch.utils.data import Dataset, DataLoader
 import numpy as np
 import sys
 from pathlib import Path
-
-class Net(nn.Module):
-
-    def __init__(self, dimensions: int):
-        super(Net, self).__init__()
-        self.dimensions = dimensions
-        self.layer1 = nn.Linear(dimensions, 1024)
-        self.layer2 = nn.Linear(1024, dimensions)
-
-    def forward(self, x):
-        x = self.layer1(x)
-        x = nn.functional.relu(x)
-        x = self.layer2(x)
-        out = nn.functional.sigmoid(x)
-        return out
+from embedding_transformer import Net # it says its unused but its required for torch.load
 
 def generate():
     rng = np.random.default_rng(seed=42)
@@ -31,24 +14,30 @@ def generate():
     for i in range(0,100):
         labels[i] = rng.integers(0,5)
         user[i] = rng.integers(0,1, endpoint=True)
-    return train, labels, user
+    data = {
+        "train": train,
+        "labels": labels,
+        "user": user
+    }
+    return data
 
 def main():
     if len(sys.argv) < 2:
         print("invalid")
     elif sys.argv[1] == "data":
-        train, labels, user = generate()
-        torch.save(train, str(Path.cwd()) + "/test_data/train.pt")
-        torch.save(labels, str(Path.cwd()) + "/test_data/labels.pt")
-        torch.save(user, str(Path.cwd()) + "/test_data/user.pt")
+        data = generate()
+        torch.save(data, str(Path.cwd()) + "/test_data/data.pt")
+
         return
     elif sys.argv[1] == "test":
         if len(sys.argv) < 3:
             print("invalid")
         path = sys.argv[2]
         model = torch.load(path, weights_only=False)
-        train, _, _ = generate()
-        print(model(train))
+        data = generate()
+        train = data['train']
+        with torch.no_grad():
+            print(model(train))
 
 
 if __name__ == "__main__":
