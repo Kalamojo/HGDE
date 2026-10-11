@@ -70,7 +70,7 @@ class ClusterDataset(Dataset):
 
     def __getitem__(self, idx):
         if self.mode == 'train':
-          return {'input': self.train[idx], 'label': self.train_labels[idx], 'user_specified': self.user_specified[idx]}
+          return {'input': self.train[idx], 'label': self.train_labels[idx], 'user_specified': self.user_specified[idx], 'idx': idx}
 
 # This gives us the dataloader for the training loop, part of PyTorch's standard protocol
 def load_data(inputs, clusters, user_specified, batch_size):
@@ -95,20 +95,21 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model):
             inputs = batch['input']
             labels = batch['label']
             user = batch['user_specified']
+            idx = batch['idx']
             outputs = torch.squeeze(model(inputs.float())) # pass embeddings through the model
 
-            loss = loss_function(outputs, labels.float(), user) # calculate loss
+            loss = loss_function(outputs, labels.float(), user, idx) # calculate loss
             loss.backward() # backpropogate through the model
             optim.step() # using an Adam optimizer changes the learning rate so we take an optimizer step
             train_loss.append(loss.item()) # append the loss number
             optim.zero_grad() # zero gradients between batches
         
-        if epoch%10==0: # every 10 epochs print out current progress
+        if epoch%2==0: # every 2 epochs print out current progress
             print("Epoch : {}, Train loss: {}".format(epoch, np.mean(train_loss)))
             init_train_losses.append(np.mean(train_loss)) # keep a list of losses per epoch for a graph potentially
 
 # default arbitrary loss function
-def temp_loss(outputs, labels, user_specified):
+def temp_loss(outputs, labels, user_specified, idx):
     loss = 0
     for i in range(0, len(outputs) - 1):
         if labels[i] == labels[i+1]:
@@ -116,6 +117,37 @@ def temp_loss(outputs, labels, user_specified):
         else:
             loss += (outputs[i] + outputs[i+1]).sum()
     return loss
+
+def user_weighted_contrasting_loss(outputs, labels, user_specified, idx):
+    margin = 0.5
+    pair_losses = []
+    for i in range(len(outputs)):
+        for j in range(i + 1, len(outputs)):
+            # A signed, one-based value identifies a constrained dataset index.
+            constraint = 0
+            for source, target in ((i, j), (j, i)):
+                specified = int(user_specified[source].item())
+                if abs(specified) - 1 == int(idx[target].item()):
+                    constraint = 1 if specified > 0 else -1
+                    break
+
+            same_cluster = bool(labels[i] == labels[j])
+            positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
+            weight = 2.0 if constraint != 0 else 0.5
+            distance = torch.linalg.vector_norm(outputs[i] - outputs[j])
+            distance = distance / np.sqrt(outputs.shape[-1])
+
+            # Standard contrastive terms: attract positives and repel negatives
+            # until they are at least margin apart.
+            if positive_pair:
+                pair_losses.append(weight * distance.square())
+            else:
+                pair_losses.append(weight * F.relu(margin - distance).square())
+
+    if not pair_losses:
+        return outputs.sum() * 0.0
+    return torch.stack(pair_losses).mean()
+
 
 
 def main():
@@ -132,14 +164,14 @@ def main():
 
     data = torch.load(datapath)
     loss = None
-    if loss_name == "specific function":
-        x = 1 # temp
+    if loss_name == "weighted_learning":
+        loss = user_weighted_contrasting_loss
     else:
         loss = temp_loss
     model = Net(len(data['train'][0]))
     batch_size = 32
-    epochs = 100
-    optim = torch.optim.Adam(model.parameters(), lr = 0.01)
+    epochs = 10
+    optim = torch.optim.Adam(model.parameters(), lr = 0.1)
     train_loop(data, epochs, loss, optim, batch_size, model)
     torch.save(model, save_path)
     return
