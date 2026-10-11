@@ -62,7 +62,7 @@ class ClusterDataset(Dataset):
         self.mode = mode
         self.user_specified = user_specified
         if self.mode == 'train':
-          self.train = inputs.reshape(-1, 1024).float()
+          self.train = inputs.reshape(-1, len(inputs[0])).float()
           self.train_labels = labels
 
     def __len__(self):
