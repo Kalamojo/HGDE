@@ -1,103 +1,100 @@
 """
 File: simulator.py
 Author: Chris Jien Zhang
-Date: 2026-09-22
+Date: 2026-10-15
 Course: CMSC473
 Description:
-    This module contains the SyntheticUser class, which acts as the automated 
-    simulation engine for the interactive constrained clustering pipeline. 
-    It evaluates unsupervised clustering outputs against a hidden ground truth 
-    and generates constraint tuples to iteratively warp the embedding space.
+    Stateful simulation engine for the interactive constrained clustering pipeline.
+    Evaluates unsupervised clustering outputs against a hidden ground truth and 
+    generates Pairwise Constraints (Must-Link and Cannot-Link) to iteratively 
+    train the projection model.
 
 Usage:
-    from simulation.simulator import SyntheticUser
-    user = SyntheticUser(ground_truth_labels=[0, 0, 1, 1])
-    ari = user.evaluate_clusters(predicted_labels=[0, 1, 1, 1])
-    constraint = user.generate_next_move(predicted_labels=[0, 1, 1, 1])
+    from simulation_suite.simulator import SyntheticUser
+    user = SyntheticUser(ground_truth_labels=actual_labels)
+    ari = user.evaluate_clusters(predicted_labels)
+    constraint = user.generate_next_move(predicted_labels)
 """
 
 import numpy as np
 from sklearn.metrics import adjusted_rand_score
+import logging
+
+logger = logging.getLogger(__name__)
 
 class SyntheticUser:
     """
-    Simulates a human user providing feedback to a clustering model.
-    Maintains a decoupled architecture by relying only on standard array inputs,
-    making it agnostic to the specific foundation model or clustering algorithm used.
+    Simulates a human user providing pairwise constraint feedback.
+    Maintains memory of previously issued constraints to ensure the pipeline
+    constantly explores new corrective actions.
     """
 
     def __init__(self, ground_truth_labels):
         """
-        Initializes the synthetic user with the hidden target rules.
+        Initializes the synthetic user with the hidden target rules and empty state.
 
         Args:
-            ground_truth_labels (list or numpy.ndarray): The perfect cluster 
-            assignments expected at the end of the simulation.
+            ground_truth_labels (list or numpy.ndarray): The perfect cluster assignments.
         """
-        self.ground_truth_labels = np.array(ground_truth_labels)
-        
-        # Tracks simulation metrics for final convergence benchmark graphs
+        self.ground_truth = np.array(ground_truth_labels)
         self.history = {
             "moves": [],
             "ari_scores": []
         }
         self.move_counter = 0
+        
+        # State tracking to prevent duplicate constraints
+        self.issued_constraints = set()
 
     def evaluate_clusters(self, predicted_labels):
         """
-        Calculates the Adjusted Rand Index (ARI) of the current clusters and logs it.
+        Calculates the Adjusted Rand Index (ARI) of the current clusters.
 
         Args:
-            predicted_labels (list or numpy.ndarray): The output from the baseline clustering.
+            predicted_labels (list or numpy.ndarray): The model's current cluster output.
 
         Returns:
             float: The ARI score ranging from -1.0 to 1.0.
         """
-        predicted_array = np.array(predicted_labels)
-        ari_score = adjusted_rand_score(self.ground_truth_labels, predicted_array)
-        
+        ari_score = adjusted_rand_score(self.ground_truth, np.array(predicted_labels))
         self.history["moves"].append(self.move_counter)
         self.history["ari_scores"].append(ari_score)
-        
         return ari_score
 
     def generate_next_move(self, predicted_labels):
         """
-        Identifies two items that share a ground-truth cluster but were 
-        incorrectly separated by the predictive algorithm.
+        Scans the predicted clusters against the ground truth to find the first 
+        unissued error and generates a corrective Pairwise Constraint.
 
         Args:
-            predicted_labels (list or numpy.ndarray): The current flawed clusters.
+            predicted_labels (list or numpy.ndarray): The flawed clusters.
 
         Returns:
-            tuple: (index_1, index_2) representing a "must-link" constraint, 
-            or None if the clusters perfectly match the ground truth.
+            dict: A constraint dictionary containing 'type' (Must-Link or Cannot-Link), 
+                  'item_1', and 'item_2', or None if perfectly clustered.
         """
-        predicted_array = np.array(predicted_labels)
-        unique_true_classes = np.unique(self.ground_truth_labels)
-        
-        for true_class in unique_true_classes:
-            # Locate all data points belonging to this specific target cluster
-            items_in_class = np.where(self.ground_truth_labels == true_class)[0]
-            
-            if len(items_in_class) < 2:
-                continue
+        predictions = np.array(predicted_labels)
+        num_items = len(self.ground_truth)
+
+        # Iterate through every possible pair to find a relationship mismatch
+        for i in range(num_items):
+            for j in range(i + 1, num_items):
                 
-            predicted_for_these_items = predicted_array[items_in_class]
-            
-            # A mismatch exists if these items were split into multiple predicted clusters
-            if len(np.unique(predicted_for_these_items)) > 1:
-                first_label = predicted_for_these_items[0]
-                
-                # Locate the index of the first item separated from the group
-                mismatch_relative_idx = np.where(predicted_for_these_items != first_label)[0][0]
-                
-                idx_1 = items_in_class[0]
-                idx_2 = items_in_class[mismatch_relative_idx]
-                
-                self.move_counter += 1
-                
-                return (int(idx_1), int(idx_2))
-                
-        # Returns None when no errors remain, signaling the simulation is complete
+                # Check for a Must-Link error (belong together, but were separated)
+                if self.ground_truth[i] == self.ground_truth[j] and predictions[i] != predictions[j]:
+                    constraint = ("MUST_LINK", i, j)
+                    if constraint not in self.issued_constraints:
+                        self.issued_constraints.add(constraint)
+                        self.move_counter += 1
+                        return {"type": "MUST_LINK", "item_1": i, "item_2": j}
+
+                # Check for a Cannot-Link error (belong apart, but were grouped together)
+                elif self.ground_truth[i] != self.ground_truth[j] and predictions[i] == predictions[j]:
+                    constraint = ("CANNOT_LINK", i, j)
+                    if constraint not in self.issued_constraints:
+                        self.issued_constraints.add(constraint)
+                        self.move_counter += 1
+                        return {"type": "CANNOT_LINK", "item_1": i, "item_2": j}
+
+        # Return None if no new errors exist
         return None
