@@ -38,7 +38,7 @@ import numpy as np
 import sys
 
 # Architecture of the model (can change)
-# This sets it up to have 1 hidden layer and the input and output dimensions are the dimensions of the embeddings
+# This sets it up to have 2 hidden layer and the input and output dimensions are the dimensions of the embeddings
 # part of PyTorch's standard protocol
 class Net(nn.Module):
 
@@ -46,14 +46,16 @@ class Net(nn.Module):
         super(Net, self).__init__()
         self.dimensions = dimensions
         self.layer1 = nn.Linear(dimensions, 2048)
+        self.dropout = nn.Dropout(p=0.5)
         self.layer2 = nn.Linear(2048, dimensions)
 
     def forward(self, x):
         x = self.layer1(x)
-        x = nn.functional.relu(x)
+        x = nn.functional.gelu(x)
+        x = self.dropout(x)
         x = self.layer2(x)
-        out = nn.functional.sigmoid(x)
-        return out
+        x = F.normalize(x, p=2, dim=1)
+        return x
 
 # pytorch's built in dataset class, this allows us to train in batches and seperate the torch tensors
 # part of PyTorch's standard protocol
@@ -119,7 +121,7 @@ def temp_loss(outputs, labels, user_specified, idx):
     return loss
 
 def user_weighted_contrasting_loss(outputs, labels, user_specified, idx):
-    margin = 0.5
+    margin = 0.75
     pair_losses = []
     for i in range(len(outputs)):
         for j in range(i + 1, len(outputs)):
@@ -133,7 +135,7 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx):
 
             same_cluster = bool(labels[i] == labels[j])
             positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
-            weight = 2.0 if constraint != 0 else 0.5
+            weight = len(outputs) if constraint != 0 else 1/len(outputs)
             distance = torch.linalg.vector_norm(outputs[i] - outputs[j])
             distance = distance / np.sqrt(outputs.shape[-1])
 
