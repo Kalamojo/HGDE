@@ -130,8 +130,8 @@ def test1():
         while labels[rand1] == labels[rand2]:
             rand1 = random.randint(0, 99)
             rand2 = random.randint(0, 99)
-        user[rand1] = rand2
-        user[rand2] = rand1
+        user[rand1] = rand2+1
+        user[rand2] = rand1+1
         keep_track.append((rand1,rand2,1))
     final_vecs, final_labels, _ = final_label(vecs, labels, user)
     evaluate(labels, final_labels, keep_track, vecs, final_vecs)
@@ -151,8 +151,8 @@ def test2():
         while labels[rand1] == labels[rand2]:
             rand1 = random.randint(0, 99)
             rand2 = random.randint(0, 99)
-        user[rand1] = 0 - rand2
-        user[rand2] = 0 - rand1
+        user[rand1] = 0 - (rand2+1)
+        user[rand2] = 0 - (rand1+1)
         keep_track.append((rand1,rand2,0))
     final_vecs, final_labels, _ = final_label(vecs, labels, user)
     evaluate(labels, final_labels, keep_track, vecs, final_vecs)
@@ -169,12 +169,12 @@ def test3():
         rand1 = random.randint(0, 99)
         rand2 = random.randint(0, 99)
         if labels[rand1] == labels[rand2]:
-            user[rand1] = 0 - rand2
-            user[rand2] = 0 - rand1
+            user[rand1] = 0 - (rand2+1)
+            user[rand2] = 0 - (rand1+1)
             keep_track.append((rand1,rand2,0))
         else:
-            user[rand1] = rand2
-            user[rand2] = rand1
+            user[rand1] = rand2+1
+            user[rand2] = rand1+1
             keep_track.append((rand1,rand2,1))
     final_vecs, final_labels, _ = final_label(vecs, labels, user)
     evaluate(labels, final_labels, keep_track, vecs, final_vecs)
@@ -193,28 +193,52 @@ def test4():
         rand1 = random.randint(0, 99)
         rand2 = random.randint(0, 99)
         if labels[rand1] == labels[rand2]:
-            user[rand1] = 0 - rand2
-            user[rand2] = 0 - rand1
+            user[rand1] = 0 - (rand2+1)
+            user[rand2] = 0 - (rand1+1)
             keep_track.append((rand1,rand2,0))
         else:
-            user[rand1] = rand2
-            user[rand2] = rand1
+            user[rand1] = rand2+1
+            user[rand2] = rand1+1
             keep_track.append((rand1,rand2,1))
-        vecs, labels, model = final_label(vecs, labels, user, 2, model)
+        vecs, labels, model = final_label(vecs, labels, user, epochs=1, model=model)
+    evaluate(init_labels, labels, keep_track, init_vecs, vecs)
+
+    vecs, labels = make_random_vecs(100, 10)
+    init_vecs = vecs
+    init_labels = labels
+    user = [0] * 100
+    keep_track = []
+    model = Net(10)
+    for _ in range(3):
+        rand1 = random.randint(0, 99)
+        rand2 = random.randint(0, 99)
+        if labels[rand1] == labels[rand2]:
+            user[rand1] = 0 - (rand2+1)
+            user[rand2] = 0 - (rand1+1)
+            keep_track.append((rand1,rand2,0))
+        else:
+            user[rand1] = rand2+1
+            user[rand2] = rand1+1
+            keep_track.append((rand1,rand2,1))
+        vecs, labels, model = final_label(vecs, labels, user, epochs=1, model=model)
     evaluate(init_labels, labels, keep_track, init_vecs, vecs)
 
 
 if __name__ == "__main__":
     torch.manual_seed(42)
     print("==================================================================")
+    print("============================Test 1================================")
     print("==================================================================")
     test1()
     print("==================================================================")
+    print("============================Test 2================================")
     print("==================================================================")
     test2()
     print("==================================================================")
+    print("============================Test 3================================")
     print("==================================================================")
     test3()
     print("==================================================================")
+    print("============================Test 4================================")
     print("==================================================================")
     test4()

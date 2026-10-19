@@ -137,7 +137,10 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
 
             same_cluster = bool(labels[i] == clusters[j])
             positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
-            weight = (len(init_outputs)**4) if constraint != 0 else 1/(len(init_outputs)**2)
+            if specified != 0: 
+                weight = (len(init_outputs)-1) if constraint != 0 else 1/(len(init_outputs)-1) # if I did math right, average weight should be 1
+            else:
+                weight = 1
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
             distance = distance / np.sqrt(outputs.shape[-1])
 
