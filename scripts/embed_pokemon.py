@@ -9,20 +9,11 @@ import random
 
 def main(manifest_path: str, device: str, model: ImageBindModel, db_path: str, batch_size: int = 50, table_name: str = "pokemon"):
     df = pl.read_ndjson(manifest_path)
-    
-    use_image_flag = [True if i % 2 == 0 else False for i in range(df.shape[0])]
-    use_image_flag = random.sample(use_image_flag, len(use_image_flag))
-    df = df.with_columns(
-        use_image=pl.Series(use_image_flag)
-    )
 
     print("Df shape:", df.shape)
 
-    image_df = df.filter(pl.col("use_image") == True)
-    text_df = df.filter(pl.col("use_image") == False)
-
-    images = image_df["image_path"]
-    text = text_df["text"]
+    images = df["image_path"]
+    text = df["text"]
 
     round = 0
     all_embeddings = []
@@ -49,21 +40,14 @@ def main(manifest_path: str, device: str, model: ImageBindModel, db_path: str, b
     for i in range(0, len(images), batch_size):
         print("Round", round)
 
-        # vision set
-        image_df_part = image_df.slice(i, i+batch_size).to_dict(as_series=False)
-        vals = list(image_df_part.values()) + [all_embeddings[round]['vision'].tolist()]
-        keys = list(image_df_part.keys()) + ["vector"]
+        # vision and text sets
+        df_part = df.slice(i, i+batch_size).to_dict(as_series=False)
+        vals = list(df_part.values()) + [all_embeddings[round]['vision'].tolist(), all_embeddings[round]['text'].tolist()]
+        keys = list(df_part.keys()) + ["image_vector", "text_vector"]
 
-        image_ingest = [dict(zip(keys, values)) for values in zip(*vals)]
+        data_ingest = [dict(zip(keys, values)) for values in zip(*vals)]
 
-        # text set
-        text_df_part = text_df.slice(i, i+batch_size).to_dict(as_series=False)
-        vals = list(text_df_part.values()) + [all_embeddings[round]['text'].tolist()]
-        keys = list(text_df_part.keys()) + ["vector"]
-
-        text_ingest = [dict(zip(keys, values)) for values in zip(*vals)]
-
-        to_ingest += image_ingest + text_ingest
+        to_ingest += data_ingest
         round += 1
 
     print(len(to_ingest))
