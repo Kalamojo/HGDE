@@ -96,8 +96,8 @@ def evaluate(labels, final_labels, keep_track, vecs, final_vecs):
     acc = 0
     for pair in keep_track:
         print("==================================================")
-        print("initial cluster for", pair[0], ": ", labels[pair[0]])
-        print("initial cluster for", pair[1], ": ", labels[pair[1]])
+        print("initial cluster for", pair[0], ": ", labels[pair[0]], " now -> ", final_labels[pair[0]])
+        print("initial cluster for", pair[1], ": ", labels[pair[1]], " now -> ", final_labels[pair[1]])
         if pair[2] == 1:
             print("are they in the same cluster?", final_labels[pair[0]] == final_labels[pair[1]])
             if final_labels[pair[0]] == final_labels[pair[1]]:
@@ -106,9 +106,6 @@ def evaluate(labels, final_labels, keep_track, vecs, final_vecs):
             print("are they in different custers?", final_labels[pair[0]] != final_labels[pair[1]])
             if final_labels[pair[0]] != final_labels[pair[1]]:
                 acc += 1
-        print("final cluster for", pair[0], ": ", final_labels[pair[0]])
-        print("final cluster for", pair[1], ": ", final_labels[pair[1]])
-        
     acc = acc / len(keep_track)
     print("accuracy: ", acc)
     raw_distance = np.linalg.norm(final_vecs-vecs)

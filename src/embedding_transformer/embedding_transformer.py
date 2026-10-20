@@ -140,7 +140,7 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
             if specified != 0: 
                 weight = (len(init_outputs)-1) if constraint != 0 else 1/(len(init_outputs)-1) # if I did math right, average weight should be 1
             else:
-                weight = 1
+                weight = 1/len(init_outputs)
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
             distance = distance / np.sqrt(outputs.shape[-1])
 
