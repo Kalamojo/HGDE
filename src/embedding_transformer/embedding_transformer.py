@@ -38,22 +38,24 @@ import numpy as np
 import sys
 
 # Architecture of the model (can change)
-# This sets it up to have 1 hidden layer and the input and output dimensions are the dimensions of the embeddings
+# This sets it up to have 2 hidden layer and the input and output dimensions are the dimensions of the embeddings
 # part of PyTorch's standard protocol
 class Net(nn.Module):
 
     def __init__(self, dimensions: int):
         super(Net, self).__init__()
         self.dimensions = dimensions
-        self.layer1 = nn.Linear(dimensions, 1024)
-        self.layer2 = nn.Linear(1024, dimensions)
+        self.layer1 = nn.Linear(dimensions, 2048)
+        self.dropout = nn.Dropout(p=0.5)
+        self.layer2 = nn.Linear(2048, dimensions)
 
     def forward(self, x):
         x = self.layer1(x)
-        x = nn.functional.relu(x)
+        x = nn.functional.gelu(x)
+        x = self.dropout(x)
         x = self.layer2(x)
-        out = nn.functional.sigmoid(x)
-        return out
+        x = F.normalize(x, p=2, dim=1)
+        return x
 
 # pytorch's built in dataset class, this allows us to train in batches and seperate the torch tensors
 # part of PyTorch's standard protocol
@@ -85,6 +87,9 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model):
     train_dataloader = load_data(inputs, clusters, user_specified, batch_size) # get a dataloader with data
     init_train_losses = [] # to keep track of losses
     for epoch in range(1,epochs+1): # for the given epochs
+        model.eval()
+        with torch.no_grad():
+            init_output = model(inputs)
 
         #Training phase
         model.train()  #Setting the model to train phase
@@ -98,7 +103,7 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model):
             idx = batch['idx']
             outputs = torch.squeeze(model(inputs.float())) # pass embeddings through the model
 
-            loss = loss_function(outputs, labels.float(), user, idx) # calculate loss
+            loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters) # calculate loss
             loss.backward() # backpropogate through the model
             optim.step() # using an Adam optimizer changes the learning rate so we take an optimizer step
             train_loss.append(loss.item()) # append the loss number
@@ -118,23 +123,25 @@ def temp_loss(outputs, labels, user_specified, idx):
             loss += (outputs[i] + outputs[i+1]).sum()
     return loss
 
-def user_weighted_contrasting_loss(outputs, labels, user_specified, idx):
-    margin = 0.5
+def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_outputs, clusters):
+    margin = 0.75
     pair_losses = []
-    for i in range(len(outputs)):
-        for j in range(i + 1, len(outputs)):
+    for i in range(len(outputs) if outputs.dim() > 1 else 1):
+        for j in range(len(init_outputs)):
             # A signed, one-based value identifies a constrained dataset index.
             constraint = 0
-            for source, target in ((i, j), (j, i)):
-                specified = int(user_specified[source].item())
-                if abs(specified) - 1 == int(idx[target].item()):
-                    constraint = 1 if specified > 0 else -1
-                    break
+            specified = int(user_specified[i].item())
+            if abs(specified) - 1 == int(j):
+                constraint = 1 if specified > 0 else -1
+                break
 
-            same_cluster = bool(labels[i] == labels[j])
+            same_cluster = bool(labels[i] == clusters[j])
             positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
-            weight = 2.0 if constraint != 0 else 0.5
-            distance = torch.linalg.vector_norm(outputs[i] - outputs[j])
+            if specified != 0: 
+                weight = (len(init_outputs)-1) if constraint != 0 else 1/(len(init_outputs)-1) # if I did math right, average weight should be 1
+            else:
+                weight = 1
+            distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
             distance = distance / np.sqrt(outputs.shape[-1])
 
             # Standard contrastive terms: attract positives and repel negatives
