@@ -124,7 +124,7 @@ def temp_loss(outputs, labels, user_specified, idx):
     return loss
 
 def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_outputs, clusters):
-    margin = 0.75
+    margin = 2.0
     pair_losses = []
     for i in range(len(outputs) if outputs.dim() > 1 else 1):
         for j in range(len(init_outputs)):
@@ -138,9 +138,9 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
             same_cluster = bool(labels[i] == clusters[j])
             positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
             if specified != 0: 
-                weight = (len(init_outputs)-1) if constraint != 0 else 1/(len(init_outputs)-1) # if I did math right, average weight should be 1
+                weight = (len(init_outputs)-1)**2 if constraint != 0 else 1/(len(init_outputs)-1)**2 # if I did math right, average weight should be 1
             else:
-                weight = 1/len(init_outputs)
+                weight = 1/len(init_outputs)**2
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
             distance = distance / np.sqrt(outputs.shape[-1])
 

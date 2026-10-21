@@ -78,39 +78,43 @@ def final_label(vecs, labels, user, epochs=10, model=None):
     }
     hypers = {
         'epochs': epochs,
-        'lr': 0.1,
+        'lr': 0.001,
         'batch_size': 8,
-        'weight_decay': 0.1
+        'weight_decay': 0.01
     }
     final_vecs, model = train(data, hypers, model)
     final_vecs = final_vecs.numpy()
-    norm = np.linalg.norm(final_vecs)
-    final_vecs = final_vecs/norm
     final_labels = HDBSCAN(min_cluster_size=5).fit_predict(final_vecs)
     return final_vecs, final_labels, model
 
-def evaluate(labels, final_labels, keep_track, vecs, final_vecs):
-    print("Initial Cluster Assignments:", labels)
+def evaluate(labels, final_labels, keep_track, vecs, final_vecs, verbose=True):
+    if verbose:
+        print("Initial Cluster Assignments:", labels)
     print("Final Cluster Assignments:", final_labels)
     print(keep_track)
     acc = 0
     for pair in keep_track:
-        print("==================================================")
-        print("initial cluster for", pair[0], ": ", labels[pair[0]], " now -> ", final_labels[pair[0]])
-        print("initial cluster for", pair[1], ": ", labels[pair[1]], " now -> ", final_labels[pair[1]])
+        if verbose:
+            print("==================================================")
+            print("initial cluster for", pair[0], ": ", labels[pair[0]], " now -> ", final_labels[pair[0]])
+            print("initial cluster for", pair[1], ": ", labels[pair[1]], " now -> ", final_labels[pair[1]])
         if pair[2] == 1:
-            print("are they in the same cluster?", final_labels[pair[0]] == final_labels[pair[1]])
+            if verbose: 
+                print("are they in the same cluster?", final_labels[pair[0]] == final_labels[pair[1]])
             if final_labels[pair[0]] == final_labels[pair[1]]:
                 acc += 1
         else:
-            print("are they in different custers?", final_labels[pair[0]] != final_labels[pair[1]])
+            if verbose:
+                print("are they in different custers?", final_labels[pair[0]] != final_labels[pair[1]])
             if final_labels[pair[0]] != final_labels[pair[1]]:
                 acc += 1
     acc = acc / len(keep_track)
-    print("accuracy: ", acc)
-    raw_distance = np.linalg.norm(final_vecs-vecs)
-    normalized_distance = raw_distance / np.sqrt(len(vecs[0]))
-    print("distance from starting", normalized_distance)
+    if verbose:
+        print("accuracy: ", acc)
+        raw_distance = np.linalg.norm(final_vecs-vecs)
+        normalized_distance = raw_distance / np.sqrt(len(vecs[0]))
+        print("distance from starting", normalized_distance)
+    return acc
 
 '''
 Test1 - Positive links
@@ -186,18 +190,23 @@ def test4():
     user = [0] * 100
     keep_track = []
     model = Net(10)
-    for _ in range(20):
+    for i in range(20):
         rand1 = random.randint(0, 99)
         rand2 = random.randint(0, 99)
-        if labels[rand1] == labels[rand2]:
-            user[rand1] = 0 - (rand2+1)
-            user[rand2] = 0 - (rand1+1)
-            keep_track.append((rand1,rand2,0))
-        else:
+        while labels[rand1] != labels[rand2]:
+            rand1 = random.randint(0, 99)
+            rand2 = random.randint(0, 99)
+        #if labels[rand1] == labels[rand2]:
+        user[rand1] = 0 - (rand2+1)
+        user[rand2] = 0 - (rand1+1)
+        keep_track.append((rand1,rand2,0))
+        '''else:
             user[rand1] = rand2+1
             user[rand2] = rand1+1
-            keep_track.append((rand1,rand2,1))
-        vecs, labels, model = final_label(vecs, labels, user, epochs=1, model=model)
+            keep_track.append((rand1,rand2,1))'''
+        vecs, labels, model = final_label(vecs, labels, user, epochs=10, model=model)
+        acc = evaluate(init_labels, labels, keep_track, init_vecs, vecs, verbose=False)
+        print("loop ", i, " acc: ", acc)
     evaluate(init_labels, labels, keep_track, init_vecs, vecs)
 
     vecs, labels = make_random_vecs(100, 10)
@@ -206,7 +215,7 @@ def test4():
     user = [0] * 100
     keep_track = []
     model = Net(10)
-    for _ in range(3):
+    for i in range(3):
         rand1 = random.randint(0, 99)
         rand2 = random.randint(0, 99)
         if labels[rand1] == labels[rand2]:
@@ -217,7 +226,9 @@ def test4():
             user[rand1] = rand2+1
             user[rand2] = rand1+1
             keep_track.append((rand1,rand2,1))
-        vecs, labels, model = final_label(vecs, labels, user, epochs=1, model=model)
+        vecs, labels, model = final_label(vecs, labels, user, epochs=10, model=model)
+        acc = evaluate(init_labels, labels, keep_track, init_vecs, vecs, verbose=False)
+        print("loop ", i, " acc: ", acc)
     evaluate(init_labels, labels, keep_track, init_vecs, vecs)
 
 
