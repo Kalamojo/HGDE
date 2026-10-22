@@ -80,7 +80,7 @@ def final_label(vecs, labels, user, epochs=10, model=None):
         'epochs': epochs,
         'lr': 0.001,
         'batch_size': 8,
-        'weight_decay': 0.01
+        'weight_decay': 0.00001
     }
     final_vecs, model = train(data, hypers, model)
     final_vecs = final_vecs.numpy()
@@ -93,20 +93,22 @@ def evaluate(labels, final_labels, keep_track, vecs, final_vecs, verbose=True):
     print("Final Cluster Assignments:", final_labels)
     print(keep_track)
     acc = 0
-    for pair in keep_track:
+    for i, j, together in keep_track:
         if verbose:
             print("==================================================")
-            print("initial cluster for", pair[0], ": ", labels[pair[0]], " now -> ", final_labels[pair[0]])
-            print("initial cluster for", pair[1], ": ", labels[pair[1]], " now -> ", final_labels[pair[1]])
-        if pair[2] == 1:
+            print("initial cluster for", i, ": ", labels[i], " now -> ", final_labels[i])
+            print("initial cluster for", j, ": ", labels[j], " now -> ", final_labels[j])
+        if together == 1:
             if verbose: 
-                print("are they in the same cluster?", final_labels[pair[0]] == final_labels[pair[1]])
-            if final_labels[pair[0]] == final_labels[pair[1]]:
+                print("are they in the same cluster?", final_labels[i] == final_labels[j])
+                print("are they closer?", np.linalg.norm(vecs[i]-vecs[j]) > np.linalg.norm(final_vecs[i]-final_vecs[j]))
+            if final_labels[i] == final_labels[j]:
                 acc += 1
         else:
             if verbose:
-                print("are they in different custers?", final_labels[pair[0]] != final_labels[pair[1]])
-            if final_labels[pair[0]] != final_labels[pair[1]]:
+                print("are they in different custers?", final_labels[i] != final_labels[j])
+                print("are they further apart?", np.linalg.norm(vecs[i]-vecs[j]) < np.linalg.norm(final_vecs[i]-final_vecs[j]))
+            if final_labels[i] != final_labels[j]:
                 acc += 1
     acc = acc / len(keep_track)
     if verbose:
@@ -193,20 +195,17 @@ def test4():
     for i in range(20):
         rand1 = random.randint(0, 99)
         rand2 = random.randint(0, 99)
-        while labels[rand1] != labels[rand2]:
-            rand1 = random.randint(0, 99)
-            rand2 = random.randint(0, 99)
-        #if labels[rand1] == labels[rand2]:
-        user[rand1] = 0 - (rand2+1)
-        user[rand2] = 0 - (rand1+1)
-        keep_track.append((rand1,rand2,0))
-        '''else:
+        if labels[rand1] == labels[rand2]:
+            user[rand1] = 0 - (rand2+1)
+            user[rand2] = 0 - (rand1+1)
+            keep_track.append((rand1,rand2,0))
+        else:
             user[rand1] = rand2+1
             user[rand2] = rand1+1
-            keep_track.append((rand1,rand2,1))'''
+            keep_track.append((rand1,rand2,1))
         vecs, labels, model = final_label(vecs, labels, user, epochs=10, model=model)
         acc = evaluate(init_labels, labels, keep_track, init_vecs, vecs, verbose=False)
-        print("loop ", i, " acc: ", acc)
+        print("loop ", i+1, " acc: ", acc)
     evaluate(init_labels, labels, keep_track, init_vecs, vecs)
 
     vecs, labels = make_random_vecs(100, 10)
