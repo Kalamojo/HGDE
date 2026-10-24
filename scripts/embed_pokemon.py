@@ -7,13 +7,16 @@ import polars as pl
 import random
 
 
-def main(manifest_path: str, device: str, model: ImageBindModel, db_path: str, batch_size: int = 50, table_name: str = "pokemon"):
+def main(manifest_path: str, metadata_path: str, device: str, model: ImageBindModel, db_path: str, batch_size: int = 50, table_name: str = "pokemon"):
     df = pl.read_ndjson(manifest_path)
+    metadata_df = pl.read_ndjson(metadata_path)
 
-    print("Df shape:", df.shape)
+    full_df = df.join(metadata_df.select(pl.exclude("name")), on="dex_num", how="left")
 
-    images = df["image_path"]
-    text = df["text"]
+    print("Df shape:", full_df.shape)
+
+    images = full_df["image_path"]
+    text = full_df["text"]
 
     round = 0
     all_embeddings = []
@@ -41,7 +44,7 @@ def main(manifest_path: str, device: str, model: ImageBindModel, db_path: str, b
         print("Round", round)
 
         # vision and text sets
-        df_part = df.slice(i, i+batch_size).to_dict(as_series=False)
+        df_part = full_df.slice(i, i+batch_size).to_dict(as_series=False)
         vals = list(df_part.values()) + [all_embeddings[round]['vision'].tolist(), all_embeddings[round]['text'].tolist()]
         keys = list(df_part.keys()) + ["image_vector", "text_vector"]
 
@@ -61,6 +64,7 @@ def main(manifest_path: str, device: str, model: ImageBindModel, db_path: str, b
 
 if __name__ == "__main__":
     manifest_path = "data/pokemon_data/manifest.jsonl"
+    metadata_path = "data/pokemon_data/metadata.jsonl"
     db_path = "data/pokemon_db"
     device = "cpu" # "cpu", "cuda:0"
 
@@ -81,4 +85,4 @@ if __name__ == "__main__":
     model.to(device)
     print("Model done loading")
 
-    main(manifest_path, device, model, db_path)
+    main(manifest_path, metadata_path, device, model, db_path)

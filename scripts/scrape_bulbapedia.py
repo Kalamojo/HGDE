@@ -23,16 +23,20 @@ import time
 from pathlib import Path
 
 import requests
+from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from PIL import Image, ImageOps
 from tqdm import tqdm
+from typing import Optional
 
-API_URL = "https://bulbapedia.bulbagarden.net/w/api.php"
+POKEAPI_POKEMON_URL = "https://pokeapi.co/api/v2/pokemon/"
+WIKI_API_URL = "https://bulbapedia.bulbagarden.net/w/api.php"
 BASE_WIKI = "https://bulbapedia.bulbagarden.net/wiki/"
 LIST_PAGE = "List of Pokémon by National Pokédex number"
 
 OUT_DIR = Path("data/pokemon_data")
 IMG_DIR = OUT_DIR / "images"
+METADATA = OUT_DIR / "metadata.jsonl"
 MANIFEST = OUT_DIR / "manifest.jsonl"
 FAILURES = OUT_DIR / "failures.jsonl"
 NAME_LIST = OUT_DIR / "pokemon_pages.json"
@@ -49,10 +53,10 @@ SESSION.headers.update(HEADERS)
 REQUEST_DELAY = 0.6  # seconds between API calls -- be polite, tune as needed
 
 
-def api_get(params: dict) -> dict:
+def wiki_api_get(params: dict) -> dict:
     params = {**params, "format": "json"}
     for attempt in range(3):
-        resp = SESSION.get(API_URL, params=params, timeout=20)
+        resp = SESSION.get(WIKI_API_URL, params=params, timeout=20)
         if resp.status_code == 200:
             time.sleep(REQUEST_DELAY)
             data = resp.json()
@@ -61,6 +65,12 @@ def api_get(params: dict) -> dict:
             return data
         time.sleep(2 * (attempt + 1))
     resp.raise_for_status()
+
+def poke_api_get(url: str) -> dict:
+    resp = SESSION.get(url)
+    resp.raise_for_status()
+
+    return resp.json()
 
 
 # ---------------------------------------------------------------------------
@@ -71,7 +81,7 @@ def build_pokemon_list():
     """Parse the National Pokedex list page's tables to get every species'
     display name, dex number, and *actual wiki page title* (these differ,
     e.g. 'Mr. Mime (Pokémon)')."""
-    data = api_get({"action": "parse", "page": LIST_PAGE, "prop": "text"})
+    data = wiki_api_get({"action": "parse", "page": LIST_PAGE, "prop": "text"})
     html = data["parse"]["text"]["*"]
     soup = BeautifulSoup(html, "html.parser")
 
@@ -119,7 +129,7 @@ def href_to_title(href: str) -> str:
 # ---------------------------------------------------------------------------
 
 def get_biology_text(page_title: str) -> str | None:
-    data = api_get({"action": "parse", "page": page_title, "prop": "sections"})
+    data = wiki_api_get({"action": "parse", "page": page_title, "prop": "sections"})
     if "error" in data:
         return None
     sections = data["parse"]["sections"]
@@ -127,7 +137,7 @@ def get_biology_text(page_title: str) -> str | None:
     if not target:
         return None
 
-    sec_data = api_get(
+    sec_data = wiki_api_get(
         {"action": "parse", "page": page_title, "prop": "text", "section": target["index"]}
     )
     html = sec_data["parse"]["text"]["*"]
@@ -138,7 +148,7 @@ def get_biology_text(page_title: str) -> str | None:
 
 
 def get_main_image_url(page_title: str, dex_num: str, name: str) -> str | None:
-    imgs = api_get({"action": "query", "titles": page_title, "prop": "images", "imlimit": 50})
+    imgs = wiki_api_get({"action": "query", "titles": page_title, "prop": "images", "imlimit": 50})
     pages = imgs.get("query", {}).get("pages", {})
 
     # Prefer the canonical "<dexnum><name>.png" artwork file over icons/sprites
@@ -158,7 +168,7 @@ def get_main_image_url(page_title: str, dex_num: str, name: str) -> str | None:
     if not best:
         return None
 
-    info = api_get(
+    info = wiki_api_get(
         {
             "action": "query",
             "titles": best,
@@ -240,9 +250,124 @@ def scrape_all(limit: int | None = None):
                 f.write(json.dumps({"dex_num": dex_num, "title": title, "error": str(e)}) + "\n")
 
 
+# ---------------------------------------------------------------------------
+# Metadata
+# ---------------------------------------------------------------------------
+
+def parse_stats(stats: dict) -> dict:
+    flattened = {}
+    for stat in stats:
+        stat_name = stat["stat"]["name"]
+        flattened[stat_name] = stat["base_stat"]
+
+    return flattened
+
+def parse_types(types: dict) -> dict:
+    flattened = {
+        "primary_type": types[0]["type"]["name"]
+    }
+    if len(types) > 2:
+        raise ValueError("There shouldn't be more than 2 types for any pokemon")
+    elif len(types) == 2:
+        flattened["secondary_type"] = types[1]["type"]["name"]
+
+    return flattened
+
+def fetch_details(dex_num: str) -> tuple[dict, str, Optional[str]]:
+    dex_id = dex_num.lstrip('0')
+    pokemon_url = urljoin(POKEAPI_POKEMON_URL, dex_id)
+    all_details = poke_api_get(pokemon_url)
+
+    species_url = all_details["species"]["url"]
+    cries_url = all_details["cries"]["latest"]
+
+    details_subset = {
+        "height": all_details["height"],
+        "weight": all_details["weight"],
+    }
+
+    details_subset = details_subset | parse_stats(all_details["stats"])
+    details_subset = details_subset | parse_types(all_details["types"])
+
+    return details_subset, species_url, cries_url
+
+def fetch_species(species_url: str) -> tuple[dict, str, str]:
+    all_species = poke_api_get(species_url)
+
+    evolutions_url = all_species["evolution_chain"]["url"]
+
+    species_subset = {
+        "is_baby": all_species["is_baby"],
+        "is_legendary": all_species["is_legendary"],
+        "is_mythical": all_species["is_mythical"],
+        "egg_groups": [group["name"] for group in all_species["egg_groups"]],
+        "color": all_species["color"]["name"],
+        "shape": all_species["shape"]["name"],
+        "habitat": all_species["habitat"]["name"] if all_species["habitat"] else None,
+        "generation": all_species["generation"]["name"],
+    }
+
+    return species_subset, evolutions_url, all_species["name"]
+
+def find_stage(name, evolution_chain: dict) -> int:
+    if name == evolution_chain["species"]["name"]:
+        return 0
+    if len(evolution_chain["evolves_to"]) == 0:
+        return -1
+
+    for evolution in evolution_chain["evolves_to"]:
+        stage_depth = find_stage(name, evolution)
+        if stage_depth != -1:
+            return 1 + stage_depth
+
+    return -1
+
+def fetch_evolutions(name: str, evolutions_url: str) -> dict:
+    all_evolutions = poke_api_get(evolutions_url)
+    evolution_stage = find_stage(name, all_evolutions["chain"])
+
+    return {"stage": evolution_stage}
+
+def fetch_audio(cries_url: str) -> dict:
+    raise NotImplementedError("Still need to implement fetch audio")
+
+def fetch_metadata(get_audio: bool = False, limit: int | None = None):
+    entries = json.loads(NAME_LIST.read_text())
+    if limit:
+        entries = entries[:limit]
+
+    for entry in tqdm(entries):
+        dex_num, name = entry["dex_num"], entry["name"]
+        try:
+            metadata_dict = {
+                "dex_num": dex_num,
+                "name": name,
+            }
+            details_dict, species_url, cries_url = fetch_details(dex_num)
+            species_dict, evolutions_url, lower_name = fetch_species(species_url)
+            evolutions_dict = fetch_evolutions(lower_name, evolutions_url)
+            audio_dict = {}
+            if get_audio:
+                audio_dict = fetch_audio(cries_url)
+
+            #print(type(metadata_dict), type(details_dict), type(species_dict), type(evolutions_dict), type(audio_dict))
+            metadata_dict = metadata_dict | details_dict | species_dict | evolutions_dict | audio_dict
+
+            with open(METADATA, "a") as f:
+                f.write(
+                    json.dumps(
+                        metadata_dict,
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
+        except Exception as e:
+            print("Metadata fetch failure:", {"dex_num": dex_num, "name": name, "error": str(e)})
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--step", choices=["list", "scrape"], required=True)
+    parser.add_argument("--step", choices=["list", "metadata", "scrape"], required=True)
     parser.add_argument(
         "--limit", type=int, default=None,
         help="Only process the first N entries (use this for a test run before the full 1025)."
@@ -251,5 +376,7 @@ if __name__ == "__main__":
 
     if args.step == "list":
         build_pokemon_list()
+    elif args.step == "metadata":
+        fetch_metadata(limit=args.limit)
     elif args.step == "scrape":
         scrape_all(limit=args.limit)
