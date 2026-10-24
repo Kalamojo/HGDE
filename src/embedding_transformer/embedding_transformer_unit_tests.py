@@ -21,21 +21,26 @@ from sklearn.metrics import silhouette_score
 import numpy as np
 from sklearn.cluster import HDBSCAN
 
-def train(data, hypers, model=None):
+current_dir = Path(__file__).resolve().parent
+repo_root = current_dir.parent.parent
+sys.path.append(str(repo_root))
+from scripts.ingest_lancedb import load_lancedb_embeddings
+
+def train(data, hypers, model=None, optim=None):
     if model == None:
         model = Net(len(data['train'][0]))
     epochs = hypers['epochs']
     lr = hypers['lr']
     batch_size = hypers['batch_size']
-    weight_decay = hypers['weight_decay']
-    optim = torch.optim.AdamW(model.parameters(), lr = lr, weight_decay=weight_decay)
+    if optim == None:
+        optim = torch.optim.Adam(model.parameters(), lr = lr)
 
     train_loop(data, epochs, user_weighted_contrasting_loss, optim, batch_size, model)
 
     model.eval()
     with torch.no_grad():
         final_data = model(data['train'])
-    return final_data, model
+    return final_data, model, optim
 
 def k_clusterings(vecs):
     scores = []
@@ -67,7 +72,7 @@ def make_random_vecs(num, d):
     label = HDBSCAN(min_cluster_size=5).fit_predict(vecs)
     return vecs, label
 
-def final_label(vecs, labels, user, epochs=10, model=None):
+def final_label(vecs, labels, user, epochs=10, model=None, optim=None):
     vecs = torch.tensor(vecs).float()
     labels = torch.tensor(labels)
     user = torch.tensor(user)
@@ -78,14 +83,13 @@ def final_label(vecs, labels, user, epochs=10, model=None):
     }
     hypers = {
         'epochs': epochs,
-        'lr': 0.001,
-        'batch_size': 8,
-        'weight_decay': 0.00001
+        'lr': 0.005,
+        'batch_size': 128,
     }
-    final_vecs, model = train(data, hypers, model)
+    final_vecs, model, optim = train(data, hypers, model, optim)
     final_vecs = final_vecs.numpy()
     final_labels = HDBSCAN(min_cluster_size=5).fit_predict(final_vecs)
-    return final_vecs, final_labels, model
+    return final_vecs, final_labels, model, optim
 
 def evaluate(labels, final_labels, keep_track, vecs, final_vecs, verbose=True):
     if verbose:
@@ -123,9 +127,12 @@ Test1 - Positive links
 This test will show whether must-link vectors will be pushed closer together despite their
 clusters and end up in the same cluster
 '''
-def test1():
-    vecs, labels = make_random_vecs(100, 10)
-    user = [0] * 100
+def test1(vecs = None, labels = None):
+    if vecs is None:
+        vecs, labels = make_random_vecs(100, 10)
+        user = [0] * 100
+    else:
+        user = [0] * vecs.shape[0]
     keep_track = []
     for _ in range(20):
         rand1 = random.randint(0, 99)
@@ -136,7 +143,7 @@ def test1():
         user[rand1] = rand2+1
         user[rand2] = rand1+1
         keep_track.append((rand1,rand2,1))
-    final_vecs, final_labels, _ = final_label(vecs, labels, user)
+    final_vecs, final_labels, _, _= final_label(vecs, labels, user)
     evaluate(labels, final_labels, keep_track, vecs, final_vecs)
 
 '''
@@ -144,29 +151,35 @@ Test2 - Negative links
 This test will show whether must-link vectors will be pushed closer further apart despite their
 clusters and end up in different clusters
 '''
-def test2():
-    vecs, labels = make_random_vecs(100, 10)
-    user = [0] * 100
+def test2(vecs = None, labels = None):
+    if vecs is None:
+        vecs, labels = make_random_vecs(100, 10)
+        user = [0] * 100
+    else:
+        user = [0] * vecs.shape[0]
     keep_track = []
     for _ in range(20):
         rand1 = random.randint(0, 99)
         rand2 = random.randint(0, 99)
-        while labels[rand1] == labels[rand2]:
+        while labels[rand1] != labels[rand2]:
             rand1 = random.randint(0, 99)
             rand2 = random.randint(0, 99)
         user[rand1] = 0 - (rand2+1)
         user[rand2] = 0 - (rand1+1)
         keep_track.append((rand1,rand2,0))
-    final_vecs, final_labels, _ = final_label(vecs, labels, user)
+    final_vecs, final_labels, _, _ = final_label(vecs, labels, user)
     evaluate(labels, final_labels, keep_track, vecs, final_vecs)
 
 '''
 Test3 - Both links
 Tests both links simultaneously
 '''
-def test3():
-    vecs, labels = make_random_vecs(100, 10)
-    user = [0] * 100
+def test3(vecs = None, labels = None):
+    if vecs is None:
+        vecs, labels = make_random_vecs(100, 10)
+        user = [0] * 100
+    else:
+        user = [0] * vecs.shape[0]
     keep_track = []
     for _ in range(20):
         rand1 = random.randint(0, 99)
@@ -179,19 +192,24 @@ def test3():
             user[rand1] = rand2+1
             user[rand2] = rand1+1
             keep_track.append((rand1,rand2,1))
-    final_vecs, final_labels, _ = final_label(vecs, labels, user)
+    final_vecs, final_labels, _, _ = final_label(vecs, labels, user)
     evaluate(labels, final_labels, keep_track, vecs, final_vecs)
 
 '''
 Test4 - tests positive and negative links but trains the model one at a time to
 '''
-def test4():
-    vecs, labels = make_random_vecs(100, 10)
+def test4(vecs = None, labels = None):
+    if vecs is None:
+        vecs, labels = make_random_vecs(100, 10)
+        user = [0] * 100
+    else:
+        user = [0] * vecs.shape[0]
     init_vecs = vecs
     init_labels = labels
-    user = [0] * 100
     keep_track = []
-    model = Net(10)
+    model = Net(vecs.shape[1])
+    lr = 0.001
+    optim = torch.optim.Adam(model.parameters(), lr = lr)
     for i in range(20):
         rand1 = random.randint(0, 99)
         rand2 = random.randint(0, 99)
@@ -203,17 +221,18 @@ def test4():
             user[rand1] = rand2+1
             user[rand2] = rand1+1
             keep_track.append((rand1,rand2,1))
-        vecs, labels, model = final_label(vecs, labels, user, epochs=10, model=model)
+        vecs, labels, model, optim = final_label(vecs, labels, user, epochs=2, model=model, optim=optim)
         acc = evaluate(init_labels, labels, keep_track, init_vecs, vecs, verbose=False)
         print("loop ", i+1, " acc: ", acc)
     evaluate(init_labels, labels, keep_track, init_vecs, vecs)
 
-    vecs, labels = make_random_vecs(100, 10)
-    init_vecs = vecs
-    init_labels = labels
-    user = [0] * 100
+    
+    user = [0] * init_vecs.shape[0]
     keep_track = []
-    model = Net(10)
+    model = Net(vecs.shape[1])
+    lr = 0.001
+    weight_decay = 0.00001
+    optim = torch.optim.Adam(model.parameters(), lr = lr)
     for i in range(3):
         rand1 = random.randint(0, 99)
         rand2 = random.randint(0, 99)
@@ -225,7 +244,7 @@ def test4():
             user[rand1] = rand2+1
             user[rand2] = rand1+1
             keep_track.append((rand1,rand2,1))
-        vecs, labels, model = final_label(vecs, labels, user, epochs=10, model=model)
+        vecs, labels, model, optim = final_label(vecs, labels, user, epochs=10, model=model, optim=optim)
         acc = evaluate(init_labels, labels, keep_track, init_vecs, vecs, verbose=False)
         print("loop ", i, " acc: ", acc)
     evaluate(init_labels, labels, keep_track, init_vecs, vecs)
@@ -233,6 +252,10 @@ def test4():
 
 if __name__ == "__main__":
     torch.manual_seed(42)
+    db_path = repo_root / "data" / "pokemon_db"
+    image_embeddings = load_lancedb_embeddings(db_path=str(db_path), vector_column='image_vector')
+    labels = torch.load('image_labels.pt')
+    labels = labels.detach().cpu().numpy()
     print("==================================================================")
     print("============================Test 1================================")
     print("==================================================================")
@@ -249,3 +272,22 @@ if __name__ == "__main__":
     print("============================Test 4================================")
     print("==================================================================")
     test4()
+    
+    # repeat the tests with the pokemon embeddings 
+    print("==================================================================")
+    print("============================Test 5================================")
+    print("==================================================================")
+    test1(vecs=image_embeddings, labels=labels)
+    print("==================================================================")
+    print("============================Test 6================================")
+    print("==================================================================")
+    test2(vecs=image_embeddings, labels=labels)
+    print("==================================================================")
+    print("============================Test 7================================")
+    print("==================================================================")
+    test3(vecs=image_embeddings, labels=labels)
+    print("==================================================================")
+    print("============================Test 8================================")
+    print("==================================================================")
+    test4(vecs=image_embeddings, labels=labels)
+    

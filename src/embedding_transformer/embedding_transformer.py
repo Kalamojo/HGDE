@@ -94,7 +94,6 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model):
         #Training phase
         model.train()  #Setting the model to train phase
         train_loss = [] # loss for this current epoch
-
         for _, batch in enumerate(train_dataloader): # get a batch from dataloader
 
             inputs = batch['input']
@@ -126,6 +125,7 @@ def temp_loss(outputs, labels, user_specified, idx):
 def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_outputs, clusters):
     margin = 2.0
     pair_losses = []
+    max_distance = 0
     for i in range(len(outputs) if outputs.dim() > 1 else 1):
         for j in range(len(init_outputs)):
             # A signed, one-based value identifies a constrained dataset index.
@@ -137,12 +137,13 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
 
             same_cluster = bool(labels[i] == clusters[j])
             positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
-            if specified != 0: 
-                weight = (len(init_outputs)-1)**2 if constraint != 0 else 1/(len(init_outputs)-1)**2 # if I did math right, average weight should be 1
+            if idx[i] == j:
+                weight = 0
+            elif specified != 0: 
+                weight = (len(init_outputs))*(len(init_outputs)-1) if constraint != 0 else 1
             else:
-                weight = 1/len(init_outputs)**2
+                weight = 1
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
-            distance = distance / np.sqrt(outputs.shape[-1])
 
             # Standard contrastive terms: attract positives and repel negatives
             # until they are at least margin apart.
@@ -150,7 +151,7 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
                 pair_losses.append(weight * distance.square())
             else:
                 pair_losses.append(weight * F.relu(margin - distance).square())
-
+                
     if not pair_losses:
         return outputs.sum() * 0.0
     return torch.stack(pair_losses).mean()
