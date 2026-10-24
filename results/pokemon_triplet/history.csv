@@ -1,0 +1,2 @@
+round,moves,loss_final,new_triplets_before_satisfied,new_triplets_after_satisfied,all_triplets_distance_satisfied,all_triplets_cluster_satisfied,reclustering_ari_vs_initial,ground_truth_ari
+1,1,5.042729389970191e-05,0.0,1.0,1.0,0.6875,0.3059779489054793,

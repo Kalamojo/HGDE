@@ -7,7 +7,12 @@ Run:
 Pipeline:
 1. Load pokemon embeddings
 2. Cluster
-3. Human feedback loop: 
+3. Human feedback loop
+4. Triplet Generation
+5. Neural network training
+6. Embedding transformation
+7. Re-cluster
+8. Evaluation
 """
 
 from __future__ import annotations
@@ -111,7 +116,6 @@ def load_pokemon(db_path: Path, modality: str):
     if missing:
         raise ValueError(f"Missing Pokémon columns: {sorted(missing)}. Available: {list(df.columns)}")
 
-    # Stable, explicit row identities so index 0 maps to the first Pokédex entry.
     df = df.assign(_dex_sort=df["dex_num"].astype(int)).sort_values("_dex_sort").reset_index(drop=True)
     if modality == "image":
         choices = ["image_vector"] * len(df)
@@ -362,3 +366,11 @@ def main():
             axes[1].plot([r["round"] for r in round_log], [r["ground_truth_ari"] for r in round_log], marker="^", label="Target ARI")
         axes[1].set(xlabel="Human moves", ylabel="Score", ylim=(-0.1, 1.05), title="Feedback outcomes")
         axes[1].legend(fontsize=8)
+        fig.tight_layout()
+        fig.savefig(args.output_dir / "training_and_feedback.png", dpi=150)
+        plt.close(fig)
+
+    print(f"Saved outputs to {args.output_dir.resolve()}")
+
+if __name__ == "__main__":
+    main()
