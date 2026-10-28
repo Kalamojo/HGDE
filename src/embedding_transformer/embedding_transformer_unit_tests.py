@@ -65,10 +65,10 @@ def make_random_vecs(num, d):
     for _ in range(num):
         vector = []
         for _ in range(d):
-            vector.append(random.randint(-10, 10))
+            vector.append(((random.random() * 2) - 1) * 10) # creates a random float between -10 and 10
         vecs.append(vector)
-    norm = np.linalg.norm(vecs)
-    vecs = vecs / norm
+    vecs = np.array(vecs)
+    vecs = vecs/np.linalg.norm(vecs)
     label = HDBSCAN(min_cluster_size=5).fit_predict(vecs)
     return vecs, label
 
@@ -83,7 +83,7 @@ def final_label(vecs, labels, user, epochs=10, model=None, optim=None):
     }
     hypers = {
         'epochs': epochs,
-        'lr': 0.005,
+        'lr': 0.001,
         'batch_size': 128,
     }
     final_vecs, model, optim = train(data, hypers, model, optim)
@@ -94,8 +94,8 @@ def final_label(vecs, labels, user, epochs=10, model=None, optim=None):
 def evaluate(labels, final_labels, keep_track, vecs, final_vecs, verbose=True):
     if verbose:
         print("Initial Cluster Assignments:", labels)
-    print("Final Cluster Assignments:", final_labels)
-    print(keep_track)
+        print("Final Cluster Assignments:", final_labels)
+        print(keep_track)
     acc = 0
     for i, j, together in keep_track:
         if verbose:
@@ -254,8 +254,12 @@ if __name__ == "__main__":
     torch.manual_seed(42)
     db_path = repo_root / "data" / "pokemon_db"
     image_embeddings = load_lancedb_embeddings(db_path=str(db_path), vector_column='image_vector')
-    labels = torch.load('image_labels.pt')
-    labels = labels.detach().cpu().numpy()
+    image_embeddings = image_embeddings[:100]
+    image_embeddings = np.array(image_embeddings)
+    image_embeddings = image_embeddings/np.linalg.norm(image_embeddings)
+
+    labels = HDBSCAN(min_cluster_size=5).fit_predict(image_embeddings)
+    labels = np.array(labels)
     print("==================================================================")
     print("============================Test 1================================")
     print("==================================================================")

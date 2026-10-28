@@ -38,7 +38,7 @@ import numpy as np
 import sys
 
 # Architecture of the model (can change)
-# This sets it up to have 2 hidden layer and the input and output dimensions are the dimensions of the embeddings
+# This sets it up to have 1 hidden layer and the input and output dimensions are the dimensions of the embeddings
 # part of PyTorch's standard protocol
 class Net(nn.Module):
 
@@ -86,6 +86,10 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model):
     inputs, clusters, user_specified = data['train'], data['labels'], data['user'] # seperate data
     train_dataloader = load_data(inputs, clusters, user_specified, batch_size) # get a dataloader with data
     init_train_losses = [] # to keep track of losses
+    if loss_function == user_weighted_contrasting_loss:
+        m = len(inputs) * (len(inputs) - 1)
+        n = sum(1 for x in user_specified if x != 0)
+        m = m - n
     for epoch in range(1,epochs+1): # for the given epochs
         model.eval()
         with torch.no_grad():
@@ -102,7 +106,10 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model):
             idx = batch['idx']
             outputs = torch.squeeze(model(inputs.float())) # pass embeddings through the model
 
-            loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters) # calculate loss
+            if loss_function == user_weighted_contrasting_loss:
+                loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters, m, n) # calculate loss
+            else:
+                loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters)
             loss.backward() # backpropogate through the model
             optim.step() # using an Adam optimizer changes the learning rate so we take an optimizer step
             train_loss.append(loss.item()) # append the loss number
@@ -122,10 +129,9 @@ def temp_loss(outputs, labels, user_specified, idx):
             loss += (outputs[i] + outputs[i+1]).sum()
     return loss
 
-def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_outputs, clusters):
+def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n):
     margin = 2.0
     pair_losses = []
-    max_distance = 0
     for i in range(len(outputs) if outputs.dim() > 1 else 1):
         for j in range(len(init_outputs)):
             # A signed, one-based value identifies a constrained dataset index.
@@ -133,25 +139,25 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
             specified = int(user_specified[i].item())
             if abs(specified) - 1 == int(j):
                 constraint = 1 if specified > 0 else -1
-                break
 
             same_cluster = bool(labels[i] == clusters[j])
             positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
             if idx[i] == j:
                 weight = 0
             elif specified != 0: 
-                weight = (len(init_outputs))*(len(init_outputs)-1) if constraint != 0 else 1
+                weight = (m+n)/(n+1) if constraint != 0 else (n+m)/(m+(m*n))
             else:
-                weight = 1
+                weight = (n+m)/(m+(m*n))
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
 
-            # Standard contrastive terms: attract positives and repel negatives
-            # until they are at least margin apart.
+            # Positive pairs always shrink; negatives repel only while closer
+            # than the margin. With normalized embeddings, distances are at
+            # most 2, so a margin of 2 keeps nearly all negative pairs active.
             if positive_pair:
                 pair_losses.append(weight * distance.square())
             else:
                 pair_losses.append(weight * F.relu(margin - distance).square())
-                
+
     if not pair_losses:
         return outputs.sum() * 0.0
     return torch.stack(pair_losses).mean()
