@@ -82,7 +82,7 @@ def load_data(inputs, clusters, user_specified, batch_size):
     return train_dataloader
 
 # This is the training loop for the model
-def train_loop(data, epochs, loss_function, optim, batch_size, model):
+def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1):
     inputs, clusters, user_specified = data['train'], data['labels'], data['user'] # seperate data
     train_dataloader = load_data(inputs, clusters, user_specified, batch_size) # get a dataloader with data
     init_train_losses = [] # to keep track of losses
@@ -107,7 +107,7 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model):
             outputs = torch.squeeze(model(inputs.float())) # pass embeddings through the model
 
             if loss_function == user_weighted_contrasting_loss:
-                loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters, m, n) # calculate loss
+                loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters, m, n, weight) # calculate loss
             else:
                 loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters)
             loss.backward() # backpropogate through the model
@@ -129,7 +129,7 @@ def temp_loss(outputs, labels, user_specified, idx):
             loss += (outputs[i] + outputs[i+1]).sum()
     return loss
 
-def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n):
+def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n, weighting = 1):
     margin = 2.0
     pair_losses = []
     for i in range(len(outputs) if outputs.dim() > 1 else 1):
@@ -145,9 +145,9 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
             if idx[i] == j:
                 weight = 0
             elif specified != 0: 
-                weight = ((m+n)/(n+1))**2 if constraint != 0 else ((n+m)/(m+(m*n)))**2
+                weight = ((m+n)/(n+1))**weighting if constraint != 0 else ((n+m)/(m+(m*n)))**weighting
             else:
-                weight = ((n+m)/(m+(m*n)))**2
+                weight = ((n+m)/(m+(m*n)))**weighting
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
 
             # Positive pairs always shrink; negatives repel only while closer
