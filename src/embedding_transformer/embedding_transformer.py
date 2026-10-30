@@ -145,9 +145,9 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
             if idx[i] == j:
                 weight = 0
             elif specified != 0: 
-                weight = (m+n)/(n+1) if constraint != 0 else (n+m)/(m+(m*n))
+                weight = ((m+n)/(n+1))**2 if constraint != 0 else ((n+m)/(m+(m*n)))**2
             else:
-                weight = (n+m)/(m+(m*n))
+                weight = ((n+m)/(m+(m*n)))**2
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
 
             # Positive pairs always shrink; negatives repel only while closer
