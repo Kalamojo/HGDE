@@ -1,7 +1,9 @@
 """
 description
-    Unit tests for embedding model, to be expanded upon, test to see if the model truly pushes things
-    together that should be together, and pushes other things apart
+    Unit tests for embedding model. Simple, not real-world problems using random vectors and random
+    reassignments. It will evaluate the performance of the model based on flat accuracy 
+    (if 2 elements are supposed to be in the same cluster, they will add 1 to the accuracy
+    if they are in the same cluster and 0 otherwise, and vice versa)
 
 """
 
@@ -11,13 +13,7 @@ import torch
 import numpy as np
 import sys
 from pathlib import Path
-from embedding_transformer import Net
-from embedding_transformer import train_loop
-from embedding_transformer import user_weighted_contrasting_loss
-from embedding_transformer import temp_loss
 import random
-from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_score
 import numpy as np
 from sklearn.cluster import HDBSCAN
 
@@ -25,7 +21,12 @@ current_dir = Path(__file__).resolve().parent
 repo_root = current_dir.parent.parent
 sys.path.append(str(repo_root))
 from scripts.ingest_lancedb import load_lancedb_embeddings
+from src.embedding_transformer import Net
+from src.embedding_transformer import train_loop
+from src.embedding_transformer import user_weighted_contrasting_loss
 
+# pulls out the hyperparameter arguments and trains the model. returns the train final embedding
+# transformation, the model, and the optimizer. Can take is model and optim so user can reuse them
 def train(data, hypers, model=None, optim=None):
     if model == None:
         model = Net(len(data['train'][0]))
@@ -42,21 +43,8 @@ def train(data, hypers, model=None, optim=None):
         final_data = model(data['train'])
     return final_data, model, optim
 
-def k_clusterings(vecs):
-    scores = []
-    for k in range(2, 6):
-        kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
-        labels = kmeans.fit_predict(vecs)
-    
-        score = silhouette_score(vecs, labels)
-        scores.append(score)
-    k = scores.index(max(scores)) + 1
-    kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
-    labels = kmeans.fit_predict(vecs)
-    return labels
-
 '''
-Makes num random vectors of dimension d, returns the vectors and the initial labels
+Makes num random vectors of dimension d, returns the vectors and the initial labels using HDBSCAN
 '''
 def make_random_vecs(num, d):
     random.seed(42)
@@ -72,7 +60,9 @@ def make_random_vecs(num, d):
     label = HDBSCAN(min_cluster_size=5).fit_predict(vecs)
     return vecs, label
 
-def final_label(vecs, labels, user, epochs=10, model=None, optim=None):
+# formats the data and hypers for train loop, return the vectors and clusters.
+# can take is model and optim so the user can reuse them
+def final_label(vecs, labels, user, epochs=10, lr=0.0005, batch_size=16, model=None, optim=None):
     vecs = torch.tensor(vecs).float()
     labels = torch.tensor(labels)
     user = torch.tensor(user)
@@ -83,14 +73,16 @@ def final_label(vecs, labels, user, epochs=10, model=None, optim=None):
     }
     hypers = {
         'epochs': epochs,
-        'lr': 0.001,
-        'batch_size': 128,
+        'lr': lr,
+        'batch_size': batch_size,
     }
     final_vecs, model, optim = train(data, hypers, model, optim)
     final_vecs = final_vecs.numpy()
     final_labels = HDBSCAN(min_cluster_size=5).fit_predict(final_vecs)
     return final_vecs, final_labels, model, optim
 
+# evaluates the performance of the model, takes initial and final labels and vec and the specific
+# vectors to keep track of
 def evaluate(labels, final_labels, keep_track, vecs, final_vecs, verbose=True):
     if verbose:
         print("Initial Cluster Assignments:", labels)
@@ -225,30 +217,6 @@ def test4(vecs = None, labels = None):
         acc = evaluate(init_labels, labels, keep_track, init_vecs, vecs, verbose=False)
         print("loop ", i+1, " acc: ", acc)
     evaluate(init_labels, labels, keep_track, init_vecs, vecs)
-
-    
-    user = [0] * init_vecs.shape[0]
-    keep_track = []
-    model = Net(vecs.shape[1])
-    lr = 0.001
-    weight_decay = 0.00001
-    optim = torch.optim.Adam(model.parameters(), lr = lr)
-    for i in range(3):
-        rand1 = random.randint(0, 99)
-        rand2 = random.randint(0, 99)
-        if labels[rand1] == labels[rand2]:
-            user[rand1] = 0 - (rand2+1)
-            user[rand2] = 0 - (rand1+1)
-            keep_track.append((rand1,rand2,0))
-        else:
-            user[rand1] = rand2+1
-            user[rand2] = rand1+1
-            keep_track.append((rand1,rand2,1))
-        vecs, labels, model, optim = final_label(vecs, labels, user, epochs=10, model=model, optim=optim)
-        acc = evaluate(init_labels, labels, keep_track, init_vecs, vecs, verbose=False)
-        print("loop ", i, " acc: ", acc)
-    evaluate(init_labels, labels, keep_track, init_vecs, vecs)
-
 
 if __name__ == "__main__":
     torch.manual_seed(42)

@@ -22,12 +22,33 @@ Usage:
 
     Options for loss_function_name
         default: the default option is an arbitrary loss function meant to test functionality of the training loop
+        user_weighted_contrastive_loss: uses contrastive learning and places a large weight on user inputs
 
     This script will output a pt file which can be loaded in another file as follows
 
     from embedding_transformer import Net
     model = torch.load(model_file, weights_only=False)
 
+import Usage:
+    define repo root as the path to the root of this repo
+
+    import torch
+    sys.path.append(str(repo_root))
+    from src.embedding_transformer import train_loop as train
+    from src.embedding_transformer import user_weighted_contrastive_loss as loss_function
+    from src.embedding_transformer import Net
+    data = {
+        'train': embeddings,                                 # !!!These have to be Torch Tensors!!!
+        'labels': clusters,
+        'user': user_constrains
+    }
+    model = Net(data['train'].shape[-1])                     # Net with the dimensionality of the data
+    lr = 0.00005                                             # found through experimentation
+    optim = torch.optim.Adam(model.parameters(), lr = lr)
+    batch_size = 16                                          # found through experimentation
+    weight = 2                                               # controls how much user input is weighted, must be >= 1
+    train(data, epochs, loss_function, optim, batch_size, model, weight)
+    final embeddings = model(data['train'])
 """
 
 import torch
@@ -86,17 +107,17 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1
     inputs, clusters, user_specified = data['train'], data['labels'], data['user'] # seperate data
     train_dataloader = load_data(inputs, clusters, user_specified, batch_size) # get a dataloader with data
     init_train_losses = [] # to keep track of losses
-    if loss_function == user_weighted_contrasting_loss:
-        m = len(inputs) * (len(inputs) - 1)
-        n = sum(1 for x in user_specified if x != 0)
-        m = m - n
+    if loss_function == user_weighted_contrasting_loss: # loss function takes in num of weighted(n) and unweighted(m) elements
+        m = len(inputs) * (len(inputs) - 1) # total number of distance calulations
+        n = sum(1 for x in user_specified if x != 0) # number of user weighted constraints
+        m = m - n # total - user weighted
     for epoch in range(1,epochs+1): # for the given epochs
         model.eval()
         with torch.no_grad():
-            init_output = model(inputs)
+            init_output = model(inputs) # this is the distance we will compare each element to
 
         #Training phase
-        model.train()  #Setting the model to train phase
+        model.train() # Setting the model to train phase
         train_loss = [] # loss for this current epoch
         for _, batch in enumerate(train_dataloader): # get a batch from dataloader
 
@@ -129,10 +150,20 @@ def temp_loss(outputs, labels, user_specified, idx):
             loss += (outputs[i] + outputs[i+1]).sum()
     return loss
 
+# user weighted contrastive loss, this calculates contrastive loss with the added component of weighting
+# user constraints
 def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n, weighting = 1):
+    # outputs is the output of the current batch of embeddings run through the model
+    # labels is the given cluster that the embeddings were initially givin
+    # user_specified is a 1-indexed array of positive and/or negative user specification
+    # idx is the index for the current batch (used to make sure we don't weight the current vector with the initial version of current vector)
+    # clusters is the initial clustering of inputs
+    # m is unweighted distance caluculations
+    # n is weighted calculations
+    # weighting is the power that the weigths will be raised to
     margin = 2.0
     pair_losses = []
-    for i in range(len(outputs) if outputs.dim() > 1 else 1):
+    for i in range(len(outputs) if outputs.dim() > 1 else 1): # if the batch size is 1 it len(outputs) is wrong
         for j in range(len(init_outputs)):
             # A signed, one-based value identifies a constrained dataset index.
             constraint = 0
@@ -142,6 +173,10 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
 
             same_cluster = bool(labels[i] == clusters[j])
             positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
+            # the weights are calculated such that is weighting = 1, the average weight of all the
+            # calculations is 1 and the ratio of (total weight:total not weight) = (n:1)
+            # (i.e if 2 there are 2 user constraints, they will make up for 67% of the loss
+            #   and the rest will make up 33% of the loss so the ratio is 2:1)
             if idx[i] == j:
                 weight = 0
             elif specified != 0: 
@@ -161,8 +196,6 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
     if not pair_losses:
         return outputs.sum() * 0.0
     return torch.stack(pair_losses).mean()
-
-
 
 def main():
     if sys.argv[1] == "help":
