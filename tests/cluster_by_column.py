@@ -10,12 +10,13 @@ from sklearn.cluster import HDBSCAN
 from collections import Counter
 
 current_dir = Path(__file__).resolve().parent
-repo_root = current_dir.parent.parent
+repo_root = current_dir.parent
 sys.path.append(str(repo_root))
 from scripts.ingest_lancedb import load_lancedb_embeddings
-from src.embedding_transformer import Net
-from src.embedding_transformer import train_loop
-from src.embedding_transformer import user_weighted_contrasting_loss
+from src.embedding_transformer.embedding_transformer import Net
+from src.embedding_transformer.embedding_transformer import train_loop
+from src.embedding_transformer.embedding_transformer import user_weighted_contrasting_loss
+from src.embedding_transformer.embedding_transformer import user_weighted_whole_cluster_loss
 
 # computes the recall and precision of the configuation given and multiplies them to compute accuracy
 def compute_accuracy(clusters, classes):
@@ -42,7 +43,7 @@ def compute_accuracy(clusters, classes):
 
 # pulls out the hyperparameter arguments and trains the model. returns the train final embedding
 # transformation, the model, and the optimizer. Can take is model and optim so user can reuse them
-def train(data, hypers, model=None, optim=None, weighting=1):
+def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_contrasting_loss):
     if model == None:
         model = Net(len(data['train'][0]))
     epochs = hypers['epochs']
@@ -60,7 +61,7 @@ def train(data, hypers, model=None, optim=None, weighting=1):
 
 # grabs embeddings and the given column, clusters the default embeddings and then randomly makes a correction
 # and trains the model based on that
-def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_size = 2, label_column = 'color', sample_size = 200, easy = True, weighting=1):
+def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_size = 2, label_column = 'color', sample_size = 200, easy = True, weighting=1, loss='user_weighted'):
 
     # initial setup and evaluation
     torch.manual_seed(42)
@@ -110,7 +111,12 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
         'lr': lr,
         'batch_size': batch_size
     }
+    if loss == 'user_weighted':
+        loss = user_weighted_contrasting_loss
+    elif loss == 'whole_cluster':
+        loss = user_weighted_whole_cluster_loss
 
+    max_acc, max_recall, max_precision, iteration = 0,0,0,0
     acc = 0    
     i = 0
     model = None
@@ -134,7 +140,7 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
             goal = "further"
         init_distance = np.linalg.vector_norm(data['train'][rand1] - data['train'][rand2])
         data['user'] = user_specified
-        final_data, model, optim = train(data, hypers, model=model, optim=optim, weighting=weighting)
+        final_data, model, optim = train(data, hypers, model=model, optim=optim, weighting=weighting, loss=loss)
         pred_labels = HDBSCAN(min_cluster_size=2).fit_predict(final_data)
         pred_labels = np.array(pred_labels)
         acc, recall, precision = compute_accuracy(pred_labels, true_labels)        
@@ -148,14 +154,15 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
         print(f"round: {i+1} - moved {rand1} and {rand2} {goal}, acc: {acc}, recall: {recall}, precision: {precision}")
         print(f"goal succeeded? {success}")
         i += 1
-    iterations = i
+        if acc > max_acc:
+            max_acc, max_recall, max_precision, iteration = acc, recall, precision, i
 
     for i in range(sample_size):
         datapoints[i] = (datapoints[i][0], datapoints[i][1], pred_labels[i].item())
     datapoints = sorted(datapoints, key=lambda x: x[1])
     print(datapoints)
 
-    return iterations, acc, recall, precision
+    return iteration, max_acc, max_recall, max_precision
 
 
 if __name__ == "__main__":

@@ -197,6 +197,40 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
         return outputs.sum() * 0.0
     return torch.stack(pair_losses).mean()
 
+def user_weighted_whole_cluster_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n, weighting = 1):
+    margin = 2.0
+    pair_losses = []
+    for i in range(len(outputs) if outputs.dim() > 1 else 1): # if the batch size is 1 it len(outputs) is wrong
+        for j in range(len(init_outputs)):
+            specified = int(user_specified[i].item())
+            same_cluster = bool(labels[i] == clusters[j])
+            constrained_cluster = None
+            if specified != 0:
+                constrained_cluster = clusters[abs(specified) - 1]
+            in_constrained_cluster = (
+                specified != 0 and clusters[j] == constrained_cluster
+            )
+            # A user constraint applies to every item in the referenced item's cluster.
+            positive_pair = (
+                specified > 0 and in_constrained_cluster
+            ) or (not in_constrained_cluster and same_cluster)
+            if idx[i] == j:
+                weight = 0
+            elif specified != 0: 
+                weight = ((m+n)/(n+1))**weighting if in_constrained_cluster else ((n+m)/(m+(m*n)))**weighting
+            else:
+                weight = ((n+m)/(m+(m*n)))**weighting
+            distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
+            
+            if positive_pair:
+                pair_losses.append(weight * distance.square())
+            else:
+                pair_losses.append(weight * F.relu(margin - distance).square())
+
+    if not pair_losses:
+        return outputs.sum() * 0.0
+    return torch.stack(pair_losses).mean()
+
 def main():
     if sys.argv[1] == "help":
         print("run the script with arguments in the following order, -> python3 embedding_transformer.py data.pt loss_name save_file_path")

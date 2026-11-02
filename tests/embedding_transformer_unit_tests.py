@@ -18,12 +18,12 @@ import numpy as np
 from sklearn.cluster import HDBSCAN
 
 current_dir = Path(__file__).resolve().parent
-repo_root = current_dir.parent.parent
+repo_root = current_dir.parent
 sys.path.append(str(repo_root))
 from scripts.ingest_lancedb import load_lancedb_embeddings
-from src.embedding_transformer import Net
-from src.embedding_transformer import train_loop
-from src.embedding_transformer import user_weighted_contrasting_loss
+from src.embedding_transformer.embedding_transformer import Net
+from src.embedding_transformer.embedding_transformer import train_loop
+from src.embedding_transformer.embedding_transformer import user_weighted_contrasting_loss
 
 # pulls out the hyperparameter arguments and trains the model. returns the train final embedding
 # transformation, the model, and the optimizer. Can take is model and optim so user can reuse them
