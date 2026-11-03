@@ -108,12 +108,15 @@ if __name__ == "__main__":
     from datetime import datetime
 
     parser = argparse.ArgumentParser(description="Run the interactive constrained clustering pipeline.")
+    parser.add_argument("--model", choices=["lowrank", "john"], default="lowrank")
+    parser.add_argument("--rank", type=int, default=16)
+    parser.add_argument("--neighbor_k", type=int, default=3)
     parser.add_argument("--accuracy", type=float, default=0.95, help="Target ARI threshold.")
-    parser.add_argument("--max_moves", type=int, default=20, help="Maximum allowed constraints.")
+    parser.add_argument("--max_moves", type=int, default=50, help="Maximum allowed constraints.")
     parser.add_argument("--seed", type=int, default=0, help="Seed for the synthetic user and model init.")
     parser.add_argument("--baseline", action="store_true", help="Use the identity projection (no learning).")
     parser.add_argument("--tag", type=str, default="", help="Label added to output file names.")
-    parser.add_argument("--vector_column", type=str, default=None,
+    parser.add_argument("--vector_column", type=str, default="image_vector",
                         help="LanceDB vector column (e.g. image_vector). Must match the ground truth.")
     parser.add_argument("--epochs", type=int, default=10, help="Training epochs per constraint.")
     parser.add_argument("--lr", type=float, default=0.005, help="Projection model learning rate.")
@@ -166,6 +169,9 @@ if __name__ == "__main__":
     if args.baseline:
         logger.info("BASELINE run: identity projection (no learning).")
         proj_model = StubProjectionModel()
+    elif args.model == "lowrank":
+        from src.projection_model_chris import LowRankProjection
+        proj_model = LowRankProjection(rank=args.rank, neighbor_k=args.neighbor_k, seed=args.seed)
     else:
         from scripts.adapters import ProjectionAdapter
         proj_model = ProjectionAdapter(dim=real_embeddings.shape[1], lr=args.lr,
