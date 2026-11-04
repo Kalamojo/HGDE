@@ -107,10 +107,9 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1
     inputs, clusters, user_specified = data['train'], data['labels'], data['user'] # seperate data
     train_dataloader = load_data(inputs, clusters, user_specified, batch_size) # get a dataloader with data
     init_train_losses = [] # to keep track of losses
-    if loss_function == user_weighted_contrasting_loss: # loss function takes in num of weighted(n) and unweighted(m) elements
-        m = len(inputs) * (len(inputs) - 1) # total number of distance calulations
-        n = sum(1 for x in user_specified if x != 0) # number of user weighted constraints
-        m = m - n # total - user weighted
+    m = len(inputs) * (len(inputs) - 1) # total number of distance calulations
+    n = sum(1 for x in user_specified if x != 0) # number of user weighted constraints
+    m = m - n # total - user weighted
     for epoch in range(1,epochs+1): # for the given epochs
         model.eval()
         with torch.no_grad():
@@ -127,10 +126,7 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1
             idx = batch['idx']
             outputs = torch.squeeze(model(inputs.float())) # pass embeddings through the model
 
-            if loss_function == user_weighted_contrasting_loss:
-                loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters, m, n, weight) # calculate loss
-            else:
-                loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters)
+            loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters, m, n, weight) # calculate loss
             loss.backward() # backpropogate through the model
             optim.step() # using an Adam optimizer changes the learning rate so we take an optimizer step
             train_loss.append(loss.item()) # append the loss number
@@ -205,6 +201,9 @@ def user_weighted_whole_cluster_loss(outputs, labels, user_specified, idx, init_
             specified = int(user_specified[i].item())
             same_cluster = bool(labels[i] == clusters[j])
             constrained_cluster = None
+            constraint = 0
+            if abs(specified) - 1 == int(j):
+                constraint = 1 if specified > 0 else -1
             if specified != 0:
                 constrained_cluster = clusters[abs(specified) - 1]
             in_constrained_cluster = (
@@ -217,11 +216,46 @@ def user_weighted_whole_cluster_loss(outputs, labels, user_specified, idx, init_
             if idx[i] == j:
                 weight = 0
             elif specified != 0: 
-                weight = ((m+n)/(n+1))**weighting if in_constrained_cluster else ((n+m)/(m+(m*n)))**weighting
+                weight = ((m+n)/(n+1))**weighting if constraint else (1 if in_constrained_cluster else ((n+m)/(m+(m*n)))**weighting)
             else:
                 weight = ((n+m)/(m+(m*n)))**weighting
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
             
+            if positive_pair:
+                pair_losses.append(weight * distance.square())
+            else:
+                pair_losses.append(weight * F.relu(margin - distance).square())
+
+    if not pair_losses:
+        return outputs.sum() * 0.0
+    return torch.stack(pair_losses).mean()
+
+def user_weighted_goal_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n, weighting = 1):
+    margin = 2.0
+    pair_losses = []
+    for i in range(len(outputs) if outputs.dim() > 1 else 1): # if the batch size is 1 it len(outputs) is wrong
+        for j in range(len(init_outputs)):
+            # A signed, one-based value identifies a constrained dataset index.
+            goal = False
+            constraint = 0
+            specified = int(user_specified[i].item())
+            if abs(specified) - 1 == int(j):
+                constraint = 1 if specified > 0 else -1
+
+            same_cluster = bool(labels[i] == clusters[j])
+            if constraint == 1 and same_cluster:
+                goal == True
+            elif constraint == -1 and not same_cluster:
+                goal == True
+            positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
+            if idx[i] == j:
+                weight = 0
+            elif specified != 0: 
+                weight = ((m+n)/(n+1))**weighting if (constraint != 0 and not goal) else ((n+m)/(m+(m*n)))**weighting
+            else:
+                weight = ((n+m)/(m+(m*n)))**weighting
+            distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
+
             if positive_pair:
                 pair_losses.append(weight * distance.square())
             else:
