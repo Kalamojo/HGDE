@@ -17,6 +17,7 @@ from src.embedding_transformer.embedding_transformer import Net
 from src.embedding_transformer.embedding_transformer import train_loop
 from src.embedding_transformer.embedding_transformer import user_weighted_contrasting_loss
 from src.embedding_transformer.embedding_transformer import user_weighted_whole_cluster_loss
+from src.embedding_transformer.embedding_transformer import user_weighted_goal_loss
 
 # computes the recall and precision of the configuation given and multiplies them to compute accuracy
 def compute_accuracy(clusters, classes):
@@ -52,7 +53,7 @@ def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_
     if optim == None:
         optim = torch.optim.Adam(model.parameters(), lr = lr)
 
-    train_loop(data, epochs, user_weighted_contrasting_loss, optim, batch_size, model, weighting)
+    train_loop(data, epochs, loss, optim, batch_size, model, weighting)
 
     model.eval()
     with torch.no_grad():
@@ -112,9 +113,11 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
         'batch_size': batch_size
     }
     if loss == 'user_weighted':
-        loss = user_weighted_contrasting_loss
+        loss_func = user_weighted_contrasting_loss
     elif loss == 'whole_cluster':
-        loss = user_weighted_whole_cluster_loss
+        loss_func = user_weighted_whole_cluster_loss
+    elif loss == 'goal_weighted':
+        loss_func = user_weighted_goal_loss
 
     max_acc, max_recall, max_precision, iteration = 0,0,0,0
     acc = 0    
@@ -140,7 +143,7 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
             goal = "further"
         init_distance = np.linalg.vector_norm(data['train'][rand1] - data['train'][rand2])
         data['user'] = user_specified
-        final_data, model, optim = train(data, hypers, model=model, optim=optim, weighting=weighting, loss=loss)
+        final_data, model, optim = train(data, hypers, model=model, optim=optim, weighting=weighting, loss=loss_func)
         pred_labels = HDBSCAN(min_cluster_size=2).fit_predict(final_data)
         pred_labels = np.array(pred_labels)
         acc, recall, precision = compute_accuracy(pred_labels, true_labels)        
