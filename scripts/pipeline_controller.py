@@ -108,7 +108,9 @@ if __name__ == "__main__":
     from datetime import datetime
 
     parser = argparse.ArgumentParser(description="Run the interactive constrained clustering pipeline.")
-    parser.add_argument("--model", choices=["lowrank", "john"], default="lowrank")
+    parser.add_argument("--model", choices=["pattern", "lowrank", "john"], default="pattern")
+    parser.add_argument("--p_fixed", type=int, default=None,
+                    help="pattern model: number of strongest patterns (default: cross-validated)")
     parser.add_argument("--rank", type=int, default=16)
     parser.add_argument("--neighbor_k", type=int, default=3)
     parser.add_argument("--accuracy", type=float, default=0.95, help="Target ARI threshold.")
@@ -172,6 +174,9 @@ if __name__ == "__main__":
     elif args.model == "lowrank":
         from src.projection_model_chris import LowRankProjection
         proj_model = LowRankProjection(rank=args.rank, neighbor_k=args.neighbor_k, seed=args.seed)
+    elif args.model == "pattern":
+        from src.pattern_projection_chris import PatternProjection
+        proj_model = PatternProjection(p_fixed=args.p_fixed, seed=args.seed)
     else:
         from scripts.adapters import ProjectionAdapter
         proj_model = ProjectionAdapter(dim=real_embeddings.shape[1], lr=args.lr,

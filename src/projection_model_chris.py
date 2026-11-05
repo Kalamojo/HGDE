@@ -1,5 +1,5 @@
 """
-File: projection_model.py
+File: projection_model_chris.py
 Description:
     Low-rank, identity-initialised projection model for constrained clustering with KMeans.
 
