@@ -176,9 +176,9 @@ def user_weighted_contrasting_loss(outputs, labels, user_specified, idx, init_ou
             if idx[i] == j:
                 weight = 0
             elif specified != 0: 
-                weight = ((m+n)/(n+1))**weighting if constraint != 0 else ((n+m)/(m+(m*n)))**weighting
+                weight = (m/n)+1 if constraint != 0 else (m+n)/(m+(m*n**weighting))
             else:
-                weight = ((n+m)/(m+(m*n)))**weighting
+                weight = (m+n)/(m+(m*n**weighting))
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
 
             # Positive pairs always shrink; negatives repel only while closer
@@ -216,9 +216,9 @@ def user_weighted_whole_cluster_loss(outputs, labels, user_specified, idx, init_
             if idx[i] == j:
                 weight = 0
             elif specified != 0: 
-                weight = ((m+n)/(n+1))**weighting if constraint else (1 if in_constrained_cluster else ((n+m)/(m+(m*n)))**weighting)
+                weight = (m/n)+1 if constraint else (1 if in_constrained_cluster else (m+n)/(m+(m*n**weighting)))
             else:
-                weight = ((n+m)/(m+(m*n)))**weighting
+                weight = (m+n)/(m+(m*n**weighting))
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
             
             if positive_pair:
@@ -251,9 +251,9 @@ def user_weighted_goal_loss(outputs, labels, user_specified, idx, init_outputs, 
             if idx[i] == j:
                 weight = 0
             elif specified != 0: 
-                weight = ((m+n)/(n+1))**weighting if (constraint != 0 and not goal) else ((n+m)/(m+(m*n)))**weighting
+                weight = (m/n)+1 if (constraint != 0 and not goal) else (m+n)/(m+(m*n**weighting))
             else:
-                weight = ((n+m)/(m+(m*n)))**weighting
+                weight = (m+n)/(m+(m*n**weighting))
             distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
 
             if positive_pair:
