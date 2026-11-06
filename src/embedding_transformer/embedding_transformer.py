@@ -67,7 +67,7 @@ class Net(nn.Module):
         super(Net, self).__init__()
         self.dimensions = dimensions
         self.layer1 = nn.Linear(dimensions, 2048)
-        self.dropout = nn.Dropout(p=0.5)
+        self.dropout = nn.Dropout(p=0.2)
         self.layer2 = nn.Linear(2048, dimensions)
 
     def forward(self, x):
