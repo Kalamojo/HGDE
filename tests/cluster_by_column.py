@@ -66,9 +66,24 @@ def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_
         final_data = model(data['train'])
     return final_data, model, optim
 
-# grabs embeddings and the given column, clusters the default embeddings and then randomly makes a correction
-# and trains the model based on that
-def main(max_corrections=10, goal_acc=0.8, epochs=10, lr=0.0001, batch_size=32, label_column='color', sample_size=200, easy=True, clusters=3, weighting=2, loss='whole_cluster', epoch_weighted=False):
+'''
+    Tests the model based on pokemon embeddings and a chosen hidden ground truth
+    
+    args:
+        max_correction: the maximum number of moves until the model stops
+        goal_acc: goal F1 score. The model will stop early if that is achieved
+        epoch: number of epochs per each correction
+        lr: learning rate for the model
+        batch_size: batch_size
+        label_column: the name of the column that gives the hidden ground truth labels
+        sample_size: pulls sample_size number of random examples to run on
+        easy: if true, easy mode picks a given number of labels to train on and uses k_means with a known number of clusters
+        clusters: does nothing if not on easy mode, the number of clusters for easy mode to pull
+        weighting: hyperparameter of user_specified weights, larger makes user_specified weighted much more
+        loss: string shorthand for different loss function variations to test
+        epoch_weighting: if true, the weighting given above increases by 1 for every epoch
+'''
+def main(max_corrections=10, goal_acc=0.95, epochs=10, lr=0.0001, batch_size=32, label_column='color', sample_size=200, easy=True, clusters=3, weighting=2, loss='whole_cluster', epoch_weighted=False):
 
     # initial setup and evaluation
     torch.manual_seed(42)
@@ -158,7 +173,6 @@ def main(max_corrections=10, goal_acc=0.8, epochs=10, lr=0.0001, batch_size=32, 
         pred_labels = np.array(pred_labels)
         acc, recall, precision, ari_score = compute_accuracy(pred_labels, true_labels)        
         pred_labels = torch.tensor(pred_labels)
-        data['train'] = final_data
         data['labels'] = pred_labels
         if goal == 'closer':
             success = np.linalg.vector_norm(data['train'][rand1] - data['train'][rand2]) < init_distance
