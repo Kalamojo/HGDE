@@ -2,18 +2,28 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, Dataset
-from typing import Any
-from utils.data import ContrastiveDataset, TripletDataset
+import numpy as np
+from numpy.typing import NDArray
+from typing import Any, Optional
+from utils.data.datasets import ContrastiveDataset, TripletDataset
+from utils.data.samplers import DataSampler
 
 
 class ClusterEval:
     def __init__(
-        self, dataset: Dataset, batch_size: int = 16, 
-        shuffle_data: bool = True, margin: float = 2.0
+        self, batch_size: int = 16, shuffle_data: bool = True, margin: float = 2.0
     ):
-        self.dataset = dataset
-        self.loader = DataLoader(self.dataset, batch_size, shuffle_data)
+        self.dataset: Optional[Dataset] = None
+        self.loader: Optional[DataLoader] = None
+        self.batch_size = batch_size
+        self.shuffle_data = shuffle_data
         self.margin = margin
+
+    def setup_data(self, embeddings: NDArray[np.float32]):
+        self.loader = DataLoader(self.dataset, self.batch_size, self.shuffle_data)
+    
+    def update(self, sampler: DataSampler):
+        pass;
 
     def loss(self, batch: Any, model: nn.Module) -> torch.Tensor:
         pass;
@@ -25,9 +35,12 @@ class JohnEvalBase(ClusterEval):
         self, batch_size: int = 16, shuffle_data: bool = True,
         margin: float = 2.0, weighting: float = 1.0
     ):
-        dataset = ContrastiveDataset()
-        super().__init__(dataset, batch_size, shuffle_data, margin)
+        super().__init__(batch_size, shuffle_data, margin)
         self.weighting = weighting
+
+    def setup_data(self, embeddings: NDArray[np.float32]):
+        self.dataset: ContrastiveDataset = ContrastiveDataset(embeddings)
+        super().setup_data(embeddings)
 
     # default arbitrary loss function
     def loss_method(self) -> torch.Tensor:
@@ -49,16 +62,26 @@ class JayEval(ClusterEval):
         self, batch_size: int = 16, shuffle_data: bool = True,
         margin: float = 2.0, preservation_weight: float = 0.05
     ):
-        dataset = ContrastiveDataset()
-        super().__init__(dataset, batch_size, shuffle_data, margin)
+        super().__init__(batch_size, shuffle_data, margin)
         self.triplet_loss_fn = nn.TripletMarginLoss(margin=0.2, p=2)
         self.preservation_weight = preservation_weight
 
+    def setup_data(self, embeddings: NDArray[np.float32]):
+        self.dataset: TripletDataset = TripletDataset(embeddings)
+        super().setup_data(embeddings)
+
+    def update(self, pred_labels: NDArray[np.int_], sampler: DataSampler):
+        if self.dataset is None or self.loader is None:
+            raise ValueError("Dataset and/or loader have not been initialized with 'setup_data' yet")
+        
+        sampled_moves = sampler.sample_triplets(pred_labels)
+        self.dataset.append_data(sampled_moves)
+
     def loss(
-            self, batch: tuple[torch.Tensor, torch.Tensor, torch.Tensor],
+            self, batch: dict[str, torch.Tensor],
             model: nn.Module
     ) -> torch.Tensor:
-        anchor, positive, negative = batch
+        anchor, positive, negative = batch["anchor"], batch["positive"], batch["negative"]
         a_out, p_out, n_out = model(anchor), model(positive), model(negative)
         
         triplet_loss = self.triplet_loss_fn(a_out, p_out, n_out)

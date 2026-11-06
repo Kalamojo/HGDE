@@ -1,11 +1,13 @@
 import torch.nn as nn
 from torch.optim import Optimizer
 from tqdm import tqdm
+from utils.data.samplers import DataSampler
 from utils.eval import ClusterEval
 
 
 class ClusterState:
-    def __init__(self, eval: ClusterEval, epochs: int, model: nn.Module, optimizer: Optimizer):
+    def __init__(self, sampler: DataSampler, eval: ClusterEval, epochs: int, model: nn.Module, optimizer: Optimizer):
+        self.sampler = sampler
         self.eval = eval
         self.epochs = epochs
         self.model = model
@@ -13,6 +15,7 @@ class ClusterState:
 
     def recluster_round(self):
         # collect suggestion and prepare eval data
+        self.eval.update(pred_labels, self.sampler)
 
         # training loop
         losses = []
