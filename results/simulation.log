@@ -1,0 +1,1412 @@
+2026-10-24 22:46:17,530 [INFO] Initializing data ingestion...
+2026-10-24 22:46:17,635 [ERROR] Column 'vector' missing. Available: Index(['dex_num', 'name', 'page_title', 'image_path', 'text', 'image_vector',
+       'text_vector', 'height', 'weight', 'hp', 'attack', 'defense',
+       'special-attack', 'special-defense', 'speed', 'primary_type',
+       'secondary_type', 'is_baby', 'is_legendary', 'is_mythical',
+       'egg_groups', 'color', 'shape', 'habitat', 'generation', 'stage'],
+      dtype='object')
+2026-10-24 22:46:17,636 [ERROR] Data loading failed. Check LanceDB and ground truth paths.
+2026-10-24 22:48:45,584 [INFO] Initializing data ingestion...
+2026-10-24 22:48:45,638 [INFO] Loaded LanceDB embeddings matrix. Shape: (1000, 1024)
+2026-10-24 22:48:45,639 [ERROR] Data loading failed. Check LanceDB and ground truth paths.
+2026-10-24 22:54:44,900 [INFO] Initializing data ingestion...
+2026-10-24 22:54:44,944 [INFO] Loaded LanceDB embeddings matrix. Shape: (1000, 1024)
+2026-10-24 22:54:44,972 [INFO] Embeddings (1000, 1024), ground truth classes: 10, labels: [0 1 2 3 4 5 6 7 8 9]
+2026-10-24 22:55:00,591 [INFO] BASELINE run: identity projection (no learning).
+2026-10-24 22:55:00,591 [INFO] Starting active learning loop...
+2026-10-24 22:55:05,131 [INFO] Move 0: ARI = 0.1076
+2026-10-24 22:55:05,147 [INFO] User issued feedback: MUST_LINK between items 303 and 928
+2026-10-24 22:55:06,160 [INFO] Move 1: ARI = 0.1076
+2026-10-24 22:55:06,175 [INFO] User issued feedback: CANNOT_LINK between items 103 and 130
+2026-10-24 22:55:07,160 [INFO] Move 2: ARI = 0.1076
+2026-10-24 22:55:07,175 [INFO] User issued feedback: MUST_LINK between items 74 and 216
+2026-10-24 22:55:08,212 [INFO] Move 3: ARI = 0.1076
+2026-10-24 22:55:08,227 [INFO] User issued feedback: CANNOT_LINK between items 699 and 724
+2026-10-24 22:55:09,234 [INFO] Move 4: ARI = 0.1076
+2026-10-24 22:55:09,249 [INFO] User issued feedback: MUST_LINK between items 151 and 412
+2026-10-24 22:55:10,262 [INFO] Move 5: ARI = 0.1076
+2026-10-24 22:55:10,276 [INFO] User issued feedback: MUST_LINK between items 376 and 505
+2026-10-24 22:55:11,304 [INFO] Move 6: ARI = 0.1076
+2026-10-24 22:55:11,318 [INFO] User issued feedback: CANNOT_LINK between items 85 and 698
+2026-10-24 22:55:12,312 [INFO] Move 7: ARI = 0.1076
+2026-10-24 22:55:12,327 [INFO] User issued feedback: MUST_LINK between items 170 and 711
+2026-10-24 22:55:13,311 [INFO] Move 8: ARI = 0.1076
+2026-10-24 22:55:13,326 [INFO] User issued feedback: CANNOT_LINK between items 25 and 959
+2026-10-24 22:55:14,286 [INFO] Move 9: ARI = 0.1076
+2026-10-24 22:55:14,297 [INFO] User issued feedback: CANNOT_LINK between items 805 and 944
+2026-10-24 22:55:15,270 [INFO] Move 10: ARI = 0.1076
+2026-10-24 22:55:15,282 [INFO] User issued feedback: CANNOT_LINK between items 10 and 47
+2026-10-24 22:55:16,253 [INFO] Move 11: ARI = 0.1076
+2026-10-24 22:55:16,267 [INFO] User issued feedback: CANNOT_LINK between items 105 and 636
+2026-10-24 22:55:17,293 [INFO] Move 12: ARI = 0.1076
+2026-10-24 22:55:17,307 [INFO] User issued feedback: MUST_LINK between items 417 and 918
+2026-10-24 22:55:18,245 [INFO] Move 13: ARI = 0.1076
+2026-10-24 22:55:18,260 [INFO] User issued feedback: MUST_LINK between items 128 and 630
+2026-10-24 22:55:19,219 [INFO] Move 14: ARI = 0.1076
+2026-10-24 22:55:19,229 [INFO] User issued feedback: MUST_LINK between items 137 and 879
+2026-10-24 22:55:20,150 [INFO] Move 15: ARI = 0.1076
+2026-10-24 22:55:20,162 [INFO] User issued feedback: MUST_LINK between items 203 and 305
+2026-10-24 22:55:21,104 [INFO] Move 16: ARI = 0.1076
+2026-10-24 22:55:21,115 [INFO] User issued feedback: CANNOT_LINK between items 160 and 602
+2026-10-24 22:55:22,075 [INFO] Move 17: ARI = 0.1076
+2026-10-24 22:55:22,089 [INFO] User issued feedback: MUST_LINK between items 304 and 347
+2026-10-24 22:55:23,045 [INFO] Move 18: ARI = 0.1076
+2026-10-24 22:55:23,057 [INFO] User issued feedback: MUST_LINK between items 291 and 995
+2026-10-24 22:55:23,989 [INFO] Move 19: ARI = 0.1076
+2026-10-24 22:55:23,999 [INFO] User issued feedback: MUST_LINK between items 416 and 779
+2026-10-24 22:55:24,947 [INFO] Move 20: ARI = 0.1076
+2026-10-24 22:55:24,948 [WARNING] Maximum moves reached without hitting target accuracy.
+2026-10-24 22:55:24,950 [INFO] Saved history to C:\Users\happy\Downloads\HGDE\results\history-baseline-2026-10-24-22-55-24.json
+2026-11-03 15:09:20,946 [INFO] Initializing data ingestion...
+2026-11-03 15:09:21,308 [INFO] Loaded LanceDB embeddings matrix. Shape: (1000, 1024)
+2026-11-03 15:09:21,331 [INFO] Embeddings (1000, 1024), ground truth classes: 10, labels: [0 1 2 3 4 5 6 7 8 9]
+2026-11-03 15:09:33,026 [INFO] BASELINE run: identity projection (no learning).
+2026-11-03 15:09:33,026 [INFO] Starting active learning loop...
+2026-11-03 15:09:37,076 [INFO] Move 0: ARI = 0.1076
+2026-11-03 15:09:37,092 [INFO] User issued feedback: MUST_LINK between items 303 and 928
+2026-11-03 15:09:38,073 [INFO] Move 1: ARI = 0.1076
+2026-11-03 15:09:38,088 [INFO] User issued feedback: CANNOT_LINK between items 103 and 130
+2026-11-03 15:09:39,047 [INFO] Move 2: ARI = 0.1076
+2026-11-03 15:09:39,061 [INFO] User issued feedback: MUST_LINK between items 74 and 216
+2026-11-03 15:09:40,005 [INFO] Move 3: ARI = 0.1076
+2026-11-03 15:09:40,019 [INFO] User issued feedback: CANNOT_LINK between items 699 and 724
+2026-11-03 15:09:41,035 [INFO] Move 4: ARI = 0.1076
+2026-11-03 15:09:41,049 [INFO] User issued feedback: MUST_LINK between items 151 and 412
+2026-11-03 15:09:42,024 [INFO] Move 5: ARI = 0.1076
+2026-11-03 15:09:42,038 [INFO] User issued feedback: MUST_LINK between items 376 and 505
+2026-11-03 15:09:43,034 [INFO] Move 6: ARI = 0.1076
+2026-11-03 15:09:43,045 [INFO] User issued feedback: CANNOT_LINK between items 85 and 698
+2026-11-03 15:09:44,030 [INFO] Move 7: ARI = 0.1076
+2026-11-03 15:09:44,044 [INFO] User issued feedback: MUST_LINK between items 170 and 711
+2026-11-03 15:09:45,003 [INFO] Move 8: ARI = 0.1076
+2026-11-03 15:09:45,017 [INFO] User issued feedback: CANNOT_LINK between items 25 and 959
+2026-11-03 15:09:46,014 [INFO] Move 9: ARI = 0.1076
+2026-11-03 15:09:46,026 [INFO] User issued feedback: CANNOT_LINK between items 805 and 944
+2026-11-03 15:09:46,980 [INFO] Move 10: ARI = 0.1076
+2026-11-03 15:09:46,993 [INFO] User issued feedback: CANNOT_LINK between items 10 and 47
+2026-11-03 15:09:47,957 [INFO] Move 11: ARI = 0.1076
+2026-11-03 15:09:47,971 [INFO] User issued feedback: CANNOT_LINK between items 105 and 636
+2026-11-03 15:09:48,926 [INFO] Move 12: ARI = 0.1076
+2026-11-03 15:09:48,941 [INFO] User issued feedback: MUST_LINK between items 417 and 918
+2026-11-03 15:09:49,896 [INFO] Move 13: ARI = 0.1076
+2026-11-03 15:09:49,912 [INFO] User issued feedback: MUST_LINK between items 128 and 630
+2026-11-03 15:09:50,887 [INFO] Move 14: ARI = 0.1076
+2026-11-03 15:09:50,901 [INFO] User issued feedback: MUST_LINK between items 137 and 879
+2026-11-03 15:09:51,898 [INFO] Move 15: ARI = 0.1076
+2026-11-03 15:09:51,909 [INFO] User issued feedback: MUST_LINK between items 203 and 305
+2026-11-03 15:09:52,860 [INFO] Move 16: ARI = 0.1076
+2026-11-03 15:09:52,876 [INFO] User issued feedback: CANNOT_LINK between items 160 and 602
+2026-11-03 15:09:53,890 [INFO] Move 17: ARI = 0.1076
+2026-11-03 15:09:53,904 [INFO] User issued feedback: MUST_LINK between items 304 and 347
+2026-11-03 15:09:54,892 [INFO] Move 18: ARI = 0.1076
+2026-11-03 15:09:54,906 [INFO] User issued feedback: MUST_LINK between items 291 and 995
+2026-11-03 15:09:55,932 [INFO] Move 19: ARI = 0.1076
+2026-11-03 15:09:55,947 [INFO] User issued feedback: MUST_LINK between items 416 and 779
+2026-11-03 15:09:56,927 [INFO] Move 20: ARI = 0.1076
+2026-11-03 15:09:56,942 [INFO] User issued feedback: MUST_LINK between items 245 and 717
+2026-11-03 15:09:57,922 [INFO] Move 21: ARI = 0.1076
+2026-11-03 15:09:57,931 [INFO] User issued feedback: MUST_LINK between items 445 and 756
+2026-11-03 15:09:58,878 [INFO] Move 22: ARI = 0.1076
+2026-11-03 15:09:58,893 [INFO] User issued feedback: CANNOT_LINK between items 529 and 857
+2026-11-03 15:09:59,848 [INFO] Move 23: ARI = 0.1076
+2026-11-03 15:09:59,862 [INFO] User issued feedback: CANNOT_LINK between items 392 and 580
+2026-11-03 15:10:00,808 [INFO] Move 24: ARI = 0.1076
+2026-11-03 15:10:00,823 [INFO] User issued feedback: MUST_LINK between items 569 and 804
+2026-11-03 15:10:01,762 [INFO] Move 25: ARI = 0.1076
+2026-11-03 15:10:01,777 [INFO] User issued feedback: CANNOT_LINK between items 135 and 469
+2026-11-03 15:10:02,738 [INFO] Move 26: ARI = 0.1076
+2026-11-03 15:10:02,752 [INFO] User issued feedback: MUST_LINK between items 29 and 170
+2026-11-03 15:10:03,696 [INFO] Move 27: ARI = 0.1076
+2026-11-03 15:10:03,712 [INFO] User issued feedback: CANNOT_LINK between items 223 and 366
+2026-11-03 15:10:04,684 [INFO] Move 28: ARI = 0.1076
+2026-11-03 15:10:04,700 [INFO] User issued feedback: MUST_LINK between items 281 and 897
+2026-11-03 15:10:05,655 [INFO] Move 29: ARI = 0.1076
+2026-11-03 15:10:05,671 [INFO] User issued feedback: MUST_LINK between items 42 and 536
+2026-11-03 15:10:06,630 [INFO] Move 30: ARI = 0.1076
+2026-11-03 15:10:06,646 [INFO] User issued feedback: CANNOT_LINK between items 633 and 982
+2026-11-03 15:10:07,614 [INFO] Move 31: ARI = 0.1076
+2026-11-03 15:10:07,624 [INFO] User issued feedback: CANNOT_LINK between items 170 and 693
+2026-11-03 15:10:08,579 [INFO] Move 32: ARI = 0.1076
+2026-11-03 15:10:08,593 [INFO] User issued feedback: CANNOT_LINK between items 616 and 810
+2026-11-03 15:10:09,558 [INFO] Move 33: ARI = 0.1076
+2026-11-03 15:10:09,568 [INFO] User issued feedback: CANNOT_LINK between items 669 and 807
+2026-11-03 15:10:10,558 [INFO] Move 34: ARI = 0.1076
+2026-11-03 15:10:10,572 [INFO] User issued feedback: MUST_LINK between items 17 and 859
+2026-11-03 15:10:11,517 [INFO] Move 35: ARI = 0.1076
+2026-11-03 15:10:11,527 [INFO] User issued feedback: CANNOT_LINK between items 190 and 685
+2026-11-03 15:10:12,470 [INFO] Move 36: ARI = 0.1076
+2026-11-03 15:10:12,485 [INFO] User issued feedback: CANNOT_LINK between items 161 and 674
+2026-11-03 15:10:13,429 [INFO] Move 37: ARI = 0.1076
+2026-11-03 15:10:13,439 [INFO] User issued feedback: CANNOT_LINK between items 611 and 775
+2026-11-03 15:10:14,376 [INFO] Move 38: ARI = 0.1076
+2026-11-03 15:10:14,386 [INFO] User issued feedback: CANNOT_LINK between items 499 and 875
+2026-11-03 15:10:15,325 [INFO] Move 39: ARI = 0.1076
+2026-11-03 15:10:15,335 [INFO] User issued feedback: CANNOT_LINK between items 50 and 683
+2026-11-03 15:10:16,321 [INFO] Move 40: ARI = 0.1076
+2026-11-03 15:10:16,335 [INFO] User issued feedback: CANNOT_LINK between items 287 and 560
+2026-11-03 15:10:17,270 [INFO] Move 41: ARI = 0.1076
+2026-11-03 15:10:17,281 [INFO] User issued feedback: MUST_LINK between items 601 and 993
+2026-11-03 15:10:18,422 [INFO] Move 42: ARI = 0.1076
+2026-11-03 15:10:18,436 [INFO] User issued feedback: MUST_LINK between items 544 and 556
+2026-11-03 15:10:19,924 [INFO] Move 43: ARI = 0.1076
+2026-11-03 15:10:19,939 [INFO] User issued feedback: CANNOT_LINK between items 709 and 929
+2026-11-03 15:10:21,131 [INFO] Move 44: ARI = 0.1076
+2026-11-03 15:10:21,145 [INFO] User issued feedback: CANNOT_LINK between items 359 and 419
+2026-11-03 15:10:22,485 [INFO] Move 45: ARI = 0.1076
+2026-11-03 15:10:22,507 [INFO] User issued feedback: MUST_LINK between items 421 and 508
+2026-11-03 15:10:23,957 [INFO] Move 46: ARI = 0.1076
+2026-11-03 15:10:23,975 [INFO] User issued feedback: MUST_LINK between items 358 and 739
+2026-11-03 15:10:25,498 [INFO] Move 47: ARI = 0.1076
+2026-11-03 15:10:25,515 [INFO] User issued feedback: MUST_LINK between items 22 and 761
+2026-11-03 15:10:27,027 [INFO] Move 48: ARI = 0.1076
+2026-11-03 15:10:27,044 [INFO] User issued feedback: MUST_LINK between items 133 and 841
+2026-11-03 15:10:28,508 [INFO] Move 49: ARI = 0.1076
+2026-11-03 15:10:28,526 [INFO] User issued feedback: CANNOT_LINK between items 517 and 683
+2026-11-03 15:10:30,003 [INFO] Move 50: ARI = 0.1076
+2026-11-03 15:10:30,022 [INFO] User issued feedback: MUST_LINK between items 624 and 654
+2026-11-03 15:10:31,423 [INFO] Move 51: ARI = 0.1076
+2026-11-03 15:10:31,445 [INFO] User issued feedback: CANNOT_LINK between items 255 and 629
+2026-11-03 15:10:32,847 [INFO] Move 52: ARI = 0.1076
+2026-11-03 15:10:32,863 [INFO] User issued feedback: MUST_LINK between items 344 and 451
+2026-11-03 15:10:34,226 [INFO] Move 53: ARI = 0.1076
+2026-11-03 15:10:34,242 [INFO] User issued feedback: CANNOT_LINK between items 328 and 689
+2026-11-03 15:10:35,612 [INFO] Move 54: ARI = 0.1076
+2026-11-03 15:10:35,630 [INFO] User issued feedback: CANNOT_LINK between items 777 and 956
+2026-11-03 15:10:37,037 [INFO] Move 55: ARI = 0.1076
+2026-11-03 15:10:37,053 [INFO] User issued feedback: MUST_LINK between items 385 and 654
+2026-11-03 15:10:38,402 [INFO] Move 56: ARI = 0.1076
+2026-11-03 15:10:38,418 [INFO] User issued feedback: CANNOT_LINK between items 517 and 594
+2026-11-03 15:10:39,759 [INFO] Move 57: ARI = 0.1076
+2026-11-03 15:10:39,777 [INFO] User issued feedback: MUST_LINK between items 599 and 783
+2026-11-03 15:10:41,098 [INFO] Move 58: ARI = 0.1076
+2026-11-03 15:10:41,114 [INFO] User issued feedback: MUST_LINK between items 541 and 831
+2026-11-03 15:10:42,484 [INFO] Move 59: ARI = 0.1076
+2026-11-03 15:10:42,501 [INFO] User issued feedback: CANNOT_LINK between items 79 and 489
+2026-11-03 15:10:43,864 [INFO] Move 60: ARI = 0.1076
+2026-11-03 15:10:43,881 [INFO] User issued feedback: CANNOT_LINK between items 49 and 601
+2026-11-03 15:10:45,346 [INFO] Move 61: ARI = 0.1076
+2026-11-03 15:10:45,366 [INFO] User issued feedback: CANNOT_LINK between items 376 and 736
+2026-11-03 15:10:46,753 [INFO] Move 62: ARI = 0.1076
+2026-11-03 15:10:46,770 [INFO] User issued feedback: MUST_LINK between items 286 and 679
+2026-11-03 15:10:48,195 [INFO] Move 63: ARI = 0.1076
+2026-11-03 15:10:48,212 [INFO] User issued feedback: MUST_LINK between items 494 and 913
+2026-11-03 15:10:49,576 [INFO] Move 64: ARI = 0.1076
+2026-11-03 15:10:49,594 [INFO] User issued feedback: CANNOT_LINK between items 411 and 956
+2026-11-03 15:10:50,920 [INFO] Move 65: ARI = 0.1076
+2026-11-03 15:10:50,937 [INFO] User issued feedback: CANNOT_LINK between items 164 and 691
+2026-11-03 15:10:52,294 [INFO] Move 66: ARI = 0.1076
+2026-11-03 15:10:52,311 [INFO] User issued feedback: CANNOT_LINK between items 466 and 830
+2026-11-03 15:10:53,695 [INFO] Move 67: ARI = 0.1076
+2026-11-03 15:10:53,711 [INFO] User issued feedback: CANNOT_LINK between items 168 and 634
+2026-11-03 15:10:55,047 [INFO] Move 68: ARI = 0.1076
+2026-11-03 15:10:55,064 [INFO] User issued feedback: MUST_LINK between items 729 and 948
+2026-11-03 15:10:56,491 [INFO] Move 69: ARI = 0.1076
+2026-11-03 15:10:56,508 [INFO] User issued feedback: MUST_LINK between items 322 and 786
+2026-11-03 15:10:57,856 [INFO] Move 70: ARI = 0.1076
+2026-11-03 15:10:57,874 [INFO] User issued feedback: CANNOT_LINK between items 335 and 552
+2026-11-03 15:10:59,233 [INFO] Move 71: ARI = 0.1076
+2026-11-03 15:10:59,249 [INFO] User issued feedback: MUST_LINK between items 43 and 130
+2026-11-03 15:11:00,618 [INFO] Move 72: ARI = 0.1076
+2026-11-03 15:11:00,645 [INFO] User issued feedback: MUST_LINK between items 373 and 579
+2026-11-03 15:11:02,080 [INFO] Move 73: ARI = 0.1076
+2026-11-03 15:11:02,097 [INFO] User issued feedback: CANNOT_LINK between items 834 and 975
+2026-11-03 15:11:03,478 [INFO] Move 74: ARI = 0.1076
+2026-11-03 15:11:03,494 [INFO] User issued feedback: MUST_LINK between items 430 and 598
+2026-11-03 15:11:04,826 [INFO] Move 75: ARI = 0.1076
+2026-11-03 15:11:04,844 [INFO] User issued feedback: MUST_LINK between items 652 and 791
+2026-11-03 15:11:06,245 [INFO] Move 76: ARI = 0.1076
+2026-11-03 15:11:06,262 [INFO] User issued feedback: CANNOT_LINK between items 565 and 898
+2026-11-03 15:11:07,658 [INFO] Move 77: ARI = 0.1076
+2026-11-03 15:11:07,684 [INFO] User issued feedback: MUST_LINK between items 305 and 997
+2026-11-03 15:11:09,047 [INFO] Move 78: ARI = 0.1076
+2026-11-03 15:11:09,074 [INFO] User issued feedback: MUST_LINK between items 3 and 559
+2026-11-03 15:11:10,442 [INFO] Move 79: ARI = 0.1076
+2026-11-03 15:11:10,459 [INFO] User issued feedback: MUST_LINK between items 186 and 785
+2026-11-03 15:11:11,779 [INFO] Move 80: ARI = 0.1076
+2026-11-03 15:11:11,796 [INFO] User issued feedback: MUST_LINK between items 653 and 696
+2026-11-03 15:11:13,188 [INFO] Move 81: ARI = 0.1076
+2026-11-03 15:11:13,205 [INFO] User issued feedback: CANNOT_LINK between items 537 and 993
+2026-11-03 15:11:14,803 [INFO] Move 82: ARI = 0.1076
+2026-11-03 15:11:14,820 [INFO] User issued feedback: CANNOT_LINK between items 16 and 732
+2026-11-03 15:11:16,217 [INFO] Move 83: ARI = 0.1076
+2026-11-03 15:11:16,234 [INFO] User issued feedback: CANNOT_LINK between items 403 and 810
+2026-11-03 15:11:17,735 [INFO] Move 84: ARI = 0.1076
+2026-11-03 15:11:17,752 [INFO] User issued feedback: CANNOT_LINK between items 189 and 307
+2026-11-03 15:11:19,237 [INFO] Move 85: ARI = 0.1076
+2026-11-03 15:11:19,254 [INFO] User issued feedback: CANNOT_LINK between items 476 and 988
+2026-11-03 15:11:20,678 [INFO] Move 86: ARI = 0.1076
+2026-11-03 15:11:20,695 [INFO] User issued feedback: CANNOT_LINK between items 260 and 816
+2026-11-03 15:11:21,934 [INFO] Move 87: ARI = 0.1076
+2026-11-03 15:11:21,945 [INFO] User issued feedback: MUST_LINK between items 14 and 27
+2026-11-03 15:11:22,797 [INFO] Move 88: ARI = 0.1076
+2026-11-03 15:11:22,807 [INFO] User issued feedback: MUST_LINK between items 709 and 748
+2026-11-03 15:11:24,087 [INFO] Move 89: ARI = 0.1076
+2026-11-03 15:11:24,111 [INFO] User issued feedback: MUST_LINK between items 130 and 634
+2026-11-03 15:11:25,535 [INFO] Move 90: ARI = 0.1076
+2026-11-03 15:11:25,553 [INFO] User issued feedback: MUST_LINK between items 158 and 634
+2026-11-03 15:11:26,964 [INFO] Move 91: ARI = 0.1076
+2026-11-03 15:11:26,985 [INFO] User issued feedback: CANNOT_LINK between items 414 and 820
+2026-11-03 15:11:28,387 [INFO] Move 92: ARI = 0.1076
+2026-11-03 15:11:28,413 [INFO] User issued feedback: CANNOT_LINK between items 437 and 836
+2026-11-03 15:11:29,794 [INFO] Move 93: ARI = 0.1076
+2026-11-03 15:11:29,811 [INFO] User issued feedback: MUST_LINK between items 261 and 519
+2026-11-03 15:11:31,216 [INFO] Move 94: ARI = 0.1076
+2026-11-03 15:11:31,233 [INFO] User issued feedback: MUST_LINK between items 547 and 840
+2026-11-03 15:11:32,589 [INFO] Move 95: ARI = 0.1076
+2026-11-03 15:11:32,606 [INFO] User issued feedback: CANNOT_LINK between items 41 and 879
+2026-11-03 15:11:33,993 [INFO] Move 96: ARI = 0.1076
+2026-11-03 15:11:34,011 [INFO] User issued feedback: CANNOT_LINK between items 170 and 778
+2026-11-03 15:11:35,466 [INFO] Move 97: ARI = 0.1076
+2026-11-03 15:11:35,484 [INFO] User issued feedback: MUST_LINK between items 525 and 954
+2026-11-03 15:11:36,877 [INFO] Move 98: ARI = 0.1076
+2026-11-03 15:11:36,905 [INFO] User issued feedback: MUST_LINK between items 646 and 940
+2026-11-03 15:11:38,329 [INFO] Move 99: ARI = 0.1076
+2026-11-03 15:11:38,346 [INFO] User issued feedback: CANNOT_LINK between items 432 and 704
+2026-11-03 15:11:39,723 [INFO] Move 100: ARI = 0.1076
+2026-11-03 15:11:39,724 [WARNING] Maximum moves reached without hitting target accuracy.
+2026-11-03 15:11:39,726 [INFO] Saved history to C:\Users\happy\Downloads\HGDE\results\history-baseline-color-2026-11-03-15-11-39.json
+2026-11-03 15:17:26,348 [INFO] Initializing data ingestion...
+2026-11-03 15:17:26,419 [INFO] Loaded LanceDB embeddings matrix. Shape: (1000, 1024)
+2026-11-03 15:17:26,426 [INFO] Embeddings (1000, 1024), ground truth classes: 10, labels: [0 1 2 3 4 5 6 7 8 9]
+2026-11-03 15:26:35,491 [INFO] Initializing data ingestion...
+2026-11-03 15:26:35,829 [INFO] Loaded LanceDB embeddings matrix. Shape: (1000, 1024)
+2026-11-03 15:26:35,840 [INFO] Embeddings (1000, 1024), ground truth classes: 10, labels: [0 1 2 3 4 5 6 7 8 9]
+2026-11-03 15:26:38,630 [INFO] Starting active learning loop...
+2026-11-03 15:26:41,629 [INFO] Move 0: ARI = 0.1076
+2026-11-03 15:26:41,646 [INFO] User issued feedback: MUST_LINK between items 303 and 928
+2026-11-03 15:26:44,572 [INFO] Move 1: ARI = 0.0882
+2026-11-03 15:26:44,583 [INFO] User issued feedback: MUST_LINK between items 36 and 398
+2026-11-03 15:26:46,687 [INFO] Move 2: ARI = 0.0970
+2026-11-03 15:26:46,700 [INFO] User issued feedback: CANNOT_LINK between items 105 and 304
+2026-11-03 15:26:49,437 [INFO] Move 3: ARI = 0.1013
+2026-11-03 15:26:49,449 [INFO] User issued feedback: CANNOT_LINK between items 329 and 647
+2026-11-03 15:26:55,799 [INFO] Move 4: ARI = 0.1150
+2026-11-03 15:26:55,815 [INFO] User issued feedback: MUST_LINK between items 447 and 602
+2026-11-03 15:27:04,907 [INFO] Move 5: ARI = 0.1098
+2026-11-03 15:27:04,926 [INFO] User issued feedback: MUST_LINK between items 332 and 370
+2026-11-03 15:27:13,414 [INFO] Move 6: ARI = 0.1473
+2026-11-03 15:27:13,433 [INFO] User issued feedback: MUST_LINK between items 554 and 846
+2026-11-03 15:27:22,019 [INFO] Move 7: ARI = 0.1295
+2026-11-03 15:27:22,039 [INFO] User issued feedback: CANNOT_LINK between items 610 and 711
+2026-11-03 15:27:30,343 [INFO] Move 8: ARI = 0.1060
+2026-11-03 15:27:30,362 [INFO] User issued feedback: MUST_LINK between items 143 and 446
+2026-11-03 15:27:34,534 [INFO] Move 9: ARI = 0.0964
+2026-11-03 15:27:34,552 [INFO] User issued feedback: CANNOT_LINK between items 160 and 475
+2026-11-03 15:27:40,708 [INFO] Move 10: ARI = 0.0927
+2026-11-03 15:27:40,725 [INFO] User issued feedback: CANNOT_LINK between items 459 and 554
+2026-11-03 15:27:56,621 [INFO] Move 11: ARI = 0.1093
+2026-11-03 15:27:56,638 [INFO] User issued feedback: CANNOT_LINK between items 153 and 437
+2026-11-03 15:28:05,247 [INFO] Move 12: ARI = 0.1192
+2026-11-03 15:28:05,264 [INFO] User issued feedback: CANNOT_LINK between items 58 and 180
+2026-11-03 15:28:13,696 [INFO] Move 13: ARI = 0.1277
+2026-11-03 15:28:13,713 [INFO] User issued feedback: MUST_LINK between items 102 and 202
+2026-11-03 15:28:34,950 [INFO] Move 14: ARI = 0.1071
+2026-11-03 15:28:34,967 [INFO] User issued feedback: MUST_LINK between items 566 and 777
+2026-11-03 15:28:43,959 [INFO] Move 15: ARI = 0.1007
+2026-11-03 15:28:43,976 [INFO] User issued feedback: CANNOT_LINK between items 870 and 932
+2026-11-03 15:29:00,394 [INFO] Move 16: ARI = 0.1142
+2026-11-03 15:29:00,411 [INFO] User issued feedback: CANNOT_LINK between items 786 and 998
+2026-11-03 15:29:12,508 [INFO] Move 17: ARI = 0.1151
+2026-11-03 15:29:12,527 [INFO] User issued feedback: MUST_LINK between items 344 and 619
+2026-11-03 15:29:35,948 [INFO] Move 18: ARI = 0.1246
+2026-11-03 15:29:35,966 [INFO] User issued feedback: CANNOT_LINK between items 79 and 876
+2026-11-03 15:29:52,242 [INFO] Move 19: ARI = 0.1348
+2026-11-03 15:29:52,256 [INFO] User issued feedback: CANNOT_LINK between items 584 and 862
+2026-11-03 15:30:04,198 [INFO] Move 20: ARI = 0.1124
+2026-11-03 15:30:04,216 [INFO] User issued feedback: MUST_LINK between items 153 and 545
+2026-11-03 15:30:27,246 [INFO] Move 21: ARI = 0.1404
+2026-11-03 15:30:27,264 [INFO] User issued feedback: CANNOT_LINK between items 661 and 958
+2026-11-03 15:30:50,939 [INFO] Move 22: ARI = 0.1565
+2026-11-03 15:30:50,955 [INFO] User issued feedback: CANNOT_LINK between items 173 and 307
+2026-11-03 15:31:12,235 [INFO] Move 23: ARI = 0.0906
+2026-11-03 15:31:12,252 [INFO] User issued feedback: MUST_LINK between items 297 and 955
+2026-11-03 15:31:35,226 [INFO] Move 24: ARI = 0.1287
+2026-11-03 15:31:35,243 [INFO] User issued feedback: MUST_LINK between items 162 and 291
+2026-11-03 15:31:59,468 [INFO] Move 25: ARI = 0.1569
+2026-11-03 15:31:59,486 [INFO] User issued feedback: MUST_LINK between items 32 and 575
+2026-11-03 15:32:24,530 [INFO] Move 26: ARI = 0.1304
+2026-11-03 15:32:24,548 [INFO] User issued feedback: CANNOT_LINK between items 88 and 873
+2026-11-03 15:32:50,618 [INFO] Move 27: ARI = 0.1465
+2026-11-03 15:32:50,636 [INFO] User issued feedback: MUST_LINK between items 649 and 878
+2026-11-03 15:33:14,330 [INFO] Move 28: ARI = 0.1544
+2026-11-03 15:33:14,349 [INFO] User issued feedback: MUST_LINK between items 402 and 686
+2026-11-03 15:33:34,821 [INFO] Move 29: ARI = 0.1221
+2026-11-03 15:33:34,838 [INFO] User issued feedback: MUST_LINK between items 166 and 245
+2026-11-03 15:33:59,278 [INFO] Move 30: ARI = 0.1309
+2026-11-03 15:33:59,296 [INFO] User issued feedback: MUST_LINK between items 576 and 829
+2026-11-03 15:34:26,757 [INFO] Move 31: ARI = 0.1360
+2026-11-03 15:34:26,774 [INFO] User issued feedback: CANNOT_LINK between items 648 and 882
+2026-11-03 15:34:47,941 [INFO] Move 32: ARI = 0.1189
+2026-11-03 15:34:47,958 [INFO] User issued feedback: CANNOT_LINK between items 602 and 829
+2026-11-03 15:35:14,069 [INFO] Move 33: ARI = 0.1049
+2026-11-03 15:35:14,086 [INFO] User issued feedback: CANNOT_LINK between items 516 and 577
+2026-11-03 15:35:30,595 [INFO] Move 34: ARI = 0.1693
+2026-11-03 15:35:30,606 [INFO] User issued feedback: MUST_LINK between items 7 and 113
+2026-11-03 15:35:49,260 [INFO] Move 35: ARI = 0.1457
+2026-11-03 15:35:49,275 [INFO] User issued feedback: MUST_LINK between items 673 and 684
+2026-11-03 15:36:11,240 [INFO] Move 36: ARI = 0.1285
+2026-11-03 15:36:11,260 [INFO] User issued feedback: CANNOT_LINK between items 1 and 28
+2026-11-03 15:36:36,900 [INFO] Move 37: ARI = 0.1514
+2026-11-03 15:36:36,921 [INFO] User issued feedback: MUST_LINK between items 104 and 184
+2026-11-03 15:37:01,283 [INFO] Move 38: ARI = 0.1605
+2026-11-03 15:37:01,300 [INFO] User issued feedback: CANNOT_LINK between items 824 and 928
+2026-11-03 15:37:24,835 [INFO] Move 39: ARI = 0.1372
+2026-11-03 15:37:24,853 [INFO] User issued feedback: CANNOT_LINK between items 369 and 685
+2026-11-03 15:37:48,660 [INFO] Move 40: ARI = 0.1720
+2026-11-03 15:37:48,676 [INFO] User issued feedback: MUST_LINK between items 100 and 920
+2026-11-03 15:38:15,438 [INFO] Move 41: ARI = 0.1381
+2026-11-03 15:38:15,468 [INFO] User issued feedback: CANNOT_LINK between items 471 and 758
+2026-11-03 15:38:42,262 [INFO] Move 42: ARI = 0.1610
+2026-11-03 15:38:42,280 [INFO] User issued feedback: CANNOT_LINK between items 403 and 724
+2026-11-03 15:39:08,980 [INFO] Move 43: ARI = 0.1354
+2026-11-03 15:39:09,000 [INFO] User issued feedback: MUST_LINK between items 166 and 837
+2026-11-03 15:39:35,538 [INFO] Move 44: ARI = 0.1678
+2026-11-03 15:39:35,557 [INFO] User issued feedback: MUST_LINK between items 360 and 929
+2026-11-03 15:40:02,058 [INFO] Move 45: ARI = 0.1393
+2026-11-03 15:40:02,076 [INFO] User issued feedback: MUST_LINK between items 41 and 573
+2026-11-03 15:40:28,741 [INFO] Move 46: ARI = 0.1463
+2026-11-03 15:40:28,760 [INFO] User issued feedback: CANNOT_LINK between items 459 and 494
+2026-11-03 15:40:54,315 [INFO] Move 47: ARI = 0.1766
+2026-11-03 15:40:54,332 [INFO] User issued feedback: MUST_LINK between items 723 and 912
+2026-11-03 15:41:19,946 [INFO] Move 48: ARI = 0.1317
+2026-11-03 15:41:19,962 [INFO] User issued feedback: CANNOT_LINK between items 168 and 798
+2026-11-03 15:41:45,476 [INFO] Move 49: ARI = 0.1470
+2026-11-03 15:41:45,493 [INFO] User issued feedback: CANNOT_LINK between items 862 and 986
+2026-11-03 15:42:10,473 [INFO] Move 50: ARI = 0.1467
+2026-11-03 15:42:10,493 [INFO] User issued feedback: CANNOT_LINK between items 525 and 616
+2026-11-03 15:42:37,662 [INFO] Move 51: ARI = 0.1127
+2026-11-03 15:42:37,683 [INFO] User issued feedback: MUST_LINK between items 72 and 789
+2026-11-03 15:43:05,023 [INFO] Move 52: ARI = 0.1037
+2026-11-03 15:43:05,040 [INFO] User issued feedback: CANNOT_LINK between items 99 and 437
+2026-11-03 15:43:31,923 [INFO] Move 53: ARI = 0.0936
+2026-11-03 15:43:31,954 [INFO] User issued feedback: MUST_LINK between items 64 and 342
+2026-11-03 15:43:59,961 [INFO] Move 54: ARI = 0.1178
+2026-11-03 15:43:59,978 [INFO] User issued feedback: CANNOT_LINK between items 138 and 666
+2026-11-03 15:44:27,762 [INFO] Move 55: ARI = 0.1535
+2026-11-03 15:44:27,780 [INFO] User issued feedback: MUST_LINK between items 738 and 867
+2026-11-03 15:44:54,650 [INFO] Move 56: ARI = 0.1440
+2026-11-03 15:44:54,668 [INFO] User issued feedback: MUST_LINK between items 21 and 106
+2026-11-03 15:45:20,906 [INFO] Move 57: ARI = 0.1805
+2026-11-03 15:45:20,937 [INFO] User issued feedback: CANNOT_LINK between items 156 and 529
+2026-11-03 15:45:47,586 [INFO] Move 58: ARI = 0.1183
+2026-11-03 15:45:47,604 [INFO] User issued feedback: CANNOT_LINK between items 345 and 474
+2026-11-03 15:46:16,063 [INFO] Move 59: ARI = 0.1311
+2026-11-03 15:46:16,081 [INFO] User issued feedback: MUST_LINK between items 126 and 161
+2026-11-03 15:46:38,149 [INFO] Move 60: ARI = 0.1209
+2026-11-03 15:46:38,160 [INFO] User issued feedback: CANNOT_LINK between items 784 and 943
+2026-11-03 15:46:52,076 [INFO] Move 61: ARI = 0.1637
+2026-11-03 15:46:52,087 [INFO] User issued feedback: CANNOT_LINK between items 104 and 321
+2026-11-03 15:47:05,816 [INFO] Move 62: ARI = 0.1539
+2026-11-03 15:47:05,828 [INFO] User issued feedback: CANNOT_LINK between items 348 and 830
+2026-11-03 15:47:19,793 [INFO] Move 63: ARI = 0.1237
+2026-11-03 15:47:19,807 [INFO] User issued feedback: MUST_LINK between items 151 and 780
+2026-11-03 15:47:33,570 [INFO] Move 64: ARI = 0.1388
+2026-11-03 15:47:33,583 [INFO] User issued feedback: CANNOT_LINK between items 334 and 667
+2026-11-03 15:47:47,750 [INFO] Move 65: ARI = 0.1389
+2026-11-03 15:47:47,761 [INFO] User issued feedback: MUST_LINK between items 350 and 588
+2026-11-03 15:48:01,821 [INFO] Move 66: ARI = 0.1403
+2026-11-03 15:48:01,836 [INFO] User issued feedback: MUST_LINK between items 91 and 508
+2026-11-03 15:48:16,150 [INFO] Move 67: ARI = 0.1596
+2026-11-03 15:48:16,164 [INFO] User issued feedback: CANNOT_LINK between items 63 and 968
+2026-11-03 15:48:44,689 [INFO] Move 68: ARI = 0.1122
+2026-11-03 15:48:44,714 [INFO] User issued feedback: CANNOT_LINK between items 412 and 798
+2026-11-03 15:49:16,978 [INFO] Move 69: ARI = 0.1117
+2026-11-03 15:49:16,996 [INFO] User issued feedback: CANNOT_LINK between items 554 and 584
+2026-11-03 15:49:46,603 [INFO] Move 70: ARI = 0.1977
+2026-11-03 15:49:46,632 [INFO] User issued feedback: MUST_LINK between items 293 and 962
+2026-11-03 15:50:15,386 [INFO] Move 71: ARI = 0.1445
+2026-11-03 15:50:15,404 [INFO] User issued feedback: MUST_LINK between items 32 and 88
+2026-11-03 15:50:47,308 [INFO] Move 72: ARI = 0.1951
+2026-11-03 15:50:47,327 [INFO] User issued feedback: CANNOT_LINK between items 254 and 637
+2026-11-03 15:51:17,210 [INFO] Move 73: ARI = 0.1608
+2026-11-03 15:51:17,240 [INFO] User issued feedback: MUST_LINK between items 582 and 795
+2026-11-03 15:51:47,814 [INFO] Move 74: ARI = 0.1579
+2026-11-03 15:51:47,831 [INFO] User issued feedback: MUST_LINK between items 306 and 656
+2026-11-03 15:52:19,581 [INFO] Move 75: ARI = 0.1535
+2026-11-03 15:52:19,598 [INFO] User issued feedback: CANNOT_LINK between items 672 and 716
+2026-11-03 15:52:52,095 [INFO] Move 76: ARI = 0.1687
+2026-11-03 15:52:52,118 [INFO] User issued feedback: MUST_LINK between items 458 and 590
+2026-11-03 15:53:22,761 [INFO] Move 77: ARI = 0.1771
+2026-11-03 15:53:22,779 [INFO] User issued feedback: MUST_LINK between items 215 and 744
+2026-11-03 15:53:54,651 [INFO] Move 78: ARI = 0.1476
+2026-11-03 15:53:54,670 [INFO] User issued feedback: MUST_LINK between items 449 and 617
+2026-11-03 15:54:33,010 [INFO] Move 79: ARI = 0.1747
+2026-11-03 15:54:33,029 [INFO] User issued feedback: MUST_LINK between items 378 and 858
+2026-11-03 15:55:05,362 [INFO] Move 80: ARI = 0.1562
+2026-11-03 15:55:05,379 [INFO] User issued feedback: CANNOT_LINK between items 31 and 701
+2026-11-03 15:55:35,973 [INFO] Move 81: ARI = 0.1723
+2026-11-03 15:55:36,004 [INFO] User issued feedback: CANNOT_LINK between items 613 and 690
+2026-11-03 15:56:06,653 [INFO] Move 82: ARI = 0.1856
+2026-11-03 15:56:06,670 [INFO] User issued feedback: CANNOT_LINK between items 544 and 878
+2026-11-03 15:56:37,251 [INFO] Move 83: ARI = 0.1595
+2026-11-03 15:56:37,267 [INFO] User issued feedback: MUST_LINK between items 69 and 986
+2026-11-03 15:57:06,715 [INFO] Move 84: ARI = 0.1630
+2026-11-03 15:57:06,731 [INFO] User issued feedback: MUST_LINK between items 548 and 549
+2026-11-03 15:57:41,516 [INFO] Move 85: ARI = 0.1646
+2026-11-03 15:57:41,532 [INFO] User issued feedback: CANNOT_LINK between items 13 and 346
+2026-11-03 15:58:18,555 [INFO] Move 86: ARI = 0.1630
+2026-11-03 15:58:18,572 [INFO] User issued feedback: CANNOT_LINK between items 586 and 735
+2026-11-03 15:58:57,934 [INFO] Move 87: ARI = 0.1819
+2026-11-03 15:58:57,952 [INFO] User issued feedback: MUST_LINK between items 489 and 849
+2026-11-03 15:59:35,957 [INFO] Move 88: ARI = 0.1705
+2026-11-03 15:59:35,973 [INFO] User issued feedback: MUST_LINK between items 364 and 365
+2026-11-03 16:00:10,442 [INFO] Move 89: ARI = 0.1768
+2026-11-03 16:00:10,460 [INFO] User issued feedback: CANNOT_LINK between items 339 and 473
+2026-11-03 16:00:43,141 [INFO] Move 90: ARI = 0.1678
+2026-11-03 16:00:43,164 [INFO] User issued feedback: MUST_LINK between items 904 and 981
+2026-11-03 16:01:17,020 [INFO] Move 91: ARI = 0.1884
+2026-11-03 16:01:17,037 [INFO] User issued feedback: CANNOT_LINK between items 675 and 858
+2026-11-03 16:01:49,453 [INFO] Move 92: ARI = 0.1940
+2026-11-03 16:01:49,470 [INFO] User issued feedback: CANNOT_LINK between items 613 and 773
+2026-11-03 16:02:19,786 [INFO] Move 93: ARI = 0.1665
+2026-11-03 16:02:19,802 [INFO] User issued feedback: MUST_LINK between items 359 and 988
+2026-11-03 16:02:52,067 [INFO] Move 94: ARI = 0.1871
+2026-11-03 16:02:52,086 [INFO] User issued feedback: CANNOT_LINK between items 215 and 414
+2026-11-03 16:03:23,328 [INFO] Move 95: ARI = 0.1745
+2026-11-03 16:03:23,351 [INFO] User issued feedback: CANNOT_LINK between items 240 and 554
+2026-11-03 16:03:55,527 [INFO] Move 96: ARI = 0.1681
+2026-11-03 16:03:55,552 [INFO] User issued feedback: MUST_LINK between items 283 and 603
+2026-11-03 16:04:26,734 [INFO] Move 97: ARI = 0.1542
+2026-11-03 16:04:26,751 [INFO] User issued feedback: MUST_LINK between items 577 and 881
+2026-11-03 16:04:56,669 [INFO] Move 98: ARI = 0.2015
+2026-11-03 16:04:56,685 [INFO] User issued feedback: CANNOT_LINK between items 371 and 975
+2026-11-03 16:05:20,837 [INFO] Move 99: ARI = 0.2059
+2026-11-03 16:05:20,848 [INFO] User issued feedback: MUST_LINK between items 5 and 653
+2026-11-03 16:05:35,717 [INFO] Move 100: ARI = 0.1860
+2026-11-03 16:05:35,722 [WARNING] Maximum moves reached without hitting target accuracy.
+2026-11-03 16:05:35,754 [INFO] Saved history to C:\Users\happy\Downloads\HGDE\results\history-lowrank-color-2026-11-03-16-05-35.json
+2026-11-03 18:38:55,591 [INFO] Initializing data ingestion...
+2026-11-03 18:38:56,184 [INFO] Loaded LanceDB embeddings matrix. Shape: (1000, 1024)
+2026-11-03 18:38:56,201 [INFO] Embeddings (1000, 1024), ground truth classes: 10, labels: [0 1 2 3 4 5 6 7 8 9]
+2026-11-03 18:39:08,653 [INFO] Starting active learning loop...
+2026-11-03 18:39:13,822 [INFO] Move 0: ARI = 0.1076
+2026-11-03 18:39:13,850 [INFO] User issued feedback: MUST_LINK between items 303 and 928
+2026-11-03 18:39:19,232 [INFO] Move 1: ARI = 0.1070
+2026-11-03 18:39:19,260 [INFO] User issued feedback: MUST_LINK between items 261 and 735
+2026-11-03 18:39:23,584 [INFO] Move 2: ARI = 0.1058
+2026-11-03 18:39:23,611 [INFO] User issued feedback: MUST_LINK between items 308 and 992
+2026-11-03 18:39:27,417 [INFO] Move 3: ARI = 0.0867
+2026-11-03 18:39:27,453 [INFO] User issued feedback: CANNOT_LINK between items 743 and 906
+2026-11-03 18:39:39,069 [INFO] Move 4: ARI = 0.1038
+2026-11-03 18:39:39,095 [INFO] User issued feedback: MUST_LINK between items 80 and 528
+2026-11-03 18:39:52,231 [INFO] Move 5: ARI = 0.0926
+2026-11-03 18:39:52,257 [INFO] User issued feedback: CANNOT_LINK between items 487 and 889
+2026-11-03 18:40:17,791 [INFO] Move 6: ARI = 0.1230
+2026-11-03 18:40:17,817 [INFO] User issued feedback: CANNOT_LINK between items 181 and 541
+2026-11-03 18:40:40,726 [INFO] Move 7: ARI = 0.0926
+2026-11-03 18:40:40,750 [INFO] User issued feedback: CANNOT_LINK between items 66 and 167
+2026-11-03 18:41:00,646 [INFO] Move 8: ARI = 0.0959
+2026-11-03 18:41:00,671 [INFO] User issued feedback: MUST_LINK between items 294 and 444
+2026-11-03 18:41:22,655 [INFO] Move 9: ARI = 0.0321
+2026-11-03 18:41:22,682 [INFO] User issued feedback: CANNOT_LINK between items 798 and 956
+2026-11-03 18:41:47,589 [INFO] Move 10: ARI = 0.0490
+2026-11-03 18:41:47,614 [INFO] User issued feedback: CANNOT_LINK between items 231 and 495
+2026-11-03 18:42:10,556 [INFO] Move 11: ARI = 0.0616
+2026-11-03 18:42:10,574 [INFO] User issued feedback: CANNOT_LINK between items 109 and 716
+2026-11-03 18:42:22,851 [INFO] Move 12: ARI = 0.0662
+2026-11-03 18:42:22,864 [INFO] User issued feedback: MUST_LINK between items 666 and 768
+2026-11-03 18:42:38,224 [INFO] Move 13: ARI = 0.0434
+2026-11-03 18:42:38,253 [INFO] User issued feedback: MUST_LINK between items 96 and 205
+2026-11-03 18:43:04,800 [INFO] Move 14: ARI = 0.0456
+2026-11-03 18:43:04,828 [INFO] User issued feedback: CANNOT_LINK between items 4 and 689
+2026-11-03 18:43:31,041 [INFO] Move 15: ARI = 0.0636
+2026-11-03 18:43:31,068 [INFO] User issued feedback: CANNOT_LINK between items 564 and 695
+2026-11-03 18:43:56,913 [INFO] Move 16: ARI = 0.0531
+2026-11-03 18:43:56,948 [INFO] User issued feedback: MUST_LINK between items 18 and 508
+2026-11-03 18:44:22,344 [INFO] Move 17: ARI = 0.0695
+2026-11-03 18:44:22,372 [INFO] User issued feedback: CANNOT_LINK between items 215 and 925
+2026-11-03 18:44:36,762 [INFO] Move 18: ARI = 0.0666
+2026-11-03 18:44:36,790 [INFO] User issued feedback: CANNOT_LINK between items 867 and 954
+2026-11-03 18:44:39,719 [INFO] Move 19: ARI = 0.0666
+2026-11-03 18:44:39,747 [INFO] User issued feedback: CANNOT_LINK between items 245 and 867
+2026-11-03 18:44:42,254 [INFO] Move 20: ARI = 0.0666
+2026-11-03 18:44:42,281 [INFO] User issued feedback: CANNOT_LINK between items 663 and 980
+2026-11-03 18:44:44,688 [INFO] Move 21: ARI = 0.0666
+2026-11-03 18:44:44,715 [INFO] User issued feedback: MUST_LINK between items 120 and 844
+2026-11-03 18:44:47,174 [INFO] Move 22: ARI = 0.0666
+2026-11-03 18:44:47,201 [INFO] User issued feedback: CANNOT_LINK between items 522 and 598
+2026-11-03 18:44:49,743 [INFO] Move 23: ARI = 0.0666
+2026-11-03 18:44:49,774 [INFO] User issued feedback: CANNOT_LINK between items 398 and 814
+2026-11-03 18:44:52,199 [INFO] Move 24: ARI = 0.0666
+2026-11-03 18:44:52,226 [INFO] User issued feedback: CANNOT_LINK between items 228 and 933
+2026-11-03 18:44:54,690 [INFO] Move 25: ARI = 0.0666
+2026-11-03 18:44:54,715 [INFO] User issued feedback: CANNOT_LINK between items 162 and 253
+2026-11-03 18:44:56,977 [INFO] Move 26: ARI = 0.0666
+2026-11-03 18:44:56,997 [INFO] User issued feedback: CANNOT_LINK between items 29 and 31
+2026-11-03 18:44:58,871 [INFO] Move 27: ARI = 0.0666
+2026-11-03 18:44:58,890 [INFO] User issued feedback: MUST_LINK between items 348 and 672
+2026-11-03 18:45:00,784 [INFO] Move 28: ARI = 0.0666
+2026-11-03 18:45:00,803 [INFO] User issued feedback: CANNOT_LINK between items 130 and 889
+2026-11-03 18:45:02,586 [INFO] Move 29: ARI = 0.0666
+2026-11-03 18:45:02,606 [INFO] User issued feedback: CANNOT_LINK between items 100 and 453
+2026-11-03 18:45:04,446 [INFO] Move 30: ARI = 0.0666
+2026-11-03 18:45:04,468 [INFO] User issued feedback: MUST_LINK between items 47 and 799
+2026-11-03 18:45:06,241 [INFO] Move 31: ARI = 0.0666
+2026-11-03 18:45:06,261 [INFO] User issued feedback: CANNOT_LINK between items 33 and 373
+2026-11-03 18:45:08,047 [INFO] Move 32: ARI = 0.0666
+2026-11-03 18:45:08,067 [INFO] User issued feedback: CANNOT_LINK between items 114 and 613
+2026-11-03 18:45:10,980 [INFO] Move 33: ARI = 0.0666
+2026-11-03 18:45:10,999 [INFO] User issued feedback: MUST_LINK between items 13 and 415
+2026-11-03 18:45:14,146 [INFO] Move 34: ARI = 0.0666
+2026-11-03 18:45:14,165 [INFO] User issued feedback: CANNOT_LINK between items 305 and 550
+2026-11-03 18:45:17,062 [INFO] Move 35: ARI = 0.0666
+2026-11-03 18:45:17,082 [INFO] User issued feedback: CANNOT_LINK between items 474 and 984
+2026-11-03 18:45:20,289 [INFO] Move 36: ARI = 0.0666
+2026-11-03 18:45:20,310 [INFO] User issued feedback: MUST_LINK between items 545 and 640
+2026-11-03 18:45:23,406 [INFO] Move 37: ARI = 0.0666
+2026-11-03 18:45:23,426 [INFO] User issued feedback: CANNOT_LINK between items 343 and 703
+2026-11-03 18:45:26,655 [INFO] Move 38: ARI = 0.0666
+2026-11-03 18:45:26,674 [INFO] User issued feedback: CANNOT_LINK between items 168 and 954
+2026-11-03 18:45:29,948 [INFO] Move 39: ARI = 0.0666
+2026-11-03 18:45:29,967 [INFO] User issued feedback: CANNOT_LINK between items 400 and 777
+2026-11-03 18:45:33,234 [INFO] Move 40: ARI = 0.0666
+2026-11-03 18:45:33,252 [INFO] User issued feedback: MUST_LINK between items 84 and 708
+2026-11-03 18:45:36,281 [INFO] Move 41: ARI = 0.0666
+2026-11-03 18:45:36,308 [INFO] User issued feedback: CANNOT_LINK between items 380 and 867
+2026-11-03 18:45:39,523 [INFO] Move 42: ARI = 0.0666
+2026-11-03 18:45:39,541 [INFO] User issued feedback: CANNOT_LINK between items 47 and 457
+2026-11-03 18:45:42,647 [INFO] Move 43: ARI = 0.0666
+2026-11-03 18:45:42,667 [INFO] User issued feedback: CANNOT_LINK between items 22 and 871
+2026-11-03 18:45:45,959 [INFO] Move 44: ARI = 0.0666
+2026-11-03 18:45:45,979 [INFO] User issued feedback: MUST_LINK between items 327 and 733
+2026-11-03 18:45:49,130 [INFO] Move 45: ARI = 0.0666
+2026-11-03 18:45:49,149 [INFO] User issued feedback: CANNOT_LINK between items 309 and 334
+2026-11-03 18:45:52,569 [INFO] Move 46: ARI = 0.0666
+2026-11-03 18:45:52,589 [INFO] User issued feedback: CANNOT_LINK between items 263 and 364
+2026-11-03 18:45:56,037 [INFO] Move 47: ARI = 0.0666
+2026-11-03 18:45:56,059 [INFO] User issued feedback: CANNOT_LINK between items 142 and 962
+2026-11-03 18:45:59,851 [INFO] Move 48: ARI = 0.0666
+2026-11-03 18:45:59,870 [INFO] User issued feedback: CANNOT_LINK between items 90 and 406
+2026-11-03 18:46:03,042 [INFO] Move 49: ARI = 0.0666
+2026-11-03 18:46:03,062 [INFO] User issued feedback: CANNOT_LINK between items 27 and 335
+2026-11-03 18:46:06,317 [INFO] Move 50: ARI = 0.0666
+2026-11-03 18:46:06,317 [WARNING] Maximum moves reached without hitting target accuracy.
+2026-11-03 18:46:06,320 [INFO] Saved history to C:\Users\happy\Downloads\HGDE\results\history-lowrank-color-2026-11-03-18-46-06.json
+2026-11-04 19:37:48,365 [INFO] Initializing data ingestion...
+2026-11-04 19:37:48,909 [INFO] Loaded LanceDB embeddings matrix. Shape: (1000, 1024)
+2026-11-04 19:37:48,936 [INFO] Embeddings (1000, 1024), ground truth classes: 10, labels: [0 1 2 3 4 5 6 7 8 9]
+2026-11-04 19:38:04,958 [INFO] Starting active learning loop...
+2026-11-04 19:38:10,123 [INFO] Move 0: ARI = 0.1076
+2026-11-04 19:38:10,144 [INFO] User issued feedback: MUST_LINK between items 303 and 928
+2026-11-04 19:38:11,039 [INFO] Move 1: ARI = 0.0743
+2026-11-04 19:38:11,114 [INFO] User issued feedback: MUST_LINK between items 303 and 597
+2026-11-04 19:38:11,374 [INFO] Move 2: ARI = 0.0501
+2026-11-04 19:38:11,390 [INFO] User issued feedback: MUST_LINK between items 249 and 896
+2026-11-04 19:38:11,611 [INFO] Move 3: ARI = 0.0559
+2026-11-04 19:38:11,628 [INFO] User issued feedback: CANNOT_LINK between items 7 and 463
+2026-11-04 19:38:11,863 [INFO] Move 4: ARI = 0.0531
+2026-11-04 19:38:11,878 [INFO] User issued feedback: MUST_LINK between items 255 and 466
+2026-11-04 19:38:12,098 [INFO] Move 5: ARI = 0.0688
+2026-11-04 19:38:12,115 [INFO] User issued feedback: CANNOT_LINK between items 184 and 942
+2026-11-04 19:38:12,447 [INFO] Move 6: ARI = 0.0264
+2026-11-04 19:38:12,464 [INFO] User issued feedback: MUST_LINK between items 273 and 690
+2026-11-04 19:38:12,720 [INFO] Move 7: ARI = 0.0536
+2026-11-04 19:38:12,736 [INFO] User issued feedback: MUST_LINK between items 392 and 633
+2026-11-04 19:38:13,003 [INFO] Move 8: ARI = 0.0521
+2026-11-04 19:38:13,016 [INFO] User issued feedback: CANNOT_LINK between items 51 and 768
+2026-11-04 19:38:13,293 [INFO] Move 9: ARI = 0.0100
+2026-11-04 19:38:13,318 [INFO] User issued feedback: CANNOT_LINK between items 534 and 861
+2026-11-04 19:38:13,559 [INFO] Move 10: ARI = 0.0164
+2026-11-04 19:38:13,573 [INFO] User issued feedback: MUST_LINK between items 169 and 297
+2026-11-04 19:38:13,805 [INFO] Move 11: ARI = 0.0168
+2026-11-04 19:38:13,822 [INFO] User issued feedback: CANNOT_LINK between items 419 and 909
+2026-11-04 19:38:14,058 [INFO] Move 12: ARI = 0.0122
+2026-11-04 19:38:14,073 [INFO] User issued feedback: MUST_LINK between items 586 and 860
+2026-11-04 19:38:14,374 [INFO] Move 13: ARI = 0.0181
+2026-11-04 19:38:14,391 [INFO] User issued feedback: CANNOT_LINK between items 269 and 868
+2026-11-04 19:38:14,627 [INFO] Move 14: ARI = 0.0189
+2026-11-04 19:38:14,642 [INFO] User issued feedback: CANNOT_LINK between items 685 and 913
+2026-11-04 19:38:14,869 [INFO] Move 15: ARI = 0.0201
+2026-11-04 19:38:14,884 [INFO] User issued feedback: CANNOT_LINK between items 23 and 251
+2026-11-04 19:38:15,115 [INFO] Move 16: ARI = 0.0194
+2026-11-04 19:38:15,184 [INFO] User issued feedback: CANNOT_LINK between items 1 and 959
+2026-11-04 19:38:15,485 [INFO] Move 17: ARI = 0.0188
+2026-11-04 19:38:15,505 [INFO] User issued feedback: CANNOT_LINK between items 353 and 754
+2026-11-04 19:38:15,774 [INFO] Move 18: ARI = 0.0223
+2026-11-04 19:38:15,788 [INFO] User issued feedback: MUST_LINK between items 89 and 433
+2026-11-04 19:38:16,048 [INFO] Move 19: ARI = 0.0786
+2026-11-04 19:38:16,062 [INFO] User issued feedback: MUST_LINK between items 152 and 621
+2026-11-04 19:38:16,332 [INFO] Move 20: ARI = 0.0806
+2026-11-04 19:38:16,346 [INFO] User issued feedback: CANNOT_LINK between items 524 and 689
+2026-11-04 19:38:16,577 [INFO] Move 21: ARI = 0.0291
+2026-11-04 19:38:16,595 [INFO] User issued feedback: CANNOT_LINK between items 714 and 890
+2026-11-04 19:38:16,868 [INFO] Move 22: ARI = 0.0195
+2026-11-04 19:38:16,884 [INFO] User issued feedback: CANNOT_LINK between items 244 and 550
+2026-11-04 19:38:17,138 [INFO] Move 23: ARI = 0.0840
+2026-11-04 19:38:17,152 [INFO] User issued feedback: CANNOT_LINK between items 301 and 814
+2026-11-04 19:38:17,418 [INFO] Move 24: ARI = 0.0201
+2026-11-04 19:38:17,433 [INFO] User issued feedback: MUST_LINK between items 4 and 211
+2026-11-04 19:38:17,701 [INFO] Move 25: ARI = 0.0794
+2026-11-04 19:38:17,717 [INFO] User issued feedback: MUST_LINK between items 288 and 823
+2026-11-04 19:38:18,005 [INFO] Move 26: ARI = 0.0220
+2026-11-04 19:38:18,022 [INFO] User issued feedback: MUST_LINK between items 123 and 627
+2026-11-04 19:38:18,272 [INFO] Move 27: ARI = 0.0423
+2026-11-04 19:38:18,291 [INFO] User issued feedback: MUST_LINK between items 885 and 971
+2026-11-04 19:38:18,555 [INFO] Move 28: ARI = 0.0382
+2026-11-04 19:38:18,574 [INFO] User issued feedback: CANNOT_LINK between items 249 and 583
+2026-11-04 19:38:18,849 [INFO] Move 29: ARI = 0.0505
+2026-11-04 19:38:18,863 [INFO] User issued feedback: MUST_LINK between items 26 and 832
+2026-11-04 19:38:19,157 [INFO] Move 30: ARI = 0.0557
+2026-11-04 19:38:19,172 [INFO] User issued feedback: CANNOT_LINK between items 315 and 355
+2026-11-04 19:38:19,451 [INFO] Move 31: ARI = 0.0409
+2026-11-04 19:38:19,469 [INFO] User issued feedback: MUST_LINK between items 33 and 195
+2026-11-04 19:38:19,731 [INFO] Move 32: ARI = 0.0625
+2026-11-04 19:38:19,745 [INFO] User issued feedback: CANNOT_LINK between items 106 and 118
+2026-11-04 19:38:20,004 [INFO] Move 33: ARI = 0.0915
+2026-11-04 19:38:20,018 [INFO] User issued feedback: MUST_LINK between items 89 and 574
+2026-11-04 19:38:20,286 [INFO] Move 34: ARI = 0.0829
+2026-11-04 19:38:20,300 [INFO] User issued feedback: MUST_LINK between items 378 and 900
+2026-11-04 19:38:20,554 [INFO] Move 35: ARI = 0.0665
+2026-11-04 19:38:20,570 [INFO] User issued feedback: CANNOT_LINK between items 853 and 872
+2026-11-04 19:38:20,848 [INFO] Move 36: ARI = 0.0280
+2026-11-04 19:38:20,866 [INFO] User issued feedback: CANNOT_LINK between items 476 and 948
+2026-11-04 19:38:21,125 [INFO] Move 37: ARI = 0.0342
+2026-11-04 19:38:21,140 [INFO] User issued feedback: MUST_LINK between items 52 and 831
+2026-11-04 19:38:21,406 [INFO] Move 38: ARI = 0.0379
+2026-11-04 19:38:21,422 [INFO] User issued feedback: CANNOT_LINK between items 93 and 385
+2026-11-04 19:38:21,684 [INFO] Move 39: ARI = 0.0950
+2026-11-04 19:38:21,702 [INFO] User issued feedback: MUST_LINK between items 62 and 965
+2026-11-04 19:38:21,971 [INFO] Move 40: ARI = 0.0914
+2026-11-04 19:38:22,013 [INFO] User issued feedback: MUST_LINK between items 23 and 508
+2026-11-04 19:38:22,302 [INFO] Move 41: ARI = 0.0346
+2026-11-04 19:38:22,317 [INFO] User issued feedback: CANNOT_LINK between items 528 and 633
+2026-11-04 19:38:22,555 [INFO] Move 42: ARI = 0.0781
+2026-11-04 19:38:22,572 [INFO] User issued feedback: CANNOT_LINK between items 126 and 788
+2026-11-04 19:38:22,844 [INFO] Move 43: ARI = 0.1047
+2026-11-04 19:38:22,858 [INFO] User issued feedback: MUST_LINK between items 245 and 406
+2026-11-04 19:38:23,126 [INFO] Move 44: ARI = 0.0830
+2026-11-04 19:38:23,142 [INFO] User issued feedback: MUST_LINK between items 338 and 975
+2026-11-04 19:38:23,412 [INFO] Move 45: ARI = 0.1034
+2026-11-04 19:38:23,426 [INFO] User issued feedback: CANNOT_LINK between items 52 and 708
+2026-11-04 19:38:23,703 [INFO] Move 46: ARI = 0.0400
+2026-11-04 19:38:23,722 [INFO] User issued feedback: CANNOT_LINK between items 151 and 573
+2026-11-04 19:38:24,025 [INFO] Move 47: ARI = 0.0877
+2026-11-04 19:38:24,042 [INFO] User issued feedback: CANNOT_LINK between items 761 and 830
+2026-11-04 19:38:24,359 [INFO] Move 48: ARI = 0.0832
+2026-11-04 19:38:24,376 [INFO] User issued feedback: MUST_LINK between items 256 and 544
+2026-11-04 19:38:24,668 [INFO] Move 49: ARI = 0.0852
+2026-11-04 19:38:24,695 [INFO] User issued feedback: CANNOT_LINK between items 5 and 263
+2026-11-04 19:38:24,978 [INFO] Move 50: ARI = 0.0463
+2026-11-04 19:38:24,992 [INFO] User issued feedback: CANNOT_LINK between items 265 and 316
+2026-11-04 19:38:25,300 [INFO] Move 51: ARI = 0.1005
+2026-11-04 19:38:25,317 [INFO] User issued feedback: MUST_LINK between items 714 and 867
+2026-11-04 19:38:25,605 [INFO] Move 52: ARI = 0.0789
+2026-11-04 19:38:25,621 [INFO] User issued feedback: MUST_LINK between items 525 and 728
+2026-11-04 19:38:25,982 [INFO] Move 53: ARI = 0.0347
+2026-11-04 19:38:26,005 [INFO] User issued feedback: MUST_LINK between items 802 and 993
+2026-11-04 19:38:26,393 [INFO] Move 54: ARI = 0.1060
+2026-11-04 19:38:26,409 [INFO] User issued feedback: MUST_LINK between items 130 and 955
+2026-11-04 19:38:26,700 [INFO] Move 55: ARI = 0.0481
+2026-11-04 19:38:26,716 [INFO] User issued feedback: CANNOT_LINK between items 319 and 873
+2026-11-04 19:38:26,988 [INFO] Move 56: ARI = 0.1241
+2026-11-04 19:38:27,003 [INFO] User issued feedback: MUST_LINK between items 505 and 709
+2026-11-04 19:38:27,269 [INFO] Move 57: ARI = 0.1201
+2026-11-04 19:38:27,287 [INFO] User issued feedback: MUST_LINK between items 282 and 294
+2026-11-04 19:38:27,550 [INFO] Move 58: ARI = 0.1479
+2026-11-04 19:38:27,564 [INFO] User issued feedback: MUST_LINK between items 248 and 492
+2026-11-04 19:38:27,801 [INFO] Move 59: ARI = 0.0803
+2026-11-04 19:38:27,820 [INFO] User issued feedback: CANNOT_LINK between items 271 and 539
+2026-11-04 19:38:28,112 [INFO] Move 60: ARI = 0.1520
+2026-11-04 19:38:28,128 [INFO] User issued feedback: MUST_LINK between items 426 and 749
+2026-11-04 19:38:28,416 [INFO] Move 61: ARI = 0.1557
+2026-11-04 19:38:28,432 [INFO] User issued feedback: CANNOT_LINK between items 311 and 347
+2026-11-04 19:38:28,669 [INFO] Move 62: ARI = 0.0788
+2026-11-04 19:38:28,683 [INFO] User issued feedback: MUST_LINK between items 291 and 644
+2026-11-04 19:38:28,947 [INFO] Move 63: ARI = 0.1400
+2026-11-04 19:38:28,961 [INFO] User issued feedback: CANNOT_LINK between items 568 and 752
+2026-11-04 19:38:29,217 [INFO] Move 64: ARI = 0.1414
+2026-11-04 19:38:29,231 [INFO] User issued feedback: CANNOT_LINK between items 50 and 794
+2026-11-04 19:38:29,487 [INFO] Move 65: ARI = 0.0891
+2026-11-04 19:38:29,501 [INFO] User issued feedback: CANNOT_LINK between items 483 and 898
+2026-11-04 19:38:29,795 [INFO] Move 66: ARI = 0.1293
+2026-11-04 19:38:29,809 [INFO] User issued feedback: MUST_LINK between items 157 and 297
+2026-11-04 19:38:30,050 [INFO] Move 67: ARI = 0.0913
+2026-11-04 19:38:30,069 [INFO] User issued feedback: CANNOT_LINK between items 144 and 379
+2026-11-04 19:38:30,335 [INFO] Move 68: ARI = 0.0943
+2026-11-04 19:38:30,351 [INFO] User issued feedback: MUST_LINK between items 390 and 427
+2026-11-04 19:38:30,597 [INFO] Move 69: ARI = 0.0922
+2026-11-04 19:38:30,611 [INFO] User issued feedback: MUST_LINK between items 213 and 955
+2026-11-04 19:38:30,859 [INFO] Move 70: ARI = 0.0894
+2026-11-04 19:38:30,873 [INFO] User issued feedback: CANNOT_LINK between items 570 and 959
+2026-11-04 19:38:31,127 [INFO] Move 71: ARI = 0.0922
+2026-11-04 19:38:31,145 [INFO] User issued feedback: MUST_LINK between items 82 and 707
+2026-11-04 19:38:31,444 [INFO] Move 72: ARI = 0.0984
+2026-11-04 19:38:31,458 [INFO] User issued feedback: MUST_LINK between items 216 and 667
+2026-11-04 19:38:31,718 [INFO] Move 73: ARI = 0.0999
+2026-11-04 19:38:31,732 [INFO] User issued feedback: MUST_LINK between items 531 and 805
+2026-11-04 19:38:31,992 [INFO] Move 74: ARI = 0.1475
+2026-11-04 19:38:32,005 [INFO] User issued feedback: CANNOT_LINK between items 700 and 841
+2026-11-04 19:38:32,255 [INFO] Move 75: ARI = 0.0982
+2026-11-04 19:38:32,275 [INFO] User issued feedback: CANNOT_LINK between items 144 and 255
+2026-11-04 19:38:32,532 [INFO] Move 76: ARI = 0.1065
+2026-11-04 19:38:32,548 [INFO] User issued feedback: MUST_LINK between items 61 and 514
+2026-11-04 19:38:32,794 [INFO] Move 77: ARI = 0.0991
+2026-11-04 19:38:32,809 [INFO] User issued feedback: CANNOT_LINK between items 557 and 836
+2026-11-04 19:38:33,082 [INFO] Move 78: ARI = 0.0990
+2026-11-04 19:38:33,099 [INFO] User issued feedback: CANNOT_LINK between items 73 and 570
+2026-11-04 19:38:33,388 [INFO] Move 79: ARI = 0.1008
+2026-11-04 19:38:33,405 [INFO] User issued feedback: CANNOT_LINK between items 176 and 190
+2026-11-04 19:38:33,671 [INFO] Move 80: ARI = 0.1543
+2026-11-04 19:38:33,685 [INFO] User issued feedback: MUST_LINK between items 631 and 645
+2026-11-04 19:38:33,949 [INFO] Move 81: ARI = 0.1633
+2026-11-04 19:38:33,964 [INFO] User issued feedback: MUST_LINK between items 309 and 701
+2026-11-04 19:38:34,212 [INFO] Move 82: ARI = 0.0957
+2026-11-04 19:38:34,270 [INFO] User issued feedback: MUST_LINK between items 672 and 708
+2026-11-04 19:38:34,531 [INFO] Move 83: ARI = 0.1001
+2026-11-04 19:38:34,545 [INFO] User issued feedback: CANNOT_LINK between items 19 and 701
+2026-11-04 19:38:34,811 [INFO] Move 84: ARI = 0.0979
+2026-11-04 19:38:34,830 [INFO] User issued feedback: CANNOT_LINK between items 419 and 995
+2026-11-04 19:38:35,109 [INFO] Move 85: ARI = 0.1475
+2026-11-04 19:38:35,125 [INFO] User issued feedback: MUST_LINK between items 234 and 474
+2026-11-04 19:38:35,399 [INFO] Move 86: ARI = 0.1007
+2026-11-04 19:38:35,417 [INFO] User issued feedback: MUST_LINK between items 301 and 575
+2026-11-04 19:38:35,681 [INFO] Move 87: ARI = 0.0957
+2026-11-04 19:38:35,694 [INFO] User issued feedback: MUST_LINK between items 30 and 899
+2026-11-04 19:38:35,941 [INFO] Move 88: ARI = 0.1012
+2026-11-04 19:38:35,955 [INFO] User issued feedback: MUST_LINK between items 452 and 978
+2026-11-04 19:38:36,252 [INFO] Move 89: ARI = 0.0643
+2026-11-04 19:38:36,271 [INFO] User issued feedback: MUST_LINK between items 10 and 763
+2026-11-04 19:38:36,572 [INFO] Move 90: ARI = 0.1241
+2026-11-04 19:38:36,590 [INFO] User issued feedback: CANNOT_LINK between items 451 and 641
+2026-11-04 19:38:36,901 [INFO] Move 91: ARI = 0.1479
+2026-11-04 19:38:36,916 [INFO] User issued feedback: MUST_LINK between items 248 and 647
+2026-11-04 19:38:37,175 [INFO] Move 92: ARI = 0.0991
+2026-11-04 19:38:37,189 [INFO] User issued feedback: CANNOT_LINK between items 500 and 790
+2026-11-04 19:38:37,446 [INFO] Move 93: ARI = 0.0966
+2026-11-04 19:38:37,461 [INFO] User issued feedback: CANNOT_LINK between items 6 and 512
+2026-11-04 19:38:37,723 [INFO] Move 94: ARI = 0.0971
+2026-11-04 19:38:37,737 [INFO] User issued feedback: MUST_LINK between items 207 and 929
+2026-11-04 19:38:37,999 [INFO] Move 95: ARI = 0.0974
+2026-11-04 19:38:38,013 [INFO] User issued feedback: MUST_LINK between items 348 and 931
+2026-11-04 19:38:38,284 [INFO] Move 96: ARI = 0.0956
+2026-11-04 19:38:38,300 [INFO] User issued feedback: CANNOT_LINK between items 465 and 663
+2026-11-04 19:38:38,561 [INFO] Move 97: ARI = 0.0988
+2026-11-04 19:38:38,580 [INFO] User issued feedback: MUST_LINK between items 137 and 393
+2026-11-04 19:38:38,852 [INFO] Move 98: ARI = 0.0694
+2026-11-04 19:38:38,870 [INFO] User issued feedback: CANNOT_LINK between items 81 and 799
+2026-11-04 19:38:39,136 [INFO] Move 99: ARI = 0.1366
+2026-11-04 19:38:39,150 [INFO] User issued feedback: CANNOT_LINK between items 447 and 499
+2026-11-04 19:38:39,417 [INFO] Move 100: ARI = 0.1683
+2026-11-04 19:38:39,417 [WARNING] Maximum moves reached without hitting target accuracy.
+2026-11-04 19:38:39,420 [INFO] Saved history to C:\Users\happy\Downloads\HGDE\results\history-pattern-cv-2026-11-04-19-38-39.json
+2026-11-04 19:40:02,224 [INFO] Initializing data ingestion...
+2026-11-04 19:40:02,332 [INFO] Loaded LanceDB embeddings matrix. Shape: (1000, 1024)
+2026-11-04 19:40:02,344 [INFO] Embeddings (1000, 1024), ground truth classes: 10, labels: [0 1 2 3 4 5 6 7 8 9]
+2026-11-04 19:40:09,522 [INFO] Starting active learning loop...
+2026-11-04 19:40:13,666 [INFO] Move 0: ARI = 0.1076
+2026-11-04 19:40:13,692 [INFO] User issued feedback: MUST_LINK between items 303 and 928
+2026-11-04 19:40:15,515 [INFO] Move 1: ARI = 0.1516
+2026-11-04 19:40:15,550 [INFO] User issued feedback: CANNOT_LINK between items 309 and 890
+2026-11-04 19:40:15,932 [INFO] Move 2: ARI = 0.0207
+2026-11-04 19:40:15,965 [INFO] User issued feedback: CANNOT_LINK between items 23 and 208
+2026-11-04 19:40:16,374 [INFO] Move 3: ARI = 0.0246
+2026-11-04 19:40:16,402 [INFO] User issued feedback: MUST_LINK between items 585 and 886
+2026-11-04 19:40:16,888 [INFO] Move 4: ARI = 0.0223
+2026-11-04 19:40:16,915 [INFO] User issued feedback: CANNOT_LINK between items 488 and 750
+2026-11-04 19:40:17,353 [INFO] Move 5: ARI = 0.0349
+2026-11-04 19:40:17,387 [INFO] User issued feedback: CANNOT_LINK between items 117 and 893
+2026-11-04 19:40:17,841 [INFO] Move 6: ARI = 0.0500
+2026-11-04 19:40:17,885 [INFO] User issued feedback: MUST_LINK between items 649 and 883
+2026-11-04 19:40:18,318 [INFO] Move 7: ARI = 0.0430
+2026-11-04 19:40:18,345 [INFO] User issued feedback: MUST_LINK between items 475 and 631
+2026-11-04 19:40:18,820 [INFO] Move 8: ARI = 0.0409
+2026-11-04 19:40:18,853 [INFO] User issued feedback: MUST_LINK between items 641 and 998
+2026-11-04 19:40:19,300 [INFO] Move 9: ARI = 0.0449
+2026-11-04 19:40:19,326 [INFO] User issued feedback: MUST_LINK between items 339 and 898
+2026-11-04 19:40:19,781 [INFO] Move 10: ARI = 0.0403
+2026-11-04 19:40:19,805 [INFO] User issued feedback: MUST_LINK between items 95 and 238
+2026-11-04 19:40:20,364 [INFO] Move 11: ARI = 0.0499
+2026-11-04 19:40:20,392 [INFO] User issued feedback: MUST_LINK between items 900 and 974
+2026-11-04 19:40:20,895 [INFO] Move 12: ARI = 0.0593
+2026-11-04 19:40:20,919 [INFO] User issued feedback: CANNOT_LINK between items 384 and 871
+2026-11-04 19:40:21,381 [INFO] Move 13: ARI = 0.0922
+2026-11-04 19:40:21,409 [INFO] User issued feedback: MUST_LINK between items 403 and 728
+2026-11-04 19:40:21,899 [INFO] Move 14: ARI = 0.1045
+2026-11-04 19:40:21,933 [INFO] User issued feedback: MUST_LINK between items 7 and 157
+2026-11-04 19:40:22,425 [INFO] Move 15: ARI = 0.0881
+2026-11-04 19:40:22,454 [INFO] User issued feedback: CANNOT_LINK between items 205 and 630
+2026-11-04 19:40:22,906 [INFO] Move 16: ARI = 0.0939
+2026-11-04 19:40:22,933 [INFO] User issued feedback: MUST_LINK between items 350 and 805
+2026-11-04 19:40:23,410 [INFO] Move 17: ARI = 0.0910
+2026-11-04 19:40:23,446 [INFO] User issued feedback: CANNOT_LINK between items 160 and 782
+2026-11-04 19:40:23,881 [INFO] Move 18: ARI = 0.0971
+2026-11-04 19:40:23,910 [INFO] User issued feedback: CANNOT_LINK between items 177 and 537
+2026-11-04 19:40:24,379 [INFO] Move 19: ARI = 0.1013
+2026-11-04 19:40:24,414 [INFO] User issued feedback: MUST_LINK between items 36 and 426
+2026-11-04 19:40:24,914 [INFO] Move 20: ARI = 0.1050
+2026-11-04 19:40:24,938 [INFO] User issued feedback: CANNOT_LINK between items 55 and 125
+2026-11-04 19:40:25,406 [INFO] Move 21: ARI = 0.1075
+2026-11-04 19:40:25,443 [INFO] User issued feedback: CANNOT_LINK between items 499 and 718
+2026-11-04 19:40:25,899 [INFO] Move 22: ARI = 0.1113
+2026-11-04 19:40:25,923 [INFO] User issued feedback: MUST_LINK between items 594 and 742
+2026-11-04 19:40:26,391 [INFO] Move 23: ARI = 0.1384
+2026-11-04 19:40:26,426 [INFO] User issued feedback: MUST_LINK between items 143 and 357
+2026-11-04 19:40:26,968 [INFO] Move 24: ARI = 0.1292
+2026-11-04 19:40:26,996 [INFO] User issued feedback: CANNOT_LINK between items 141 and 376
+2026-11-04 19:40:27,547 [INFO] Move 25: ARI = 0.1216
+2026-11-04 19:40:27,573 [INFO] User issued feedback: CANNOT_LINK between items 381 and 503
+2026-11-04 19:40:28,099 [INFO] Move 26: ARI = 0.1286
+2026-11-04 19:40:28,129 [INFO] User issued feedback: MUST_LINK between items 164 and 660
+2026-11-04 19:40:28,617 [INFO] Move 27: ARI = 0.1433
+2026-11-04 19:40:28,643 [INFO] User issued feedback: CANNOT_LINK between items 18 and 924
+2026-11-04 19:40:29,208 [INFO] Move 28: ARI = 0.1468
+2026-11-04 19:40:29,235 [INFO] User issued feedback: CANNOT_LINK between items 717 and 755
+2026-11-04 19:40:29,720 [INFO] Move 29: ARI = 0.1370
+2026-11-04 19:40:29,744 [INFO] User issued feedback: MUST_LINK between items 251 and 875
+2026-11-04 19:40:30,268 [INFO] Move 30: ARI = 0.1478
+2026-11-04 19:40:30,295 [INFO] User issued feedback: MUST_LINK between items 16 and 721
+2026-11-04 19:40:30,756 [INFO] Move 31: ARI = 0.0903
+2026-11-04 19:40:30,780 [INFO] User issued feedback: CANNOT_LINK between items 573 and 673
+2026-11-04 19:40:31,213 [INFO] Move 32: ARI = 0.0916
+2026-11-04 19:40:31,238 [INFO] User issued feedback: MUST_LINK between items 4 and 322
+2026-11-04 19:40:31,729 [INFO] Move 33: ARI = 0.0965
+2026-11-04 19:40:31,752 [INFO] User issued feedback: CANNOT_LINK between items 402 and 825
+2026-11-04 19:40:32,210 [INFO] Move 34: ARI = 0.1366
+2026-11-04 19:40:32,236 [INFO] User issued feedback: CANNOT_LINK between items 433 and 817
+2026-11-04 19:40:32,670 [INFO] Move 35: ARI = 0.1322
+2026-11-04 19:40:32,695 [INFO] User issued feedback: MUST_LINK between items 105 and 887
+2026-11-04 19:40:33,143 [INFO] Move 36: ARI = 0.1262
+2026-11-04 19:40:33,173 [INFO] User issued feedback: CANNOT_LINK between items 384 and 912
+2026-11-04 19:40:33,651 [INFO] Move 37: ARI = 0.1434
+2026-11-04 19:40:33,677 [INFO] User issued feedback: MUST_LINK between items 406 and 495
+2026-11-04 19:40:34,135 [INFO] Move 38: ARI = 0.1394
+2026-11-04 19:40:34,158 [INFO] User issued feedback: CANNOT_LINK between items 317 and 606
+2026-11-04 19:40:34,665 [INFO] Move 39: ARI = 0.1263
+2026-11-04 19:40:34,690 [INFO] User issued feedback: CANNOT_LINK between items 443 and 551
+2026-11-04 19:40:35,140 [INFO] Move 40: ARI = 0.1434
+2026-11-04 19:40:35,163 [INFO] User issued feedback: MUST_LINK between items 127 and 690
+2026-11-04 19:40:35,711 [INFO] Move 41: ARI = 0.1330
+2026-11-04 19:40:35,737 [INFO] User issued feedback: MUST_LINK between items 548 and 621
+2026-11-04 19:40:36,165 [INFO] Move 42: ARI = 0.1375
+2026-11-04 19:40:36,198 [INFO] User issued feedback: CANNOT_LINK between items 587 and 842
+2026-11-04 19:40:36,685 [INFO] Move 43: ARI = 0.1327
+2026-11-04 19:40:36,711 [INFO] User issued feedback: CANNOT_LINK between items 940 and 976
+2026-11-04 19:40:37,156 [INFO] Move 44: ARI = 0.1422
+2026-11-04 19:40:37,179 [INFO] User issued feedback: CANNOT_LINK between items 268 and 927
+2026-11-04 19:40:37,652 [INFO] Move 45: ARI = 0.1316
+2026-11-04 19:40:37,678 [INFO] User issued feedback: CANNOT_LINK between items 603 and 832
+2026-11-04 19:40:38,127 [INFO] Move 46: ARI = 0.1460
+2026-11-04 19:40:38,151 [INFO] User issued feedback: MUST_LINK between items 586 and 993
+2026-11-04 19:40:38,653 [INFO] Move 47: ARI = 0.1427
+2026-11-04 19:40:38,678 [INFO] User issued feedback: MUST_LINK between items 443 and 729
+2026-11-04 19:40:39,145 [INFO] Move 48: ARI = 0.1499
+2026-11-04 19:40:39,168 [INFO] User issued feedback: CANNOT_LINK between items 22 and 765
+2026-11-04 19:40:39,626 [INFO] Move 49: ARI = 0.1383
+2026-11-04 19:40:39,698 [INFO] User issued feedback: MUST_LINK between items 68 and 345
+2026-11-04 19:40:40,189 [INFO] Move 50: ARI = 0.1443
+2026-11-04 19:40:40,214 [INFO] User issued feedback: MUST_LINK between items 233 and 695
+2026-11-04 19:40:40,669 [INFO] Move 51: ARI = 0.1615
+2026-11-04 19:40:40,696 [INFO] User issued feedback: MUST_LINK between items 135 and 662
+2026-11-04 19:40:41,166 [INFO] Move 52: ARI = 0.1788
+2026-11-04 19:40:41,189 [INFO] User issued feedback: CANNOT_LINK between items 245 and 762
+2026-11-04 19:40:41,637 [INFO] Move 53: ARI = 0.1678
+2026-11-04 19:40:41,662 [INFO] User issued feedback: MUST_LINK between items 54 and 464
+2026-11-04 19:40:42,116 [INFO] Move 54: ARI = 0.1682
+2026-11-04 19:40:42,140 [INFO] User issued feedback: MUST_LINK between items 132 and 625
+2026-11-04 19:40:42,628 [INFO] Move 55: ARI = 0.1704
+2026-11-04 19:40:42,658 [INFO] User issued feedback: MUST_LINK between items 268 and 639
+2026-11-04 19:40:43,099 [INFO] Move 56: ARI = 0.1929
+2026-11-04 19:40:43,122 [INFO] User issued feedback: MUST_LINK between items 67 and 304
+2026-11-04 19:40:43,639 [INFO] Move 57: ARI = 0.2063
+2026-11-04 19:40:43,666 [INFO] User issued feedback: CANNOT_LINK between items 94 and 919
+2026-11-04 19:40:44,096 [INFO] Move 58: ARI = 0.2027
+2026-11-04 19:40:44,119 [INFO] User issued feedback: MUST_LINK between items 127 and 680
+2026-11-04 19:40:44,580 [INFO] Move 59: ARI = 0.2044
+2026-11-04 19:40:44,606 [INFO] User issued feedback: CANNOT_LINK between items 265 and 298
+2026-11-04 19:40:44,999 [INFO] Move 60: ARI = 0.2213
+2026-11-04 19:40:45,021 [INFO] User issued feedback: MUST_LINK between items 481 and 871
+2026-11-04 19:40:45,464 [INFO] Move 61: ARI = 0.2227
+2026-11-04 19:40:45,497 [INFO] User issued feedback: CANNOT_LINK between items 228 and 671
+2026-11-04 19:40:45,929 [INFO] Move 62: ARI = 0.2302
+2026-11-04 19:40:45,953 [INFO] User issued feedback: MUST_LINK between items 348 and 918
+2026-11-04 19:40:46,414 [INFO] Move 63: ARI = 0.2285
+2026-11-04 19:40:46,446 [INFO] User issued feedback: MUST_LINK between items 24 and 926
+2026-11-04 19:40:46,891 [INFO] Move 64: ARI = 0.2411
+2026-11-04 19:40:46,915 [INFO] User issued feedback: CANNOT_LINK between items 346 and 568
+2026-11-04 19:40:47,388 [INFO] Move 65: ARI = 0.2389
+2026-11-04 19:40:47,416 [INFO] User issued feedback: MUST_LINK between items 632 and 657
+2026-11-04 19:40:47,857 [INFO] Move 66: ARI = 0.2355
+2026-11-04 19:40:47,883 [INFO] User issued feedback: MUST_LINK between items 62 and 233
+2026-11-04 19:40:48,337 [INFO] Move 67: ARI = 0.2471
+2026-11-04 19:40:48,360 [INFO] User issued feedback: MUST_LINK between items 123 and 224
+2026-11-04 19:40:48,813 [INFO] Move 68: ARI = 0.2310
+2026-11-04 19:40:48,838 [INFO] User issued feedback: MUST_LINK between items 5 and 616
+2026-11-04 19:40:49,261 [INFO] Move 69: ARI = 0.2394
+2026-11-04 19:40:49,284 [INFO] User issued feedback: CANNOT_LINK between items 296 and 321
+2026-11-04 19:40:49,750 [INFO] Move 70: ARI = 0.2526
+2026-11-04 19:40:49,782 [INFO] User issued feedback: MUST_LINK between items 102 and 479
+2026-11-04 19:40:50,222 [INFO] Move 71: ARI = 0.2381
+2026-11-04 19:40:50,245 [INFO] User issued feedback: CANNOT_LINK between items 90 and 833
+2026-11-04 19:40:50,776 [INFO] Move 72: ARI = 0.2449
+2026-11-04 19:40:50,800 [INFO] User issued feedback: MUST_LINK between items 144 and 154
+2026-11-04 19:40:51,260 [INFO] Move 73: ARI = 0.2319
+2026-11-04 19:40:51,282 [INFO] User issued feedback: MUST_LINK between items 396 and 505
+2026-11-04 19:40:51,726 [INFO] Move 74: ARI = 0.2539
+2026-11-04 19:40:51,751 [INFO] User issued feedback: CANNOT_LINK between items 412 and 740
+2026-11-04 19:40:52,190 [INFO] Move 75: ARI = 0.2409
+2026-11-04 19:40:52,212 [INFO] User issued feedback: MUST_LINK between items 279 and 281
+2026-11-04 19:40:52,657 [INFO] Move 76: ARI = 0.2424
+2026-11-04 19:40:52,687 [INFO] User issued feedback: CANNOT_LINK between items 242 and 286
+2026-11-04 19:40:53,156 [INFO] Move 77: ARI = 0.2534
+2026-11-04 19:40:53,178 [INFO] User issued feedback: MUST_LINK between items 43 and 293
+2026-11-04 19:40:53,648 [INFO] Move 78: ARI = 0.2542
+2026-11-04 19:40:53,672 [INFO] User issued feedback: MUST_LINK between items 860 and 902
+2026-11-04 19:40:54,122 [INFO] Move 79: ARI = 0.2374
+2026-11-04 19:40:54,145 [INFO] User issued feedback: MUST_LINK between items 47 and 867
+2026-11-04 19:40:54,598 [INFO] Move 80: ARI = 0.2571
+2026-11-04 19:40:54,621 [INFO] User issued feedback: MUST_LINK between items 184 and 680
+2026-11-04 19:40:55,071 [INFO] Move 81: ARI = 0.2165
+2026-11-04 19:40:55,094 [INFO] User issued feedback: CANNOT_LINK between items 447 and 623
+2026-11-04 19:40:55,573 [INFO] Move 82: ARI = 0.2264
+2026-11-04 19:40:55,596 [INFO] User issued feedback: MUST_LINK between items 263 and 416
+2026-11-04 19:40:56,059 [INFO] Move 83: ARI = 0.2303
+2026-11-04 19:40:56,083 [INFO] User issued feedback: CANNOT_LINK between items 496 and 541
+2026-11-04 19:40:56,592 [INFO] Move 84: ARI = 0.1956
+2026-11-04 19:40:56,619 [INFO] User issued feedback: MUST_LINK between items 104 and 815
+2026-11-04 19:40:57,150 [INFO] Move 85: ARI = 0.2247
+2026-11-04 19:40:57,178 [INFO] User issued feedback: MUST_LINK between items 710 and 720
+2026-11-04 19:40:57,717 [INFO] Move 86: ARI = 0.2315
+2026-11-04 19:40:57,747 [INFO] User issued feedback: MUST_LINK between items 426 and 773
+2026-11-04 19:40:58,280 [INFO] Move 87: ARI = 0.2206
+2026-11-04 19:40:58,306 [INFO] User issued feedback: MUST_LINK between items 20 and 689
+2026-11-04 19:40:58,770 [INFO] Move 88: ARI = 0.2183
+2026-11-04 19:40:58,794 [INFO] User issued feedback: CANNOT_LINK between items 169 and 829
+2026-11-04 19:40:59,234 [INFO] Move 89: ARI = 0.2165
+2026-11-04 19:40:59,257 [INFO] User issued feedback: CANNOT_LINK between items 187 and 281
+2026-11-04 19:40:59,743 [INFO] Move 90: ARI = 0.2024
+2026-11-04 19:40:59,769 [INFO] User issued feedback: MUST_LINK between items 246 and 361
+2026-11-04 19:41:00,248 [INFO] Move 91: ARI = 0.2287
+2026-11-04 19:41:00,270 [INFO] User issued feedback: CANNOT_LINK between items 723 and 752
+2026-11-04 19:41:00,743 [INFO] Move 92: ARI = 0.1959
+2026-11-04 19:41:00,767 [INFO] User issued feedback: CANNOT_LINK between items 493 and 550
+2026-11-04 19:41:01,234 [INFO] Move 93: ARI = 0.2089
+2026-11-04 19:41:01,257 [INFO] User issued feedback: MUST_LINK between items 377 and 464
+2026-11-04 19:41:01,729 [INFO] Move 94: ARI = 0.1951
+2026-11-04 19:41:01,766 [INFO] User issued feedback: MUST_LINK between items 357 and 377
+2026-11-04 19:41:02,284 [INFO] Move 95: ARI = 0.1824
+2026-11-04 19:41:02,310 [INFO] User issued feedback: MUST_LINK between items 449 and 768
+2026-11-04 19:41:02,767 [INFO] Move 96: ARI = 0.1979
+2026-11-04 19:41:02,792 [INFO] User issued feedback: CANNOT_LINK between items 528 and 792
+2026-11-04 19:41:03,328 [INFO] Move 97: ARI = 0.2023
+2026-11-04 19:41:03,356 [INFO] User issued feedback: MUST_LINK between items 375 and 813
+2026-11-04 19:41:03,789 [INFO] Move 98: ARI = 0.2058
+2026-11-04 19:41:03,821 [INFO] User issued feedback: MUST_LINK between items 254 and 255
+2026-11-04 19:41:04,264 [INFO] Move 99: ARI = 0.2055
+2026-11-04 19:41:04,287 [INFO] User issued feedback: CANNOT_LINK between items 251 and 877
+2026-11-04 19:41:04,757 [INFO] Move 100: ARI = 0.1892
+2026-11-04 19:41:04,757 [WARNING] Maximum moves reached without hitting target accuracy.
+2026-11-04 19:41:04,761 [INFO] Saved history to C:\Users\happy\Downloads\HGDE\results\history-pattern-16-2026-11-04-19-41-04.json
+2026-11-04 19:44:31,108 [INFO] Initializing data ingestion...
+2026-11-04 19:44:31,525 [INFO] Loaded LanceDB embeddings matrix. Shape: (1000, 1024)
+2026-11-04 19:44:31,539 [INFO] Embeddings (1000, 1024), ground truth classes: 10, labels: [0 1 2 3 4 5 6 7 8 9]
+2026-11-04 19:44:35,465 [INFO] Starting active learning loop...
+2026-11-04 19:44:39,151 [INFO] Move 0: ARI = 0.1076
+2026-11-04 19:44:39,169 [INFO] User issued feedback: MUST_LINK between items 303 and 928
+2026-11-04 19:44:40,313 [INFO] Move 1: ARI = 0.1072
+2026-11-04 19:44:40,331 [INFO] User issued feedback: MUST_LINK between items 430 and 804
+2026-11-04 19:44:40,604 [INFO] Move 2: ARI = 0.1605
+2026-11-04 19:44:40,619 [INFO] User issued feedback: CANNOT_LINK between items 574 and 856
+2026-11-04 19:44:40,857 [INFO] Move 3: ARI = 0.0260
+2026-11-04 19:44:40,875 [INFO] User issued feedback: MUST_LINK between items 208 and 753
+2026-11-04 19:44:41,123 [INFO] Move 4: ARI = 0.0364
+2026-11-04 19:44:41,142 [INFO] User issued feedback: MUST_LINK between items 204 and 421
+2026-11-04 19:44:41,404 [INFO] Move 5: ARI = 0.0398
+2026-11-04 19:44:41,422 [INFO] User issued feedback: CANNOT_LINK between items 24 and 36
+2026-11-04 19:44:41,688 [INFO] Move 6: ARI = 0.0204
+2026-11-04 19:44:41,705 [INFO] User issued feedback: MUST_LINK between items 649 and 952
+2026-11-04 19:44:41,968 [INFO] Move 7: ARI = 0.0245
+2026-11-04 19:44:41,985 [INFO] User issued feedback: CANNOT_LINK between items 71 and 943
+2026-11-04 19:44:42,226 [INFO] Move 8: ARI = 0.0293
+2026-11-04 19:44:42,244 [INFO] User issued feedback: MUST_LINK between items 665 and 910
+2026-11-04 19:44:42,508 [INFO] Move 9: ARI = 0.0306
+2026-11-04 19:44:42,525 [INFO] User issued feedback: MUST_LINK between items 713 and 714
+2026-11-04 19:44:42,749 [INFO] Move 10: ARI = 0.0319
+2026-11-04 19:44:42,765 [INFO] User issued feedback: MUST_LINK between items 352 and 476
+2026-11-04 19:44:43,013 [INFO] Move 11: ARI = 0.0404
+2026-11-04 19:44:43,029 [INFO] User issued feedback: CANNOT_LINK between items 916 and 993
+2026-11-04 19:44:43,293 [INFO] Move 12: ARI = 0.0449
+2026-11-04 19:44:43,311 [INFO] User issued feedback: MUST_LINK between items 64 and 733
+2026-11-04 19:44:43,581 [INFO] Move 13: ARI = 0.0451
+2026-11-04 19:44:43,597 [INFO] User issued feedback: MUST_LINK between items 409 and 569
+2026-11-04 19:44:43,826 [INFO] Move 14: ARI = 0.0426
+2026-11-04 19:44:43,842 [INFO] User issued feedback: CANNOT_LINK between items 634 and 937
+2026-11-04 19:44:44,128 [INFO] Move 15: ARI = 0.0567
+2026-11-04 19:44:44,145 [INFO] User issued feedback: CANNOT_LINK between items 411 and 776
+2026-11-04 19:44:44,404 [INFO] Move 16: ARI = 0.0508
+2026-11-04 19:44:44,420 [INFO] User issued feedback: MUST_LINK between items 499 and 791
+2026-11-04 19:44:44,663 [INFO] Move 17: ARI = 0.0429
+2026-11-04 19:44:44,678 [INFO] User issued feedback: MUST_LINK between items 99 and 775
+2026-11-04 19:44:44,911 [INFO] Move 18: ARI = 0.0544
+2026-11-04 19:44:44,927 [INFO] User issued feedback: MUST_LINK between items 273 and 505
+2026-11-04 19:44:45,161 [INFO] Move 19: ARI = 0.0492
+2026-11-04 19:44:45,178 [INFO] User issued feedback: CANNOT_LINK between items 32 and 264
+2026-11-04 19:44:45,437 [INFO] Move 20: ARI = 0.0479
+2026-11-04 19:44:45,453 [INFO] User issued feedback: MUST_LINK between items 418 and 769
+2026-11-04 19:44:45,684 [INFO] Move 21: ARI = 0.0525
+2026-11-04 19:44:45,701 [INFO] User issued feedback: CANNOT_LINK between items 180 and 785
+2026-11-04 19:44:45,958 [INFO] Move 22: ARI = 0.0490
+2026-11-04 19:44:45,974 [INFO] User issued feedback: CANNOT_LINK between items 241 and 862
+2026-11-04 19:44:46,228 [INFO] Move 23: ARI = 0.0539
+2026-11-04 19:44:46,247 [INFO] User issued feedback: CANNOT_LINK between items 569 and 608
+2026-11-04 19:44:46,505 [INFO] Move 24: ARI = 0.0532
+2026-11-04 19:44:46,522 [INFO] User issued feedback: CANNOT_LINK between items 797 and 877
+2026-11-04 19:44:46,781 [INFO] Move 25: ARI = 0.0520
+2026-11-04 19:44:46,799 [INFO] User issued feedback: MUST_LINK between items 329 and 345
+2026-11-04 19:44:47,027 [INFO] Move 26: ARI = 0.0543
+2026-11-04 19:44:47,043 [INFO] User issued feedback: CANNOT_LINK between items 778 and 875
+2026-11-04 19:44:47,285 [INFO] Move 27: ARI = 0.0490
+2026-11-04 19:44:47,305 [INFO] User issued feedback: MUST_LINK between items 878 and 915
+2026-11-04 19:44:47,535 [INFO] Move 28: ARI = 0.0550
+2026-11-04 19:44:47,551 [INFO] User issued feedback: MUST_LINK between items 130 and 655
+2026-11-04 19:44:47,766 [INFO] Move 29: ARI = 0.0564
+2026-11-04 19:44:47,781 [INFO] User issued feedback: CANNOT_LINK between items 778 and 898
+2026-11-04 19:44:48,005 [INFO] Move 30: ARI = 0.0674
+2026-11-04 19:44:48,021 [INFO] User issued feedback: CANNOT_LINK between items 630 and 916
+2026-11-04 19:44:48,271 [INFO] Move 31: ARI = 0.0790
+2026-11-04 19:44:48,290 [INFO] User issued feedback: CANNOT_LINK between items 143 and 629
+2026-11-04 19:44:48,545 [INFO] Move 32: ARI = 0.0853
+2026-11-04 19:44:48,560 [INFO] User issued feedback: CANNOT_LINK between items 104 and 890
+2026-11-04 19:44:48,787 [INFO] Move 33: ARI = 0.0615
+2026-11-04 19:44:48,803 [INFO] User issued feedback: CANNOT_LINK between items 627 and 765
+2026-11-04 19:44:49,046 [INFO] Move 34: ARI = 0.0793
+2026-11-04 19:44:49,063 [INFO] User issued feedback: CANNOT_LINK between items 321 and 808
+2026-11-04 19:44:49,307 [INFO] Move 35: ARI = 0.0880
+2026-11-04 19:44:49,319 [INFO] User issued feedback: MUST_LINK between items 264 and 920
+2026-11-04 19:44:49,548 [INFO] Move 36: ARI = 0.0930
+2026-11-04 19:44:49,564 [INFO] User issued feedback: MUST_LINK between items 244 and 949
+2026-11-04 19:44:49,792 [INFO] Move 37: ARI = 0.1114
+2026-11-04 19:44:49,808 [INFO] User issued feedback: MUST_LINK between items 113 and 948
+2026-11-04 19:44:50,031 [INFO] Move 38: ARI = 0.1247
+2026-11-04 19:44:50,047 [INFO] User issued feedback: CANNOT_LINK between items 400 and 483
+2026-11-04 19:44:50,291 [INFO] Move 39: ARI = 0.1458
+2026-11-04 19:44:50,308 [INFO] User issued feedback: MUST_LINK between items 119 and 644
+2026-11-04 19:44:50,535 [INFO] Move 40: ARI = 0.1430
+2026-11-04 19:44:50,550 [INFO] User issued feedback: MUST_LINK between items 467 and 675
+2026-11-04 19:44:50,779 [INFO] Move 41: ARI = 0.1497
+2026-11-04 19:44:50,793 [INFO] User issued feedback: MUST_LINK between items 232 and 552
+2026-11-04 19:44:51,050 [INFO] Move 42: ARI = 0.1426
+2026-11-04 19:44:51,066 [INFO] User issued feedback: MUST_LINK between items 285 and 830
+2026-11-04 19:44:51,300 [INFO] Move 43: ARI = 0.1219
+2026-11-04 19:44:51,314 [INFO] User issued feedback: MUST_LINK between items 60 and 879
+2026-11-04 19:44:51,545 [INFO] Move 44: ARI = 0.1264
+2026-11-04 19:44:51,559 [INFO] User issued feedback: MUST_LINK between items 21 and 708
+2026-11-04 19:44:51,801 [INFO] Move 45: ARI = 0.1193
+2026-11-04 19:44:51,875 [INFO] User issued feedback: MUST_LINK between items 234 and 993
+2026-11-04 19:44:52,120 [INFO] Move 46: ARI = 0.0961
+2026-11-04 19:44:52,136 [INFO] User issued feedback: MUST_LINK between items 238 and 701
+2026-11-04 19:44:52,410 [INFO] Move 47: ARI = 0.0846
+2026-11-04 19:44:52,425 [INFO] User issued feedback: MUST_LINK between items 183 and 524
+2026-11-04 19:44:52,660 [INFO] Move 48: ARI = 0.1086
+2026-11-04 19:44:52,677 [INFO] User issued feedback: MUST_LINK between items 391 and 448
+2026-11-04 19:44:52,913 [INFO] Move 49: ARI = 0.0777
+2026-11-04 19:44:52,927 [INFO] User issued feedback: MUST_LINK between items 346 and 638
+2026-11-04 19:44:53,189 [INFO] Move 50: ARI = 0.0819
+2026-11-04 19:44:53,205 [INFO] User issued feedback: CANNOT_LINK between items 281 and 370
+2026-11-04 19:44:53,460 [INFO] Move 51: ARI = 0.0923
+2026-11-04 19:44:53,478 [INFO] User issued feedback: MUST_LINK between items 115 and 143
+2026-11-04 19:44:53,770 [INFO] Move 52: ARI = 0.0736
+2026-11-04 19:44:53,787 [INFO] User issued feedback: MUST_LINK between items 54 and 194
+2026-11-04 19:44:54,020 [INFO] Move 53: ARI = 0.0852
+2026-11-04 19:44:54,036 [INFO] User issued feedback: MUST_LINK between items 418 and 938
+2026-11-04 19:44:54,265 [INFO] Move 54: ARI = 0.0778
+2026-11-04 19:44:54,283 [INFO] User issued feedback: CANNOT_LINK between items 155 and 606
+2026-11-04 19:44:54,524 [INFO] Move 55: ARI = 0.0987
+2026-11-04 19:44:54,586 [INFO] User issued feedback: CANNOT_LINK between items 197 and 990
+2026-11-04 19:44:54,819 [INFO] Move 56: ARI = 0.1077
+2026-11-04 19:44:54,835 [INFO] User issued feedback: MUST_LINK between items 632 and 641
+2026-11-04 19:44:55,063 [INFO] Move 57: ARI = 0.0931
+2026-11-04 19:44:55,078 [INFO] User issued feedback: MUST_LINK between items 336 and 413
+2026-11-04 19:44:55,331 [INFO] Move 58: ARI = 0.1074
+2026-11-04 19:44:55,347 [INFO] User issued feedback: CANNOT_LINK between items 277 and 403
+2026-11-04 19:44:55,609 [INFO] Move 59: ARI = 0.0970
+2026-11-04 19:44:55,626 [INFO] User issued feedback: MUST_LINK between items 203 and 289
+2026-11-04 19:44:55,856 [INFO] Move 60: ARI = 0.1165
+2026-11-04 19:44:55,870 [INFO] User issued feedback: CANNOT_LINK between items 103 and 645
+2026-11-04 19:44:56,097 [INFO] Move 61: ARI = 0.1115
+2026-11-04 19:44:56,113 [INFO] User issued feedback: MUST_LINK between items 495 and 609
+2026-11-04 19:44:56,373 [INFO] Move 62: ARI = 0.1049
+2026-11-04 19:44:56,389 [INFO] User issued feedback: CANNOT_LINK between items 505 and 572
+2026-11-04 19:44:56,621 [INFO] Move 63: ARI = 0.1122
+2026-11-04 19:44:56,636 [INFO] User issued feedback: MUST_LINK between items 792 and 956
+2026-11-04 19:44:56,865 [INFO] Move 64: ARI = 0.0984
+2026-11-04 19:44:56,882 [INFO] User issued feedback: MUST_LINK between items 272 and 437
+2026-11-04 19:44:57,172 [INFO] Move 65: ARI = 0.0949
+2026-11-04 19:44:57,185 [INFO] User issued feedback: MUST_LINK between items 643 and 793
+2026-11-04 19:44:57,435 [INFO] Move 66: ARI = 0.1077
+2026-11-04 19:44:57,451 [INFO] User issued feedback: MUST_LINK between items 128 and 192
+2026-11-04 19:44:57,670 [INFO] Move 67: ARI = 0.1092
+2026-11-04 19:44:57,686 [INFO] User issued feedback: CANNOT_LINK between items 39 and 775
+2026-11-04 19:44:57,930 [INFO] Move 68: ARI = 0.1091
+2026-11-04 19:44:57,946 [INFO] User issued feedback: CANNOT_LINK between items 673 and 859
+2026-11-04 19:44:58,165 [INFO] Move 69: ARI = 0.0956
+2026-11-04 19:44:58,181 [INFO] User issued feedback: CANNOT_LINK between items 90 and 502
+2026-11-04 19:44:58,416 [INFO] Move 70: ARI = 0.1041
+2026-11-04 19:44:58,431 [INFO] User issued feedback: MUST_LINK between items 79 and 855
+2026-11-04 19:44:58,697 [INFO] Move 71: ARI = 0.0845
+2026-11-04 19:44:58,715 [INFO] User issued feedback: MUST_LINK between items 201 and 634
+2026-11-04 19:44:58,972 [INFO] Move 72: ARI = 0.1056
+2026-11-04 19:44:58,988 [INFO] User issued feedback: MUST_LINK between items 365 and 563
+2026-11-04 19:44:59,259 [INFO] Move 73: ARI = 0.1251
+2026-11-04 19:44:59,278 [INFO] User issued feedback: MUST_LINK between items 129 and 183
+2026-11-04 19:44:59,492 [INFO] Move 74: ARI = 0.1432
+2026-11-04 19:44:59,506 [INFO] User issued feedback: CANNOT_LINK between items 312 and 672
+2026-11-04 19:44:59,739 [INFO] Move 75: ARI = 0.1432
+2026-11-04 19:44:59,755 [INFO] User issued feedback: MUST_LINK between items 744 and 749
+2026-11-04 19:44:59,992 [INFO] Move 76: ARI = 0.1467
+2026-11-04 19:45:00,050 [INFO] User issued feedback: MUST_LINK between items 614 and 998
+2026-11-04 19:45:00,289 [INFO] Move 77: ARI = 0.1486
+2026-11-04 19:45:00,303 [INFO] User issued feedback: MUST_LINK between items 426 and 671
+2026-11-04 19:45:00,535 [INFO] Move 78: ARI = 0.1345
+2026-11-04 19:45:00,551 [INFO] User issued feedback: MUST_LINK between items 485 and 684
+2026-11-04 19:45:00,788 [INFO] Move 79: ARI = 0.1389
+2026-11-04 19:45:00,805 [INFO] User issued feedback: MUST_LINK between items 430 and 600
+2026-11-04 19:45:01,027 [INFO] Move 80: ARI = 0.1258
+2026-11-04 19:45:01,043 [INFO] User issued feedback: CANNOT_LINK between items 605 and 726
+2026-11-04 19:45:01,268 [INFO] Move 81: ARI = 0.1396
+2026-11-04 19:45:01,287 [INFO] User issued feedback: CANNOT_LINK between items 535 and 694
+2026-11-04 19:45:01,505 [INFO] Move 82: ARI = 0.1476
+2026-11-04 19:45:01,521 [INFO] User issued feedback: CANNOT_LINK between items 162 and 703
+2026-11-04 19:45:01,751 [INFO] Move 83: ARI = 0.1424
+2026-11-04 19:45:01,766 [INFO] User issued feedback: MUST_LINK between items 18 and 120
+2026-11-04 19:45:02,000 [INFO] Move 84: ARI = 0.1598
+2026-11-04 19:45:02,014 [INFO] User issued feedback: MUST_LINK between items 78 and 944
+2026-11-04 19:45:02,280 [INFO] Move 85: ARI = 0.1548
+2026-11-04 19:45:02,298 [INFO] User issued feedback: CANNOT_LINK between items 106 and 322
+2026-11-04 19:45:02,520 [INFO] Move 86: ARI = 0.1479
+2026-11-04 19:45:02,536 [INFO] User issued feedback: MUST_LINK between items 135 and 921
+2026-11-04 19:45:02,750 [INFO] Move 87: ARI = 0.1595
+2026-11-04 19:45:02,766 [INFO] User issued feedback: MUST_LINK between items 599 and 776
+2026-11-04 19:45:02,994 [INFO] Move 88: ARI = 0.1348
+2026-11-04 19:45:03,011 [INFO] User issued feedback: MUST_LINK between items 82 and 323
+2026-11-04 19:45:03,297 [INFO] Move 89: ARI = 0.1454
+2026-11-04 19:45:03,311 [INFO] User issued feedback: MUST_LINK between items 426 and 504
+2026-11-04 19:45:03,528 [INFO] Move 90: ARI = 0.1594
+2026-11-04 19:45:03,545 [INFO] User issued feedback: MUST_LINK between items 236 and 395
+2026-11-04 19:45:03,773 [INFO] Move 91: ARI = 0.1363
+2026-11-04 19:45:03,791 [INFO] User issued feedback: MUST_LINK between items 157 and 527
+2026-11-04 19:45:04,031 [INFO] Move 92: ARI = 0.1583
+2026-11-04 19:45:04,046 [INFO] User issued feedback: CANNOT_LINK between items 314 and 929
+2026-11-04 19:45:04,293 [INFO] Move 93: ARI = 0.1442
+2026-11-04 19:45:04,308 [INFO] User issued feedback: CANNOT_LINK between items 53 and 302
+2026-11-04 19:45:04,529 [INFO] Move 94: ARI = 0.1640
+2026-11-04 19:45:04,542 [INFO] User issued feedback: CANNOT_LINK between items 163 and 346
+2026-11-04 19:45:04,761 [INFO] Move 95: ARI = 0.1581
+2026-11-04 19:45:04,776 [INFO] User issued feedback: MUST_LINK between items 594 and 701
+2026-11-04 19:45:05,009 [INFO] Move 96: ARI = 0.1611
+2026-11-04 19:45:05,026 [INFO] User issued feedback: CANNOT_LINK between items 198 and 371
+2026-11-04 19:45:05,252 [INFO] Move 97: ARI = 0.1471
+2026-11-04 19:45:05,271 [INFO] User issued feedback: CANNOT_LINK between items 171 and 394
+2026-11-04 19:45:05,562 [INFO] Move 98: ARI = 0.1586
+2026-11-04 19:45:05,580 [INFO] User issued feedback: CANNOT_LINK between items 165 and 418
+2026-11-04 19:45:05,873 [INFO] Move 99: ARI = 0.1689
+2026-11-04 19:45:05,890 [INFO] User issued feedback: MUST_LINK between items 364 and 788
+2026-11-04 19:45:06,118 [INFO] Move 100: ARI = 0.1708
+2026-11-04 19:45:06,118 [WARNING] Maximum moves reached without hitting target accuracy.
+2026-11-04 19:45:06,121 [INFO] Saved history to C:\Users\happy\Downloads\HGDE\results\history-pattern-32-2026-11-04-19-45-06.json
+2026-11-04 19:47:13,609 [INFO] Initializing data ingestion...
+2026-11-04 19:47:13,696 [INFO] Loaded LanceDB embeddings matrix. Shape: (1000, 1024)
+2026-11-04 19:47:13,702 [INFO] Embeddings (1000, 1024), ground truth classes: 10, labels: [0 1 2 3 4 5 6 7 8 9]
+2026-11-04 19:47:16,538 [INFO] Starting active learning loop...
+2026-11-04 19:47:19,837 [INFO] Move 0: ARI = 0.1076
+2026-11-04 19:47:19,851 [INFO] User issued feedback: MUST_LINK between items 303 and 928
+2026-11-04 19:47:20,660 [INFO] Move 1: ARI = 0.1021
+2026-11-04 19:47:20,678 [INFO] User issued feedback: MUST_LINK between items 501 and 978
+2026-11-04 19:47:20,944 [INFO] Move 2: ARI = 0.1016
+2026-11-04 19:47:20,960 [INFO] User issued feedback: MUST_LINK between items 538 and 814
+2026-11-04 19:47:21,182 [INFO] Move 3: ARI = 0.0978
+2026-11-04 19:47:21,196 [INFO] User issued feedback: MUST_LINK between items 489 and 978
+2026-11-04 19:47:21,441 [INFO] Move 4: ARI = 0.1002
+2026-11-04 19:47:21,457 [INFO] User issued feedback: CANNOT_LINK between items 177 and 607
+2026-11-04 19:47:21,691 [INFO] Move 5: ARI = 0.1062
+2026-11-04 19:47:21,707 [INFO] User issued feedback: MUST_LINK between items 243 and 886
+2026-11-04 19:47:21,944 [INFO] Move 6: ARI = 0.0930
+2026-11-04 19:47:21,960 [INFO] User issued feedback: MUST_LINK between items 184 and 722
+2026-11-04 19:47:22,220 [INFO] Move 7: ARI = 0.1405
+2026-11-04 19:47:22,235 [INFO] User issued feedback: CANNOT_LINK between items 3 and 809
+2026-11-04 19:47:22,470 [INFO] Move 8: ARI = 0.0982
+2026-11-04 19:47:22,487 [INFO] User issued feedback: MUST_LINK between items 407 and 998
+2026-11-04 19:47:22,703 [INFO] Move 9: ARI = 0.0862
+2026-11-04 19:47:22,722 [INFO] User issued feedback: CANNOT_LINK between items 78 and 104
+2026-11-04 19:47:23,057 [INFO] Move 10: ARI = 0.0998
+2026-11-04 19:47:23,074 [INFO] User issued feedback: CANNOT_LINK between items 5 and 77
+2026-11-04 19:47:23,300 [INFO] Move 11: ARI = 0.0892
+2026-11-04 19:47:23,315 [INFO] User issued feedback: MUST_LINK between items 134 and 566
+2026-11-04 19:47:23,544 [INFO] Move 12: ARI = 0.1005
+2026-11-04 19:47:23,557 [INFO] User issued feedback: MUST_LINK between items 256 and 512
+2026-11-04 19:47:23,780 [INFO] Move 13: ARI = 0.0827
+2026-11-04 19:47:23,795 [INFO] User issued feedback: MUST_LINK between items 680 and 695
+2026-11-04 19:47:24,029 [INFO] Move 14: ARI = 0.0708
+2026-11-04 19:47:24,043 [INFO] User issued feedback: MUST_LINK between items 169 and 464
+2026-11-04 19:47:24,270 [INFO] Move 15: ARI = 0.0970
+2026-11-04 19:47:24,288 [INFO] User issued feedback: CANNOT_LINK between items 81 and 592
+2026-11-04 19:47:24,509 [INFO] Move 16: ARI = 0.1035
+2026-11-04 19:47:24,522 [INFO] User issued feedback: MUST_LINK between items 320 and 711
+2026-11-04 19:47:24,746 [INFO] Move 17: ARI = 0.1079
+2026-11-04 19:47:24,761 [INFO] User issued feedback: MUST_LINK between items 610 and 763
+2026-11-04 19:47:24,982 [INFO] Move 18: ARI = 0.1223
+2026-11-04 19:47:24,998 [INFO] User issued feedback: CANNOT_LINK between items 39 and 686
+2026-11-04 19:47:25,223 [INFO] Move 19: ARI = 0.1269
+2026-11-04 19:47:25,238 [INFO] User issued feedback: MUST_LINK between items 479 and 803
+2026-11-04 19:47:25,470 [INFO] Move 20: ARI = 0.1265
+2026-11-04 19:47:25,484 [INFO] User issued feedback: MUST_LINK between items 5 and 822
+2026-11-04 19:47:25,711 [INFO] Move 21: ARI = 0.1199
+2026-11-04 19:47:25,728 [INFO] User issued feedback: MUST_LINK between items 293 and 563
+2026-11-04 19:47:25,957 [INFO] Move 22: ARI = 0.1233
+2026-11-04 19:47:25,974 [INFO] User issued feedback: CANNOT_LINK between items 170 and 416
+2026-11-04 19:47:26,205 [INFO] Move 23: ARI = 0.1166
+2026-11-04 19:47:26,220 [INFO] User issued feedback: MUST_LINK between items 260 and 972
+2026-11-04 19:47:26,453 [INFO] Move 24: ARI = 0.0971
+2026-11-04 19:47:26,469 [INFO] User issued feedback: CANNOT_LINK between items 83 and 174
+2026-11-04 19:47:26,687 [INFO] Move 25: ARI = 0.1013
+2026-11-04 19:47:26,703 [INFO] User issued feedback: MUST_LINK between items 87 and 422
+2026-11-04 19:47:26,927 [INFO] Move 26: ARI = 0.0954
+2026-11-04 19:47:26,943 [INFO] User issued feedback: MUST_LINK between items 505 and 710
+2026-11-04 19:47:27,165 [INFO] Move 27: ARI = 0.1002
+2026-11-04 19:47:27,181 [INFO] User issued feedback: MUST_LINK between items 86 and 779
+2026-11-04 19:47:27,443 [INFO] Move 28: ARI = 0.0801
+2026-11-04 19:47:27,458 [INFO] User issued feedback: CANNOT_LINK between items 205 and 291
+2026-11-04 19:47:27,677 [INFO] Move 29: ARI = 0.0762
+2026-11-04 19:47:27,691 [INFO] User issued feedback: MUST_LINK between items 84 and 449
+2026-11-04 19:47:27,902 [INFO] Move 30: ARI = 0.0873
+2026-11-04 19:47:27,919 [INFO] User issued feedback: MUST_LINK between items 364 and 817
+2026-11-04 19:47:28,144 [INFO] Move 31: ARI = 0.0829
+2026-11-04 19:47:28,159 [INFO] User issued feedback: CANNOT_LINK between items 798 and 956
+2026-11-04 19:47:28,387 [INFO] Move 32: ARI = 0.0828
+2026-11-04 19:47:28,401 [INFO] User issued feedback: CANNOT_LINK between items 95 and 518
+2026-11-04 19:47:28,616 [INFO] Move 33: ARI = 0.0863
+2026-11-04 19:47:28,633 [INFO] User issued feedback: MUST_LINK between items 140 and 273
+2026-11-04 19:47:28,872 [INFO] Move 34: ARI = 0.0873
+2026-11-04 19:47:28,891 [INFO] User issued feedback: CANNOT_LINK between items 586 and 742
+2026-11-04 19:47:29,143 [INFO] Move 35: ARI = 0.0846
+2026-11-04 19:47:29,159 [INFO] User issued feedback: MUST_LINK between items 348 and 658
+2026-11-04 19:47:29,396 [INFO] Move 36: ARI = 0.0915
+2026-11-04 19:47:29,412 [INFO] User issued feedback: MUST_LINK between items 812 and 948
+2026-11-04 19:47:29,634 [INFO] Move 37: ARI = 0.0861
+2026-11-04 19:47:29,650 [INFO] User issued feedback: CANNOT_LINK between items 43 and 428
+2026-11-04 19:47:29,873 [INFO] Move 38: ARI = 0.0843
+2026-11-04 19:47:29,890 [INFO] User issued feedback: CANNOT_LINK between items 76 and 495
+2026-11-04 19:47:30,113 [INFO] Move 39: ARI = 0.0932
+2026-11-04 19:47:30,127 [INFO] User issued feedback: MUST_LINK between items 40 and 754
+2026-11-04 19:47:30,346 [INFO] Move 40: ARI = 0.0884
+2026-11-04 19:47:30,360 [INFO] User issued feedback: CANNOT_LINK between items 224 and 564
+2026-11-04 19:47:30,600 [INFO] Move 41: ARI = 0.0941
+2026-11-04 19:47:30,616 [INFO] User issued feedback: CANNOT_LINK between items 376 and 870
+2026-11-04 19:47:30,869 [INFO] Move 42: ARI = 0.0876
+2026-11-04 19:47:30,886 [INFO] User issued feedback: MUST_LINK between items 560 and 730
+2026-11-04 19:47:31,121 [INFO] Move 43: ARI = 0.0922
+2026-11-04 19:47:31,137 [INFO] User issued feedback: CANNOT_LINK between items 172 and 755
+2026-11-04 19:47:31,370 [INFO] Move 44: ARI = 0.0890
+2026-11-04 19:47:31,386 [INFO] User issued feedback: CANNOT_LINK between items 165 and 551
+2026-11-04 19:47:31,633 [INFO] Move 45: ARI = 0.0905
+2026-11-04 19:47:31,647 [INFO] User issued feedback: MUST_LINK between items 158 and 333
+2026-11-04 19:47:31,866 [INFO] Move 46: ARI = 0.0900
+2026-11-04 19:47:31,884 [INFO] User issued feedback: CANNOT_LINK between items 2 and 66
+2026-11-04 19:47:32,109 [INFO] Move 47: ARI = 0.0837
+2026-11-04 19:47:32,123 [INFO] User issued feedback: CANNOT_LINK between items 162 and 624
+2026-11-04 19:47:32,358 [INFO] Move 48: ARI = 0.0847
+2026-11-04 19:47:32,372 [INFO] User issued feedback: CANNOT_LINK between items 247 and 408
+2026-11-04 19:47:32,607 [INFO] Move 49: ARI = 0.0937
+2026-11-04 19:47:32,623 [INFO] User issued feedback: CANNOT_LINK between items 391 and 807
+2026-11-04 19:47:32,842 [INFO] Move 50: ARI = 0.1041
+2026-11-04 19:47:32,857 [INFO] User issued feedback: CANNOT_LINK between items 349 and 694
+2026-11-04 19:47:33,081 [INFO] Move 51: ARI = 0.1052
+2026-11-04 19:47:33,100 [INFO] User issued feedback: MUST_LINK between items 270 and 328
+2026-11-04 19:47:33,352 [INFO] Move 52: ARI = 0.0982
+2026-11-04 19:47:33,366 [INFO] User issued feedback: CANNOT_LINK between items 66 and 877
+2026-11-04 19:47:33,586 [INFO] Move 53: ARI = 0.0874
+2026-11-04 19:47:33,601 [INFO] User issued feedback: MUST_LINK between items 185 and 250
+2026-11-04 19:47:33,830 [INFO] Move 54: ARI = 0.0999
+2026-11-04 19:47:33,846 [INFO] User issued feedback: CANNOT_LINK between items 600 and 871
+2026-11-04 19:47:34,068 [INFO] Move 55: ARI = 0.0997
+2026-11-04 19:47:34,095 [INFO] User issued feedback: MUST_LINK between items 327 and 744
+2026-11-04 19:47:34,335 [INFO] Move 56: ARI = 0.1078
+2026-11-04 19:47:34,351 [INFO] User issued feedback: MUST_LINK between items 423 and 754
+2026-11-04 19:47:34,558 [INFO] Move 57: ARI = 0.1101
+2026-11-04 19:47:34,572 [INFO] User issued feedback: CANNOT_LINK between items 756 and 937
+2026-11-04 19:47:34,788 [INFO] Move 58: ARI = 0.1044
+2026-11-04 19:47:34,805 [INFO] User issued feedback: MUST_LINK between items 354 and 664
+2026-11-04 19:47:35,044 [INFO] Move 59: ARI = 0.1158
+2026-11-04 19:47:35,062 [INFO] User issued feedback: CANNOT_LINK between items 331 and 899
+2026-11-04 19:47:35,333 [INFO] Move 60: ARI = 0.0945
+2026-11-04 19:47:35,350 [INFO] User issued feedback: MUST_LINK between items 113 and 442
+2026-11-04 19:47:35,600 [INFO] Move 61: ARI = 0.0951
+2026-11-04 19:47:35,618 [INFO] User issued feedback: CANNOT_LINK between items 766 and 893
+2026-11-04 19:47:35,877 [INFO] Move 62: ARI = 0.0971
+2026-11-04 19:47:35,894 [INFO] User issued feedback: CANNOT_LINK between items 500 and 513
+2026-11-04 19:47:36,168 [INFO] Move 63: ARI = 0.1031
+2026-11-04 19:47:36,182 [INFO] User issued feedback: CANNOT_LINK between items 467 and 498
+2026-11-04 19:47:36,435 [INFO] Move 64: ARI = 0.1395
+2026-11-04 19:47:36,449 [INFO] User issued feedback: MUST_LINK between items 249 and 401
+2026-11-04 19:47:36,679 [INFO] Move 65: ARI = 0.1382
+2026-11-04 19:47:36,695 [INFO] User issued feedback: CANNOT_LINK between items 126 and 207
+2026-11-04 19:47:36,917 [INFO] Move 66: ARI = 0.1199
+2026-11-04 19:47:36,936 [INFO] User issued feedback: CANNOT_LINK between items 678 and 858
+2026-11-04 19:47:37,153 [INFO] Move 67: ARI = 0.1282
+2026-11-04 19:47:37,167 [INFO] User issued feedback: MUST_LINK between items 131 and 189
+2026-11-04 19:47:37,411 [INFO] Move 68: ARI = 0.1378
+2026-11-04 19:47:37,424 [INFO] User issued feedback: CANNOT_LINK between items 360 and 842
+2026-11-04 19:47:37,634 [INFO] Move 69: ARI = 0.1373
+2026-11-04 19:47:37,650 [INFO] User issued feedback: MUST_LINK between items 553 and 724
+2026-11-04 19:47:37,880 [INFO] Move 70: ARI = 0.1432
+2026-11-04 19:47:37,895 [INFO] User issued feedback: MUST_LINK between items 132 and 625
+2026-11-04 19:47:38,130 [INFO] Move 71: ARI = 0.1407
+2026-11-04 19:47:38,143 [INFO] User issued feedback: CANNOT_LINK between items 648 and 810
+2026-11-04 19:47:38,373 [INFO] Move 72: ARI = 0.1428
+2026-11-04 19:47:38,389 [INFO] User issued feedback: CANNOT_LINK between items 903 and 995
+2026-11-04 19:47:38,628 [INFO] Move 73: ARI = 0.1433
+2026-11-04 19:47:38,644 [INFO] User issued feedback: CANNOT_LINK between items 69 and 265
+2026-11-04 19:47:38,940 [INFO] Move 74: ARI = 0.1411
+2026-11-04 19:47:38,958 [INFO] User issued feedback: MUST_LINK between items 567 and 806
+2026-11-04 19:47:39,225 [INFO] Move 75: ARI = 0.1431
+2026-11-04 19:47:39,241 [INFO] User issued feedback: MUST_LINK between items 294 and 470
+2026-11-04 19:47:39,454 [INFO] Move 76: ARI = 0.1210
+2026-11-04 19:47:39,468 [INFO] User issued feedback: CANNOT_LINK between items 98 and 635
+2026-11-04 19:47:39,746 [INFO] Move 77: ARI = 0.1159
+2026-11-04 19:47:39,760 [INFO] User issued feedback: CANNOT_LINK between items 158 and 185
+2026-11-04 19:47:39,984 [INFO] Move 78: ARI = 0.1222
+2026-11-04 19:47:40,000 [INFO] User issued feedback: MUST_LINK between items 174 and 459
+2026-11-04 19:47:40,229 [INFO] Move 79: ARI = 0.1461
+2026-11-04 19:47:40,242 [INFO] User issued feedback: CANNOT_LINK between items 252 and 317
+2026-11-04 19:47:40,467 [INFO] Move 80: ARI = 0.1306
+2026-11-04 19:47:40,482 [INFO] User issued feedback: CANNOT_LINK between items 454 and 973
+2026-11-04 19:47:40,707 [INFO] Move 81: ARI = 0.1173
+2026-11-04 19:47:40,722 [INFO] User issued feedback: CANNOT_LINK between items 9 and 234
+2026-11-04 19:47:40,945 [INFO] Move 82: ARI = 0.1102
+2026-11-04 19:47:40,962 [INFO] User issued feedback: CANNOT_LINK between items 702 and 875
+2026-11-04 19:47:41,215 [INFO] Move 83: ARI = 0.1125
+2026-11-04 19:47:41,230 [INFO] User issued feedback: MUST_LINK between items 127 and 390
+2026-11-04 19:47:41,485 [INFO] Move 84: ARI = 0.1142
+2026-11-04 19:47:41,498 [INFO] User issued feedback: MUST_LINK between items 78 and 438
+2026-11-04 19:47:41,711 [INFO] Move 85: ARI = 0.1130
+2026-11-04 19:47:41,727 [INFO] User issued feedback: CANNOT_LINK between items 227 and 769
+2026-11-04 19:47:41,956 [INFO] Move 86: ARI = 0.1038
+2026-11-04 19:47:41,973 [INFO] User issued feedback: MUST_LINK between items 673 and 957
+2026-11-04 19:47:42,203 [INFO] Move 87: ARI = 0.1055
+2026-11-04 19:47:42,262 [INFO] User issued feedback: MUST_LINK between items 259 and 955
+2026-11-04 19:47:42,493 [INFO] Move 88: ARI = 0.1071
+2026-11-04 19:47:42,507 [INFO] User issued feedback: CANNOT_LINK between items 243 and 305
+2026-11-04 19:47:42,730 [INFO] Move 89: ARI = 0.1055
+2026-11-04 19:47:42,746 [INFO] User issued feedback: MUST_LINK between items 534 and 692
+2026-11-04 19:47:42,962 [INFO] Move 90: ARI = 0.0978
+2026-11-04 19:47:42,978 [INFO] User issued feedback: CANNOT_LINK between items 57 and 96
+2026-11-04 19:47:43,209 [INFO] Move 91: ARI = 0.1001
+2026-11-04 19:47:43,223 [INFO] User issued feedback: MUST_LINK between items 333 and 536
+2026-11-04 19:47:43,488 [INFO] Move 92: ARI = 0.1174
+2026-11-04 19:47:43,505 [INFO] User issued feedback: CANNOT_LINK between items 37 and 229
+2026-11-04 19:47:43,748 [INFO] Move 93: ARI = 0.1138
+2026-11-04 19:47:43,764 [INFO] User issued feedback: CANNOT_LINK between items 250 and 690
+2026-11-04 19:47:44,019 [INFO] Move 94: ARI = 0.1113
+2026-11-04 19:47:44,036 [INFO] User issued feedback: CANNOT_LINK between items 144 and 442
+2026-11-04 19:47:44,298 [INFO] Move 95: ARI = 0.1318
+2026-11-04 19:47:44,313 [INFO] User issued feedback: CANNOT_LINK between items 576 and 831
+2026-11-04 19:47:44,598 [INFO] Move 96: ARI = 0.1369
+2026-11-04 19:47:44,613 [INFO] User issued feedback: CANNOT_LINK between items 762 and 820
+2026-11-04 19:47:44,853 [INFO] Move 97: ARI = 0.1344
+2026-11-04 19:47:44,869 [INFO] User issued feedback: MUST_LINK between items 709 and 848
+2026-11-04 19:47:45,125 [INFO] Move 98: ARI = 0.1346
+2026-11-04 19:47:45,142 [INFO] User issued feedback: CANNOT_LINK between items 206 and 372
+2026-11-04 19:47:45,376 [INFO] Move 99: ARI = 0.1370
+2026-11-04 19:47:45,390 [INFO] User issued feedback: CANNOT_LINK between items 456 and 663
+2026-11-04 19:47:45,599 [INFO] Move 100: ARI = 0.1336
+2026-11-04 19:47:45,599 [WARNING] Maximum moves reached without hitting target accuracy.
+2026-11-04 19:47:45,602 [INFO] Saved history to C:\Users\happy\Downloads\HGDE\results\history-pattern-10-2026-11-04-19-47-45.json

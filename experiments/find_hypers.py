@@ -6,11 +6,13 @@ sys.path.append(str(repo_root))
 from tests.cluster_by_column import main
 
 if __name__ == "__main__":
-    epoch_options = [2,10]
-    batch_size = [32]
+    epoch_options = [2,4]
+    batch_size = [32,128]
     lr_options = [0.00001, 0.00005, 0.0001]
     weight_options = [0,1,2,3]
-    output_file = "output1.csv"
+    output_file = "output2.csv"
+    total_lines = len(epoch_options) * len(batch_size) * len(lr_options) * len(weight_options) * 6
+    call_num = 0
     with open(output_file, "w") as file:
         pass
     with open(output_file, "a") as file:
@@ -19,11 +21,27 @@ if __name__ == "__main__":
             for batch in batch_size:
                 for lr in lr_options:
                     for weighting in weight_options:
-                        i, acc, recall, precision = main(max_corrections = 10, goal_acc = 0.95, epochs = e, lr = lr, batch_size = batch, label_column = 'color', sample_size = 100, easy = True, weighting=weighting, loss='user_weighted')
+                        call_num += 1
+                        print(f"call number {call_num} out of {total_lines}")
+                        i, acc, recall, precision = main(max_corrections = 10, goal_acc = 0.95, epochs = e, lr = lr, batch_size = batch, label_column = 'color', sample_size = 200, easy = True, weighting=weighting, loss='user_weighted')
                         file.writelines(f"easy,{i},{acc},{recall},{precision},{e},{lr},{batch},{weighting},user_weighted\n")
-                        i, acc, recall, precision = main(max_corrections = 10, goal_acc = 0.95, epochs = e, lr = lr, batch_size = batch, label_column = 'color', sample_size = 100, easy = False, weighting=weighting, loss='user_weighted')
+                        call_num += 1
+                        print(f"call number {call_num} out of {total_lines}")
+                        i, acc, recall, precision = main(max_corrections = 10, goal_acc = 0.95, epochs = e, lr = lr, batch_size = batch, label_column = 'color', sample_size = 200, easy = False, weighting=weighting, loss='user_weighted')
                         file.writelines(f"hard,{i},{acc},{recall},{precision},{e},{lr},{batch},{weighting},user_weighted\n")
-                        i, acc, recall, precision = main(max_corrections = 10, goal_acc = 0.95, epochs = e, lr = lr, batch_size = batch, label_column = 'color', sample_size = 100, easy = True, weighting=weighting, loss='whole_cluster')
+                        call_num += 1
+                        print(f"call number {call_num} out of {total_lines}")
+                        i, acc, recall, precision = main(max_corrections = 10, goal_acc = 0.95, epochs = e, lr = lr, batch_size = batch, label_column = 'color', sample_size = 200, easy = True, weighting=weighting, loss='whole_cluster')
                         file.writelines(f"easy,{i},{acc},{recall},{precision},{e},{lr},{batch},{weighting},whole_cluster\n")
-                        i, acc, recall, precision = main(max_corrections = 10, goal_acc = 0.95, epochs = e, lr = lr, batch_size = batch, label_column = 'color', sample_size = 100, easy = False, weighting=weighting, loss='whole_cluster')
+                        call_num += 1
+                        print(f"call number {call_num} out of {total_lines}")
+                        i, acc, recall, precision = main(max_corrections = 10, goal_acc = 0.95, epochs = e, lr = lr, batch_size = batch, label_column = 'color', sample_size = 200, easy = False, weighting=weighting, loss='whole_cluster')
                         file.writelines(f"hard,{i},{acc},{recall},{precision},{e},{lr},{batch},{weighting},whole_cluster\n")
+                        call_num += 1
+                        print(f"call number {call_num} out of {total_lines}")
+                        i, acc, recall, precision = main(max_corrections = 10, goal_acc = 0.95, epochs = e, lr = lr, batch_size = batch, label_column = 'color', sample_size = 200, easy = True, weighting=weighting, loss='goal_weighted')
+                        file.writelines(f"easy,{i},{acc},{recall},{precision},{e},{lr},{batch},{weighting},goal_weighted\n")
+                        call_num += 1
+                        print(f"call number {call_num} out of {total_lines}")
+                        i, acc, recall, precision = main(max_corrections = 10, goal_acc = 0.95, epochs = e, lr = lr, batch_size = batch, label_column = 'color', sample_size = 200, easy = False, weighting=weighting, loss='goal_weighted')
+                        file.writelines(f"hard,{i},{acc},{recall},{precision},{e},{lr},{batch},{weighting},goal_weighted\n")

@@ -7,7 +7,10 @@ from pathlib import Path
 import random
 import numpy as np
 from sklearn.cluster import HDBSCAN
+from sklearn.cluster import KMeans
 from collections import Counter
+from sklearn.metrics import adjusted_rand_score
+from sklearn.preprocessing import LabelEncoder
 
 current_dir = Path(__file__).resolve().parent
 repo_root = current_dir.parent
@@ -17,6 +20,7 @@ from src.embedding_transformer.embedding_transformer import Net
 from src.embedding_transformer.embedding_transformer import train_loop
 from src.embedding_transformer.embedding_transformer import user_weighted_contrasting_loss
 from src.embedding_transformer.embedding_transformer import user_weighted_whole_cluster_loss
+from src.embedding_transformer.embedding_transformer import user_weighted_goal_loss
 
 # computes the recall and precision of the configuation given and multiplies them to compute accuracy
 def compute_accuracy(clusters, classes):
@@ -38,8 +42,11 @@ def compute_accuracy(clusters, classes):
             precision *= (1 - ((count_i_in_j)/cluster_counts[cluster]))
         total_recall *= (1 - recall)
         total_precision *= (1 - precision)
-    accuracy = total_recall * total_precision
-    return accuracy, total_recall, total_precision
+    F1_score = (2*(total_recall*total_precision))/(total_recall+total_precision)
+    encoder = LabelEncoder()
+    encoded_labels = encoder.fit_transform(classes)
+    ari_score = adjusted_rand_score(encoded_labels, clusters)
+    return F1_score, total_recall, total_precision, ari_score
 
 # pulls out the hyperparameter arguments and trains the model. returns the train final embedding
 # transformation, the model, and the optimizer. Can take is model and optim so user can reuse them
@@ -52,7 +59,7 @@ def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_
     if optim == None:
         optim = torch.optim.Adam(model.parameters(), lr = lr)
 
-    train_loop(data, epochs, user_weighted_contrasting_loss, optim, batch_size, model, weighting)
+    train_loop(data, epochs, loss, optim, batch_size, model, weighting)
 
     model.eval()
     with torch.no_grad():
@@ -61,7 +68,7 @@ def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_
 
 # grabs embeddings and the given column, clusters the default embeddings and then randomly makes a correction
 # and trains the model based on that
-def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_size = 2, label_column = 'color', sample_size = 200, easy = True, weighting=1, loss='user_weighted'):
+def main(max_corrections=10, goal_acc=0.8, epochs=10, lr=0.0001, batch_size=32, label_column='color', sample_size=200, easy=True, clusters=3, weighting=2, loss='whole_cluster'):
 
     # initial setup and evaluation
     torch.manual_seed(42)
@@ -71,10 +78,14 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
     image_embeddings = load_lancedb_embeddings(db_path=str(db_path), vector_column='image_vector')
     true_labels = load_lancedb_embeddings(db_path=str(db_path), vector_column=label_column)
     names = load_lancedb_embeddings(db_path=str(db_path), vector_column='name')
-    if easy and label_column == 'color': # easy version pulls out only red and blue pokemon
+    clusterer = HDBSCAN(min_cluster_size=2)
+    if easy: # easy version pulls out only a given number of clusters so the optimal number of clusters is known
+        label_counts = dict(Counter(true_labels))
+        clusterer = KMeans(n_clusters=clusters)
+        highest_keys = sorted(label_counts, key=label_counts.get, reverse=True)[:clusters]
         idx = []
         for i in range(len(image_embeddings)):
-            if true_labels[i] == 'red' or true_labels[i] == 'blue':
+            if true_labels[i] in highest_keys:
                 idx.append(i)
         names = names[idx]
         image_embeddings = image_embeddings[idx]
@@ -85,7 +96,7 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
     image_embeddings = np.array(image_embeddings)
     image_embeddings = image_embeddings/np.linalg.norm(image_embeddings)
     true_labels = true_labels[idx]
-    pred_labels = HDBSCAN(min_cluster_size=2).fit_predict(image_embeddings)
+    pred_labels = clusterer.fit_predict(image_embeddings)
     pred_labels = np.array(pred_labels)
 
     # current status of the vectors
@@ -93,8 +104,8 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
     for i in range(sample_size):
         datapoints.append((names[i].item(), true_labels[i].item(), pred_labels[i].item()))
     print(datapoints)
-    init_acc, init_recall, init_precision = compute_accuracy(pred_labels, true_labels)
-    print(f"init_acc: {init_acc}, init_recall: {init_recall}, init_precision: {init_precision}")
+    init_acc, init_recall, init_precision, init_ari_score = compute_accuracy(pred_labels, true_labels)
+    print(f"init_acc: {init_acc}, init_recall: {init_recall}, init_precision: {init_precision}, init_ari_score: {init_ari_score}")
 
     # set up model training
     user_specified = [0] * sample_size
@@ -112,9 +123,11 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
         'batch_size': batch_size
     }
     if loss == 'user_weighted':
-        loss = user_weighted_contrasting_loss
+        loss_func = user_weighted_contrasting_loss
     elif loss == 'whole_cluster':
-        loss = user_weighted_whole_cluster_loss
+        loss_func = user_weighted_whole_cluster_loss
+    elif loss == 'goal_weighted':
+        loss_func = user_weighted_goal_loss
 
     max_acc, max_recall, max_precision, iteration = 0,0,0,0
     acc = 0    
@@ -140,10 +153,10 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
             goal = "further"
         init_distance = np.linalg.vector_norm(data['train'][rand1] - data['train'][rand2])
         data['user'] = user_specified
-        final_data, model, optim = train(data, hypers, model=model, optim=optim, weighting=weighting, loss=loss)
-        pred_labels = HDBSCAN(min_cluster_size=2).fit_predict(final_data)
+        final_data, model, optim = train(data, hypers, model=model, optim=optim, weighting=weighting, loss=loss_func)
+        pred_labels = clusterer.fit_predict(final_data)
         pred_labels = np.array(pred_labels)
-        acc, recall, precision = compute_accuracy(pred_labels, true_labels)        
+        acc, recall, precision, ari_score = compute_accuracy(pred_labels, true_labels)        
         pred_labels = torch.tensor(pred_labels)
         data['train'] = final_data
         data['labels'] = pred_labels
@@ -151,7 +164,7 @@ def main(max_corrections = 10, goal_acc = 0.95, epochs = 6, lr = 0.0001, batch_s
             success = np.linalg.vector_norm(data['train'][rand1] - data['train'][rand2]) < init_distance
         else:
             success = np.linalg.vector_norm(data['train'][rand1] - data['train'][rand2]) > init_distance
-        print(f"round: {i+1} - moved {rand1} and {rand2} {goal}, acc: {acc}, recall: {recall}, precision: {precision}")
+        print(f"round: {i+1} - moved {rand1} and {rand2} {goal}, acc: {acc}, recall: {recall}, precision: {precision}, ari_score: {ari_score}")
         print(f"goal succeeded? {success}")
         i += 1
         if acc > max_acc:
