@@ -7,8 +7,8 @@ import numpy as np
 from numpy.typing import NDArray
 from tqdm import tqdm
 from typing import Any, Optional
-from utils.data.datasets import ContrastiveDataset, TripletDataset
-from utils.data.samplers import DataSampler
+from src.utils.data.datasets import ContrastiveDataset, TripletDataset
+from src.utils.data.samplers import DataSampler
 
 
 class ClusterEval:

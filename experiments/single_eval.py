@@ -6,11 +6,11 @@ current_dir = Path(__file__).resolve().parent
 repo_root = current_dir.parent
 sys.path.append(str(repo_root))
 
-from utils.state import ClusterState
-from utils.data.samplers import PokemonSampler
-from utils.clusterings import HDBSCANClusterer
-from utils.eval import ContrastiveEval, TripletEval
-from utils.models import JohnNet, JayNet
+from src.utils.state import ClusterState
+from src.utils.data.samplers import PokemonSampler
+from src.utils.clusterings import HDBSCANClusterer
+from src.utils.eval import ContrastiveEval, TripletEval
+from src.utils.models import JohnNet, JayNet
 
 
 if __name__ == "__main__":
