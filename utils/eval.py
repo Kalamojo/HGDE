@@ -18,11 +18,15 @@ class ClusterEval:
         self.batch_size = batch_size
         self.shuffle_data = shuffle_data
 
-    def setup_data(self, embeddings: NDArray[np.float32]):
+    def setup_dataset(self, sampler: DataSampler):
+        pass;
+    
+    def setup_loader(self):
         self.loader = DataLoader(self.dataset, self.batch_size, self.shuffle_data)
     
-    def update(self, sampler: DataSampler):
-        pass;
+    def update(self, pred_labels: NDArray[np.int_], sampler: DataSampler):
+        if self.dataset is None:
+            self.setup_dataset(sampler)
 
     def loss(self, batch: Any, model: nn.Module) -> torch.Tensor:
         pass;
@@ -32,22 +36,22 @@ class ClusterEval:
 class ContrastEval(ClusterEval):
     def __init__(
         self, batch_size: int = 16, shuffle_data: bool = True,
-        margin: float = 2.0, weighting: float = 1.0
+        margin: float = 2.0
     ):
         super().__init__(batch_size, shuffle_data)
         self.margin = margin
-        self.weighting = weighting
 
-    def setup_data(self, embeddings: NDArray[np.float32]):
-        self.dataset: ContrastiveDataset = ContrastiveDataset(embeddings)
-        super().setup_data(embeddings)
+    def setup_data(self, sampler: DataSampler):
+        self.dataset: ContrastiveDataset = ContrastiveDataset(sampler.embeddings)
     
     def update(self, pred_labels: NDArray[np.int_], sampler: DataSampler):
-        if self.dataset is None or self.loader is None:
-            raise ValueError("Dataset and/or loader have not been initialized with 'setup_data' yet")
+        super().update(pred_labels, sampler)
         
         sampled_move = sampler.sample_pair(pred_labels)
-        self.dataset.update_data(sampled_move, pred_labels)
+        self.dataset.append_data(sampled_move)
+        
+        if self.loader is None:
+            self.setup_loader()
 
     def loss(
             self, batch: dict[str, torch.Tensor], model: nn.Module
@@ -64,7 +68,7 @@ class ContrastEval(ClusterEval):
             weight * distance.square(),
             weight * F.relu(self.margin - distance).square()
         )
-        return loss
+        return loss.mean()
 
 # JayEval
 
@@ -73,20 +77,21 @@ class JayEval(ClusterEval):
         self, batch_size: int = 16, shuffle_data: bool = True,
         margin: float = 2.0, preservation_weight: float = 0.05
     ):
-        super().__init__(batch_size, shuffle_data, margin)
-        self.triplet_loss_fn = nn.TripletMarginLoss(margin=0.2, p=2)
+        super().__init__(batch_size, shuffle_data)
+        self.triplet_loss_fn = nn.TripletMarginLoss(margin=margin, p=2)
         self.preservation_weight = preservation_weight
-
-    def setup_data(self, embeddings: NDArray[np.float32]):
-        self.dataset: TripletDataset = TripletDataset(embeddings)
-        super().setup_data(embeddings)
-
+    
+    def setup_data(self, sampler: DataSampler):
+        self.dataset: TripletDataset = TripletDataset(sampler.embeddings)
+    
     def update(self, pred_labels: NDArray[np.int_], sampler: DataSampler):
-        if self.dataset is None or self.loader is None:
-            raise ValueError("Dataset and/or loader have not been initialized with 'setup_data' yet")
+        super().update(pred_labels, sampler)
         
         sampled_moves = sampler.sample_triplets(pred_labels)
         self.dataset.append_data(sampled_moves)
+        
+        if self.loader is None:
+            self.setup_loader()
 
     def loss(
             self, batch: dict[str, torch.Tensor], model: nn.Module

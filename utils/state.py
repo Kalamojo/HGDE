@@ -1,20 +1,35 @@
+import torch
 import torch.nn as nn
 from torch.optim import Optimizer
+import numpy as np
+from numpy.typing import NDArray
+from sklearn.metrics import adjusted_rand_score
 from tqdm import tqdm
 from utils.data.samplers import DataSampler
 from utils.eval import ClusterEval
+from utils.clusterings import Clusterer
 
 
 class ClusterState:
-    def __init__(self, sampler: DataSampler, eval: ClusterEval, epochs: int, model: nn.Module, optimizer: Optimizer):
+    def __init__(self, sampler: DataSampler, clusterer: Clusterer, eval: ClusterEval, epochs: int, model: nn.Module, optimizer: Optimizer):
         self.sampler = sampler
+        self.clusterer = clusterer
         self.eval = eval
         self.epochs = epochs
         self.model = model
         self.optimizer = optimizer
+    
+    def full_recluster(self, rounds: int):
+        self.eval.setup_data(self.sampler)
+        current_embeddings = self.sampler.embeddings
+        original_embeddings = torch.tensor(current_embeddings)
 
-    def recluster_round(self):
+        for round in tqdm(range(rounds)):
+            current_embeddings = self.recluster_round(current_embeddings, original_embeddings)
+
+    def recluster_round(self, current_embeddings: NDArray[np.float64], original_embeddings: torch.Tensor) -> NDArray[np.float64]:
         # collect suggestion and prepare eval data
+        pred_labels = self.clusterer.run(current_embeddings)
         self.eval.update(pred_labels, self.sampler)
 
         # training loop
@@ -39,7 +54,12 @@ class ClusterState:
             losses.append(batch_loss / batch_count)
 
         # recluster and evaluate new clusters
+        self.model.eval()
+        new_embeddings = self.model(original_embeddings).detach().numpy()
+        new_pred_labels = self.clusterer.run(new_embeddings)
 
         # log results
+        ari = adjusted_rand_score(self.sampler.true_labels, new_pred_labels)
+        print("ARI:", ari)
 
-
+        return new_embeddings

@@ -5,7 +5,6 @@ import random
 import itertools
 from pathlib import Path
 from collections import defaultdict
-from typing import Any
 
 
 class DataSampler:
@@ -70,18 +69,19 @@ class DataSampler:
                 continue;
             
             positives = pred_clusters[to_cluster_label]
-            negatives = pred_clusters[from_cluster_label].difference(item_1)
+            negatives = pred_clusters[from_cluster_label].difference({item_1})
             all_moves_dict[move] = (item_1, positives, negatives)
 
         all_moves = [
             (item, positives, negatives)
             for item, positives, negatives in all_moves_dict.values()
-            if len(negatives) > 1
+            if len(negatives) > 0
         ]
         chosen_item, positives, negatives = random.choice(all_moves)
 
         triplet_options = list(itertools.product([chosen_item], positives, negatives))
-        triplets = random.sample(triplet_options, count)
+        to_choose = min(len(triplet_options), count)
+        triplets = random.sample(triplet_options, to_choose)
         return triplets
 
     def fetch_must_links(self, pred_labels: NDArray[np.int_]) -> list[tuple[int, int]]:

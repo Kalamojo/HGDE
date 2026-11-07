@@ -2,7 +2,6 @@ import torch
 from torch.utils.data import Dataset
 import numpy as np
 from numpy.typing import NDArray
-from typing import Optional
 
 
 # pytorch's built in dataset class, this allows us to train in batches and seperate the torch tensors
@@ -15,7 +14,7 @@ class ContrastiveDataset(Dataset):
         # self.pred_labels: Optional[torch.Tensor] = None
 
     def __len__(self):
-        return self.train.shape[0]
+        return len(self.pairs)
     
     def append_data(self, pair: tuple[int, int, bool]):
         self.pairs.append(pair)

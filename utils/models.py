@@ -6,7 +6,7 @@ import torch.nn.functional as F
 # This sets it up to have 1 hidden layer and the input and output dimensions are the dimensions of the embeddings
 # part of PyTorch's standard protocol
 class JohnNet(nn.Module):
-    def __init__(self, dimensions: int, hidden_size: int = 2048, dropout: float = 0.5):
+    def __init__(self, dimensions: int, hidden_size: int = 1024, dropout: float = 0.1):
         super(JohnNet, self).__init__()
         self.dimensions = dimensions
         self.layer1 = nn.Linear(dimensions, hidden_size)
