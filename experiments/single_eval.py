@@ -9,22 +9,24 @@ sys.path.append(str(repo_root))
 from utils.state import ClusterState
 from utils.data.samplers import PokemonSampler
 from utils.clusterings import HDBSCANClusterer
-from utils.eval import ContrastEval, JayEval
+from utils.eval import ContrastEval, TripletEval
 from utils.models import JohnNet, JayNet
 
 
 if __name__ == "__main__":
-    repo_root = Path(__file__).resolve().parent.parent
     vector_col = "image_vector"
     label_col = "color"
+    batch_size = 1
+    epochs = 10
+    learning_rate = 0.00001
+    rounds = 10
+
     sampler = PokemonSampler(repo_root / "data" / "pokemon_db", vector_col, label_col)
     clusterer = HDBSCANClusterer()
-    eval = ContrastEval()
-    epochs = 10
-    model = JayNet(sampler.embeddings.shape[1])
-    learning_rate = 0.001
+    eval = ContrastEval(batch_size=batch_size)
+    model = JohnNet(sampler.embeddings.shape[1], dropout=0)
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     
-    rounds = 10
+    
     cluster_state = ClusterState(sampler, clusterer, eval, epochs, model, optimizer)
     cluster_state.full_recluster(rounds)

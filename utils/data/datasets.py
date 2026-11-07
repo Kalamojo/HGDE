@@ -9,9 +9,8 @@ from numpy.typing import NDArray
 class ContrastiveDataset(Dataset):
     def __init__(self, embeddings: NDArray[np.float32]):
         self.embeddings = torch.tensor(embeddings, dtype=torch.float32)
+        self.total_items_tensor = torch.tensor(self.embeddings.shape[0])
         self.pairs: list[tuple[int, int, bool]] = []
-        # self.user_specified = torch.tensor([0] * embeddings.shape[0])
-        # self.pred_labels: Optional[torch.Tensor] = None
 
     def __len__(self):
         return len(self.pairs)
@@ -19,24 +18,11 @@ class ContrastiveDataset(Dataset):
     def append_data(self, pair: tuple[int, int, bool]):
         self.pairs.append(pair)
 
-    """
-    def update_data(self, sampled_move: tuple[int, int, bool], pred_labels: NDArray[np.int_]):
-        item1, item2, closer = sampled_move
-        if closer:
-            self.user_specified[item1] = item2 + 1
-            self.user_specified[item2] = item1 + 1
-        else:
-            self.user_specified[item1] = 0 - (item2 + 1)
-            self.user_specified[item2] = 0 - (item1 + 1)
-        
-        self.pred_labels = torch.tensor(pred_labels)
-    """
-
     def __getitem__(self, idx) -> dict[str, torch.Tensor]:
         ind1, ind2, closer = self.pairs[idx]
-        closer_tensor = torch.tensor(closer, dtype=torch.bool)
+        closer_tensor = torch.tensor(closer)
         
-        return {'item1': self.embeddings[ind1], 'item2':  self.embeddings[ind2], 'closer': closer_tensor}
+        return {'item1': self.embeddings[ind1], 'item2':  self.embeddings[ind2], 'closer': closer_tensor, "total_items": self.total_items_tensor}
 
 # Organizes the embeddings and triplet indices into a format that PyTorch can use during training
 class TripletDataset(Dataset):

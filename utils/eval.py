@@ -56,12 +56,12 @@ class ContrastEval(ClusterEval):
     def loss(
             self, batch: dict[str, torch.Tensor], model: nn.Module
     ) -> torch.Tensor:
-        item1, item2, closer = batch["item1"], batch["item2"], batch["closer"]
+        item1, item2, closer, total_items = batch["item1"], batch["item2"], batch["closer"], batch["total_items"]
         item1_out, item2_out = model(item1), model(item2)
 
-        m, n = item1.shape[1], item1.shape[0]
-        weight = (m/n)+1
-        distance = torch.linalg.vector_norm(item1_out - item2_out)
+        m = item1.shape[0]
+        weight = (m/total_items)+1
+        distance = torch.linalg.vector_norm(item1_out - item2_out, dim=1)
         
         loss = torch.where(
             closer,
@@ -72,7 +72,7 @@ class ContrastEval(ClusterEval):
 
 # JayEval
 
-class JayEval(ClusterEval):
+class TripletEval(ClusterEval):
     def __init__(
         self, batch_size: int = 16, shuffle_data: bool = True,
         margin: float = 2.0, preservation_weight: float = 0.05

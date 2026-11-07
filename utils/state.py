@@ -33,6 +33,21 @@ class ClusterState:
         self.eval.update(pred_labels, self.sampler)
 
         # training loop
+        losses = self.train_model()
+
+        # recluster and evaluate new clusters
+        new_embeddings = self.model(original_embeddings).detach().numpy()
+        new_pred_labels = self.clusterer.run(new_embeddings)
+
+        # log results
+        self.log_results(new_pred_labels, losses)
+
+        return new_embeddings
+
+    def train_model(self) -> list[float]:
+        if self.eval.loader is None:
+            raise ValueError("Data loader has not yet been initialized. Perform eval update first")
+        
         losses = []
         for epoch in range(self.epochs):
             self.model.train()
@@ -53,13 +68,9 @@ class ClusterState:
                 tqdm_loader.set_postfix(loss=loss_val)
             losses.append(batch_loss / batch_count)
 
-        # recluster and evaluate new clusters
-        self.model.eval()
-        new_embeddings = self.model(original_embeddings).detach().numpy()
-        new_pred_labels = self.clusterer.run(new_embeddings)
+        return losses
 
-        # log results
-        ari = adjusted_rand_score(self.sampler.true_labels, new_pred_labels)
+    def log_results(self, pred_labels: NDArray[np.int_], losses: list[float]):
+        # please feel more than welcome to add to this
+        ari = adjusted_rand_score(self.sampler.true_labels, pred_labels)
         print("ARI:", ari)
-
-        return new_embeddings
