@@ -9,7 +9,7 @@ sys.path.append(str(repo_root))
 from utils.state import ClusterState
 from utils.data.samplers import PokemonSampler
 from utils.clusterings import HDBSCANClusterer
-from utils.eval import ContrastEval, TripletEval
+from utils.eval import ContrastiveEval, TripletEval
 from utils.models import JohnNet, JayNet
 
 
@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
     sampler = PokemonSampler(repo_root / "data" / "pokemon_db", vector_col, label_col)
     clusterer = HDBSCANClusterer()
-    eval = ContrastEval(batch_size=batch_size)
+    eval = ContrastiveEval(batch_size=batch_size)
     model = JohnNet(sampler.embeddings.shape[1], dropout=0)
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     

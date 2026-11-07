@@ -33,7 +33,7 @@ class ClusterEval:
 
 # JohnEval
 
-class ContrastEval(ClusterEval):
+class ContrastiveEval(ClusterEval):
     def __init__(
         self, batch_size: int = 16, shuffle_data: bool = True,
         margin: float = 2.0
