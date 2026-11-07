@@ -11,13 +11,12 @@ from utils.data.samplers import DataSampler
 
 class ClusterEval:
     def __init__(
-        self, batch_size: int = 16, shuffle_data: bool = True, margin: float = 2.0
+        self, batch_size: int = 16, shuffle_data: bool = True
     ):
         self.dataset: Optional[Dataset] = None
         self.loader: Optional[DataLoader] = None
         self.batch_size = batch_size
         self.shuffle_data = shuffle_data
-        self.margin = margin
 
     def setup_data(self, embeddings: NDArray[np.float32]):
         self.loader = DataLoader(self.dataset, self.batch_size, self.shuffle_data)
@@ -30,30 +29,42 @@ class ClusterEval:
 
 # JohnEval
 
-class JohnEvalBase(ClusterEval):
+class ContrastEval(ClusterEval):
     def __init__(
         self, batch_size: int = 16, shuffle_data: bool = True,
         margin: float = 2.0, weighting: float = 1.0
     ):
-        super().__init__(batch_size, shuffle_data, margin)
+        super().__init__(batch_size, shuffle_data)
+        self.margin = margin
         self.weighting = weighting
 
     def setup_data(self, embeddings: NDArray[np.float32]):
         self.dataset: ContrastiveDataset = ContrastiveDataset(embeddings)
         super().setup_data(embeddings)
+    
+    def update(self, pred_labels: NDArray[np.int_], sampler: DataSampler):
+        if self.dataset is None or self.loader is None:
+            raise ValueError("Dataset and/or loader have not been initialized with 'setup_data' yet")
+        
+        sampled_move = sampler.sample_pair(pred_labels)
+        self.dataset.update_data(sampled_move, pred_labels)
 
-    # default arbitrary loss function
-    def loss_method(self) -> torch.Tensor:
-        loss = 0
-        for i in range(0, len(outputs) - 1):
-            if labels[i] == labels[i+1]:
-                loss += (outputs[i] - outputs[i+1]).sum()
-            else:
-                loss += (outputs[i] + outputs[i+1]).sum()
-        return torch.tensor(loss)
+    def loss(
+            self, batch: dict[str, torch.Tensor], model: nn.Module
+    ) -> torch.Tensor:
+        item1, item2, closer = batch["item1"], batch["item2"], batch["closer"]
+        item1_out, item2_out = model(item1), model(item2)
 
-    def loss(self, batch: Any, model: nn.Module) -> torch.Tensor:
-        pass;
+        m, n = item1.shape[1], item1.shape[0]
+        weight = (m/n)+1
+        distance = torch.linalg.vector_norm(item1_out - item2_out)
+        
+        loss = torch.where(
+            closer,
+            weight * distance.square(),
+            weight * F.relu(self.margin - distance).square()
+        )
+        return loss
 
 # JayEval
 
@@ -78,8 +89,7 @@ class JayEval(ClusterEval):
         self.dataset.append_data(sampled_moves)
 
     def loss(
-            self, batch: dict[str, torch.Tensor],
-            model: nn.Module
+            self, batch: dict[str, torch.Tensor], model: nn.Module
     ) -> torch.Tensor:
         anchor, positive, negative = batch["anchor"], batch["positive"], batch["negative"]
         a_out, p_out, n_out = model(anchor), model(positive), model(negative)
