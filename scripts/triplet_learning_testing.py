@@ -147,15 +147,20 @@ def load_pokemon(db_path: Path, modality: str):
 
 def make_triplets(labels, moved_item, destination, count, rng):
     old_cluster = int(labels[moved_item])
-    if destination == old_cluster:
-        raise ValueError("Destination cannot equal source cluster")
+
     positives = np.flatnonzero(labels == destination)
     negatives = np.flatnonzero(labels == old_cluster)
+
     negatives = negatives[negatives != moved_item]
-    if not len(positives) or not len(negatives):
-        raise ValueError("Need at least one example in destination and another in source cluster")
-    return [(int(moved_item), int(rng.choice(positives)), int(rng.choice(negatives)))
-            for _ in range(count)]
+
+    return [
+        (
+            int(moved_item),
+            int(rng.choice(positives)),
+            int(rng.choice(negatives))
+        )
+        for _ in range(count)
+    ]
 
 
 def triplet_stats(X, triplets, labels=None, margin=0.2):
