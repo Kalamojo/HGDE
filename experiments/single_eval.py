@@ -23,10 +23,10 @@ if __name__ == "__main__":
 
     sampler = PokemonSampler(repo_root / "data" / "pokemon_db", vector_col, label_col)
     clusterer = HDBSCANClusterer()
-    eval = ContrastiveEval(batch_size=batch_size)
+    eval = ContrastiveEval(batch_size=batch_size, epochs=epochs)
     model = JohnNet(sampler.embeddings.shape[1], dropout=0)
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
     
     
-    cluster_state = ClusterState(sampler, clusterer, eval, epochs, model, optimizer)
+    cluster_state = ClusterState(sampler, clusterer, eval, model, optimizer)
     cluster_state.full_recluster(rounds)
