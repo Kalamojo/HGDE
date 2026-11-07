@@ -5,9 +5,9 @@ import numpy as np
 from numpy.typing import NDArray
 from sklearn.metrics import adjusted_rand_score
 from tqdm import tqdm
-from utils.data.samplers import DataSampler
-from utils.eval import ClusterEval
-from utils.clusterings import Clusterer
+from src.utils.data.samplers import DataSampler
+from src.utils.eval import ClusterEval
+from src.utils.clusterings import Clusterer
 
 
 class ClusterState:
