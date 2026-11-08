@@ -36,6 +36,7 @@ class ClusterEval:
                 desc=f"Epoch {epoch+1}", unit="batch"
             )
             for _, batch in tqdm_loader:
+                optimizer.zero_grad()
                 loss = self.loss(batch, model)
                 loss.backward()
                 optimizer.step()

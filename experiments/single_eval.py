@@ -21,7 +21,7 @@ if __name__ == "__main__":
     learning_rate = 0.00001
     rounds = 10
 
-    sampler = PokemonSampler(repo_root / "data" / "pokemon_db", vector_col, label_col)
+    sampler = PokemonSampler(repo_root / "data" / "pokemon_db", vector_col, label_col, test_fraction=0.2)
     clusterer = HDBSCANClusterer()
     eval = ContrastiveEval(batch_size=batch_size, epochs=epochs)
     model = JohnNet(sampler.embeddings.shape[1], dropout=0)
