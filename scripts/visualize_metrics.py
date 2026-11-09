@@ -48,19 +48,22 @@ def plot_convergence(history, save_path=None):
     plt.figure(figsize=(8, 5))
     
     # Plot the data using a line with circular markers for individual data points
-    plt.plot(moves, scores, marker='o', linestyle='-', color='b', label='Pipeline Performance')
-    
+    plt.plot(moves, scores, marker='o', markersize=3, linestyle='-', color='b', label='ARI (all items)')
+    if history.get("test_ari"):
+        plt.plot(moves, history["test_ari"], marker='o', markersize=3, linestyle='-', color='tab:orange',
+                 label='Test ARI (items the user never gives feedback on)')
+
     # Configure graph labels and title
     plt.title('Clustering Convergence: User Effort vs Accuracy', fontsize=14)
-    plt.xlabel('Number of User Constraints (Moves)', fontsize=12)
+    plt.xlabel('Move (batch of constraints)', fontsize=12)
     plt.ylabel('Adjusted Rand Index (ARI)', fontsize=12)
-    
+
     # Set y-axis limits to represent standard ARI bounds (0.0 to 1.0)
     # A slight padding up to 1.05 ensures the top line is clearly visible
     plt.ylim(-0.05, 1.05)
-    
-    # Ensure x-axis only displays integer ticks, as partial moves do not exist
-    plt.xticks(range(min(moves), max(moves) + 1))
+
+    # Integer ticks only (partial moves do not exist); let matplotlib thin them for long runs
+    plt.gca().xaxis.set_major_locator(plt.MaxNLocator(integer=True))
     
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.legend()
