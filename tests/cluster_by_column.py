@@ -21,6 +21,7 @@ from src.embedding_transformer.embedding_transformer import train_loop
 from src.embedding_transformer.embedding_transformer import user_weighted_contrasting_loss
 from src.embedding_transformer.embedding_transformer import user_weighted_whole_cluster_loss
 from src.embedding_transformer.embedding_transformer import user_weighted_goal_loss
+from src.embedding_transformer.embedding_transformer import user_weighted_no_cluster_loss
 
 # computes the recall and precision of the configuation given and multiplies them to compute accuracy
 def compute_accuracy(clusters, classes):
@@ -83,7 +84,7 @@ def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_
         loss: string shorthand for different loss function variations to test
         epoch_weighting: if true, the weighting given above increases by 1 for every epoch
 '''
-def main(max_corrections=10, goal_acc=0.95, epochs=10, lr=0.0001, batch_size=32, label_column='color', sample_size=200, easy=True, clusters=3, weighting=2, loss='whole_cluster', epoch_weighted=False):
+def main(max_corrections=10, goal_acc=0.95, epochs=10, lr=0.0001, batch_size=32, label_column='color', sample_size=200, easy=True, clusters=3, weighting=2, loss='no_cluster', epoch_weighted=False):
 
     # initial setup and evaluation
     torch.manual_seed(42)
@@ -143,6 +144,8 @@ def main(max_corrections=10, goal_acc=0.95, epochs=10, lr=0.0001, batch_size=32,
         loss_func = user_weighted_whole_cluster_loss
     elif loss == 'goal_weighted':
         loss_func = user_weighted_goal_loss
+    elif loss == 'no_cluster':
+        loss_func = user_weighted_no_cluster_loss
 
     max_acc, max_recall, max_precision, iteration = 0,0,0,0
     acc = 0    

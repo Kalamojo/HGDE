@@ -268,6 +268,38 @@ def user_weighted_goal_loss(outputs, labels, user_specified, idx, init_outputs, 
         return outputs.sum() * 0.0
     return torch.stack(pair_losses).mean()
 
+def user_weighted_no_cluster_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n, weighting = 1):
+    margin = 2.0
+    pair_losses = []
+    for i in range(len(outputs) if outputs.dim() > 1 else 1): # if the batch size is 1 it len(outputs) is wrong
+        for j in range(len(init_outputs)):
+            # A signed, one-based value identifies a constrained dataset index.
+            constraint = 0
+            specified = int(user_specified[i].item())
+            if specified == 0:
+                continue
+            if abs(specified) - 1 == int(j):
+                constraint = 1 if specified > 0 else -1
+
+            same_cluster = bool(labels[i] == clusters[j])
+            positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
+            if idx[i] == j:
+                weight = 0
+            elif specified != 0: 
+                weight = 1 if constraint != 0 else 0
+            else:
+                weight = 0
+            distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
+            if weight != 0:
+                if positive_pair:
+                    pair_losses.append(weight * distance.square())
+                else:
+                    pair_losses.append(weight * F.relu(margin - distance).square())
+
+    if not pair_losses:
+        return outputs.sum() * 0.0
+    return torch.stack(pair_losses).mean()
+
 def main():
     if sys.argv[1] == "help":
         print("run the script with arguments in the following order, -> python3 embedding_transformer.py data.pt loss_name save_file_path")
