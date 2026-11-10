@@ -13,6 +13,7 @@ class ContrastiveDataset(Dataset):
         self.total_items_tensor = torch.tensor(self.embeddings.shape[0])
         self.pairs: list[tuple[int, int, bool]] = []
         self.unconstrained: Optional[torch.Tensor] = None
+        self.pred_labels: Optional[torch.Tensor] = None
         # self.user_specified = torch.tensor([0] * embeddings.shape[0])
         # self.pred_labels: Optional[torch.Tensor] = None
 
@@ -22,14 +23,15 @@ class ContrastiveDataset(Dataset):
     def append_data(self, pair: tuple[int, int, bool]):
         self.pairs.append(pair)
     
-    def set_unconstrained(self, unconstrained: NDArray[np.float64], pred_labels):
+    def update_stuff(self, unconstrained: NDArray[np.float64], pred_labels):
         self.unconstrained = torch.tensor(unconstrained)
+        self.pred_labels =torch.tensor(pred_labels)
 
     def __getitem__(self, idx) -> dict[str, torch.Tensor]:
         ind1, ind2, closer = self.pairs[idx]
         closer_tensor = torch.tensor(closer)
         
-        return {'item1': self.embeddings[ind1], 'item2':  self.embeddings[ind2], 'closer': closer_tensor, "total_items": self.total_items_tensor, 'unconstrained': self.unconstrained}
+        return {'item1': self.embeddings[ind1], 'item2':  self.embeddings[ind2], 'closer': closer_tensor, "total_items": self.total_items_tensor, 'unconstrained': self.unconstrained, 'pred_labels': self.pred_labels}
 
 # Organizes the embeddings and triplet indices into a format that PyTorch can use during training
 class TripletDataset(Dataset):

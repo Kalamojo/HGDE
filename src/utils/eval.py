@@ -87,7 +87,7 @@ class ContrastiveEval(ClusterEval):
     def loss(
             self, batch: dict[str, torch.Tensor], model: nn.Module
     ) -> torch.Tensor:
-        item1, item2, closer, total_items, unconstrained = batch["item1"], batch["item2"], batch["closer"], batch["total_items"], batch["unconstrained"]
+        item1, item2, closer, total_items, unconstrained, pred_label = batch["item1"], batch["item2"], batch["closer"], batch["total_items"], batch["unconstrained"], batch["pred_labels"]
         item1_out, item2_out = model(item1), model(item2)
 
         m = item1.shape[0]
