@@ -8,13 +8,25 @@ from collections import defaultdict
 
 
 class DataSampler:
-    def __init__(self, db_path: Path, table_name: str, vector_col: str, label_col: str):
+    def __init__(self, db_path: Path, table_name: str, vector_col: str, label_col: str,
+                 test_fraction: float = 0.0, seed: int = 0):
         self.db_path = db_path
         self.table_name = table_name
         self.vector_col = vector_col
         self.label_col = label_col
         self.id_col = "index"
         self.embeddings, self.true_labels, self.ids = self.load_data()
+        self.set_test_items(test_fraction, seed)
+
+    def set_test_items(self, test_fraction: float = 0.0, seed: int = 0):
+        """Hold out a fixed random fraction of items: they never appear in any sampled pair or
+        triplet, so metrics on them measure generalization. 0.0 = no held-out items."""
+        n = len(self.true_labels)
+        self.test_mask = np.zeros(n, dtype=bool)
+        n_test = int(round(test_fraction * n))
+        if n_test:
+            self.test_mask[np.random.default_rng(seed).choice(n, n_test, replace=False)] = True
+        self.test_items = set(np.flatnonzero(self.test_mask).tolist())
 
     def load_data(self) -> tuple[NDArray[np.float32], NDArray[np.object_], NDArray[np.uint32]]:
         if not self.db_path.exists():
@@ -68,8 +80,8 @@ class DataSampler:
             if move in all_moves_dict:
                 continue;
             
-            positives = pred_clusters[to_cluster_label]
-            negatives = pred_clusters[from_cluster_label].difference({item_1})
+            positives = pred_clusters[to_cluster_label].difference(self.test_items)
+            negatives = pred_clusters[from_cluster_label].difference({item_1}, self.test_items)
             all_moves_dict[move] = (item_1, positives, negatives)
 
         all_moves = [
@@ -89,6 +101,7 @@ class DataSampler:
         must_link = []
 
         for cluster in true_clusters.values():
+            cluster = cluster.difference(self.test_items)
             seen = set()
             for ind1 in cluster:
                 seen.add(ind1)
@@ -103,6 +116,7 @@ class DataSampler:
         must_not_link = []
 
         for cluster in pred_clusters.values():
+            cluster = cluster.difference(self.test_items)
             seen = set()
             for ind1 in cluster:
                 seen.add(ind1)
@@ -123,10 +137,10 @@ class DataSampler:
         return clusters
 
 class PokemonBenchmark(DataSampler):
-    def __init__(self, db_path: Path, vector_col: str, label_col: str):
+    def __init__(self, db_path: Path, vector_col: str, label_col: str, test_fraction: float = 0.0, seed: int = 0):
         table_name = "pokemon"
-        super().__init__(db_path, table_name, vector_col, label_col)
+        super().__init__(db_path, table_name, vector_col, label_col, test_fraction, seed)
 
 class PokemonRedBlueBenchmark(PokemonBenchmark):
-    def __init__(self, db_path: Path, vector_col: str, label_col: str):
-        super().__init__(db_path, vector_col, label_col)
+    def __init__(self, db_path: Path, vector_col: str, label_col: str, test_fraction: float = 0.0, seed: int = 0):
+        super().__init__(db_path, vector_col, label_col, test_fraction, seed)

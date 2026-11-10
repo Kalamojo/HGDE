@@ -1,21 +1,25 @@
 """
 File: benchmark_static.py
 Description:
-    Learning-curve benchmark for projection models, OUTSIDE the active loop.
+    Learning-curve benchmark for the GravityWarp, OUTSIDE the active loop.
 
-    For each number of constraints m, sample m random constraints from the ground truth, fit each
-    model on them, cluster the projected embeddings with KMeans and report ARI. Every model sees
+    For each number of constraints m, sample m random constraints from the ground truth, fit the
+    warp on them, cluster the projected embeddings with KMeans and report ARI. Every setting sees
     the same constraints, so differences are due to the model alone, not to which errors the
-    simulator happened to pick. A supervised-LDA ceiling (fit on half the labels) is printed for
-    reference.
+    simulator happened to pick.
 
-    --must_fraction controls the mix. Random pairs are mostly cannot-link (about 1 - 1/k), which
-    is roughly what the error-driven simulator produces; must-links carry more information per
-    pair, so compare 0.5 with 0.1.
+    Two tables are printed:
+      * ARI on all points (includes the constrained items, so it rewards memorisation),
+      * HELD-OUT ARI on points that appear in no constraint: the number that matters.
+    A supervised-LDA ceiling (fit on half the labels) is printed for reference.
+
+    --must_fraction controls the mix: 1.0 = Must-Links only (the simulator's default),
+    0.5 = half and half. Two seeds give roughly +-0.02-0.03 of noise.
 
 Usage (from the repo root):
     python scripts/benchmark_static.py
-    python scripts/benchmark_static.py --must_fraction 0.1 --ms 10 30 100 300 1000 --seeds 3
+    python scripts/benchmark_static.py --ms 30 90 300 900 --seeds 2
+    python scripts/benchmark_static.py --sigmas 0.7 1.0 1.5
 """
 
 import argparse
@@ -38,20 +42,10 @@ if str(repo_root) not in sys.path:
     sys.path.insert(0, str(repo_root))
 
 
-def load_models():
-    """Model factories. Add your own here: anything with _setup(X) / _fit() / transform(X)
-    / .constraints, i.e. the same classes the pipeline uses."""
-    try:
-        from src.projection_model_chris import LowRankProjection
-    except ImportError:
-        from scripts.projection_model import LowRankProjection
-    from src.pattern_projection_chris import PatternProjection
-    return {
-        "lowrank(r16,nb3)": lambda s: LowRankProjection(rank=16, neighbor_k=3, seed=s),
-        "pattern(p16)": lambda s: PatternProjection(p_fixed=16, seed=s),
-        "pattern(p32)": lambda s: PatternProjection(p_fixed=32, seed=s),
-        "pattern(cv)": lambda s: PatternProjection(seed=s),
-    }
+def load_models(sigmas=(1.0,)):
+    """Model factories: seed -> model with _setup(X) / _fit() / transform(X) / .constraints."""
+    from src.gravity_warp import GravityWarp
+    return {f"warp sigma={sig:g}": (lambda s, sig=sig: GravityWarp(sigma_scale=sig, seed=s)) for sig in sigmas}
 
 
 def sample_constraints(gt, m, must_fraction, rng):
@@ -72,8 +66,10 @@ def sample_constraints(gt, m, must_fraction, rng):
     return cons
 
 
-def cluster_ari(Z, gt, k, seed=0):
-    return adjusted_rand_score(gt, KMeans(k, n_init=10, random_state=seed).fit_predict(normalize(Z)))
+def cluster_ari(Z, gt, k, seed=0, mask=None):
+    """KMeans on ALL points; ARI scored on all points, or only on `mask` (e.g. never-constrained points)."""
+    lab = KMeans(k, n_init=10, random_state=seed).fit_predict(normalize(Z))
+    return adjusted_rand_score(gt, lab) if mask is None else adjusted_rand_score(gt[mask], lab[mask])
 
 
 def lda_ceiling(X, gt, k, seed=0):
@@ -86,31 +82,38 @@ def lda_ceiling(X, gt, k, seed=0):
     return adjusted_rand_score(gt[te], KMeans(k, n_init=10, random_state=seed).fit_predict(Z))
 
 
-def run(X, gt, ms, seeds, must_fraction, models=None):
-    models = models or load_models()
+def run(X, gt, ms, seeds, must_fraction, models):
     k = len(np.unique(gt))
     X = np.asarray(X, dtype=np.float32)
     raw = np.mean([cluster_ari(X, gt, k, s) for s in range(seeds)])
     table = {name: np.zeros((seeds, len(ms))) for name in models}
+    held = {name: np.zeros((seeds, len(ms))) for name in models}   # ARI on never-constrained points only
+    held["raw (no learning)"] = np.zeros((seeds, len(ms)))
     for s in range(seeds):
         rng = np.random.default_rng(1000 + s)
         for mi, m in enumerate(ms):
             cons = sample_constraints(gt, m, must_fraction, rng)
+            seen = {c["item_1"] for c in cons} | {c["item_2"] for c in cons}
+            free = np.array([i not in seen for i in range(len(gt))])
+            held["raw (no learning)"][s, mi] = cluster_ari(X, gt, k, s, free)
             for name, make in models.items():
                 model = make(s)
                 model.constraints = [dict(c) for c in cons]
                 model._setup(X)
                 model._fit()
-                table[name][s, mi] = cluster_ari(model.transform(X), gt, k, s)
+                Zp = model.transform(X)
+                table[name][s, mi] = cluster_ari(Zp, gt, k, s)
+                held[name][s, mi] = cluster_ari(Zp, gt, k, s, free)
         print(f"  seed {s + 1}/{seeds} done", flush=True)
-    return raw, table, lda_ceiling(X, gt, k)
+    return raw, table, lda_ceiling(X, gt, k), held
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ms", type=int, nargs="*", default=[10, 30, 100, 300, 1000])
-    parser.add_argument("--seeds", type=int, default=3)
-    parser.add_argument("--must_fraction", type=float, default=0.5)
+    parser.add_argument("--ms", type=int, nargs="*", default=[30, 90, 300, 900])
+    parser.add_argument("--seeds", type=int, default=2)
+    parser.add_argument("--must_fraction", type=float, default=1.0)
+    parser.add_argument("--sigmas", type=float, nargs="*", default=[1.0], help="warp kernel widths to compare.")
     parser.add_argument("--vector_column", default="image_vector")
     parser.add_argument("--ground_truth", default="ground_truth_visual.npy")
     args = parser.parse_args()
@@ -122,12 +125,17 @@ def main():
 
     t0 = time.time()
     print(f"{len(gt)} items, {len(np.unique(gt))} classes, must_fraction={args.must_fraction}, seeds={args.seeds}")
-    raw, table, ceiling = run(X, gt, args.ms, args.seeds, args.must_fraction)
+    models = load_models(args.sigmas)
+    raw, table, ceiling, held = run(X, gt, args.ms, args.seeds, args.must_fraction, models)
     print(f"\nARI of KMeans on the projected embeddings (mean of {args.seeds} seeds), {time.time() - t0:.0f}s")
-    print(f"{'model':18s} " + " ".join(f"m={m:<5d}" for m in args.ms))
-    print(f"{'raw (no learning)':18s} " + " ".join(f"{raw:7.3f}" for _ in args.ms))
+    print(f"{'model':22s} " + " ".join(f"m={m:<5d}" for m in args.ms))
+    print(f"{'raw (no learning)':22s} " + " ".join(f"{raw:7.3f}" for _ in args.ms))
     for name, arr in table.items():
-        print(f"{name:18s} " + " ".join(f"{v:7.3f}" for v in arr.mean(axis=0)))
+        print(f"{name:22s} " + " ".join(f"{v:7.3f}" for v in arr.mean(axis=0)))
+    print("\nHELD-OUT ARI: scored only on points that appear in NO constraint (KMeans still sees all points)")
+    print(f"{'model':22s} " + " ".join(f"m={m:<5d}" for m in args.ms))
+    for name, arr in held.items():
+        print(f"{name:22s} " + " ".join(f"{v:7.3f}" for v in arr.mean(axis=0)))
     print(f"\nceiling: supervised LDA on half the labels, ARI on the other half = {ceiling:.3f}")
 
 
