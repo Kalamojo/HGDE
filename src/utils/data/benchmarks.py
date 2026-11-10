@@ -122,12 +122,11 @@ class DataSampler:
 
         return clusters
 
-class PokemonRedBlueBenchmark(DataSampler):
+class PokemonBenchmark(DataSampler):
     def __init__(self, db_path: Path, vector_col: str, label_col: str):
         table_name = "pokemon"
         super().__init__(db_path, table_name, vector_col, label_col)
 
-class PokemonRedBlueBenchmark(DataSampler):
+class PokemonRedBlueBenchmark(PokemonBenchmark):
     def __init__(self, db_path: Path, vector_col: str, label_col: str):
-        table_name = "pokemon"
-        super().__init__(db_path, table_name, vector_col, label_col)
+        super().__init__(db_path, vector_col, label_col)

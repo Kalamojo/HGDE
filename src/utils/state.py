@@ -5,17 +5,16 @@ import numpy as np
 from numpy.typing import NDArray
 from sklearn.metrics import adjusted_rand_score
 from tqdm import tqdm
-from utils.data.benchmarks import DataSampler
-from utils.eval import ClusterEval
-from utils.clusterings import Clusterer
+from src.utils.data.benchmarks import DataSampler
+from src.utils.eval import ClusterEval
+from src.utils.clusterings import Clusterer
 
 
 class ClusterState:
-    def __init__(self, sampler: DataSampler, clusterer: Clusterer, eval: ClusterEval, epochs: int, model: nn.Module, optimizer: Optimizer):
+    def __init__(self, sampler: DataSampler, clusterer: Clusterer, eval: ClusterEval, model: nn.Module, optimizer: Optimizer):
         self.sampler = sampler
         self.clusterer = clusterer
         self.eval = eval
-        self.epochs = epochs
         self.model = model
         self.optimizer = optimizer
     
@@ -33,33 +32,18 @@ class ClusterState:
         self.eval.update(pred_labels, current_embeddings, self.sampler)
 
         # training loop
-        losses = []
-        for epoch in range(self.epochs):
-            self.model.train()
-            batch_loss = 0.0
-            batch_count = 0
-            
-            tqdm_loader = tqdm(
-                enumerate(self.eval.loader), total=len(self.eval.loader),
-                desc=f"Epoch {epoch+1}", unit="batch"
-            )
-            for _, batch in tqdm_loader:
-                loss = self.eval.loss(batch, self.model)
-                loss.backward()
-                self.optimizer.step()
-                loss_val = loss.item()
-                batch_loss += loss_val
-                batch_count += 1
-                tqdm_loader.set_postfix(loss=loss_val)
-            losses.append(batch_loss / batch_count)
+        losses = self.eval.train_model(self.model, self.optimizer)
 
         # recluster and evaluate new clusters
-        self.model.eval()
         new_embeddings = self.model(original_embeddings).detach().numpy()
         new_pred_labels = self.clusterer.run(new_embeddings)
 
         # log results
-        ari = adjusted_rand_score(self.sampler.true_labels, new_pred_labels)
-        print("ARI:", ari)
+        self.log_results(new_pred_labels, losses)
 
         return new_embeddings
+
+    def log_results(self, pred_labels: NDArray[np.int_], losses: list[float]):
+        # please feel more than welcome to add to this
+        ari = adjusted_rand_score(self.sampler.true_labels, pred_labels)
+        print("ARI:", ari)

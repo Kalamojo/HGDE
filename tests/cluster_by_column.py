@@ -50,7 +50,7 @@ def compute_accuracy(clusters, classes):
 
 # pulls out the hyperparameter arguments and trains the model. returns the train final embedding
 # transformation, the model, and the optimizer. Can take is model and optim so user can reuse them
-def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_contrasting_loss):
+def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_contrasting_loss, epoch_weighted=False):
     if model == None:
         model = Net(len(data['train'][0]))
     epochs = hypers['epochs']
@@ -59,16 +59,31 @@ def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_
     if optim == None:
         optim = torch.optim.Adam(model.parameters(), lr = lr)
 
-    train_loop(data, epochs, loss, optim, batch_size, model, weighting)
+    train_loop(data, epochs, loss, optim, batch_size, model, weighting, epoch_weighted)
 
     model.eval()
     with torch.no_grad():
         final_data = model(data['train'])
     return final_data, model, optim
 
-# grabs embeddings and the given column, clusters the default embeddings and then randomly makes a correction
-# and trains the model based on that
-def main(max_corrections=10, goal_acc=0.8, epochs=10, lr=0.0001, batch_size=32, label_column='color', sample_size=200, easy=True, clusters=3, weighting=2, loss='whole_cluster'):
+'''
+    Tests the model based on pokemon embeddings and a chosen hidden ground truth
+    
+    args:
+        max_correction: the maximum number of moves until the model stops
+        goal_acc: goal F1 score. The model will stop early if that is achieved
+        epoch: number of epochs per each correction
+        lr: learning rate for the model
+        batch_size: batch_size
+        label_column: the name of the column that gives the hidden ground truth labels
+        sample_size: pulls sample_size number of random examples to run on
+        easy: if true, easy mode picks a given number of labels to train on and uses k_means with a known number of clusters
+        clusters: does nothing if not on easy mode, the number of clusters for easy mode to pull
+        weighting: hyperparameter of user_specified weights, larger makes user_specified weighted much more
+        loss: string shorthand for different loss function variations to test
+        epoch_weighting: if true, the weighting given above increases by 1 for every epoch
+'''
+def main(max_corrections=10, goal_acc=0.95, epochs=10, lr=0.0001, batch_size=32, label_column='color', sample_size=200, easy=True, clusters=3, weighting=2, loss='whole_cluster', epoch_weighted=False):
 
     # initial setup and evaluation
     torch.manual_seed(42)
@@ -153,12 +168,11 @@ def main(max_corrections=10, goal_acc=0.8, epochs=10, lr=0.0001, batch_size=32, 
             goal = "further"
         init_distance = np.linalg.vector_norm(data['train'][rand1] - data['train'][rand2])
         data['user'] = user_specified
-        final_data, model, optim = train(data, hypers, model=model, optim=optim, weighting=weighting, loss=loss_func)
+        final_data, model, optim = train(data, hypers, model=model, optim=optim, weighting=weighting, loss=loss_func, epoch_weighted=epoch_weighted)
         pred_labels = clusterer.fit_predict(final_data)
         pred_labels = np.array(pred_labels)
         acc, recall, precision, ari_score = compute_accuracy(pred_labels, true_labels)        
         pred_labels = torch.tensor(pred_labels)
-        data['train'] = final_data
         data['labels'] = pred_labels
         if goal == 'closer':
             success = np.linalg.vector_norm(data['train'][rand1] - data['train'][rand2]) < init_distance
@@ -179,4 +193,4 @@ def main(max_corrections=10, goal_acc=0.8, epochs=10, lr=0.0001, batch_size=32, 
 
 
 if __name__ == "__main__":
-    main()
+    main(epoch_weighted=True)

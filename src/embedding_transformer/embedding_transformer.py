@@ -67,7 +67,7 @@ class Net(nn.Module):
         super(Net, self).__init__()
         self.dimensions = dimensions
         self.layer1 = nn.Linear(dimensions, 2048)
-        self.dropout = nn.Dropout(p=0.5)
+        self.dropout = nn.Dropout(p=0.2)
         self.layer2 = nn.Linear(2048, dimensions)
 
     def forward(self, x):
@@ -103,7 +103,7 @@ def load_data(inputs, clusters, user_specified, batch_size):
     return train_dataloader
 
 # This is the training loop for the model
-def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1):
+def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1, epoch_weighted = False):
     inputs, clusters, user_specified = data['train'], data['labels'], data['user'] # seperate data
     train_dataloader = load_data(inputs, clusters, user_specified, batch_size) # get a dataloader with data
     init_train_losses = [] # to keep track of losses
@@ -131,6 +131,9 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1
             optim.step() # using an Adam optimizer changes the learning rate so we take an optimizer step
             train_loss.append(loss.item()) # append the loss number
             optim.zero_grad() # zero gradients between batches
+
+        if epoch_weighted:
+            weight += 1
         
         if epoch%2==0: # every 2 epochs print out current progress
             print("Epoch : {}, Train loss: {}".format(epoch, np.mean(train_loss)))

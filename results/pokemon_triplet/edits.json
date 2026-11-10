@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "round": 1,
+    "row": 42,
+    "dex_num": "0043",
+    "name": "Oddish",
+    "source": 5,
+    "destination": 6
+  }
+]

@@ -1,22 +1,51 @@
 import torch
 from torch import nn
+from torch.optim import Optimizer
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, Dataset
 import numpy as np
 from numpy.typing import NDArray
+from tqdm import tqdm
 from typing import Any, Optional
-from utils.data.datasets import ContrastiveDataset, TripletDataset
-from utils.data.benchmarks import DataSampler
+from src.utils.data.datasets import ContrastiveDataset, TripletDataset
+from src.utils.data.benchmarks import DataSampler
 
 
 class ClusterEval:
     def __init__(
-        self, batch_size: int = 16, shuffle_data: bool = True
+        self, batch_size: int = 16, epochs: int = 10, shuffle_data: bool = True
     ):
         self.dataset: Optional[Dataset] = None
         self.loader: Optional[DataLoader] = None
+        self.epochs = epochs
         self.batch_size = batch_size
         self.shuffle_data = shuffle_data
+
+    def train_model(self, model: nn.Module, optimizer: Optimizer) -> list[float]:
+        if self.loader is None:
+            raise ValueError("Data loader has not yet been initialized. Perform eval update first")
+        
+        losses = []
+        for epoch in range(self.epochs):
+            model.train()
+            batch_loss = 0.0
+            batch_count = 0
+            
+            tqdm_loader = tqdm(
+                enumerate(self.loader), total=len(self.loader),
+                desc=f"Epoch {epoch+1}", unit="batch"
+            )
+            for _, batch in tqdm_loader:
+                loss = self.loss(batch, model)
+                loss.backward()
+                optimizer.step()
+                loss_val = loss.item()
+                batch_loss += loss_val
+                batch_count += 1
+                tqdm_loader.set_postfix(loss=loss_val)
+            losses.append(batch_loss / batch_count)
+
+        return losses
 
     def setup_dataset(self, sampler: DataSampler):
         pass;
@@ -33,12 +62,12 @@ class ClusterEval:
 
 # JohnEval
 
-class ContrastEval(ClusterEval):
+class ContrastiveEval(ClusterEval):
     def __init__(
-        self, batch_size: int = 16, shuffle_data: bool = True,
+        self, batch_size: int = 16, epochs: int = 10, shuffle_data: bool = True,
         margin: float = 2.0
     ):
-        super().__init__(batch_size, shuffle_data)
+        super().__init__(batch_size, epochs, shuffle_data)
         self.margin = margin
 
     def setup_data(self, sampler: DataSampler):
@@ -57,12 +86,12 @@ class ContrastEval(ClusterEval):
     def loss(
             self, batch: dict[str, torch.Tensor], model: nn.Module
     ) -> torch.Tensor:
-        item1, item2, closer, unconstrained = batch["item1"], batch["item2"], batch["closer"], batch["unconstrained"]
+        item1, item2, closer, total_items, unconstrained = batch["item1"], batch["item2"], batch["closer"], batch["total_items"], batch["unconstrained"]
         item1_out, item2_out = model(item1), model(item2)
 
-        m, n = item1.shape[1], item1.shape[0]
-        weight = (m/n)+1
-        distance = torch.linalg.vector_norm(item1_out - item2_out)
+        m = item1.shape[0]
+        weight = (m/total_items)+1
+        distance = torch.linalg.vector_norm(item1_out - item2_out, dim=1)
         
         loss = torch.where(
             closer,
@@ -73,12 +102,12 @@ class ContrastEval(ClusterEval):
 
 # JayEval
 
-class JayEval(ClusterEval):
+class TripletEval(ClusterEval):
     def __init__(
-        self, batch_size: int = 16, shuffle_data: bool = True,
+        self, batch_size: int = 16, epochs: int = 10, shuffle_data: bool = True,
         margin: float = 2.0, preservation_weight: float = 0.05
     ):
-        super().__init__(batch_size, shuffle_data)
+        super().__init__(batch_size, epochs, shuffle_data)
         self.triplet_loss_fn = nn.TripletMarginLoss(margin=margin, p=2)
         self.preservation_weight = preservation_weight
     
