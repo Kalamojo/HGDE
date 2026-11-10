@@ -300,6 +300,52 @@ def user_weighted_no_cluster_loss(outputs, labels, user_specified, idx, init_out
         return outputs.sum() * 0.0
     return torch.stack(pair_losses).mean()
 
+def user_weighted_one_cluster_item_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n, weighting = 1):
+    margin = 2.0
+    pair_losses = []
+    cluster_loss = []
+    for i in range(len(outputs) if outputs.dim() > 1 else 1): # if the batch size is 1 it len(outputs) is wrong
+        for j in range(len(init_outputs)):
+            # A signed, one-based value identifies a constrained dataset index.
+            constraint = 0
+            specified = int(user_specified[i].item())
+            if abs(specified) - 1 == int(j):
+                constraint = 1 if specified > 0 else -1
+
+            same_cluster = bool(labels[i] == clusters[j])
+            positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
+            # the weights are calculated such that is weighting = 1, the average weight of all the
+            # calculations is 1 and the ratio of (total weight:total not weight) = (n:1)
+            # (i.e if 2 there are 2 user constraints, they will make up for 67% of the loss
+            #   and the rest will make up 33% of the loss so the ratio is 2:1)
+            if idx[i] == j:
+                weight = 0
+            elif specified != 0: 
+                weight = m if constraint != 0 else 1/m
+            else:
+                weight = 1/m
+            distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
+
+            # Positive pairs always shrink; negatives repel only while closer
+            # than the margin. With normalized embeddings, distances are at
+            # most 2, so a margin of 2 keeps nearly all negative pairs active.
+            if positive_pair:
+                if constraint != 0:
+                    pair_losses.append(weight * distance.square())
+                else:
+                    cluster_loss.append(weight * distance.square())
+            else:
+                if constraint != 0:
+                    pair_losses.append(weight * F.relu(margin - distance).square())
+                else:
+                    cluster_loss.append(weight * F.relu(margin - distance).square())
+    cluster_mean = sum(cluster_loss)/len(cluster_loss)
+    pair_losses = [x + cluster_mean for x in pair_losses]
+
+    if not pair_losses:
+        return outputs.sum() * 0.0
+    return torch.stack(pair_losses).mean()
+
 def main():
     if sys.argv[1] == "help":
         print("run the script with arguments in the following order, -> python3 embedding_transformer.py data.pt loss_name save_file_path")
