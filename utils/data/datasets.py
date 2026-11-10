@@ -2,6 +2,7 @@ import torch
 from torch.utils.data import Dataset
 import numpy as np
 from numpy.typing import NDArray
+from typing import Optional
 
 
 # pytorch's built in dataset class, this allows us to train in batches and seperate the torch tensors
@@ -10,6 +11,7 @@ class ContrastiveDataset(Dataset):
     def __init__(self, embeddings: NDArray[np.float32]):
         self.embeddings = torch.tensor(embeddings, dtype=torch.float32)
         self.pairs: list[tuple[int, int, bool]] = []
+        self.unconstrained: Optional[torch.Tensor] = None
         # self.user_specified = torch.tensor([0] * embeddings.shape[0])
         # self.pred_labels: Optional[torch.Tensor] = None
 
@@ -18,6 +20,9 @@ class ContrastiveDataset(Dataset):
     
     def append_data(self, pair: tuple[int, int, bool]):
         self.pairs.append(pair)
+    
+    def set_unconstrained(self, unconstrained: NDArray[np.float64], pred_labels):
+        self.unconstrained = torch.tensor(unconstrained)
 
     """
     def update_data(self, sampled_move: tuple[int, int, bool], pred_labels: NDArray[np.int_]):
@@ -36,7 +41,7 @@ class ContrastiveDataset(Dataset):
         ind1, ind2, closer = self.pairs[idx]
         closer_tensor = torch.tensor(closer, dtype=torch.bool)
         
-        return {'item1': self.embeddings[ind1], 'item2':  self.embeddings[ind2], 'closer': closer_tensor}
+        return {'item1': self.embeddings[ind1], 'item2':  self.embeddings[ind2], 'closer': closer_tensor, 'unconstrained': self.unconstrained}
 
 # Organizes the embeddings and triplet indices into a format that PyTorch can use during training
 class TripletDataset(Dataset):

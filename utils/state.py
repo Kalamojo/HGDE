@@ -5,7 +5,7 @@ import numpy as np
 from numpy.typing import NDArray
 from sklearn.metrics import adjusted_rand_score
 from tqdm import tqdm
-from utils.data.samplers import DataSampler
+from utils.data.benchmarks import DataSampler
 from utils.eval import ClusterEval
 from utils.clusterings import Clusterer
 
@@ -30,7 +30,7 @@ class ClusterState:
     def recluster_round(self, current_embeddings: NDArray[np.float64], original_embeddings: torch.Tensor) -> NDArray[np.float64]:
         # collect suggestion and prepare eval data
         pred_labels = self.clusterer.run(current_embeddings)
-        self.eval.update(pred_labels, self.sampler)
+        self.eval.update(pred_labels, current_embeddings, self.sampler)
 
         # training loop
         losses = []

@@ -7,7 +7,7 @@ repo_root = current_dir.parent
 sys.path.append(str(repo_root))
 
 from utils.state import ClusterState
-from utils.data.samplers import PokemonSampler
+from utils.data.benchmarks import PokemonSampler
 from utils.clusterings import HDBSCANClusterer
 from utils.eval import ContrastEval, JayEval
 from utils.models import JohnNet, JayNet

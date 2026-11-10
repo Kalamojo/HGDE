@@ -6,7 +6,7 @@ import numpy as np
 from numpy.typing import NDArray
 from typing import Any, Optional
 from utils.data.datasets import ContrastiveDataset, TripletDataset
-from utils.data.samplers import DataSampler
+from utils.data.benchmarks import DataSampler
 
 
 class ClusterEval:
@@ -44,11 +44,12 @@ class ContrastEval(ClusterEval):
     def setup_data(self, sampler: DataSampler):
         self.dataset: ContrastiveDataset = ContrastiveDataset(sampler.embeddings)
     
-    def update(self, pred_labels: NDArray[np.int_], sampler: DataSampler):
+    def update(self, pred_labels: NDArray[np.int_], current_embeddings: NDArray[np.float64], sampler: DataSampler):
         super().update(pred_labels, sampler)
         
         sampled_move = sampler.sample_pair(pred_labels)
         self.dataset.append_data(sampled_move)
+        self.dataset.update_stuff(current_embeddings, pred_labels)
         
         if self.loader is None:
             self.setup_loader()
@@ -56,7 +57,7 @@ class ContrastEval(ClusterEval):
     def loss(
             self, batch: dict[str, torch.Tensor], model: nn.Module
     ) -> torch.Tensor:
-        item1, item2, closer = batch["item1"], batch["item2"], batch["closer"]
+        item1, item2, closer, unconstrained = batch["item1"], batch["item2"], batch["closer"], batch["unconstrained"]
         item1_out, item2_out = model(item1), model(item2)
 
         m, n = item1.shape[1], item1.shape[0]
