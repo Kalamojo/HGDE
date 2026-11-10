@@ -8,7 +8,7 @@ from numpy.typing import NDArray
 from tqdm import tqdm
 from typing import Any, Optional
 from src.utils.data.datasets import ContrastiveDataset, TripletDataset
-from src.utils.data.samplers import DataSampler
+from src.utils.data.benchmarks import DataSampler
 
 
 class ClusterEval:
@@ -74,11 +74,12 @@ class ContrastiveEval(ClusterEval):
     def setup_data(self, sampler: DataSampler):
         self.dataset: ContrastiveDataset = ContrastiveDataset(sampler.embeddings)
     
-    def update(self, pred_labels: NDArray[np.int_], sampler: DataSampler):
+    def update(self, pred_labels: NDArray[np.int_], current_embeddings: NDArray[np.float64], sampler: DataSampler):
         super().update(pred_labels, sampler)
         
         sampled_move = sampler.sample_pair(pred_labels)
         self.dataset.append_data(sampled_move)
+        self.dataset.update_stuff(current_embeddings, pred_labels)
         
         if self.loader is None:
             self.setup_loader()
@@ -86,7 +87,7 @@ class ContrastiveEval(ClusterEval):
     def loss(
             self, batch: dict[str, torch.Tensor], model: nn.Module
     ) -> torch.Tensor:
-        item1, item2, closer, total_items = batch["item1"], batch["item2"], batch["closer"], batch["total_items"]
+        item1, item2, closer, total_items, unconstrained = batch["item1"], batch["item2"], batch["closer"], batch["total_items"], batch["unconstrained"]
         item1_out, item2_out = model(item1), model(item2)
 
         m = item1.shape[0]
