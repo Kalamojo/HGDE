@@ -164,21 +164,37 @@ def plot_history(path: Path, history):
 # Configurations for running
 def parse_args():
     p = argparse.ArgumentParser(description="Metadata-guided test of HGDE triplet learning")
+    # Only use if path to pokemon embeddings move
     p.add_argument("--db", type=Path, default=REPO_ROOT / "data/pokemon_db")
-    p.add_argument("--column", default="color", help="Ground-truth metadata field")
-    p.add_argument("--modality", choices=("image", "text", "mixed"), default="image")
-    p.add_argument("--top-labels", type=int, default=3, help="Restrict to N most common metadata values; 0 means all")
-    p.add_argument("--sample-size", type=int, default=200, help="Randomly sample N eligible Pokémon; 0 means all")
-    p.add_argument("--clusters", type=int, default=None, help="K-Means cluster count; default: number of sampled target classes")
+    # Ground truth
+    p.add_argument("--column", default="color")
+    # Image, Text, or Mixed
+    p.add_argument("--modality", choices=("image", "text", "mixed"), default="text")
+    # Keeps the N most common metadata values or 0 for all
+    p.add_argument("--top-labels", type=int, default=0)
+    # Randomly sample N pokemon 
+    p.add_argument("--sample-size", type=int, default=200)
+    # Number of clusters for K-Means
+    p.add_argument("--clusters", type=int, default=None)
+    # Number of feedback rounds to simulate
     p.add_argument("--rounds", type=int, default=10)
+    # Number of triplets to generate per feedback round
     p.add_argument("--triplets-per-round", type=int, default=32)
-    p.add_argument("--epochs", type=int, default=20, help="Epochs per feedback round")
+    # Epochs per feedback round
+    p.add_argument("--epochs", type=int, default=20)
+    # Batch size for training
     p.add_argument("--batch-size", type=int, default=16)
+    # Learning rate for the optimizer
     p.add_argument("--lr", type=float, default=0.001)
+    # Scaling factor for the embedding transformation
     p.add_argument("--scale", type=float, default=0.1)
+    # Weight for the preservation loss term during training (used to maintain original embedding structure so semantic relationships dont get lost)
     p.add_argument("--preservation", type=float, default=0.05)
+    # Target ARI to stop the feedback loop early if reached
     p.add_argument("--goal-ari", type=float, default=0.95)
+    # Random seed for reproducibility
     p.add_argument("--seed", type=int, default=42)
+    # Output directory for results
     p.add_argument("--output-dir", type=Path, default=None)
     return p.parse_args()
 
