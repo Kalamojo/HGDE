@@ -87,12 +87,26 @@ class ContrastiveEval(ClusterEval):
     def loss(
             self, batch: dict[str, torch.Tensor], model: nn.Module
     ) -> torch.Tensor:
-        item1, item2, closer, total_items, unconstrained, pred_label = batch["item1"], batch["item2"], batch["closer"], batch["total_items"], batch["unconstrained"], batch["pred_labels"]
+        item1, item2, label1, label2, closer, total_items, unconstrained, pred_label = batch["item1"], batch["item2"], batch["label1"], batch["label2"], batch["closer"], batch["total_items"], batch["unconstrained"], batch["pred_labels"]
         item1_out, item2_out = model(item1), model(item2)
 
         m = item1.shape[0]
         weight = (m/total_items)+1
         distance = torch.linalg.vector_norm(item1_out - item2_out, dim=1)
+        unconstrained_loss = []
+        for num in len(unconstrained):
+            positive1 = (label1 == pred_label[num] and not closer) or (closer and label2 == pred_label[num])
+            positive2 = (label2 == pred_label[num] and not closer) or (closer and label1 == pred_label[num])
+            distance1 = torch.linalg.vector_norm(item1_out - unconstrained[num], dim=1)
+            distance2 = torch.linalg.vector_norm(item2_out - unconstrained[num], dim=1)
+            if positive1:
+                unconstrained_loss.append(distance1.square())
+            else:
+                unconstrained_loss.append(F.relu(self.margin - distance1).square)
+            if positive2:
+                unconstrained_loss.append(distance2.square())
+            else:
+                unconstrained_loss.append(F.relu(self.margin - distance2).square)
         
         loss = torch.where(
             closer,

@@ -31,7 +31,7 @@ class ContrastiveDataset(Dataset):
         ind1, ind2, closer = self.pairs[idx]
         closer_tensor = torch.tensor(closer)
         
-        return {'item1': self.embeddings[ind1], 'item2':  self.embeddings[ind2], 'closer': closer_tensor, "total_items": self.total_items_tensor, 'unconstrained': self.unconstrained, 'pred_labels': self.pred_labels}
+        return {'item1': self.embeddings[ind1], 'item2':  self.embeddings[ind2], 'label1': self.pred_labels[ind1], 'label2': self.pred_labels[ind2], 'closer': closer_tensor, "total_items": self.total_items_tensor, 'unconstrained': self.unconstrained, 'pred_labels': self.pred_labels}
 
 # Organizes the embeddings and triplet indices into a format that PyTorch can use during training
 class TripletDataset(Dataset):
