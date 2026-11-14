@@ -23,6 +23,7 @@ from src.embedding_transformer.embedding_transformer import user_weighted_whole_
 from src.embedding_transformer.embedding_transformer import user_weighted_goal_loss
 from src.embedding_transformer.embedding_transformer import user_weighted_no_cluster_loss
 from src.embedding_transformer.embedding_transformer import user_weighted_one_cluster_item_loss
+from src.embedding_transformer.embedding_transformer import user_weighted_selective_feature_loss
 
 # computes the recall and precision of the configuation given and multiplies them to compute accuracy
 def compute_accuracy(clusters, classes):
@@ -59,7 +60,7 @@ def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_
     lr = hypers['lr']
     batch_size = hypers['batch_size']
     if optim == None:
-        optim = torch.optim.Adam(model.parameters(), lr = lr)
+        optim = torch.optim.AdamW(model.parameters(), lr = lr, weight_decay=0.001)
 
     train_loop(data, epochs, loss, optim, batch_size, model, weighting, epoch_weighted)
 
@@ -85,7 +86,7 @@ def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_
         loss: string shorthand for different loss function variations to test
         epoch_weighting: if true, the weighting given above increases by 1 for every epoch
 '''
-def main(max_corrections=10, goal_acc=0.95, epochs=10, lr=0.0001, batch_size=32, label_column='color', sample_size=200, easy=True, clusters=3, weighting=1, loss='one_cluster', epoch_weighted=False):
+def main(max_corrections=10, goal_acc=0.95, epochs=4, lr=0.0001, batch_size=32, label_column='color', sample_size=200, easy=True, clusters=3, weighting=1, loss='one_cluster', epoch_weighted=False):
 
     # initial setup and evaluation
     torch.manual_seed(42)
@@ -149,6 +150,8 @@ def main(max_corrections=10, goal_acc=0.95, epochs=10, lr=0.0001, batch_size=32,
         loss_func = user_weighted_no_cluster_loss
     elif loss == 'one_cluster':
         loss_func = user_weighted_one_cluster_item_loss
+    elif loss == 'selective':
+        loss_func = user_weighted_selective_feature_loss
 
     max_acc, max_recall, max_precision, iteration = 0,0,0,0
     acc = 0    
@@ -199,4 +202,4 @@ def main(max_corrections=10, goal_acc=0.95, epochs=10, lr=0.0001, batch_size=32,
 
 
 if __name__ == "__main__":
-    main(epoch_weighted=True)
+    main()
