@@ -104,13 +104,14 @@ def load_data(inputs, clusters, user_specified, batch_size):
 
 # This is the training loop for the model
 def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1, epoch_weighted = False):
-    optim = torch.optim.AdamW(model.parameters(), lr=0.0001, weight_decay=0.0001)
+    optim = torch.optim.Adam(model.parameters(), lr=0.0001)
     inputs, clusters, user_specified = data['train'], data['labels'], data['user'] # seperate data
     train_dataloader = load_data(inputs, clusters, user_specified, batch_size) # get a dataloader with data
     init_train_losses = [] # to keep track of losses
     m = len(inputs) * (len(inputs) - 1) # total number of distance calulations
     n = sum(1 for x in user_specified if x != 0) # number of user weighted constraints
     m = m - n # total - user weighted
+    l1_lambda = 0.001
     for epoch in range(1,epochs+1): # for the given epochs
         model.eval()
         with torch.no_grad():
@@ -128,6 +129,8 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1
             outputs = torch.squeeze(model(batch_inputs.float())) # pass embeddings through the model
 
             loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters, m, n, weight) # calculate loss
+            l1_norm = l1_norm = sum(p.abs().sum() for name, p in model.named_parameters() if 'bias' not in name)
+            loss += l1_lambda * l1_norm
             loss.backward() # backpropogate through the model
             optim.step() # using an Adam optimizer changes the learning rate so we take an optimizer step
             train_loss.append(loss.item()) # append the loss number

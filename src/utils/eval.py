@@ -21,7 +21,7 @@ class ClusterEval:
         self.batch_size = batch_size
         self.shuffle_data = shuffle_data
 
-    def train_model(self, model: nn.Module, optimizer: Optimizer) -> list[float]:
+    def train_model(self, model: nn.Module, optimizer: Optimizer, l1_reg=0.0) -> list[float]:
         if self.loader is None:
             raise ValueError("Data loader has not yet been initialized. Perform eval update first")
         
@@ -37,7 +37,8 @@ class ClusterEval:
             )
             for _, batch in tqdm_loader:
                 optimizer.zero_grad()
-                loss = self.loss(batch, model)
+                l1_norm = sum(p.abs().sum() for name, p in model.named_parameters() if 'bias' not in name)
+                loss = self.loss(batch, model) + l1_reg * l1_norm
                 loss.backward()
                 optimizer.step()
                 loss_val = loss.item()
@@ -83,6 +84,9 @@ class ContrastiveEval(ClusterEval):
         
         if self.loader is None:
             self.setup_loader()
+
+    def train_model(self, model, optimizer, l1_reg=0.0001):
+        return super().train_model(model, optimizer, l1_reg)
 
     def loss(
             self, batch: dict[str, torch.Tensor], model: nn.Module
