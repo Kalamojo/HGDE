@@ -104,36 +104,37 @@ def load_data(inputs, clusters, user_specified, batch_size):
 
 # This is the training loop for the model
 def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1, epoch_weighted = False):
+    optim = torch.optim.Adam(model.parameters(), lr=0.0001)
     inputs, clusters, user_specified = data['train'], data['labels'], data['user'] # seperate data
     train_dataloader = load_data(inputs, clusters, user_specified, batch_size) # get a dataloader with data
     init_train_losses = [] # to keep track of losses
     m = len(inputs) * (len(inputs) - 1) # total number of distance calulations
     n = sum(1 for x in user_specified if x != 0) # number of user weighted constraints
     m = m - n # total - user weighted
+    l1_lambda = 0.001
     for epoch in range(1,epochs+1): # for the given epochs
         model.eval()
         with torch.no_grad():
-            init_output = model(inputs) # this is the distance we will compare each element to
+            init_output = torch.squeeze(model(inputs.float())) # this is the distance we will compare each element to
 
         #Training phase
         model.train() # Setting the model to train phase
         train_loss = [] # loss for this current epoch
         for _, batch in enumerate(train_dataloader): # get a batch from dataloader
 
-            inputs = batch['input']
+            batch_inputs = batch['input']
             labels = batch['label']
             user = batch['user_specified']
             idx = batch['idx']
-            outputs = torch.squeeze(model(inputs.float())) # pass embeddings through the model
+            outputs = torch.squeeze(model(batch_inputs.float())) # pass embeddings through the model
 
             loss = loss_function(outputs, labels.float(), user, idx, init_output, clusters, m, n, weight) # calculate loss
+            l1_norm = l1_norm = sum(p.abs().sum() for name, p in model.named_parameters() if 'bias' not in name)
+            loss += l1_lambda * l1_norm
             loss.backward() # backpropogate through the model
             optim.step() # using an Adam optimizer changes the learning rate so we take an optimizer step
             train_loss.append(loss.item()) # append the loss number
             optim.zero_grad() # zero gradients between batches
-
-        if epoch_weighted:
-            weight += 1
         
         if epoch%2==0: # every 2 epochs print out current progress
             print("Epoch : {}, Train loss: {}".format(epoch, np.mean(train_loss)))
@@ -267,6 +268,145 @@ def user_weighted_goal_loss(outputs, labels, user_specified, idx, init_outputs, 
     if not pair_losses:
         return outputs.sum() * 0.0
     return torch.stack(pair_losses).mean()
+
+def user_weighted_no_cluster_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n, weighting = 1):
+    margin = 2.0
+    pair_losses = []
+    for i in range(len(outputs) if outputs.dim() > 1 else 1): # if the batch size is 1 it len(outputs) is wrong
+        for j in range(len(init_outputs)):
+            # A signed, one-based value identifies a constrained dataset index.
+            constraint = 0
+            specified = int(user_specified[i].item())
+            if specified == 0:
+                continue
+            if abs(specified) - 1 == int(j):
+                constraint = 1 if specified > 0 else -1
+
+            same_cluster = bool(labels[i] == clusters[j])
+            positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
+            if idx[i] == j:
+                weight = 0
+            elif specified != 0: 
+                weight = 1 if constraint != 0 else 0
+            else:
+                weight = 0
+            distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
+            if weight != 0:
+                if positive_pair:
+                    pair_losses.append(weight * distance.square())
+                else:
+                    pair_losses.append(weight * F.relu(margin - distance).square())
+
+    if not pair_losses:
+        return outputs.sum() * 0.0
+    return torch.stack(pair_losses).mean()
+
+def user_weighted_one_cluster_item_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n, weighting = 1):
+    margin = 2.0
+    pair_losses = []
+    cluster_loss = []
+    for i in range(len(outputs) if outputs.dim() > 1 else 1): # if the batch size is 1 it len(outputs) is wrong
+        for j in range(len(init_outputs)):
+            # A signed, one-based value identifies a constrained dataset index.
+            constraint = 0
+            specified = int(user_specified[i].item())
+            if abs(specified) - 1 == int(j):
+                constraint = 1 if specified > 0 else -1
+
+            same_cluster = bool(labels[i] == clusters[j])
+            positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
+            goal = False
+            if constraint == 1 and same_cluster:
+                goal == True
+            elif constraint == -1 and not same_cluster:
+                goal == True
+            if idx[i] == j:
+                weight = 0
+            elif specified != 0: 
+                weight = 1 if constraint != 0 and not goal else 1/m
+            else:
+                weight = 1/m
+            distance = torch.linalg.vector_norm(outputs[i] - init_outputs[j])
+
+            if positive_pair:
+                if constraint != 0 and not goal:
+                    pair_losses.append(weight * distance.square())
+                else:
+                    cluster_loss.append(weight * distance.square())
+            else:
+                if constraint != 0 and not goal:
+                    pair_losses.append(weight * F.relu(margin - distance).square())
+                else:
+                    cluster_loss.append(weight * F.relu(margin - distance).square())
+    cluster_mean = sum(cluster_loss)/len(cluster_loss)
+    pair_losses = [x + cluster_mean for x in pair_losses]
+
+    if not pair_losses:
+        return outputs.sum() * 0.0
+    return torch.stack(pair_losses).mean()
+
+def user_weighted_selective_feature_loss(outputs, labels, user_specified, idx, init_outputs, clusters, m, n, weighting = 1):
+    margin = 2.0
+    pair_losses = []
+    cluster_loss = []
+    mask = [False]*outputs.shape[-1]
+    for ind in range(len(user_specified)):
+        if user_specified[ind] != 0:
+            specified = int(user_specified[ind].item())
+            specified = abs(specified) - 1
+            per_element_distance = torch.abs(outputs[ind] - init_outputs[specified])
+            k = int(outputs.shape[-1]/20)
+            if k < 1:
+                k = 1
+            positive_pair = user_specified[ind] > 0
+            if positive_pair:
+                indices = sorted(range(len(per_element_distance)), key=lambda i: per_element_distance[i])[:k]
+            else:
+                indices = sorted(range(len(per_element_distance)), key=lambda i: per_element_distance[i], reverse=True)[:k]
+            for ind in indices:
+                mask[ind] = True
+    mask = torch.tensor(mask)
+    for i in range(len(outputs) if outputs.dim() > 1 else 1): # if the batch size is 1 it len(outputs) is wrong
+        for j in range(len(init_outputs)):
+            # A signed, one-based value identifies a constrained dataset index.
+            constraint = 0
+            specified = int(user_specified[i].item())
+            if abs(specified) - 1 == int(j):
+                constraint = 1 if specified > 0 else -1
+
+            same_cluster = bool(labels[i] == clusters[j])
+            positive_pair = constraint == 1 or (constraint == 0 and same_cluster)
+            goal = False
+            if constraint == 1 and same_cluster:
+                goal == True
+            elif constraint == -1 and not same_cluster:
+                goal == True
+            if idx[i] == j:
+                weight = 0
+            elif specified != 0: 
+                weight = 1 if constraint != 0 and not goal else 1/m
+            else:
+                weight = 1/m
+            masked1 = torch.masked_select(outputs[i], mask)
+            masked2 = torch.masked_select(init_outputs[j], mask)
+            distance = torch.linalg.vector_norm(masked1 - masked2)
+
+            if positive_pair:
+                if constraint != 0 and not goal:
+                    pair_losses.append(weight * distance.square())
+                else:
+                    cluster_loss.append(weight * distance.square())
+            else:
+                if constraint != 0 and not goal:
+                    pair_losses.append(weight * F.relu(margin - distance).square())
+                else:
+                    cluster_loss.append(weight * F.relu(margin - distance).square())
+
+    cluster_mean = sum(cluster_loss)/len(cluster_loss)
+
+    if not pair_losses:
+        return outputs.sum() * 0.0
+    return torch.stack(pair_losses).mean() + cluster_mean
 
 def main():
     if sys.argv[1] == "help":

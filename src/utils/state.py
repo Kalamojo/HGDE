@@ -4,7 +4,7 @@ from torch.optim import Optimizer
 import numpy as np
 from numpy.typing import NDArray
 from tqdm import tqdm
-from src.utils.data.samplers import DataSampler
+from src.utils.data.benchmarks import DataSampler
 from src.utils.eval import ClusterEval
 from src.utils.clusterings import Clusterer
 from src.utils.metrics import all_metrics, sample_pairs
@@ -35,7 +35,7 @@ class ClusterState:
     def recluster_round(self, current_embeddings: NDArray[np.float64], original_embeddings: torch.Tensor) -> NDArray[np.float64]:
         # collect suggestion and prepare eval data
         pred_labels = self.clusterer.run(current_embeddings)
-        self.eval.update(pred_labels, self.sampler)
+        self.eval.update(pred_labels, current_embeddings, self.sampler)
 
         # training loop
         losses = self.eval.train_model(self.model, self.optimizer)

@@ -2,31 +2,31 @@
   {
     "round": 1,
     "anchor_index": 62,
-    "name": "Budew",
-    "target_label": "green",
+    "name": "Skorupi",
+    "target_label": "purple",
     "feedback_type": "split+mixed",
     "triplets_added": 32
   },
   {
     "round": 2,
     "anchor_index": 1,
-    "name": "Floragato",
-    "target_label": "green",
+    "name": "Heatran",
+    "target_label": "brown",
     "feedback_type": "split+mixed",
     "triplets_added": 32
   },
   {
     "round": 3,
     "anchor_index": 184,
-    "name": "Roaring Moon",
-    "target_label": "green",
+    "name": "Bouffalant",
+    "target_label": "brown",
     "feedback_type": "split+mixed",
     "triplets_added": 32
   },
   {
     "round": 4,
     "anchor_index": 65,
-    "name": "Doduo",
+    "name": "Cubone",
     "target_label": "brown",
     "feedback_type": "split+mixed",
     "triplets_added": 32
@@ -34,15 +34,15 @@
   {
     "round": 5,
     "anchor_index": 57,
-    "name": "Lycanroc",
-    "target_label": "brown",
+    "name": "Magmar",
+    "target_label": "red",
     "feedback_type": "split+mixed",
     "triplets_added": 32
   },
   {
     "round": 6,
     "anchor_index": 157,
-    "name": "Frogadier",
+    "name": "Inkay",
     "target_label": "blue",
     "feedback_type": "split+mixed",
     "triplets_added": 32
@@ -50,32 +50,32 @@
   {
     "round": 7,
     "anchor_index": 3,
-    "name": "Tentacool",
-    "target_label": "blue",
+    "name": "Grimer",
+    "target_label": "purple",
     "feedback_type": "split+mixed",
     "triplets_added": 32
   },
   {
     "round": 8,
     "anchor_index": 58,
-    "name": "Garbodor",
-    "target_label": "green",
+    "name": "Eelektrik",
+    "target_label": "blue",
     "feedback_type": "split+mixed",
     "triplets_added": 32
   },
   {
     "round": 9,
     "anchor_index": 128,
-    "name": "Wynaut",
+    "name": "Gigalith",
     "target_label": "blue",
     "feedback_type": "split+mixed",
     "triplets_added": 32
   },
   {
     "round": 10,
-    "anchor_index": 117,
-    "name": "Phantump",
-    "target_label": "brown",
+    "anchor_index": 118,
+    "name": "Bronzor",
+    "target_label": "green",
     "feedback_type": "split+mixed",
     "triplets_added": 32
   }
