@@ -1,0 +1,42 @@
+{
+  "features": [
+    {
+      "id": "aquatic_water_based",
+      "definition": "0 = no aquatic, water, or lake-associated design features; 1 = design is primarily based on a water creature (fish, seal, tadpole, eel, manta ray, sea turtle, penguin, water dragon, lake spirit with water-body associations) with fins, flippers, gills, or strong aquatic/watery form as the dominant feature",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "plant_object_based",
+      "definition": "0 = no plant, grass, or inanimate object basis in design; 1 = design is primarily based on a plant (tree, flower, cactus, leaf, apple), natural object (rock, stone), or everyday inanimate object (pot, bell) as the dominant design inspiration",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "ghost_spirit_based",
+      "definition": "0 = no ghost, spirit, or incorporeal supernatural traits in design; 1 = design is primarily based on a ghost, spirit, specter, or undead entity — the supernatural incorporeal nature is the dominant feature, not the secondary animal/plant it may resemble",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "mechanical_robotic",
+      "definition": "0 = entirely organic appearance with no mechanical elements; 1 = design is primarily robotic, mechanical, or made of artificial/inorganic constructed components (gears, circuits, metal armor, digital features)",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "land_animal_vertebrate",
+      "definition": "0 = not based on a terrestrial vertebrate animal; 1 = design is primarily based on a land-dwelling vertebrate animal such as a feline, canine, rodent, mustelid, primate, bird, or terrestrial reptile — the animal body form is the dominant design feature",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "humanoid_mythical",
+      "definition": "0 = not humanoid or mythical in form; 1 = design is primarily based on a humanoid figure, mythical creature (genie, fairy, sprite, legendary being) with upright bipedal humanoid form as the dominant feature, distinct from animal quadrupeds",
+      "kind": "scale",
+      "weight": 2.0
+    }
+  ],
+  "notes": "The key insight from round 2 feedback is that item_004 (lake trio guardian - a fairy/sprite with gem decorations and a teardrop body associated with a lake) must group with aquatic/water Pokémon (seals, tadpoles, eels, manta rays, sea turtles, penguins, water dragons) rather than with plants/objects/ghosts. This makes sense if we interpret item_004 as a lake spirit - its water/lake association is primary. The aquatic_water_based dimension needs to capture not just fish/sea creatures but also lake-associated spiritual beings. Meanwhile plant/object items (item_008, item_007, item_025, item_019, item_030, item_032, item_051) must score high on plant_object_based or ghost_spirit_based to stay away from item_004. The previous feedback about item_033 being close to item_051 and item_019 remains puzzling - perhaps these all end up in a 'miscellaneous' cluster when no single dimension dominates. By using aquatic_water_based as a strong dimension, item_004 clusters with the many water-type Pokémon in the collection.",
+  "criterion": "Group Pokémon by the primary real-world archetype or elemental/type category most strongly reflected in their design: aquatic/water-based creatures (fish, sea mammals, amphibians, water dragons, lake spirits), land animals (felines, canines, rodents, birds, reptiles, primates), plant/nature-based designs (grass, trees, flowers, natural objects), ghost/spirit/undead designs, and mechanical/robotic designs. A Pokémon's group is determined by its single most dominant design inspiration."
+}

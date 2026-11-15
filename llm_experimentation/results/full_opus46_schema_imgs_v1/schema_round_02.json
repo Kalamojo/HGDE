@@ -1,0 +1,222 @@
+{
+  "features": [
+    {
+      "id": "dominant_blue",
+      "definition": "How much of the creature's body is blue/cyan colored. 0=no blue at all, 1=almost entirely blue",
+      "kind": "scale",
+      "weight": 5.0
+    },
+    {
+      "id": "dominant_green",
+      "definition": "How much of the creature's body is green colored. 0=no green, 1=almost entirely green",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "dominant_brown",
+      "definition": "How much of the creature's body is brown/tan colored. 0=no brown, 1=almost entirely brown",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "dominant_red_pink",
+      "definition": "How much of the creature's body is red, pink, or magenta. 0=none, 1=almost entirely red/pink",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "dominant_yellow_orange",
+      "definition": "How much of the creature's body is yellow or orange. 0=none, 1=almost entirely yellow/orange",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "dominant_gray_black",
+      "definition": "How much of the creature's body is gray, black, or dark metallic. 0=none, 1=almost entirely gray/black",
+      "kind": "scale",
+      "weight": 2.0
+    },
+    {
+      "id": "dominant_white",
+      "definition": "How much of the creature's body is white or very pale. 0=none, 1=almost entirely white",
+      "kind": "scale",
+      "weight": 1.5
+    },
+    {
+      "id": "has_wings",
+      "definition": "Whether the creature has visible wings or wing-like appendages",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "has_fins_or_tail_fin",
+      "definition": "Whether the creature has aquatic fins or a fish-like tail",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "has_tentacles",
+      "definition": "Whether the creature has tentacles or tentacle-like appendages",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "bipedal",
+      "definition": "Whether the creature stands upright on two legs",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "quadruped",
+      "definition": "Whether the creature stands on four legs",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "amorphous_blob",
+      "definition": "Whether the creature lacks clear limbs and has a blob-like or spherical body. 0=clear limbed body, 1=completely amorphous/round",
+      "kind": "scale",
+      "weight": 0.1
+    },
+    {
+      "id": "body_complexity",
+      "definition": "Visual complexity of the design: number of appendages, patterns, details. 0=very simple/smooth, 1=extremely complex with many details",
+      "kind": "scale",
+      "weight": 0.3
+    },
+    {
+      "id": "apparent_size",
+      "definition": "How large/bulky the creature appears to be. 0=tiny/small, 1=very large/massive",
+      "kind": "scale",
+      "weight": 0.2
+    },
+    {
+      "id": "fierceness",
+      "definition": "How fierce, aggressive, or intimidating the creature looks. 0=cute/gentle, 1=very fierce/menacing",
+      "kind": "scale",
+      "weight": 0.3
+    },
+    {
+      "id": "cuteness",
+      "definition": "How cute or adorable the creature appears. 0=not cute at all, 1=extremely cute",
+      "kind": "scale",
+      "weight": 0.2
+    },
+    {
+      "id": "insectoid",
+      "definition": "Whether the creature resembles an insect or arachnid (exoskeleton, multiple limbs, pincers)",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "aquatic_body",
+      "definition": "Whether the creature has a body adapted for water (streamlined, fish-like, marine). 0=fully terrestrial, 1=fully aquatic",
+      "kind": "scale",
+      "weight": 1.5
+    },
+    {
+      "id": "avian",
+      "definition": "Whether the creature is bird-like (beak, feathers, bird body plan)",
+      "kind": "binary",
+      "weight": 0.1
+    },
+    {
+      "id": "mammalian",
+      "definition": "Whether the creature resembles a mammal (fur, mammalian face, warm-blooded appearance)",
+      "kind": "binary",
+      "weight": 0.1
+    },
+    {
+      "id": "reptilian",
+      "definition": "Whether the creature resembles a reptile or dinosaur (scales, reptilian features)",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "plant_features",
+      "definition": "Whether the creature has plant-like features (leaves, petals, vines, roots)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "mechanical_mineral",
+      "definition": "Whether the creature appears mechanical, rocky, or mineral-based rather than organic. 0=fully organic, 1=fully mechanical/mineral",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "shell_or_armor",
+      "definition": "Whether the creature has a visible shell, exoskeleton, or armor plating",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "spiky_horns",
+      "definition": "Whether the creature has prominent spikes, horns, or pointed protrusions",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "floating_flying",
+      "definition": "Whether the creature appears to be airborne or floating rather than grounded. 0=grounded, 1=fully airborne",
+      "kind": "scale",
+      "weight": 0.2
+    },
+    {
+      "id": "number_of_colors",
+      "definition": "How many distinct major colors appear on the creature. 0=monochromatic (1 color), 1=very colorful (5+ colors)",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "evolutionary_stage",
+      "definition": "How evolved or powerful this creature appears. 0=looks like a baby or basic first-stage creature (small, simple, cute), 1=looks like a final evolution or legendary (large, complex, powerful, imposing)",
+      "kind": "scale",
+      "weight": 0.2
+    },
+    {
+      "id": "intimidation_level",
+      "definition": "How intimidating or threatening the creature looks overall. 0=completely harmless and approachable, 1=extremely threatening and dangerous-looking",
+      "kind": "scale",
+      "weight": 0.2
+    },
+    {
+      "id": "body_mass",
+      "definition": "How heavy and bulky the creature appears relative to a typical small animal. 0=very light and tiny (like a small bird or mouse), 1=extremely massive and heavy (like a tank or boulder)",
+      "kind": "scale",
+      "weight": 0.1
+    },
+    {
+      "id": "design_simplicity",
+      "definition": "How simple and clean the creature's overall design is. 0=very complex with many parts, patterns, accessories, and details, 1=very simple with smooth surfaces and minimal detail",
+      "kind": "scale",
+      "weight": 0.2
+    },
+    {
+      "id": "battle_ready",
+      "definition": "Whether the creature looks ready for combat with visible weapons, claws, fangs, or aggressive posture. 0=peaceful and passive, 1=armed and in fighting stance",
+      "kind": "scale",
+      "weight": 0.2
+    },
+    {
+      "id": "blue_theme_intensity",
+      "definition": "Overall blue/cyan/ice color theme intensity of the creature. 0=no blue tones anywhere, 1=creature is overwhelmingly blue/cyan/ice-colored",
+      "kind": "scale",
+      "weight": 5.0
+    },
+    {
+      "id": "warm_color_theme",
+      "definition": "How much the creature uses warm colors (red, orange, yellow, brown, tan) as its primary palette. 0=no warm colors, 1=entirely warm-colored",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "green_nature_theme",
+      "definition": "How much the creature is green/nature-themed in overall appearance. 0=no green or nature theme, 1=overwhelmingly green/nature-themed",
+      "kind": "scale",
+      "weight": 4.0
+    }
+  ],
+  "notes": "The user appears to be grouping by dominant color - specifically blue/water-themed creatures together vs non-blue creatures. Item_413 (Wailord) groups with blue Pokemon regardless of size. Need to heavily weight color features, especially blue, and drastically reduce evolutionary_stage, body_mass, fierceness, intimidation which were separating blue Pokemon by power level.",
+  "criterion": ""
+}

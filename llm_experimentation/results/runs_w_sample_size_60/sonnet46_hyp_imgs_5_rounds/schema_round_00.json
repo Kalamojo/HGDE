@@ -1,0 +1,42 @@
+{
+  "features": [
+    {
+      "id": "blue_dominance",
+      "definition": "How much of the Pokémon's body is blue or cyan tones. 0 = no blue at all, 1 = body is almost entirely blue/cyan.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "green_dominance",
+      "definition": "How much of the Pokémon's body is green. 0 = no green, 1 = body is almost entirely green.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "brown_dominance",
+      "definition": "How much of the Pokémon's body is brown, tan, or warm earthy tones. 0 = no brown, 1 = almost entirely brown/tan.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "red_orange_dominance",
+      "definition": "How much of the Pokémon's body is red, orange, or fiery tones. 0 = none, 1 = almost entirely red/orange.",
+      "kind": "scale",
+      "weight": 2.5
+    },
+    {
+      "id": "gray_dark_dominance",
+      "definition": "How much of the Pokémon's body is gray, dark navy, black, or metallic tones. 0 = none, 1 = almost entirely gray/dark/metallic.",
+      "kind": "scale",
+      "weight": 2.5
+    },
+    {
+      "id": "body_size_impression",
+      "definition": "Overall perceived body mass/size relative to typical Pokémon. 0 = very small and slight, 1 = very large and bulky.",
+      "kind": "scale",
+      "weight": 1.0
+    }
+  ],
+  "notes": "The clearest natural grouping for Pokémon is by elemental type, which is strongly correlated with dominant color: Water types are predominantly blue, Grass types are predominantly green, Normal/Ground types tend toward brown/tan, Fire types are red/orange, and Steel/Dark types are gray/dark. A secondary size dimension helps differentiate within-color groups (e.g., baby vs evolved forms).",
+  "criterion": "Group Pokémon by their dominant body color palette, which typically reflects their primary elemental type (blue/water, green/grass, brown/earth-normal, red/fire, gray/steel-dark)."
+}

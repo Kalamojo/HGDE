@@ -1,0 +1,94 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 5,
+    "anon_id": "item_033",
+    "name": "Yungoos",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "blue_dominant": 0.0,
+        "green_dominant": 0.0,
+        "brown_dominant": 0.5,
+        "red_dominant": 0.0,
+        "is_biped": 3.5,
+        "is_quadruped": 0.0,
+        "is_serpentine": 0.0,
+        "is_avian": 2.0,
+        "is_insect_bug": 0.0,
+        "is_amorphous": 0.0,
+        "plant_features": 0.5,
+        "water_features": 0.0,
+        "fire_features": 0.5,
+        "steel_metal_features": 0.0,
+        "dragon_like": 0.0,
+        "has_tail": 1.0,
+        "has_wings": 0.5,
+        "has_horns_antennae": 0.5,
+        "aggressive_expression": 1.0,
+        "cute_friendly": 0.5,
+        "body_size_large": 1.0,
+        "multiple_entities": 0.0,
+        "has_spots_patterns": 0.0,
+        "cloud_smoke_element": 0.0,
+        "humanoid_shape": 3.5
+      },
+      "drop": [],
+      "add": [
+        "real_animal_based",
+        "has_distinct_limbs"
+      ],
+      "rejected": []
+    },
+    "notes": "The user seems to be grouping by body type/posture: upright bipeds and humanoid-shaped Pok\u00e9mon (including animal bipeds) are grouped together, separate from quadrupeds, serpentines, amorphous/blob types, and strongly non-animal forms. item_033 (ferret quadruped) should join the biped/upright group, suggesting the criterion may be more about 'animal-like with limbs and upright tendency' vs 'non-humanoid/non-biped'. The key separators are: biped/humanoid vs quadruped/serpentine/amorphous, and NOT color. Need to heavily boost is_biped, humanoid_shape, and penalize is_amorphous, is_serpentine, is_quadruped, blue_dominant."
+  },
+  {
+    "round": 2,
+    "anchor_index": 27,
+    "anon_id": "item_004",
+    "name": "Azelf",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "blue_dominant": 0.0,
+        "green_dominant": 0.0,
+        "brown_dominant": 0.0,
+        "red_dominant": 0.0,
+        "is_biped": 1.5,
+        "is_quadruped": 0.0,
+        "is_serpentine": 0.0,
+        "is_avian": 0.0,
+        "is_insect_bug": 0.0,
+        "is_amorphous": 0.0,
+        "plant_features": 0.0,
+        "water_features": 0.0,
+        "fire_features": 0.0,
+        "steel_metal_features": 0.0,
+        "dragon_like": 0.0,
+        "has_tail": 0.0,
+        "has_wings": 0.0,
+        "has_horns_antennae": 0.0,
+        "aggressive_expression": 0.0,
+        "cute_friendly": 0.0,
+        "body_size_large": 0.0,
+        "multiple_entities": 0.0,
+        "has_spots_patterns": 0.0,
+        "cloud_smoke_element": 0.0,
+        "humanoid_shape": 5.0,
+        "real_animal_based": 0.0,
+        "has_distinct_limbs": 1.5
+      },
+      "drop": [],
+      "add": [
+        "stands_on_ground",
+        "has_arms_and_legs"
+      ],
+      "rejected": []
+    },
+    "notes": "The user groups Pok\u00e9mon by whether they are strongly humanoid/upright bipeds with clear animal-like biped body structure (like fighting-stance monkeys, humanoid plants, bird bipeds standing upright) vs everything else (aquatic, serpentine, amorphous, quadrupeds, floating psychics like item_004). item_004 is a floating psychic with tendrils - NOT a true biped. The key discriminator is humanoid_shape (high weight) combined with real standing biped posture. Need to heavily weight humanoid_shape, reduce is_biped influence alone since item_004 scores high on it incorrectly, and add a feature for 'floating/levitating body' to distinguish item_004."
+  }
+]

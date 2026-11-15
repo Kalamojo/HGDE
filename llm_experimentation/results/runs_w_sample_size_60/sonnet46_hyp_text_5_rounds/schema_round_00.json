@@ -1,0 +1,48 @@
+{
+  "features": [
+    {
+      "id": "mammalian_land",
+      "definition": "Score 1 if the Pokémon is clearly described as resembling a furry, land-dwelling mammal (canine, feline, primate, marsupial, rodent, etc.) with four limbs and mammalian features (fur, mammalian ears, paws, snout); score 0 if it shows no mammalian land-animal traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "aquatic_water",
+      "definition": "Score 1 if the Pokémon is primarily described as an aquatic creature (fish, eel, ray, sea creature, pinniped, penguin, frog/amphibian, seahorse, jellyfish, etc.) with fins, flippers, gills, or water-related body features; score 0 if no aquatic traits are present.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "avian_flying",
+      "definition": "Score 1 if the Pokémon is primarily described as a bird or winged flying creature with feathers, a beak, wings, and talons/feet typical of birds; score 0 if no avian traits are described.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "reptilian_dragon",
+      "definition": "Score 1 if the Pokémon is primarily described as a reptile or dragon (crocodilian, serpentine, dinosaurian, turtle, lizard, dragon) with scales, claws, and reptilian body structure; score 0 if no reptilian/dragon traits are present.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "insect_arthropod",
+      "definition": "Score 1 if the Pokémon is primarily described as an insect, arachnid, or other arthropod (moth, spider, etc.) with multiple legs, antennae, compound eyes, or segmented body typical of arthropods; score 0 if no arthropod traits are present.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "plant_object_ghost",
+      "definition": "Score 1 if the Pokémon is primarily described as a plant, inanimate object, ghost, or robotic/artificial construct (bell, robot, tree, pitcher plant, scarecrow, fossil hybrid, etc.) rather than a living animal; score 0 if it is clearly based on a living animal.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "bipedal_posture",
+      "definition": "Score 1 if the Pokémon is explicitly described as bipedal or humanoid in posture; score 0 if it is quadrupedal, legless, or has no clear upright bipedal stance. This secondary dimension helps distinguish within-group variation.",
+      "kind": "scale",
+      "weight": 1.0
+    }
+  ],
+  "notes": "The 40 Pokémon descriptions naturally cluster into ~5-6 groups based on their primary biological archetype. Mammalian: item_053, item_052, item_033, item_002, item_003, item_047, item_039. Aquatic/amphibian: item_001, item_024, item_027, item_029, item_022, item_014, item_023, item_055, item_058, item_056, item_013, item_041. Avian: item_046, item_043, item_044. Reptilian/dragon: item_000, item_037, item_056, item_059. Insect/arthropod: item_031. Plant/object/ghost/robot: item_008, item_045, item_032, item_051, item_007, item_011, item_050, item_018, item_016. Some Pokémon are borderline (e.g., frog-based ones straddle aquatic/amphibian; dinosaur-like ones straddle reptilian). The dimensions are mutually exclusive by design, so the highest-scoring dimension determines the group.",
+  "criterion": "Group each Pokémon by its primary biological archetype: mammalian land animal, aquatic/water creature, avian/flying creature, reptilian/dragon, insect/arthropod, or plant/object/ghost/artificial. Each Pokémon's description should be matched to the archetype it most closely resembles."
+}

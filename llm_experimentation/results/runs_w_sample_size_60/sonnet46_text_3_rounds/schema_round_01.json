@@ -1,0 +1,191 @@
+{
+  "features": [
+    {
+      "id": "bipedal",
+      "definition": "Pokémon primarily moves or stands on two limbs (bipedal). 1 = clearly bipedal, 0 = quadrupedal, limbless, or floats/swims.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "quadrupedal",
+      "definition": "Pokémon primarily moves on four limbs. 1 = clearly quadrupedal, 0 = otherwise.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "aquatic_or_water_body",
+      "definition": "Pokémon is based on an aquatic animal or has strong water/ocean body features (fins, flippers, gills, water bubble, aquatic shape). 1 = strongly aquatic, 0 = not aquatic.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "avian",
+      "definition": "Pokémon is bird-like with wings, feathers, beak. 1 = clearly avian, 0 = not avian.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "reptilian_or_dragon",
+      "definition": "Pokémon resembles a reptile, dinosaur, or dragon. 1 = clearly reptilian/dragon, 0 = not.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "mammalian",
+      "definition": "Pokémon resembles a real-world mammal (canine, feline, primate, pinniped, marsupial, mongoose, etc.). 1 = clearly mammalian, 0 = not.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "insect_or_bug",
+      "definition": "Pokémon resembles an insect, arachnid, or other arthropod. 1 = clearly insect/bug/arachnid, 0 = not.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "plant_based",
+      "definition": "Pokémon is primarily plant-based or has significant plant body features (leaves, vines, flowers, roots as limbs). 1 = plant-based, 0 = not.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "robotic_or_mechanical",
+      "definition": "Pokémon appears robotic, mechanical, or made of metal with artificial construction. 1 = robotic/mechanical, 0 = organic-looking.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "ghostly_or_supernatural",
+      "definition": "Pokémon has a ghostly, spectral, or clearly supernatural/non-physical body (floating without wings, spirit-like form, etc.). 1 = ghostly/supernatural, 0 = not.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "blue_dominant",
+      "definition": "Blue is the most prominent or dominant color covering the majority of the Pokémon's body. 1 = predominantly blue, 0 = not.",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "brown_dominant",
+      "definition": "Brown or tan is the most prominent color covering the majority of the body. 1 = predominantly brown/tan, 0 = not.",
+      "kind": "binary",
+      "weight": 4.0
+    },
+    {
+      "id": "green_dominant",
+      "definition": "Green is the most prominent color. 1 = predominantly green, 0 = not.",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "has_wings_or_fins_for_flight",
+      "definition": "Pokémon has wings or fin-like structures capable of or used for flight/gliding. 1 = yes, 0 = no.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_tail",
+      "definition": "Pokémon has a clearly described tail. 1 = yes, 0 = no visible tail.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_horn_or_spike_on_head",
+      "definition": "Pokémon has at least one horn or spike projecting from its head. 1 = yes, 0 = no.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "humanoid_shape",
+      "definition": "Pokémon has a humanoid body shape (upright torso, two arms, two legs, recognizable head). Score 1 = strongly humanoid, 0 = not humanoid.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "size_large",
+      "definition": "Description implies a large Pokémon (uses words like 'large', 'massive', 'big', or describes large features proportionally). 1 = large, 0 = small or medium.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_multiple_heads_or_faces",
+      "definition": "Pokémon has more than one face or head described. 1 = yes, 0 = no.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "frog_like",
+      "definition": "Pokémon is described as frog-like or has explicit frog features (webbed feet, frog body shape, tongue wrapping). 1 = frog-like, 0 = not.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_crystals_or_gems",
+      "definition": "Pokémon has crystals, gems, or jewels embedded in or on its body. 1 = yes, 0 = no.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "spots_or_stripes_pattern",
+      "definition": "Pokémon has a notable spotted or striped body pattern. 1 = yes, 0 = no such pattern.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "long_body_or_serpentine",
+      "definition": "Pokémon has a notably long, elongated, or serpentine body shape. 1 = yes, 0 = not.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_antenna_or_sensory_appendage",
+      "definition": "Pokémon has antennae, antenna-like growths, or other specialized sensory appendages on its head. 1 = yes, 0 = no.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "mythical_or_legendary_cues",
+      "definition": "Description mentions unique legendary/mythical traits (genie, cloud body, only-male/female species, special lore). 1 = yes, 0 = no such cues.",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_claws",
+      "definition": "Pokémon has claws described on its limbs. 1 = yes, 0 = no.",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "fire_or_fire_coloring",
+      "definition": "Pokémon has fire-related features or a predominantly orange/red/flame color scheme. 1 = yes, 0 = no.",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "compactness",
+      "definition": "How compact/round the Pokémon body is. 1 = very compact/round, 0 = very elongated/tall/spread out.",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "yellow_or_gold_dominant",
+      "definition": "Yellow or gold is the most prominent color covering the majority of the Pokémon's body. 1 = predominantly yellow/gold, 0 = not.",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "purple_or_pink_dominant",
+      "definition": "Purple or pink is the most prominent color covering the majority of the Pokémon's body. 1 = predominantly purple/pink, 0 = not.",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "white_or_gray_dominant",
+      "definition": "White or gray is the most prominent color covering the majority of the Pokémon's body. 1 = predominantly white/gray, 0 = not.",
+      "kind": "binary",
+      "weight": 3.0
+    }
+  ],
+  "notes": "The user appears to be grouping primarily by color/appearance theme. item_033 (brown mongoose) should cluster with other brown/earthy-toned Pokémon (019 brown pot, 051 brown tree, 046 grayish-brown bird, 005 brown/yellow humanoid) and be separated from blue Pokémon (039, 034, 054), large plant+brown (035), and robotic (048). This strongly suggests color (especially brown/earthy) is the primary grouping criterion. I need to heavily boost brown_dominant weight and reduce features that incorrectly cluster 033 with blue/mammalian quadrupeds."
+}

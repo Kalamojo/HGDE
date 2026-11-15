@@ -1,0 +1,42 @@
+{
+  "features": [
+    {
+      "id": "blue_dominance",
+      "definition": "How much of the Pokémon's body is dominated by blue or blue-grey coloring. 0 = no blue present, 1 = almost entirely blue.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "green_dominance",
+      "definition": "How much of the Pokémon's body is dominated by green coloring (including yellow-green). 0 = no green present, 1 = almost entirely green.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "brown_tan_dominance",
+      "definition": "How much of the Pokémon's body is dominated by brown, tan, or warm beige coloring. 0 = no brown/tan, 1 = almost entirely brown/tan.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "red_orange_dominance",
+      "definition": "How much of the Pokémon's body is dominated by red or orange coloring. 0 = no red/orange, 1 = almost entirely red/orange.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "body_size_impression",
+      "definition": "Overall impression of body bulk and size. 0 = very small, compact, or simple-bodied; 1 = very large, hulking, or complex multi-part body.",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "mechanical_or_mineral",
+      "definition": "Does the Pokémon appear mechanical, metallic, or mineral/rock-based rather than organic? 0 = fully organic/biological, 1 = clearly mechanical or mineral.",
+      "kind": "scale",
+      "weight": 1.5
+    }
+  ],
+  "notes": "The dominant groupings visible are: (1) Blue/Water Pokémon (item_024, item_027, item_001, item_041, item_014, item_044, item_013, item_058, item_004, item_023, item_011, item_016, item_028, item_056, item_050); (2) Green/Grass-Bug Pokémon (item_031, item_008, item_032, item_035, item_051, item_045, item_043, item_021); (3) Brown/Normal Pokémon (item_053, item_033, item_052, item_002, item_022, item_047, item_059, item_046); (4) Red/Fire/Dragon Pokémon (item_018, item_037, item_049, item_003, item_000). Color dominance is the most perceptually natural split for Pokémon art.",
+  "criterion": "Group Pokémon by their dominant body color palette, which typically reflects their primary elemental type (e.g., blue for Water, green for Grass/Bug, brown/tan for Normal/Ground, red/orange for Fire)."
+}

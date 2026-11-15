@@ -1,0 +1,48 @@
+{
+  "features": [
+    {
+      "id": "water_affinity",
+      "definition": "How strongly the Pokémon's visual design suggests a Water type, based on blue coloring, aquatic features (fins, flippers, bubbles), and sea-creature anatomy. 0 = no water association, 1 = clearly water-themed.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "fire_affinity",
+      "definition": "How strongly the design suggests a Fire type, based on red/orange/warm coloring, flame motifs, and aggressive warm-toned features. 0 = no fire association, 1 = clearly fire-themed.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "grass_plant_affinity",
+      "definition": "How strongly the design suggests a Grass/Plant type, based on green coloring, leaves, vines, tree-like or plant-like body parts. 0 = no plant association, 1 = clearly plant-themed.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "metallic_rock_affinity",
+      "definition": "How strongly the design suggests Steel or Rock type, based on metallic sheen, angular/geometric body, armor plating, or stone-like texture. 0 = no metallic/rock association, 1 = clearly metallic or rocky.",
+      "kind": "scale",
+      "weight": 2.5
+    },
+    {
+      "id": "flying_bird_affinity",
+      "definition": "How strongly the design suggests a Flying type, based on wings, feathers, bird-like anatomy, or cloud/air motifs. 0 = no flying association, 1 = clearly a flying creature.",
+      "kind": "scale",
+      "weight": 2.5
+    },
+    {
+      "id": "perceived_evolution_stage",
+      "definition": "How evolved or powerful the Pokémon appears based on size, complexity, and design elaborateness. 0 = basic/cute/small first-stage appearance, 1 = fully evolved/large/imposing final-stage appearance.",
+      "kind": "scale",
+      "weight": 2.0
+    },
+    {
+      "id": "mammalian_body",
+      "definition": "Whether the Pokémon has a clearly mammalian body plan (fur, four legs, ears, snout). 0 = not mammalian, 1 = mammalian.",
+      "kind": "binary",
+      "weight": 1.5
+    }
+  ],
+  "notes": "These Pokémon span many different elemental types. The most natural grouping is by their visually apparent type (Water, Fire, Grass, Steel/Rock, Flying, etc.), which can be inferred from color palette, body features, and design motifs. The dimensions capture the major type affinities plus evolution stage and body plan to help distinguish groups like Normal-type mammals from others.",
+  "criterion": "Group Pokémon by their elemental type, as visually suggested by their design, color palette, and physical features (e.g., water-associated creatures are blue/aquatic, fire types are red/orange with flames, grass types are green/plant-like, etc.)."
+}

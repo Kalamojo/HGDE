@@ -1,0 +1,42 @@
+{
+  "features": [
+    {
+      "id": "blue_dominance",
+      "definition": "How much of the Pokémon's body is dominated by blue or blue-grey organic coloring. 0 = no blue present, 1 = almost entirely blue.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "green_dominance",
+      "definition": "How much of the Pokémon's body is dominated by green coloring (including yellow-green). 0 = no green present, 1 = almost entirely green.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "brown_dark_dominance",
+      "definition": "How much of the Pokémon's body is dominated by brown, dark grey, black, or charcoal coloring. 0 = none, 1 = almost entirely these tones.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "red_orange_dominance",
+      "definition": "How much of the Pokémon's body is dominated by red or orange coloring. 0 = no red/orange, 1 = almost entirely red/orange.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "yellow_tan_dominance",
+      "definition": "How much of the Pokémon's body is dominated by yellow, tan, cream, or warm beige coloring. 0 = none, 1 = almost entirely these tones.",
+      "kind": "scale",
+      "weight": 2.0
+    },
+    {
+      "id": "mechanical_or_mineral",
+      "definition": "Does the Pokémon appear mechanical, metallic, man-made, or mineral/rock-based rather than biological? 0 = fully organic/biological creature, 1 = clearly mechanical, steel, or constructed appearance.",
+      "kind": "scale",
+      "weight": 4.5
+    }
+  ],
+  "notes": "The feedback strongly indicates item_007 (Bronzong, clearly mechanical) should be separated from item_011 (Beldum, blue organic larva), item_039 (Panpour, organic monkey), item_038 (Oddish, organic plant), and item_034 (Larvitar, organic dinosaur). All the 'closer' items are organic even if they share blue tones. Raising mechanical_or_mineral weight to 4.5 will push item_007 into a mechanical cluster away from organic blue Pokémon. I also added yellow_tan as a dimension to better separate tan-bodied Pokémon, and merged brown/dark to better capture dark-toned organics like Larvitar.",
+  "criterion": "Group Pokémon by their dominant body color palette (blue, green, brown/dark, red/orange, yellow/tan), treating mechanical or mineral-bodied Pokémon as a separate category regardless of color. Organic Pokémon with blue tones group together; mechanical/steel Pokémon form their own group."
+}

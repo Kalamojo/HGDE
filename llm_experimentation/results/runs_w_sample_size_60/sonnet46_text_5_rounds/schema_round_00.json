@@ -1,0 +1,155 @@
+{
+  "features": [
+    {
+      "id": "blue_dominant_color",
+      "definition": "The primary or most prominent color of the Pokémon's body is blue or a shade of blue (0=not blue-dominant, 1=clearly blue-dominant)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "quadrupedal",
+      "definition": "The Pokémon primarily moves on four limbs (0=not quadrupedal, 1=clearly quadrupedal)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "bipedal",
+      "definition": "The Pokémon stands or moves primarily on two legs (0=not bipedal, 1=clearly bipedal)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "avian_features",
+      "definition": "The Pokémon has bird-like features such as wings, beak, feathers, or talons (0=no avian features, 1=clearly bird-like)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "aquatic_features",
+      "definition": "The Pokémon has features associated with water/aquatic life such as fins, flippers, gills, or a water-bubble (0=no aquatic features, 1=clearly aquatic-adapted)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "mammalian_inspiration",
+      "definition": "The Pokémon is primarily inspired by a real-world mammal (canine, feline, rodent, primate, etc.) (0=not mammal-inspired, 1=clearly mammal-inspired)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "reptilian_inspiration",
+      "definition": "The Pokémon is primarily inspired by a reptile or dinosaur (crocodile, turtle, snake, lizard, dragon, etc.) (0=not reptilian, 1=clearly reptilian)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "plant_features",
+      "definition": "The Pokémon has significant plant-based features such as leaves, vines, flowers, or a plant-like body (0=no plant features, 1=strongly plant-based)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "robotic_mechanical",
+      "definition": "The Pokémon appears robotic, mechanical, or made of metal/artificial materials (0=organic, 1=clearly mechanical/robotic)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "ghostly_supernatural",
+      "definition": "The Pokémon has ghostly, shadowy, or supernatural/paranormal features (0=no ghost features, 1=clearly ghost-like)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "insect_bug_inspired",
+      "definition": "The Pokémon is inspired by insects, arachnids, or other arthropods (0=not bug-inspired, 1=clearly bug/arthropod-inspired)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "amphibian_inspiration",
+      "definition": "The Pokémon is primarily inspired by an amphibian such as a frog or salamander (0=not amphibian, 1=clearly amphibian-inspired)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_wings",
+      "definition": "The Pokémon has wings of any kind (0=no wings, 1=has wings)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_horn_or_spike_on_head",
+      "definition": "The Pokémon has a horn, spike, or prominent pointed projection on its head (0=none, 1=clearly present)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "humanoid_body",
+      "definition": "The Pokémon has a humanoid body plan with distinct head, torso, and limbs resembling a person (0=not humanoid, 1=strongly humanoid)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "size_large",
+      "definition": "The description implies the Pokémon is large in size (e.g., massive, long-bodied, large Pokémon) (0=small/tiny implied, 1=large/massive implied)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "has_tail",
+      "definition": "The Pokémon has a tail explicitly mentioned in the description (0=no tail mentioned, 1=tail explicitly present)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "brown_earth_tones",
+      "definition": "The Pokémon's primary coloring is in brown, orange, or earth tones (0=not earth-toned, 1=clearly brown/orange/earth-dominant)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "electric_features",
+      "definition": "The Pokémon has features associated with electricity such as lightning bolt shapes, electricity-generating organs, or yellow electrical markings (0=none, 1=clearly electric-themed)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_crystals_gems",
+      "definition": "The Pokémon has crystals, gems, or jewel-like structures embedded in or on its body (0=none, 1=clearly present)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_multiple_heads_faces",
+      "definition": "The Pokémon has more than one head or distinct face visible on its body (0=single head/face, 1=multiple heads or faces)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "serpentine_eel_body",
+      "definition": "The Pokémon has a long, snake-like or eel-like body without prominent limbs (0=not serpentine, 1=clearly serpentine/eel-like)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "green_dominant_color",
+      "definition": "The primary or most prominent color of the Pokémon is green (0=not green-dominant, 1=clearly green-dominant)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "has_claws",
+      "definition": "The Pokémon has claws explicitly mentioned (0=no claws, 1=claws explicitly present)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "compact_round_body",
+      "definition": "The Pokémon has a compact, round, or spherical body shape (0=elongated or complex shape, 1=clearly round/compact body)",
+      "kind": "scale",
+      "weight": 1.0
+    }
+  ],
+  "notes": "Looking at these 40 Pokémon, I can identify several natural groupings: (1) body shape/locomotion - bipedal vs quadrupedal vs limbless/aquatic; (2) biological inspiration - mammal, reptile, bird, amphibian, insect/bug, fish/aquatic, plant, ghost/supernatural, robotic/artificial; (3) color palette - blue-dominant, brown/earth tones, green, mixed; (4) size implied by description - small/tiny vs large/massive; (5) humanoid/anthropomorphic degree; (6) aquatic vs terrestrial vs aerial; (7) presence of special features like wings, tails, horns, crystals; (8) elemental associations suggested by features (water, fire, electric, grass, ghost, dragon, etc.)"
+}

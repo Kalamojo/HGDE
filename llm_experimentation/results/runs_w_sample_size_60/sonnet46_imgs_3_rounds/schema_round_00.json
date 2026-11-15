@@ -1,0 +1,155 @@
+{
+  "features": [
+    {
+      "id": "blue_dominant",
+      "definition": "Dominant body color is blue or blue-gray (0=not blue, 1=clearly blue dominant)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "green_dominant",
+      "definition": "Dominant body color is green (0=not green, 1=clearly green dominant)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "brown_dominant",
+      "definition": "Dominant body color is brown or tan (0=not brown/tan, 1=clearly brown/tan dominant)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "red_dominant",
+      "definition": "Dominant body color is red or dark red (0=not red, 1=clearly red dominant)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "is_biped",
+      "definition": "Pokémon stands/walks primarily on two legs in upright or semi-upright posture (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_quadruped",
+      "definition": "Pokémon is primarily four-legged or moves on four limbs (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_serpentine",
+      "definition": "Body is primarily snake-like or elongated without prominent limbs (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_avian",
+      "definition": "Pokémon resembles a bird with wings and beak (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_insect_bug",
+      "definition": "Pokémon resembles an insect or arthropod (many legs, exoskeleton, antennae etc.) (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_amorphous",
+      "definition": "Pokémon has an undefined, blob-like, or ghostly body shape without clear limbs (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "plant_features",
+      "definition": "Pokémon has visible plant-like features (leaves, vines, flowers, bark etc.) (0=none, 1=heavily plant-like)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "water_features",
+      "definition": "Pokémon appears water/aquatic themed (fins, water droplets, aquatic body shape) (0=none, 1=strongly aquatic)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "fire_features",
+      "definition": "Pokémon has visible fire or flame-like elements on its body (0=none, 1=prominently fiery)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "steel_metal_features",
+      "definition": "Pokémon has metallic, mechanical, or armor-like appearance (0=none, 1=heavily metallic)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "dragon_like",
+      "definition": "Pokémon resembles a dragon (scales, claws, wings optional, reptilian fierce appearance) (0=not dragon-like, 1=strongly dragon-like)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "has_tail",
+      "definition": "Pokémon has a clearly visible tail (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_wings",
+      "definition": "Pokémon has wings or wing-like appendages (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_horns_antennae",
+      "definition": "Pokémon has horns, antennae, or horn-like protrusions on head (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "aggressive_expression",
+      "definition": "Pokémon's face/pose looks aggressive, angry, or menacing (0=calm/cute, 1=very aggressive)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "cute_friendly",
+      "definition": "Pokémon appears cute, friendly, or approachable in expression (0=not cute, 1=very cute/friendly)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "body_size_large",
+      "definition": "Pokémon appears large/bulky relative to typical Pokémon (0=small/tiny, 1=very large/bulky)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "multiple_entities",
+      "definition": "Image shows more than one distinct creature entity (1=yes multiple, 0=single entity)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_spots_patterns",
+      "definition": "Pokémon body has notable spots, circular patterns, or decorative markings (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "cloud_smoke_element",
+      "definition": "Pokémon incorporates cloud, smoke, or gas elements visually (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "humanoid_shape",
+      "definition": "Pokémon has a humanoid silhouette (upright, two arms, two legs, recognizable torso/head) (0=not humanoid, 1=strongly humanoid)",
+      "kind": "scale",
+      "weight": 1.0
+    }
+  ],
+  "notes": "These items are all Pokémon. They can be grouped by: dominant color (blue, green, brown/tan, red), body type (quadruped/mammal-like, biped humanoid, serpentine/legless, insect/bug-like, bird/avian, aquatic/fish-like, amorphous/blob), apparent element/type (water, grass/plant, fire, rock/ground, steel/metal, ghost/psychic, normal, dragon, flying), size/complexity (simple small vs large complex designs), presence of wings, presence of a tail, expressions (cute/friendly vs aggressive/menacing), and whether they resemble real animals."
+}

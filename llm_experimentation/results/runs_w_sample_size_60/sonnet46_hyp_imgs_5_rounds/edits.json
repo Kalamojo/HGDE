@@ -1,0 +1,98 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 5,
+    "anon_id": "item_033",
+    "name": "Yungoos",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "criterion": "Group Pok\u00e9mon by their primary elemental type, inferred from visual cues such as body color, anatomical features, and design motifs (e.g., animal-like Normal types, blue Water types, green plant-featuring Grass types, red/flame Fire types, dragon-featured Dragon types, gray/metallic Steel types).",
+      "criterion_changed": true,
+      "dimensions": [
+        "normal_animal_like (w=4): Does the Pok\u00e9mon resemble a real-world animal (mammal, bird, insect, fish, etc.) without strong elemental or fantastical features dominating its design? 1 = clearly based on a real animal with no strong elemental motif, 0 = has strong elemental/fantastical design features.",
+        "blue_water_cues (w=3.5): How strongly does the Pok\u00e9mon show blue/cyan coloration or water-related design features (fins, water droplets, aquatic body shape)? 0 = none, 1 = strongly blue or water-themed.",
+        "green_plant_cues (w=3.5): How strongly does the Pok\u00e9mon show green coloration combined with plant-related features (leaves, vines, petals, grass)? 0 = no green plant features, 1 = body dominated by green plant motifs.",
+        "red_fire_cues (w=3.5): How strongly does the Pok\u00e9mon show red/orange coloration combined with fire-related features (flames, ember patterns, fiery mane)? 0 = none, 1 = strongly red/orange with fire motifs.",
+        "dragon_features (w=3.5): How strongly does the Pok\u00e9mon exhibit dragon-like features such as wings, scales, elongated serpentine body, horns, and a reptilian or draconic silhouette? 0 = no dragon features, 1 = very strongly dragon-like in body plan and features.",
+        "gray_metallic_cues (w=3): How strongly does the Pok\u00e9mon show gray, black, or metallic coloration suggesting Steel or Dark type? 0 = none, 1 = body is predominantly gray, metallic, or dark-toned.",
+        "fighting_ground_cues (w=2.5): How strongly does the Pok\u00e9mon show muscular, bulky, humanoid or rock/earth-toned features suggesting Fighting or Ground type (large arms, rocky texture, brown/gray earth tones with no plant or fire motifs)? 0 = none, 1 = very strongly muscular/earth-toned."
+      ]
+    },
+    "criterion": "Group Pok\u00e9mon by their primary elemental type, inferred from visual cues such as body color, anatomical features, and design motifs (e.g., animal-like Normal types, blue Water types, green plant-featuring Grass types, red/flame Fire types, dragon-featured Dragon types, gray/metallic Steel types).",
+    "notes": "The key insight from the feedback is that item_033 (a weasel/ferret Normal-type) and item_046 (a pigeon Normal-type) should group together. Both are clearly based on real animals with no strong elemental motifs - they are Normal types. item_035 looks like a Grass/Fighting type (gorilla with leaves) and item_030 looks like a Dragon/Ground type. By adding a strong 'normal_animal_like' binary dimension, Normal-type Pok\u00e9mon that resemble real animals will cluster together regardless of their exact color. The other dimensions capture the main elemental types through combined color + motif cues."
+  },
+  {
+    "round": 2,
+    "anchor_index": 56,
+    "anon_id": "item_048",
+    "name": "Iron Crown",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "criterion": "Group Pok\u00e9mon by their dominant body color palette: blue/cyan/teal Pok\u00e9mon form one group, green Pok\u00e9mon another, red/orange/fire-toned another, gray/metallic another, and natural brown/tan/pink animal-colored (Normal types) another. Use visual color and design motifs together to assign each Pok\u00e9mon to its primary color-based group.",
+      "criterion_changed": true,
+      "dimensions": [
+        "blue_teal_dominant (w=4.5): How strongly is the Pok\u00e9mon's body dominated by blue, cyan, or teal coloration (regardless of type)? 0 = no blue/teal present, 1 = body is overwhelmingly blue or teal.",
+        "green_dominant (w=4): How strongly is the Pok\u00e9mon's body dominated by green coloration, including plant motifs like leaves, vines, or grass? 0 = no green, 1 = body overwhelmingly green or plant-covered.",
+        "red_orange_dominant (w=4): How strongly is the Pok\u00e9mon's body dominated by red or orange coloration, including fire-related features like flames or ember patterns? 0 = no red/orange, 1 = body overwhelmingly red or orange.",
+        "gray_metallic_dominant (w=4): How strongly is the Pok\u00e9mon's body dominated by gray, silver, or metallic coloration with a mechanical or metallic texture? 0 = no gray/metallic features, 1 = body is overwhelmingly gray, silver, or metallic-looking.",
+        "natural_animal_colors (w=4): Does the Pok\u00e9mon have natural animal-like coloration (brown, tan, cream, pink, beige, or muted tones) without strong blue, green, red, or metallic dominance, resembling a real-world mammal or bird? 1 = clearly natural animal coloring, 0 = has a strong non-natural color (blue, green, red, metallic, etc.).",
+        "water_aquatic_motif (w=1.5): How strongly does the Pok\u00e9mon show aquatic design motifs (fins, water droplets, aquatic body shape, flipper-like limbs) beyond just blue color? 0 = no aquatic motifs, 1 = strongly aquatic in body plan.",
+        "mechanical_object_based (w=2.5): Is the Pok\u00e9mon designed to resemble a mechanical object, inanimate artifact, or construct (bell, gear, magnet, etc.) rather than a living creature? 1 = clearly object/machine-based design, 0 = clearly organic living creature design."
+      ]
+    },
+    "criterion": "Group Pok\u00e9mon by their dominant body color palette: blue/cyan/teal Pok\u00e9mon form one group, green Pok\u00e9mon another, red/orange/fire-toned another, gray/metallic another, and natural brown/tan/pink animal-colored (Normal types) another. Use visual color and design motifs together to assign each Pok\u00e9mon to its primary color-based group.",
+    "notes": "The key problem was that item_048 (teal/cyan deer with metallic accents) was grouping with item_007 (gray metallic bell) due to gray_metallic_cues. But item_048 is predominantly teal/cyan, not gray. By separating 'blue_teal_dominant' (high for item_048) from 'gray_metallic_dominant' (high for item_007) and adding 'mechanical_object_based' (item_007 is a bell), item_048 will now group with the blue/teal Pok\u00e9mon. The 'mechanical_object_based' dimension further separates item_007 from organic creature-based Pok\u00e9mon. item_038 (blue-green ball with leaves) scores medium on blue_teal and medium on green, and item_048 is teal so they may still be closer than to item_007."
+  },
+  {
+    "round": 3,
+    "anchor_index": 24,
+    "anon_id": "item_029",
+    "name": "Eelektrik",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "criterion": "Group Pok\u00e9mon by their dominant body color: blue/navy/teal organic creatures form one group, green/plant-themed another, red/orange/fire-toned another, gray/metallic/mechanical another, and natural animal-colored (brown/tan/pink/cream) another. Mechanical or object-based designs (bells, magnets, gears) belong in the gray/metallic group regardless of their exact hue.",
+      "criterion_changed": true,
+      "dimensions": [
+        "blue_teal_dominant (w=4.5): How strongly is the Pok\u00e9mon's body dominated by blue, navy, cyan, or teal coloration in an organic (non-metallic) creature? 0 = no blue/teal or is metallic, 1 = body overwhelmingly blue/teal and clearly organic.",
+        "green_dominant (w=4): How strongly is the Pok\u00e9mon's body dominated by green coloration, including plant motifs like leaves, vines, or grass? 0 = no green, 1 = body overwhelmingly green or plant-covered.",
+        "red_orange_dominant (w=4): How strongly is the Pok\u00e9mon's body dominated by red or orange coloration, including fire-related features like flames or ember patterns? 0 = no red/orange, 1 = body overwhelmingly red or orange.",
+        "gray_metallic_dominant (w=4): How strongly is the Pok\u00e9mon's body dominated by gray, silver, steel-blue, or metallic coloration with a hard, inorganic texture? 0 = no gray/metallic features, 1 = body is overwhelmingly gray, silver, or metallic-looking.",
+        "natural_animal_colors (w=4): Does the Pok\u00e9mon have natural animal-like coloration (brown, tan, cream, pink, beige, or muted tones) without strong blue, green, red, or metallic dominance, resembling a real-world mammal or bird? 1 = clearly natural animal coloring, 0 = has a strong non-natural color.",
+        "mechanical_object_based (w=4.5): Is the Pok\u00e9mon designed to resemble a mechanical object, inanimate artifact, or construct (bell, gear, magnet, cannon, etc.) rather than a living organic creature? 1 = clearly object/machine-based design, 0 = clearly organic living creature design.",
+        "water_aquatic_motif (w=1): How strongly does the Pok\u00e9mon show aquatic design motifs (fins, gills, water droplets, flipper-like limbs, aquatic body shape) beyond just blue color? 0 = no aquatic motifs, 1 = strongly aquatic in body plan."
+      ]
+    },
+    "criterion": "Group Pok\u00e9mon by their dominant body color: blue/navy/teal organic creatures form one group, green/plant-themed another, red/orange/fire-toned another, gray/metallic/mechanical another, and natural animal-colored (brown/tan/pink/cream) another. Mechanical or object-based designs (bells, magnets, gears) belong in the gray/metallic group regardless of their exact hue.",
+    "notes": "The core issue: item_029 (dark navy/blue organic serpent) was scoring similarly to item_007 (teal metallic bell) on blue_teal_dominant (~0.5 each), making them cluster together. But item_007 is mechanical/object-based AND gray-metallic, while item_029 is purely organic and blue. By raising mechanical_object_based weight to 4.5 (matching blue_teal weight), item_007 will strongly pull toward the gray/metallic/mechanical cluster while item_029 stays with organic blue Pok\u00e9mon. The blue_teal_dominant definition now explicitly notes 'organic (non-metallic)' so item_007's teal-gray metallic body scores lower on that dimension. item_029 should score high on blue_teal_dominant as a dark navy organic creature, grouping it with item_038 and item_039 which also have blue coloration."
+  },
+  {
+    "round": 4,
+    "anchor_index": 19,
+    "anon_id": "item_019",
+    "name": "Bonsly",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "criterion": "Group Pok\u00e9mon by their dominant body color temperature and hue family: warm-toned Pok\u00e9mon (red, orange, yellow, brown, tan, cream, gold) form one group; cool blue/teal/dark organic Pok\u00e9mon form another; green/plant-themed form another; and gray/metallic/mechanical form another. Brown and tan Pok\u00e9mon belong with warm colors alongside red/orange/yellow ones.",
+      "criterion_changed": true,
+      "dimensions": [
+        "warm_dominant (w=4.5): How strongly is the Pok\u00e9mon's body dominated by warm colors: red, orange, yellow, gold, brown, tan, or cream? 0 = no warm coloration present, 1 = body is overwhelmingly warm-toned (includes fire reds, earthy browns, golden yellows, and tan naturalistic hues).",
+        "blue_teal_organic (w=4.5): How strongly is the Pok\u00e9mon's body dominated by blue, navy, cyan, teal, or dark cool-toned coloration in a clearly organic (non-metallic) creature? 0 = no blue/cool tones or is metallic/mechanical, 1 = body overwhelmingly blue or cool-toned and clearly organic.",
+        "green_plant_dominant (w=4): How strongly is the Pok\u00e9mon's body dominated by green coloration, including plant motifs like leaves, vines, grass, or moss? 0 = no green or plant features, 1 = body overwhelmingly green or densely plant-covered.",
+        "gray_metallic_dominant (w=4): How strongly is the Pok\u00e9mon's body dominated by gray, silver, steel-blue, or visibly metallic coloration with a hard, inorganic texture? 0 = no gray/metallic features, 1 = body is overwhelmingly gray, silver, or metallic-looking.",
+        "mechanical_object_based (w=4.5): Is the Pok\u00e9mon designed to resemble a mechanical object, inanimate artifact, or construct (bell, gear, magnet, cannon, etc.) rather than a living organic creature? 1 = clearly object/machine-based design, 0 = clearly organic living creature design.",
+        "fire_motif (w=1.5): Does the Pok\u00e9mon prominently display fire, flame, or ember design elements as part of its body or primary visual theme? 1 = fire/flames are a major visible design element, 0 = no fire motifs.",
+        "water_aquatic_motif (w=1): How strongly does the Pok\u00e9mon show aquatic design motifs (fins, gills, water droplets, flipper-like limbs, aquatic body shape) beyond just blue color? 0 = no aquatic motifs, 1 = strongly aquatic in body plan."
+      ]
+    },
+    "criterion": "Group Pok\u00e9mon by their dominant body color temperature and hue family: warm-toned Pok\u00e9mon (red, orange, yellow, brown, tan, cream, gold) form one group; cool blue/teal/dark organic Pok\u00e9mon form another; green/plant-themed form another; and gray/metallic/mechanical form another. Brown and tan Pok\u00e9mon belong with warm colors alongside red/orange/yellow ones.",
+    "notes": "The critical fix: item_019 (Bonsly) is brown/tan with green balls on top. Previously it scored high on natural_animal_colors AND moderate on green_dominant, putting it in a mixed position near both green and 'natural animal' groups. The feedback says it should cluster with item_003 (lion with fire mane - warm/brown/red), item_005 (Alakazam - yellow/warm), item_049 (Volcanion - deep red), and away from item_039 (blue monkey) and item_034 (dark + blue). By merging brown/tan INTO the warm_dominant dimension (instead of separating it as 'natural_animal_colors'), item_019's tan-brown body now scores HIGH on warm_dominant, grouping it with the red/orange/yellow/brown cluster. item_034 has a dark near-black body with blue accents, so it scores moderate on blue_teal_organic and low on warm_dominant, moving away from item_019. item_039 is blue-dominant, scoring high on blue_teal_organic. The previous 'natural_animal_colors' binary was causing brown Pok\u00e9mon to cluster with blue ones if both had naturalistic coloring - removing it and folding brown/tan into warm_dominant should fix this."
+  }
+]

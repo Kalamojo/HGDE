@@ -1,0 +1,198 @@
+{
+  "features": [
+    {
+      "id": "bipedal",
+      "definition": "Whether the Pokémon stands/moves on two legs. 1 = clearly bipedal, 0 = not bipedal",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "quadrupedal",
+      "definition": "Whether the Pokémon stands/moves on four legs. 1 = clearly quadrupedal, 0 = not quadrupedal",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "serpentine_or_limbless",
+      "definition": "Whether the Pokémon has a long serpentine, eel-like, or largely limbless body plan. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "aquatic_affinity",
+      "definition": "How strongly the Pokémon is associated with water or aquatic life (fins, flippers, aquatic animal basis). 0 = no aquatic features, 1 = fully aquatic",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "avian",
+      "definition": "Whether the Pokémon is bird-like with feathers, wings for flight, beak. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "mammalian",
+      "definition": "How mammal-like the Pokémon appears (fur, ears, snout, paws). 0 = not mammalian at all, 1 = clearly mammalian",
+      "kind": "scale",
+      "weight": 0.3
+    },
+    {
+      "id": "reptilian_amphibian",
+      "definition": "How reptile or amphibian-like the Pokémon appears (scales, frog-like, lizard-like, crocodilian). 0 = not at all, 1 = clearly reptilian/amphibian",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "insectoid_arachnid",
+      "definition": "Whether the Pokémon resembles an insect, spider, or arthropod. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "plant_based",
+      "definition": "How much the Pokémon incorporates plant or vegetation elements (leaves, vines, flowers, grass). 0 = none, 1 = primarily plant-based",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "robotic_mechanical",
+      "definition": "Whether the Pokémon appears mechanical, robotic, or artificial. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "ghostly_spectral",
+      "definition": "Whether the Pokémon has ghostly, shadowy, or spectral qualities. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "humanoid",
+      "definition": "How humanoid the Pokémon's body shape is (arms, hands, upright torso, human-like proportions). 0 = not humanoid, 1 = very humanoid",
+      "kind": "scale",
+      "weight": 1.5
+    },
+    {
+      "id": "body_size",
+      "definition": "Perceived body size from description cues. 0 = tiny/small, 0.5 = medium, 1 = large/massive",
+      "kind": "scale",
+      "weight": 1.5
+    },
+    {
+      "id": "primary_blue",
+      "definition": "Whether blue is the primary or dominant body color. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "primary_brown",
+      "definition": "Whether brown is the primary or dominant body color. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "primary_green",
+      "definition": "Whether green is the primary or dominant body color. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 2.0
+    },
+    {
+      "id": "has_claws",
+      "definition": "Whether the Pokémon has claws or claw-like appendages mentioned. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "has_tail",
+      "definition": "Whether a tail is explicitly mentioned. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.2
+    },
+    {
+      "id": "has_fangs_teeth",
+      "definition": "Whether fangs, teeth, or a toothy mouth are mentioned. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "has_horns_spikes",
+      "definition": "Whether horns, spikes, or pointed protrusions are present on the body. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "has_wings_fins",
+      "definition": "Whether the Pokémon has wings or fins. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "amorphous_round",
+      "definition": "How amorphous, blob-like, or round/spherical the body shape is. 0 = clearly structured/limbed, 1 = very round or amorphous",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "canine_feline",
+      "definition": "Whether the Pokémon resembles a dog, wolf, cat, or lion. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "primate_like",
+      "definition": "Whether the Pokémon resembles a primate (ape, monkey). 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 2.0
+    },
+    {
+      "id": "gender_dimorphism",
+      "definition": "Whether male/female differences are explicitly described. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "evolution_line_hint",
+      "definition": "Whether the description references evolution from or to another Pokémon form. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "multi_colored",
+      "definition": "How many distinct colors are described on the Pokémon. 0 = mostly monochrome (1-2 colors), 1 = highly multi-colored (5+ colors)",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "primary_black",
+      "definition": "Whether black is the primary or dominant body color. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 2.0
+    },
+    {
+      "id": "primary_gray",
+      "definition": "Whether gray or grayish tones are the primary or dominant body color. 1 = yes, 0 = no",
+      "kind": "binary",
+      "weight": 1.5
+    },
+    {
+      "id": "earth_toned",
+      "definition": "How much the Pokémon's overall color palette consists of earth tones (brown, tan, beige, cream, sandy, muddy colors). 0 = no earth tones, 1 = entirely earth-toned",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "blue_purple_palette",
+      "definition": "How much of the Pokémon's body coloring involves blue, indigo, or purple hues. 0 = none, 1 = predominantly blue/purple",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "small_compact_body",
+      "definition": "Whether the Pokémon has a small or compact body (not large, not tall, not bulky/muscular). 0 = large or imposing, 1 = small and compact",
+      "kind": "scale",
+      "weight": 1.5
+    }
+  ],
+  "notes": "The user appears to be grouping primarily by color palette - brown/earth-toned Pokémon together vs blue-colored Pokémon separately. Item_035 (gorilla) is brown but distinguished by being very large, humanoid, and primate-like with heavy plant elements. I'll boost color features and reduce features that create false similarities across color groups like quadrupedal, mammalian, has_tail, etc.",
+  "criterion": ""
+}

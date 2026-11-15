@@ -1,0 +1,164 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 5,
+    "anon_id": "item_033",
+    "name": "Yungoos",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "blue_dominant_color": 4.0,
+        "quadrupedal": 0.0,
+        "bipedal": 1.0,
+        "avian_features": 2.0,
+        "aquatic_features": 1.0,
+        "mammalian_inspiration": 0.0,
+        "reptilian_inspiration": 1.0,
+        "plant_features": 2.0,
+        "robotic_mechanical": 2.0,
+        "ghostly_supernatural": 2.0,
+        "insect_bug_inspired": 2.0,
+        "amphibian_inspiration": 1.0,
+        "has_wings": 1.0,
+        "has_horn_or_spike_on_head": 1.0,
+        "humanoid_body": 1.0,
+        "size_large": 1.0,
+        "has_tail": 0.0,
+        "brown_earth_tones": 4.0,
+        "electric_features": 1.0,
+        "has_crystals_gems": 1.0,
+        "has_multiple_heads_faces": 1.0,
+        "serpentine_eel_body": 1.0,
+        "green_dominant_color": 1.0,
+        "has_claws": 1.0,
+        "compact_round_body": 1.0
+      },
+      "drop": [],
+      "add": [
+        "natural_organic_appearance"
+      ],
+      "rejected": []
+    },
+    "notes": "The user appears to be grouping by color palette primarily. item_033 (brown mongoose), item_051 (brown tree-ghost), item_046 (brown/gray bird), and item_019 (brown round pot) all share brown/earth tones. The 'far' items (034, 054, 048) are blue-dominant quadrupeds, and item_035 is a brown humanoid mammal. The grouping seems to weight color heavily (brown vs blue) and penalize mammalian/humanoid quadrupeds. Reducing mammalian_inspiration and quadrupedal weights, boosting brown_earth_tones and blue_dominant_color weights."
+  },
+  {
+    "round": 2,
+    "anchor_index": 27,
+    "anon_id": "item_004",
+    "name": "Azelf",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "blue_dominant_color": 5.0,
+        "quadrupedal": 0.0,
+        "bipedal": 0.0,
+        "avian_features": 0.0,
+        "aquatic_features": 1.0,
+        "mammalian_inspiration": 0.0,
+        "reptilian_inspiration": 0.0,
+        "plant_features": 1.0,
+        "robotic_mechanical": 1.0,
+        "ghostly_supernatural": 0.0,
+        "insect_bug_inspired": 0.0,
+        "amphibian_inspiration": 0.0,
+        "has_wings": 0.0,
+        "has_horn_or_spike_on_head": 0.0,
+        "humanoid_body": 0.0,
+        "size_large": 0.0,
+        "has_tail": 0.0,
+        "brown_earth_tones": 4.0,
+        "electric_features": 0.0,
+        "has_crystals_gems": 0.0,
+        "has_multiple_heads_faces": 0.0,
+        "serpentine_eel_body": 0.0,
+        "green_dominant_color": 5.0,
+        "has_claws": 0.0,
+        "compact_round_body": 0.0,
+        "natural_organic_appearance": 0.0
+      },
+      "drop": [],
+      "add": [
+        "gray_white_dominant_color"
+      ],
+      "rejected": []
+    },
+    "notes": "The user is grouping by primary color \u2014 blue/gray items form one group, green items form another. item_004 (gray-blue fairy) belongs with blue Pok\u00e9mon, not green ones. Need to make blue_dominant_color and green_dominant_color the dominant features, and reduce weights of type-based features (plant, bug, reptilian, etc.) that cut across color lines."
+  },
+  {
+    "round": 3,
+    "anchor_index": 2,
+    "anon_id": "item_031",
+    "name": "Dustox",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "blue_dominant_color": 5.0,
+        "green_dominant_color": 5.0,
+        "brown_earth_tones": 4.0,
+        "gray_white_dominant_color": 1.0,
+        "robotic_mechanical": 3.0,
+        "aquatic_features": 0.0,
+        "plant_features": 0.0,
+        "natural_organic_appearance": 3.0,
+        "insect_bug_inspired": 0.0,
+        "mammalian_inspiration": 0.0,
+        "reptilian_inspiration": 0.0,
+        "bipedal": 0.0,
+        "quadrupedal": 0.0,
+        "avian_features": 0.0,
+        "ghostly_supernatural": 0.0,
+        "amphibian_inspiration": 0.0,
+        "has_wings": 0.0,
+        "has_horn_or_spike_on_head": 0.0,
+        "humanoid_body": 0.0,
+        "size_large": 0.0,
+        "has_tail": 0.0,
+        "electric_features": 0.0,
+        "has_crystals_gems": 0.0,
+        "has_multiple_heads_faces": 0.0,
+        "serpentine_eel_body": 0.0,
+        "has_claws": 0.0,
+        "compact_round_body": 0.0
+      },
+      "drop": [],
+      "add": [
+        "warm_color_organic"
+      ],
+      "rejected": []
+    },
+    "notes": "User groups by primary color: green/brown organic group vs blue/gray group. item_031 (green moth) and item_035 (brown gorilla with green) belong together as organic non-blue non-gray Pok\u00e9mon, while item_011 (gray robot) belongs in the blue/gray group. Need to increase robotic_mechanical weight to push item_011 away from organic Pok\u00e9mon, reduce gray_white weight, and ensure green+brown organic items cluster together."
+  },
+  {
+    "round": 4,
+    "anchor_index": 11,
+    "anon_id": "item_035",
+    "name": "Rillaboom",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "blue_dominant_color": 3.0,
+        "green_dominant_color": 5.0,
+        "brown_earth_tones": 1.0,
+        "robotic_mechanical": 2.0,
+        "natural_organic_appearance": 1.0,
+        "warm_color_organic": 1.0,
+        "gray_white_dominant_color": 0.0
+      },
+      "drop": [],
+      "add": [
+        "has_green_coloring",
+        "green_or_plant_themed"
+      ],
+      "rejected": []
+    },
+    "notes": "The grouping criterion appears to be primarily about whether the Pok\u00e9mon has green coloring (even as secondary color) vs. not. item_035 (gorilla with green hair/accessories) belongs with green Pok\u00e9mon, not brown mammals. Need to boost green color detection and add a feature for 'any significant green present' to capture item_035's green hair/accessories."
+  }
+]

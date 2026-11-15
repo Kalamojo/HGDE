@@ -1,0 +1,48 @@
+{
+  "features": [
+    {
+      "id": "brown_tan_dominance",
+      "definition": "How much of the Pokémon's body is covered in brown, tan, beige, or sandy earthy tones. 0 = no brown/tan coloring, 1 = predominantly brown/tan.",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "blue_teal_dominance",
+      "definition": "How much of the Pokémon's body is covered in blue, teal, or cool cyan tones. 0 = no blue coloring, 1 = predominantly blue.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "green_dominance",
+      "definition": "How much of the Pokémon's body is covered in green tones (leaf green, dark green, olive). 0 = no green coloring, 1 = predominantly green.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "red_orange_dominance",
+      "definition": "How much of the Pokémon's body is covered in red, orange, or warm vivid tones. 0 = no red/orange, 1 = predominantly red/orange.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "dark_black_dominance",
+      "definition": "How much of the Pokémon's body is covered in very dark colors (black, dark grey, deep charcoal). 0 = no dark coloring, 1 = predominantly dark/black.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "metallic_sheen",
+      "definition": "Whether the Pokémon's surface appears metallic, polished, or steel-like in texture rather than organic. 0 = fully organic/matte, 1 = highly metallic/shiny.",
+      "kind": "scale",
+      "weight": 2.5
+    },
+    {
+      "id": "organic_natural_texture",
+      "definition": "Whether the Pokémon's design looks like a natural organism (plant, animal, wood, fur) vs artificial/mineral. 0 = artificial/mineral, 1 = clearly organic/natural.",
+      "kind": "scale",
+      "weight": 2.0
+    }
+  ],
+  "notes": "The feedback strongly suggests the grouping is by visual color palette rather than elemental type. Items 033 (brown ferret), 019 (brown/green bonsai), and 051 (brown/green tree) all share earthy brown tones and organic/natural textures. They should be far from blue/metallic/dark items. Shifting to color-palette-based dimensions should capture this. Brown/tan dominance is weighted highest since it's the key differentiator in the feedback.",
+  "criterion": "Group Pokémon by their dominant color palette family: warm earthy tones (brown, tan, beige, olive), cool tones (blue, teal, grey, steel), vivid warm tones (red, orange, yellow), green/nature tones, dark/shadowy tones, etc."
+}
