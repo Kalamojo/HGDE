@@ -1,0 +1,282 @@
+{
+  "features": [
+    {
+      "id": "is_avian",
+      "definition": "1 if the Pokémon has a bird-like body (beak, feathers, wings as primary limbs), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "is_aquatic",
+      "definition": "1 if the Pokémon has an aquatic body form (fish, dolphin, whale, seahorse, octopus, etc.), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "is_insect_bug",
+      "definition": "1 if the Pokémon resembles an insect, arachnid, or arthropod, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "is_mammal_quadruped",
+      "definition": "1 if the Pokémon resembles a four-legged mammal (dog, cat, bear, etc.), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "is_humanoid",
+      "definition": "1 if the Pokémon has a clearly humanoid/bipedal body with two arms and two legs, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_shell",
+      "definition": "1 if the Pokémon visibly has a shell (turtle shell, snail shell, ammonite shell), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_wings",
+      "definition": "1 if the Pokémon has visible wings (feathered, membranous, or insect wings), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_tentacles_or_fins",
+      "definition": "1 if the Pokémon has tentacles, fins, or similar appendages, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "plant_based",
+      "definition": "1 if the Pokémon incorporates plant elements (leaves, flowers, vines, bark), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "rock_or_mineral",
+      "definition": "1 if the Pokémon is primarily made of rock, stone, mineral, or metallic material, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "ice_element",
+      "definition": "1 if the Pokémon visually suggests ice (icy blue-white coloring, ice crystals, frozen features), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "primary_color_green",
+      "definition": "Degree to which green is the dominant color: 0 = no green, 1 = entirely green",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "primary_color_blue",
+      "definition": "Degree to which blue is the dominant color: 0 = no blue, 1 = entirely blue",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "primary_color_brown_tan",
+      "definition": "Degree to which brown/tan/beige is the dominant color: 0 = none, 1 = entirely brown/tan",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "primary_color_dark",
+      "definition": "Degree to which dark colors (black, dark grey, dark purple) dominate: 0 = none, 1 = entirely dark",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "body_size_large",
+      "definition": "Perceived body bulk/size: 0 = very small and compact, 1 = very large and massive",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "has_eyes_prominent",
+      "definition": "1 if the Pokémon has very large or prominently featured eyes relative to body, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "ghostly_cosmic",
+      "definition": "1 if the Pokémon has a ghostly, cosmic, or ethereal appearance (floating, translucent, cloud-like, starry), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_claws_or_pincers",
+      "definition": "1 if the Pokémon has visible claws, pincers, or scythes as notable features, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_tail",
+      "definition": "1 if the Pokémon has a clearly visible tail, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_spikes_or_horns",
+      "definition": "1 if the Pokémon has visible spikes, horns, or sharp protrusions on its body, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "cute_round_form",
+      "definition": "Degree of roundness/cuteness: 0 = angular/menacing, 1 = very round and cute",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "bipedal_standing",
+      "definition": "1 if the Pokémon stands upright on two legs, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_fur_or_feathers",
+      "definition": "1 if the Pokémon is visibly covered in fur or feathers, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_hard_exoskeleton",
+      "definition": "1 if the Pokémon has a hard outer shell or exoskeleton (not counting turtle shells), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "primary_color_orange_red",
+      "definition": "Degree to which orange or red-orange is the dominant color: 0 = no orange/red-orange, 1 = entirely orange/red-orange",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "primary_color_grey",
+      "definition": "Degree to which grey (medium grey, stone grey, not dark black or light white) dominates the color palette: 0 = no grey, 1 = entirely grey",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "menacing_aggressive",
+      "definition": "1 if the Pokémon has an overall menacing, aggressive, or threatening appearance (fierce expression, combat stance, dangerous features); 0 if neutral or cute",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "is_ancient_fossil_type",
+      "definition": "1 if the Pokémon resembles an ancient sea creature or fossil animal (ammonite, nautilus, trilobite, ancient fish, ancient sea turtle); 0 otherwise",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "soft_organic_body",
+      "definition": "1 if the Pokémon has a soft, organic, non-mechanical body without hard armor plating or metallic parts (e.g. whale, jellyfish, slug, plant); 0 if body appears hard, mechanical, or heavily armored",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "secondary_green_tint",
+      "definition": "Degree to which green appears as a secondary or accent color even if not dominant: 0 = no green at all, 1 = strong green presence throughout body",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "alien_non_vertebrate_form",
+      "definition": "1 if the Pokémon has a clearly non-vertebrate or alien body plan (jellyfish, ammonite, trilobite, coral, amoeba, mineral cluster, mechanical orb) that does not resemble any standard vertebrate animal; 0 if it resembles a standard vertebrate (fish, bird, mammal, reptile, humanoid)",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "primordial_ancient_aesthetic",
+      "definition": "Scale from 0 to 1 indicating how much the Pokémon evokes a primordial, ancient, or prehistoric aesthetic through its design elements (fossil-like textures, ancient sea creature forms, primitive organism shapes, archaic patterns). 0 = modern/familiar creature, 1 = strongly ancient/primordial",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "is_plant_mineral_ghost",
+      "definition": "1 if the Pokémon is primarily based on a plant, mineral/rock/metal object, ghost/spirit, or inanimate object (pot, anchor, bell, etc.) rather than an animal; 0 if it is based on a recognizable animal (vertebrate or invertebrate like insects, crabs, fish, mammals, birds)",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "is_animal_based",
+      "definition": "1 if the Pokémon clearly resembles a real-world animal (vertebrate like fish, mammal, bird, reptile, amphibian, OR invertebrate like insect, crab, jellyfish, squid); 0 if it is based on a plant, mineral, inanimate object, ghost, or purely alien form with no real-world animal analog",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "cool_color_palette",
+      "definition": "Degree to which the Pokémon's overall color palette is cool-toned (blues, teals, purples, grey-blues, icy whites): 0 = no cool colors at all (entirely warm browns/reds/oranges/yellows), 1 = entirely cool-toned (deep blue, teal, icy blue, blue-grey)",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "warm_brown_orange_dominant",
+      "definition": "Degree to which the Pokémon's dominant color is warm brown, tan, beige, orange, or red-orange: 0 = no warm brown/orange tones, 1 = entirely dominated by warm brown/tan/orange/red-orange colors",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "green_dominant_or_secondary",
+      "definition": "Degree to which green color is present in the Pokémon's design, either as primary or secondary color: 0 = absolutely no green anywhere on the Pokémon, 1 = green is very strongly present (dominant or major secondary color throughout)",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "blue_teal_body_color",
+      "definition": "Degree to which the Pokémon's body (not just accents) is blue or teal colored: 0 = no blue/teal on body, 1 = body is predominantly blue or teal",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "teal_green_blue_body",
+      "definition": "Degree to which the Pokémon's overall body color falls in the cool teal/cyan/blue-green spectrum: 0 = no teal/cyan/blue-green at all, 1 = body is predominantly teal, cyan, or blue-green colored",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "no_warm_colors",
+      "definition": "Degree to which the Pokémon LACKS warm colors (brown, tan, orange, red, yellow): 0 = heavily dominated by warm brown/tan/orange/red/yellow, 1 = completely free of warm colors (only cool blues, teals, greens, purples, greys)",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "brown_tan_with_green",
+      "definition": "Degree to which the Pokémon has BOTH warm brown/tan/beige as a body color AND green as a secondary or primary color simultaneously (e.g. a brown animal with green plant elements, a tan creature with green accents). 0 = no combination of brown+green (either no brown, no green, or dominated by other colors like red/blue/pink/dark), 1 = strongly shows brown/tan body with prominent green elements",
+      "kind": "scale",
+      "weight": 5.0
+    },
+    {
+      "id": "warm_red_orange_dominant",
+      "definition": "Degree to which the Pokémon is dominated by warm red, crimson, scarlet, or bright orange-red colors (not brown/tan, not yellow): 0 = no dominant red/orange-red, 1 = strongly dominated by red or orange-red",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "pink_purple_dominant",
+      "definition": "Degree to which pink, magenta, or light purple is the dominant color of the Pokémon's body: 0 = no pink/magenta/light purple, 1 = body is predominantly pink or magenta",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "cool_teal_no_brown",
+      "definition": "Degree to which the Pokémon has cool blue, teal, or pure green coloring WITHOUT any warm brown/tan/beige body color. Score 1 if the Pokémon is predominantly blue, teal, cyan, or pure green with no brown/tan on its body. Score 0 if the body has warm brown/tan/orange tones OR if the Pokémon has neither cool nor green colors (e.g. pink, red, dark).",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "warm_red_pink_no_green",
+      "definition": "Degree to which the Pokémon is dominated by warm red/orange OR pink/magenta colors WITHOUT significant green presence. Score 1 if the Pokémon is primarily red, orange-red, or pink/magenta with little to no green. Score 0 if green is prominent or if the Pokémon is blue/teal/brown.",
+      "kind": "scale",
+      "weight": 3.0
+    }
+  ],
+  "notes": "item_344 is a green plant with no brown - should cluster with cool/teal items (item_058, item_097, item_311) NOT with brown+green items. The key discriminator is brown_tan_with_green: items with brown+green go together, while pure green (no brown) items go with cool/teal group. Need to heavily weight brown_tan_with_green and reduce standalone green features. The grouping seems to be: (1) brown+green earthy creatures, (2) cool blue/teal creatures, (3) warm red/orange, (4) pink/dark. Pure green without brown falls into cool group.",
+  "criterion": ""
+}

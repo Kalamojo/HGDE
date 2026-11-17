@@ -1,0 +1,50 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 5,
+    "anon_id": "item_033",
+    "name": "Yungoos",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "criterion": "Group Pok\u00e9mon by the real-world animal family, creature archetype, or object type that most strongly inspires their design: mustelid/rodent/small mammal, feline/canine/large predator, primate/humanoid animal, avian/bird, reptile/amphibian/aquatic creature, insect/bug, ghost/spirit/undead, plant/mineral/object, and robotic/mechanical.",
+      "criterion_changed": true,
+      "dimensions": [
+        "small_mammal_rodent_mustelid (w=3): 0 = no resemblance to small mammals like rodents, mustelids, rabbits, marsupials, or similar small furry creatures; 1 = clearly based on a small mammal archetype such as a mouse, rabbit, mongoose, kangaroo, or weasel",
+        "feline_canine_large_predator (w=3): 0 = no resemblance to cats, dogs, wolves, lions, or similar large predatory mammals; 1 = clearly based on a feline, canine, or large predatory mammal archetype",
+        "primate_humanoid_animal (w=3): 0 = not based on a primate or humanoid animal archetype; 1 = clearly based on a primate (ape, monkey) or walks and behaves like a humanoid animal with upright posture and human-like limb use",
+        "avian_bird_based (w=3): 0 = not based on a bird; 1 = clearly based on a real bird species or bird archetype, with wings, beak, talons, and feathers as primary design features",
+        "aquatic_reptile_amphibian (w=3): 0 = no aquatic, reptilian, or amphibian traits; 1 = clearly based on a fish, sea creature, reptile, amphibian, or serpentine animal",
+        "plant_mineral_object_based (w=3): 0 = not based on a plant, mineral, or inanimate object; 1 = design is primarily inspired by a plant, rock, mineral formation, or everyday inanimate object",
+        "ghost_spirit_undead (w=3): 0 = no ghost, spirit, or undead characteristics in design; 1 = design is primarily based on a ghost, spirit, specter, or undead entity with supernatural incorporeal traits",
+        "mechanical_robotic (w=3): 0 = entirely organic appearance with no mechanical elements; 1 = design is primarily robotic, mechanical, or made of artificial/inorganic constructed components"
+      ]
+    },
+    "criterion": "Group Pok\u00e9mon by the real-world animal family, creature archetype, or object type that most strongly inspires their design: mustelid/rodent/small mammal, feline/canine/large predator, primate/humanoid animal, avian/bird, reptile/amphibian/aquatic creature, insect/bug, ghost/spirit/undead, plant/mineral/object, and robotic/mechanical.",
+    "notes": "The feedback shows item_033 (mongoose quadruped) should be far from item_034 (dog-like quadruped), item_054 (cat-like quadruped), item_025 (plant quadruped), item_048 (robotic goat). These are all quadrupeds but from different animal families. Meanwhile item_033 should be close to item_040 (rabbit), item_047 (kangaroo), item_019 (pot/object), item_051 (tree ghost), item_046 (owl), item_036 (primate), item_005 (humanoid). The grouping criterion must be about design archetype/inspiration rather than locomotion. item_033 as a mongoose/mustelid/small-mammal archetype would score high on small_mammal_rodent_mustelid, grouping it with item_040 (rabbit) and item_047 (kangaroo). The feline/canine dimension separates it from item_034 and item_054. This redesign should satisfy the feedback by creating distinct clusters based on what real-world archetype each Pok\u00e9mon is designed after."
+  },
+  {
+    "round": 2,
+    "anchor_index": 27,
+    "anon_id": "item_004",
+    "name": "Azelf",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "criterion": "Group Pok\u00e9mon by the primary real-world archetype or elemental/type category most strongly reflected in their design: aquatic/water-based creatures (fish, sea mammals, amphibians, water dragons, lake spirits), land animals (felines, canines, rodents, birds, reptiles, primates), plant/nature-based designs (grass, trees, flowers, natural objects), ghost/spirit/undead designs, and mechanical/robotic designs. A Pok\u00e9mon's group is determined by its single most dominant design inspiration.",
+      "criterion_changed": true,
+      "dimensions": [
+        "aquatic_water_based (w=4): 0 = no aquatic, water, or lake-associated design features; 1 = design is primarily based on a water creature (fish, seal, tadpole, eel, manta ray, sea turtle, penguin, water dragon, lake spirit with water-body associations) with fins, flippers, gills, or strong aquatic/watery form as the dominant feature",
+        "plant_object_based (w=4): 0 = no plant, grass, or inanimate object basis in design; 1 = design is primarily based on a plant (tree, flower, cactus, leaf, apple), natural object (rock, stone), or everyday inanimate object (pot, bell) as the dominant design inspiration",
+        "ghost_spirit_based (w=3): 0 = no ghost, spirit, or incorporeal supernatural traits in design; 1 = design is primarily based on a ghost, spirit, specter, or undead entity \u2014 the supernatural incorporeal nature is the dominant feature, not the secondary animal/plant it may resemble",
+        "mechanical_robotic (w=3): 0 = entirely organic appearance with no mechanical elements; 1 = design is primarily robotic, mechanical, or made of artificial/inorganic constructed components (gears, circuits, metal armor, digital features)",
+        "land_animal_vertebrate (w=3): 0 = not based on a terrestrial vertebrate animal; 1 = design is primarily based on a land-dwelling vertebrate animal such as a feline, canine, rodent, mustelid, primate, bird, or terrestrial reptile \u2014 the animal body form is the dominant design feature",
+        "humanoid_mythical (w=2): 0 = not humanoid or mythical in form; 1 = design is primarily based on a humanoid figure, mythical creature (genie, fairy, sprite, legendary being) with upright bipedal humanoid form as the dominant feature, distinct from animal quadrupeds"
+      ]
+    },
+    "criterion": "Group Pok\u00e9mon by the primary real-world archetype or elemental/type category most strongly reflected in their design: aquatic/water-based creatures (fish, sea mammals, amphibians, water dragons, lake spirits), land animals (felines, canines, rodents, birds, reptiles, primates), plant/nature-based designs (grass, trees, flowers, natural objects), ghost/spirit/undead designs, and mechanical/robotic designs. A Pok\u00e9mon's group is determined by its single most dominant design inspiration.",
+    "notes": "The key insight from round 2 feedback is that item_004 (lake trio guardian - a fairy/sprite with gem decorations and a teardrop body associated with a lake) must group with aquatic/water Pok\u00e9mon (seals, tadpoles, eels, manta rays, sea turtles, penguins, water dragons) rather than with plants/objects/ghosts. This makes sense if we interpret item_004 as a lake spirit - its water/lake association is primary. The aquatic_water_based dimension needs to capture not just fish/sea creatures but also lake-associated spiritual beings. Meanwhile plant/object items (item_008, item_007, item_025, item_019, item_030, item_032, item_051) must score high on plant_object_based or ghost_spirit_based to stay away from item_004. The previous feedback about item_033 being close to item_051 and item_019 remains puzzling - perhaps these all end up in a 'miscellaneous' cluster when no single dimension dominates. By using aquatic_water_based as a strong dimension, item_004 clusters with the many water-type Pok\u00e9mon in the collection."
+  }
+]

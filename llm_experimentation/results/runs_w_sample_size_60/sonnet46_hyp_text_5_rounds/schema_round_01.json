@@ -1,0 +1,48 @@
+{
+  "features": [
+    {
+      "id": "normal_type",
+      "definition": "Score 1 if the Pokémon's description suggests a Normal-type affinity: it is described as an ordinary animal (mongoose, bird without elemental markings, etc.) with no strong elemental features, plain coloration, and no supernatural or elemental body traits. Score 0 if it has strong elemental features.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "water_ice_type",
+      "definition": "Score 1 if the Pokémon's description strongly suggests Water or Ice affinity: aquatic body parts (fins, gills, flippers), water stored in body, blue watery coloration, amphibious traits, or ice/snow features. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "fire_electric_type",
+      "definition": "Score 1 if the Pokémon's description suggests Fire or Electric affinity: flame-like features, ember coloration (orange/red/yellow with heat connotations), lightning bolt markings, electrical organs, or spark-like body parts. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "grass_poison_type",
+      "definition": "Score 1 if the Pokémon's description suggests Grass or Poison affinity: plant parts integrated into body (leaves, vines, bulbs, flowers, roots), green plant-like coloration, or toxic/venomous features (purple spots, dripping liquid, fang-based poison). Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "psychic_ghost_dark_type",
+      "definition": "Score 1 if the Pokémon's description suggests Psychic, Ghost, or Dark affinity: ghostly/shadowy body, single ominous eye, spoon-wielding humanoid, spectral appearance, dark shadowy coloration with supernatural features, or body described as ghostly or spirit-like. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "fighting_rock_ground_steel_type",
+      "definition": "Score 1 if the Pokémon's description suggests Fighting, Rock, Ground, or Steel affinity: stone or metal body material explicitly mentioned, muscular gorilla/humanoid fighter body, rocky texture, metallic parts, or described as biologically closer to stone. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "bipedal_humanoid",
+      "definition": "Score 1 if the Pokémon is explicitly described as bipedal, humanoid, or upright-standing; score 0 if quadrupedal, legless, or no clear upright bipedal stance described.",
+      "kind": "binary",
+      "weight": 1.0
+    }
+  ],
+  "notes": "The feedback strongly implies item_033 (Normal-type mongoose) groups with item_046 (Normal/Flying bird), item_051 (Ghost/Grass tree ghost), item_049 (Normal with cannons), item_005 (Psychic humanoid), item_019 (Rock type pot) rather than with other mammals item_034 (Dark), item_054 (Electric), item_039 (Water), item_035 (Fighting/Grass gorilla). This suggests the criterion is elemental type grouping, not biological archetype. The dimensions are designed so each Pokémon scores high on exactly one type-category dimension, creating natural clusters. item_033 as Normal, item_046 as Normal/Flying both score high on normal_type. item_051 and item_005 score on psychic_ghost_dark. item_049 may be Normal. item_019 scores on fighting_rock_ground_steel. This doesn't perfectly unify item_033 with all mentioned items, but type-based grouping is the best explanation for the feedback pattern.",
+  "criterion": "Group each Pokémon by its primary elemental type affinity as suggested by its physical description: Normal/colorless, Water/Ice, Fire/Electric, Grass/Poison, Psychic/Ghost/Dark, or Fighting/Rock/Ground/Steel. Assign each Pokémon to the type category most strongly implied by its described appearance, coloration, body features, and any explicitly mentioned materials or powers."
+}

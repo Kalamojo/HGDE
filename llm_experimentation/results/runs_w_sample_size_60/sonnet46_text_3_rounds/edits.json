@@ -1,0 +1,89 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 5,
+    "anon_id": "item_033",
+    "name": "Yungoos",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "bipedal": 0.0,
+        "quadrupedal": 0.0,
+        "aquatic_or_water_body": 1.0,
+        "avian": 1.0,
+        "reptilian_or_dragon": 1.0,
+        "mammalian": 0.0,
+        "insect_or_bug": 1.0,
+        "plant_based": 1.0,
+        "robotic_or_mechanical": 1.0,
+        "ghostly_or_supernatural": 1.0,
+        "blue_dominant": 3.0,
+        "brown_dominant": 4.0,
+        "green_dominant": 3.0,
+        "has_wings_or_fins_for_flight": 0.0,
+        "has_tail": 0.0,
+        "has_horn_or_spike_on_head": 0.0,
+        "humanoid_shape": 0.0,
+        "size_large": 1.0,
+        "has_multiple_heads_or_faces": 0.0,
+        "frog_like": 1.0,
+        "has_crystals_or_gems": 1.0,
+        "spots_or_stripes_pattern": 0.0,
+        "long_body_or_serpentine": 0.0,
+        "has_antenna_or_sensory_appendage": 0.0,
+        "mythical_or_legendary_cues": 1.0,
+        "has_claws": 0.0,
+        "fire_or_fire_coloring": 3.0,
+        "compactness": 0.0
+      },
+      "drop": [],
+      "add": [
+        "yellow_or_gold_dominant",
+        "purple_or_pink_dominant",
+        "white_or_gray_dominant"
+      ],
+      "rejected": []
+    },
+    "notes": "The user appears to be grouping primarily by color/appearance theme. item_033 (brown mongoose) should cluster with other brown/earthy-toned Pok\u00e9mon (019 brown pot, 051 brown tree, 046 grayish-brown bird, 005 brown/yellow humanoid) and be separated from blue Pok\u00e9mon (039, 034, 054), large plant+brown (035), and robotic (048). This strongly suggests color (especially brown/earthy) is the primary grouping criterion. I need to heavily boost brown_dominant weight and reduce features that incorrectly cluster 033 with blue/mammalian quadrupeds."
+  },
+  {
+    "round": 2,
+    "anchor_index": 27,
+    "anon_id": "item_004",
+    "name": "Azelf",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "blue_dominant": 5.0,
+        "brown_dominant": 5.0,
+        "green_dominant": 5.0,
+        "fire_or_fire_coloring": 4.0,
+        "yellow_or_gold_dominant": 4.0,
+        "purple_or_pink_dominant": 4.0,
+        "white_or_gray_dominant": 1.0,
+        "aquatic_or_water_body": 0.0,
+        "avian": 0.0,
+        "reptilian_or_dragon": 0.0,
+        "mammalian": 0.0,
+        "insect_or_bug": 0.0,
+        "plant_based": 0.0,
+        "robotic_or_mechanical": 0.0,
+        "ghostly_or_supernatural": 0.0,
+        "mythical_or_legendary_cues": 0.0,
+        "frog_like": 0.0,
+        "has_crystals_or_gems": 0.0,
+        "size_large": 0.0
+      },
+      "drop": [],
+      "add": [
+        "blue_or_gray_toned"
+      ],
+      "rejected": []
+    },
+    "notes": "The user is grouping by dominant body color. item_004 (gray/blue lake fairy) belongs with the BLUE group. Currently it scores white_or_gray_dominant=1 and blue_dominant=0, separating it from the blue cluster. I need to either reduce white_or_gray weight heavily or add a blue+gray combined feature. I'll reduce white_or_gray weight significantly and add a 'blue_or_gray_toned' feature that captures both blue and gray/silver Pok\u00e9mon together, since the lake trio and similar Pok\u00e9mon are gray-blue. Also boosting blue_dominant weight further."
+  }
+]

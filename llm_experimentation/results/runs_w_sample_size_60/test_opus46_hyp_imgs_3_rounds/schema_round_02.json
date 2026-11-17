@@ -1,0 +1,48 @@
+{
+  "features": [
+    {
+      "id": "organic_creature",
+      "definition": "Whether the Pokémon looks like a living biological organism (animal, plant, insect, natural creature) vs an inanimate object, machine, statue, or artificial construct. 0 = clearly an object/machine/construct, 1 = clearly a living organic creature.",
+      "kind": "scale",
+      "weight": 5.0
+    },
+    {
+      "id": "brown_tan_dominance",
+      "definition": "How much of the Pokémon's visible body is brown, tan, beige, or sandy colored. 0 = no brown/tan, 1 = predominantly brown/tan.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "blue_cool_dominance",
+      "definition": "How much of the Pokémon's visible body is blue, light blue, or cool-toned cyan. 0 = no blue, 1 = predominantly blue.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "green_dominance",
+      "definition": "How much of the Pokémon's visible body is green (any shade). 0 = no green, 1 = predominantly green.",
+      "kind": "scale",
+      "weight": 2.5
+    },
+    {
+      "id": "dark_coloring",
+      "definition": "How much of the Pokémon's body is covered in dark colors (black, dark grey, dark brown). 0 = no dark coloring, 1 = predominantly dark.",
+      "kind": "scale",
+      "weight": 2.5
+    },
+    {
+      "id": "metallic_artificial_texture",
+      "definition": "Whether the Pokémon's surface appears metallic, polished, stone-like, or manufactured rather than having fur, skin, leaves, or other organic textures. 0 = fully organic texture, 1 = fully metallic/artificial texture.",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "red_orange_dominance",
+      "definition": "How much of the Pokémon's visible body is red, orange, or warm vivid tones. 0 = no red/orange, 1 = predominantly red/orange.",
+      "kind": "scale",
+      "weight": 2.0
+    }
+  ],
+  "notes": "The key insight from round 2 is that item_004 (Azelf, organic blue creature) should be closer to other organic creatures (even dark-colored Deino or green Oddish) than to item_007 (Bronzong, a metallic bell construct). This means organic vs artificial nature is a primary grouping dimension, more important than color similarity alone. Round 1 feedback about brown organic creatures grouping together still holds. Adding high-weight organic_creature and metallic_artificial_texture dimensions should capture both the organic/construct split and the color-based subgrouping.",
+  "criterion": "Group Pokémon by their design nature: whether they appear as organic living creatures (animals, plants, natural beings) versus artificial/object-based constructs (machines, tools, statues, golems), and then by their dominant color palette among organic creatures."
+}

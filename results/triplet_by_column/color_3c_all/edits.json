@@ -1,0 +1,170 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 39,
+    "name": "Geodude",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 2,
+    "anchor_index": 141,
+    "name": "Wailord",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 3,
+    "anchor_index": 250,
+    "name": "Swadloon",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 4,
+    "anchor_index": 38,
+    "name": "Tentacruel",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 5,
+    "anchor_index": 341,
+    "name": "Toxapex",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 6,
+    "anchor_index": 100,
+    "name": "Phanpy",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 7,
+    "anchor_index": 320,
+    "name": "Pumpkaboo",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 8,
+    "anchor_index": 243,
+    "name": "Woobat",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 9,
+    "anchor_index": 158,
+    "name": "Wynaut",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 10,
+    "anchor_index": 402,
+    "name": "Dachsbun",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 11,
+    "anchor_index": 213,
+    "name": "Carnivine",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 12,
+    "anchor_index": 343,
+    "name": "Mudsdale",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 13,
+    "anchor_index": 380,
+    "name": "Clobbopus",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 14,
+    "anchor_index": 252,
+    "name": "Whimsicott",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 15,
+    "anchor_index": 64,
+    "name": "Kabutops",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 16,
+    "anchor_index": 23,
+    "name": "Golduck",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 17,
+    "anchor_index": 37,
+    "name": "Tentacool",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 18,
+    "anchor_index": 196,
+    "name": "Wormadam",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 19,
+    "anchor_index": 79,
+    "name": "Spinarak",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 20,
+    "anchor_index": 177,
+    "name": "Chimchar",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 21,
+    "anchor_index": 370,
+    "name": "Chewtle",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  }
+]

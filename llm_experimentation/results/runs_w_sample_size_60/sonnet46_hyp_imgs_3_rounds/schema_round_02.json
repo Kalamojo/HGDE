@@ -1,0 +1,42 @@
+{
+  "features": [
+    {
+      "id": "mechanical_or_mineral",
+      "definition": "Does the Pokémon appear mechanical, metallic, man-made, or mineral/rock-based rather than biological? 0 = fully organic/biological creature, 1 = clearly mechanical, steel, or constructed appearance.",
+      "kind": "scale",
+      "weight": 5.0
+    },
+    {
+      "id": "blue_dominance",
+      "definition": "How much of the Pokémon's body is dominated by blue or blue-grey coloring. 0 = no blue present, 1 = almost entirely blue.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "green_dark_dominance",
+      "definition": "How much of the Pokémon's body combines green with dark brown or black tones as co-dominant colors. 0 = neither green+dark present together, 1 = body is strongly both green and dark/brown simultaneously.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "red_orange_dominance",
+      "definition": "How much of the Pokémon's body is dominated by red or orange coloring. 0 = no red/orange, 1 = almost entirely red/orange.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "yellow_tan_dominance",
+      "definition": "How much of the Pokémon's body is dominated by yellow, tan, cream, or warm beige coloring, with minimal other colors. 0 = none or mixed with other strong colors, 1 = almost entirely these tones.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "color_complexity",
+      "definition": "How many distinct strong color regions does the Pokémon's body have? 0 = one dominant color covers nearly the whole body, 1 = three or more clearly distinct color regions each covering significant body area.",
+      "kind": "scale",
+      "weight": 2.0
+    }
+  ],
+  "notes": "The key new insight: item_030 (red/green/tan dragon) and item_035 (dark brown + green gorilla) should group together and both should be closer to item_007 (mechanical) than to item_019 (tan acorn). item_019 is very tan-dominant with simple coloring. item_030 has high color_complexity and red+green. item_035 has green_dark_dominance. item_007 is mechanical. What separates item_019 from the others is its high yellow_tan_dominance and low color_complexity. By raising yellow_tan_dominance weight and adding color_complexity, item_019 will sit in a tan/simple cluster away from item_030, item_035, and item_007 which all have more complex or dark+green coloring. The mechanical dimension keeps item_007 separate from organic blue Pokémon like item_011.",
+  "criterion": "Group Pokémon by their dominant body color palette (blue, green/dark, red/orange, yellow/tan), with mechanical or metallic Pokémon as a separate group. Pokémon with complex multi-color patterns or large dark+green bodies group together, separate from small single-color-dominant Pokémon."
+}

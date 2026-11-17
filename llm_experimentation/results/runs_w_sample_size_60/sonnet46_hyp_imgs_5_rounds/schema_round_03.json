@@ -1,0 +1,48 @@
+{
+  "features": [
+    {
+      "id": "blue_teal_dominant",
+      "definition": "How strongly is the Pokémon's body dominated by blue, navy, cyan, or teal coloration in an organic (non-metallic) creature? 0 = no blue/teal or is metallic, 1 = body overwhelmingly blue/teal and clearly organic.",
+      "kind": "scale",
+      "weight": 4.5
+    },
+    {
+      "id": "green_dominant",
+      "definition": "How strongly is the Pokémon's body dominated by green coloration, including plant motifs like leaves, vines, or grass? 0 = no green, 1 = body overwhelmingly green or plant-covered.",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "red_orange_dominant",
+      "definition": "How strongly is the Pokémon's body dominated by red or orange coloration, including fire-related features like flames or ember patterns? 0 = no red/orange, 1 = body overwhelmingly red or orange.",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "gray_metallic_dominant",
+      "definition": "How strongly is the Pokémon's body dominated by gray, silver, steel-blue, or metallic coloration with a hard, inorganic texture? 0 = no gray/metallic features, 1 = body is overwhelmingly gray, silver, or metallic-looking.",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "natural_animal_colors",
+      "definition": "Does the Pokémon have natural animal-like coloration (brown, tan, cream, pink, beige, or muted tones) without strong blue, green, red, or metallic dominance, resembling a real-world mammal or bird? 1 = clearly natural animal coloring, 0 = has a strong non-natural color.",
+      "kind": "binary",
+      "weight": 4.0
+    },
+    {
+      "id": "mechanical_object_based",
+      "definition": "Is the Pokémon designed to resemble a mechanical object, inanimate artifact, or construct (bell, gear, magnet, cannon, etc.) rather than a living organic creature? 1 = clearly object/machine-based design, 0 = clearly organic living creature design.",
+      "kind": "binary",
+      "weight": 4.5
+    },
+    {
+      "id": "water_aquatic_motif",
+      "definition": "How strongly does the Pokémon show aquatic design motifs (fins, gills, water droplets, flipper-like limbs, aquatic body shape) beyond just blue color? 0 = no aquatic motifs, 1 = strongly aquatic in body plan.",
+      "kind": "scale",
+      "weight": 1.0
+    }
+  ],
+  "notes": "The core issue: item_029 (dark navy/blue organic serpent) was scoring similarly to item_007 (teal metallic bell) on blue_teal_dominant (~0.5 each), making them cluster together. But item_007 is mechanical/object-based AND gray-metallic, while item_029 is purely organic and blue. By raising mechanical_object_based weight to 4.5 (matching blue_teal weight), item_007 will strongly pull toward the gray/metallic/mechanical cluster while item_029 stays with organic blue Pokémon. The blue_teal_dominant definition now explicitly notes 'organic (non-metallic)' so item_007's teal-gray metallic body scores lower on that dimension. item_029 should score high on blue_teal_dominant as a dark navy organic creature, grouping it with item_038 and item_039 which also have blue coloration.",
+  "criterion": "Group Pokémon by their dominant body color: blue/navy/teal organic creatures form one group, green/plant-themed another, red/orange/fire-toned another, gray/metallic/mechanical another, and natural animal-colored (brown/tan/pink/cream) another. Mechanical or object-based designs (bells, magnets, gears) belong in the gray/metallic group regardless of their exact hue."
+}

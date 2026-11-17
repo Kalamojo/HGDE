@@ -1,0 +1,242 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 57,
+    "name": "Krabby",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 2,
+    "anchor_index": 211,
+    "name": "Barboach",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 3,
+    "anchor_index": 365,
+    "name": "Dwebble",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 4,
+    "anchor_index": 56,
+    "name": "Onix",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 5,
+    "anchor_index": 512,
+    "name": "Marshadow",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 6,
+    "anchor_index": 152,
+    "name": "Treecko",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 7,
+    "anchor_index": 481,
+    "name": "Oricorio",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 8,
+    "anchor_index": 357,
+    "name": "Lilligant",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 9,
+    "anchor_index": 234,
+    "name": "Salamence",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 10,
+    "anchor_index": 590,
+    "name": "Bellibolt",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 11,
+    "anchor_index": 314,
+    "name": "Serperior",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 12,
+    "anchor_index": 515,
+    "name": "Melmetal",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 13,
+    "anchor_index": 563,
+    "name": "Ursaluna",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 14,
+    "anchor_index": 3,
+    "name": "Charmander",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 15,
+    "anchor_index": 495,
+    "name": "Palossand",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 16,
+    "anchor_index": 148,
+    "name": "Pupitar",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 17,
+    "anchor_index": 451,
+    "name": "Tyrantrum",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 18,
+    "anchor_index": 116,
+    "name": "Skiploom",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 19,
+    "anchor_index": 401,
+    "name": "Pawniard",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 20,
+    "anchor_index": 498,
+    "name": "Minior",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 21,
+    "anchor_index": 612,
+    "name": "Annihilape",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 22,
+    "anchor_index": 499,
+    "name": "Komala",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 23,
+    "anchor_index": 15,
+    "name": "Raticate",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 24,
+    "anchor_index": 33,
+    "name": "Arcanine",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 25,
+    "anchor_index": 12,
+    "name": "Pidgey",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 26,
+    "anchor_index": 13,
+    "name": "Pidgeotto",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 27,
+    "anchor_index": 538,
+    "name": "Silicobra",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 28,
+    "anchor_index": 464,
+    "name": "Yveltal",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 29,
+    "anchor_index": 308,
+    "name": "Heatran",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 30,
+    "anchor_index": 488,
+    "name": "Mudsdale",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  }
+]

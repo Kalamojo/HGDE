@@ -1,0 +1,48 @@
+{
+  "features": [
+    {
+      "id": "animal_flying_bug",
+      "definition": "Score 1 if the Pokémon is a natural animal, bird, or insect/arthropod (moth, butterfly, bug) with no dominant supernatural, elemental, plant, or mechanical features. Includes birds (even colorful parrots), moths, and ordinary quadrupedal animals. Score 0 if clear fire/electric/water/plant/psychic/ghost/steel/dark/rock features dominate.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "water_ice_type",
+      "definition": "Score 1 if the Pokémon strongly suggests Water or Ice affinity: aquatic body parts (fins, gills, flippers), water stored in body, blue watery coloration with amphibious traits, eel-like aquatic body, or ice/snow features. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "fire_electric_type",
+      "definition": "Score 1 if the Pokémon suggests Fire or Electric affinity: flame-like features, ember coloration (orange/red/yellow with explicit heat), lightning bolt markings, electrical organs, or spark-like body parts. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "grass_natural_type",
+      "definition": "Score 1 if the Pokémon has plant body parts (leaves, vines, bulbs, flowers, roots as limbs) OR an organic hollow bell/chime-shaped body rooted in nature. Score 0.5 if toxic features on animal body. Score 0 if no plant parts or organic natural-hollow features.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "psychic_ghost_steel_type",
+      "definition": "Score 1 if robotic/mechanical construction, explicitly ghostly/spectral body, spoon-wielding psychic humanoid, lake-fairy with gem psychic features, gelatinous ethereal body, or wind-chime ghost. Score 0 for bell shapes that are organic/natural rather than mechanical.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "dark_fighting_rock_ground_type",
+      "definition": "Score 1 if the Pokémon suggests Dark, Fighting, Rock, or Ground affinity: dark black fur concealing face, muscular humanoid fighter, body explicitly stone-like or rocky, or cannon/weapon appendages on quadrupedal body. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "winged_animal",
+      "definition": "Score 1 if the Pokémon has wings used for flight AND the overall body is a natural creature (bird, insect, moth, butterfly) rather than a supernatural entity, robot, or plant. Score 0 otherwise.",
+      "kind": "binary",
+      "weight": 2.5
+    }
+  ],
+  "notes": "The key insight from round 3 feedback: item_031 (Venomoth, a moth) should group with item_043 (parrot bird), NOT with Grass/Poison plants like item_038 (Oddish) or item_051 (ghostly tree). Both item_031 and item_043 are winged natural creatures (insect and bird respectively). The fix: I created 'animal_flying_bug' as the primary dimension for natural animals/birds/insects, and added 'winged_animal' binary to pull moths and birds together. I also made grass_poison score lower for insects with toxic dust (they're animals first). The dark_fighting dimension now explicitly includes cannon-bearing quadrupeds like item_049 and genie-like muscular beings like item_028. Item_034 (Deino) stays in dark group via concealing fur and wounds. Item_019 (stone-like) stays in dark/rock group via 'biologically closer to stone' language.",
+  "criterion": "Group each Pokémon by its primary elemental and biological identity into six categories: (1) Animal/Flying/Bug — natural animals, birds, insects/moths; (2) Water/Ice — aquatic or icy features; (3) Fire/Electric — flames or electrical features; (4) Grass/Bell-Natural — plant body parts, leaf/vine features, OR bell/organic hollow body shapes rooted in nature rather than machinery; (5) Psychic/Ghost/Steel — robotic/mechanical construction, explicitly spectral/ghostly body, spoon-wielding psychic humanoid, or lake-fairy with gem psychic features; (6) Dark/Fighting/Rock/Ground — dark concealing fur, muscular fighters, stone-like or cannon-bearing bodies."
+}

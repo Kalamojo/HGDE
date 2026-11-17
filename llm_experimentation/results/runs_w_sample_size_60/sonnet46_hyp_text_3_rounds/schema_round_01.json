@@ -1,0 +1,54 @@
+{
+  "features": [
+    {
+      "id": "small_mammal_rodent_mustelid",
+      "definition": "0 = no resemblance to small mammals like rodents, mustelids, rabbits, marsupials, or similar small furry creatures; 1 = clearly based on a small mammal archetype such as a mouse, rabbit, mongoose, kangaroo, or weasel",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "feline_canine_large_predator",
+      "definition": "0 = no resemblance to cats, dogs, wolves, lions, or similar large predatory mammals; 1 = clearly based on a feline, canine, or large predatory mammal archetype",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "primate_humanoid_animal",
+      "definition": "0 = not based on a primate or humanoid animal archetype; 1 = clearly based on a primate (ape, monkey) or walks and behaves like a humanoid animal with upright posture and human-like limb use",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "avian_bird_based",
+      "definition": "0 = not based on a bird; 1 = clearly based on a real bird species or bird archetype, with wings, beak, talons, and feathers as primary design features",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "aquatic_reptile_amphibian",
+      "definition": "0 = no aquatic, reptilian, or amphibian traits; 1 = clearly based on a fish, sea creature, reptile, amphibian, or serpentine animal",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "plant_mineral_object_based",
+      "definition": "0 = not based on a plant, mineral, or inanimate object; 1 = design is primarily inspired by a plant, rock, mineral formation, or everyday inanimate object",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "ghost_spirit_undead",
+      "definition": "0 = no ghost, spirit, or undead characteristics in design; 1 = design is primarily based on a ghost, spirit, specter, or undead entity with supernatural incorporeal traits",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "mechanical_robotic",
+      "definition": "0 = entirely organic appearance with no mechanical elements; 1 = design is primarily robotic, mechanical, or made of artificial/inorganic constructed components",
+      "kind": "scale",
+      "weight": 3.0
+    }
+  ],
+  "notes": "The feedback shows item_033 (mongoose quadruped) should be far from item_034 (dog-like quadruped), item_054 (cat-like quadruped), item_025 (plant quadruped), item_048 (robotic goat). These are all quadrupeds but from different animal families. Meanwhile item_033 should be close to item_040 (rabbit), item_047 (kangaroo), item_019 (pot/object), item_051 (tree ghost), item_046 (owl), item_036 (primate), item_005 (humanoid). The grouping criterion must be about design archetype/inspiration rather than locomotion. item_033 as a mongoose/mustelid/small-mammal archetype would score high on small_mammal_rodent_mustelid, grouping it with item_040 (rabbit) and item_047 (kangaroo). The feline/canine dimension separates it from item_034 and item_054. This redesign should satisfy the feedback by creating distinct clusters based on what real-world archetype each Pokémon is designed after.",
+  "criterion": "Group Pokémon by the real-world animal family, creature archetype, or object type that most strongly inspires their design: mustelid/rodent/small mammal, feline/canine/large predator, primate/humanoid animal, avian/bird, reptile/amphibian/aquatic creature, insect/bug, ghost/spirit/undead, plant/mineral/object, and robotic/mechanical."
+}

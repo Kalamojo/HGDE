@@ -1,0 +1,48 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 7,
+    "anon_id": "item_011",
+    "name": "Beldum",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "criterion": "Group Pok\u00e9mon by their dominant body color palette (blue, green, brown/dark, red/orange, yellow/tan), treating mechanical or mineral-bodied Pok\u00e9mon as a separate category regardless of color. Organic Pok\u00e9mon with blue tones group together; mechanical/steel Pok\u00e9mon form their own group.",
+      "criterion_changed": true,
+      "dimensions": [
+        "blue_dominance (w=3): How much of the Pok\u00e9mon's body is dominated by blue or blue-grey organic coloring. 0 = no blue present, 1 = almost entirely blue.",
+        "green_dominance (w=3): How much of the Pok\u00e9mon's body is dominated by green coloring (including yellow-green). 0 = no green present, 1 = almost entirely green.",
+        "brown_dark_dominance (w=3): How much of the Pok\u00e9mon's body is dominated by brown, dark grey, black, or charcoal coloring. 0 = none, 1 = almost entirely these tones.",
+        "red_orange_dominance (w=3): How much of the Pok\u00e9mon's body is dominated by red or orange coloring. 0 = no red/orange, 1 = almost entirely red/orange.",
+        "yellow_tan_dominance (w=2): How much of the Pok\u00e9mon's body is dominated by yellow, tan, cream, or warm beige coloring. 0 = none, 1 = almost entirely these tones.",
+        "mechanical_or_mineral (w=4.5): Does the Pok\u00e9mon appear mechanical, metallic, man-made, or mineral/rock-based rather than biological? 0 = fully organic/biological creature, 1 = clearly mechanical, steel, or constructed appearance."
+      ]
+    },
+    "criterion": "Group Pok\u00e9mon by their dominant body color palette (blue, green, brown/dark, red/orange, yellow/tan), treating mechanical or mineral-bodied Pok\u00e9mon as a separate category regardless of color. Organic Pok\u00e9mon with blue tones group together; mechanical/steel Pok\u00e9mon form their own group.",
+    "notes": "The feedback strongly indicates item_007 (Bronzong, clearly mechanical) should be separated from item_011 (Beldum, blue organic larva), item_039 (Panpour, organic monkey), item_038 (Oddish, organic plant), and item_034 (Larvitar, organic dinosaur). All the 'closer' items are organic even if they share blue tones. Raising mechanical_or_mineral weight to 4.5 will push item_007 into a mechanical cluster away from organic blue Pok\u00e9mon. I also added yellow_tan as a dimension to better separate tan-bodied Pok\u00e9mon, and merged brown/dark to better capture dark-toned organics like Larvitar."
+  },
+  {
+    "round": 2,
+    "anchor_index": 55,
+    "anon_id": "item_030",
+    "name": "Flapple",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "criterion": "Group Pok\u00e9mon by their dominant body color palette (blue, green/dark, red/orange, yellow/tan), with mechanical or metallic Pok\u00e9mon as a separate group. Pok\u00e9mon with complex multi-color patterns or large dark+green bodies group together, separate from small single-color-dominant Pok\u00e9mon.",
+      "criterion_changed": true,
+      "dimensions": [
+        "mechanical_or_mineral (w=5): Does the Pok\u00e9mon appear mechanical, metallic, man-made, or mineral/rock-based rather than biological? 0 = fully organic/biological creature, 1 = clearly mechanical, steel, or constructed appearance.",
+        "blue_dominance (w=3): How much of the Pok\u00e9mon's body is dominated by blue or blue-grey coloring. 0 = no blue present, 1 = almost entirely blue.",
+        "green_dark_dominance (w=3.5): How much of the Pok\u00e9mon's body combines green with dark brown or black tones as co-dominant colors. 0 = neither green+dark present together, 1 = body is strongly both green and dark/brown simultaneously.",
+        "red_orange_dominance (w=3): How much of the Pok\u00e9mon's body is dominated by red or orange coloring. 0 = no red/orange, 1 = almost entirely red/orange.",
+        "yellow_tan_dominance (w=3.5): How much of the Pok\u00e9mon's body is dominated by yellow, tan, cream, or warm beige coloring, with minimal other colors. 0 = none or mixed with other strong colors, 1 = almost entirely these tones.",
+        "color_complexity (w=2): How many distinct strong color regions does the Pok\u00e9mon's body have? 0 = one dominant color covers nearly the whole body, 1 = three or more clearly distinct color regions each covering significant body area."
+      ]
+    },
+    "criterion": "Group Pok\u00e9mon by their dominant body color palette (blue, green/dark, red/orange, yellow/tan), with mechanical or metallic Pok\u00e9mon as a separate group. Pok\u00e9mon with complex multi-color patterns or large dark+green bodies group together, separate from small single-color-dominant Pok\u00e9mon.",
+    "notes": "The key new insight: item_030 (red/green/tan dragon) and item_035 (dark brown + green gorilla) should group together and both should be closer to item_007 (mechanical) than to item_019 (tan acorn). item_019 is very tan-dominant with simple coloring. item_030 has high color_complexity and red+green. item_035 has green_dark_dominance. item_007 is mechanical. What separates item_019 from the others is its high yellow_tan_dominance and low color_complexity. By raising yellow_tan_dominance weight and adding color_complexity, item_019 will sit in a tan/simple cluster away from item_030, item_035, and item_007 which all have more complex or dark+green coloring. The mechanical dimension keeps item_007 separate from organic blue Pok\u00e9mon like item_011."
+  }
+]

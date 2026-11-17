@@ -1,0 +1,82 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 60,
+    "name": "Mamoswine",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 2,
+    "anchor_index": 1,
+    "name": "Floragato",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 3,
+    "anchor_index": 184,
+    "name": "Roaring Moon",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 4,
+    "anchor_index": 63,
+    "name": "Karrablast",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 5,
+    "anchor_index": 55,
+    "name": "Quaquaval",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 6,
+    "anchor_index": 159,
+    "name": "Rabsca",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 7,
+    "anchor_index": 2,
+    "name": "Luxio",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 8,
+    "anchor_index": 58,
+    "name": "Garbodor",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 9,
+    "anchor_index": 124,
+    "name": "Pyroar",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 10,
+    "anchor_index": 119,
+    "name": "Whiscash",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "features": [
+    {
+      "id": "bipedal_humanoid",
+      "definition": "0 = not bipedal/humanoid at all; 1 = clearly walks upright on two legs with a recognizably humanoid posture",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "quadrupedal",
+      "definition": "0 = not quadrupedal; 1 = clearly walks on four limbs as its primary mode of locomotion",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "avian_or_winged_flier",
+      "definition": "0 = no wings or flight-adapted body; 1 = primarily bird-like or has wings as the dominant body feature enabling flight",
+      "kind": "scale",
+      "weight": 2.5
+    },
+    {
+      "id": "aquatic_or_serpentine",
+      "definition": "0 = no aquatic/serpentine traits; 1 = body plan is primarily adapted for water movement or is elongated/limbless like a fish, eel, or sea creature",
+      "kind": "scale",
+      "weight": 2.5
+    },
+    {
+      "id": "mechanical_or_robotic",
+      "definition": "0 = entirely organic appearance; 1 = body is clearly mechanical, robotic, or made of inorganic/metallic components",
+      "kind": "scale",
+      "weight": 2.0
+    },
+    {
+      "id": "amorphous_or_plant_or_object",
+      "definition": "0 = clear animal body plan; 1 = body is primarily plant-like, object-like, or amorphous with no clear limbed-animal structure",
+      "kind": "scale",
+      "weight": 2.0
+    }
+  ],
+  "notes": "The 40 Pokémon descriptions show strong clustering around body plan archetypes: bipedal humanoids (item_027, item_035, item_032, item_037, item_028, item_024), quadrupeds (item_053, item_002, item_003, item_033, item_052, item_049, item_041, item_059, item_047), avians (item_044, item_046, item_043, item_031, item_018, item_058), aquatic/serpentine (item_029, item_013, item_022, item_014, item_001, item_056, item_055, item_023), robotic/mechanical (item_011, item_050, item_049), and amorphous/plant/object (item_008, item_045, item_016, item_021, item_039, item_051, item_004). Some Pokémon straddle categories, so multiple dimensions allow nuanced scoring.",
+  "criterion": "Group Pokémon by their primary body plan and locomotion type: bipedal/humanoid, quadrupedal terrestrial, aquatic/serpentine/limbless, avian/winged flier, and other (robotic, amorphous, plant-like, etc.)."
+}

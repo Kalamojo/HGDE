@@ -1,0 +1,192 @@
+{
+  "features": [
+    {
+      "id": "blue_dominant",
+      "definition": "Dominant body color is blue or cyan (0=not blue, 1=clearly blue dominant)",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "green_dominant",
+      "definition": "Dominant body color is green (0=not green, 1=clearly green dominant)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "brown_tan_dominant",
+      "definition": "Dominant body color is brown, tan, or orange-brown (0=not, 1=clearly dominant)",
+      "kind": "scale",
+      "weight": 2.0
+    },
+    {
+      "id": "red_dominant",
+      "definition": "Dominant body color is red or dark red (0=not, 1=clearly red dominant)",
+      "kind": "scale",
+      "weight": 2.0
+    },
+    {
+      "id": "has_wings",
+      "definition": "Has visible wings or wing-like appendages (0=no, 1=yes)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_quadruped",
+      "definition": "Primarily four-legged body posture (0=no, 1=yes)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_biped",
+      "definition": "Primarily bipedal/upright body posture (0=no, 1=yes)",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "is_serpentine",
+      "definition": "Body is primarily serpentine or worm-like without clear limbs (0=no, 1=yes)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_amorphous",
+      "definition": "Body is blob-like, gelatinous, or amorphous without clear limbs (0=no, 1=yes)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "plant_features",
+      "definition": "Has visible plant-like features (leaves, vines, flowers, bark) (0=none, 1=heavily plant-based)",
+      "kind": "scale",
+      "weight": 2.0
+    },
+    {
+      "id": "mechanical_features",
+      "definition": "Has metallic, mechanical, or robotic features (0=none, 1=heavily mechanical)",
+      "kind": "scale",
+      "weight": 5.0
+    },
+    {
+      "id": "furry_fluffy",
+      "definition": "Has fur, fluff, or fluffy texture visible (0=no, 1=yes clearly)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "scaly_reptilian",
+      "definition": "Has scales or reptilian appearance (0=no, 1=clearly reptilian/scaly)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "smooth_skin",
+      "definition": "Has smooth skin without fur/scales/feathers (0=no, 1=clearly smooth-skinned)",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "feathered_avian",
+      "definition": "Has feathers or bird-like appearance (0=no, 1=clearly avian/feathered)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "body_size_large",
+      "definition": "Appears large/bulky relative to typical Pokémon (0=small/tiny, 1=very large/bulky)",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "has_tail",
+      "definition": "Has a visible tail (0=no, 1=yes)",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "has_claws",
+      "definition": "Has visible claws or talons (0=no, 1=yes)",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "dark_color_scheme",
+      "definition": "Overall color scheme is dark (dark blue, black, dark brown) (0=light/bright, 1=very dark)",
+      "kind": "scale",
+      "weight": 2.0
+    },
+    {
+      "id": "multiple_creatures",
+      "definition": "Image shows more than one creature or a combined/duo form (0=single creature, 1=multiple/duo)",
+      "kind": "binary",
+      "weight": 0.0
+    },
+    {
+      "id": "insect_bug_features",
+      "definition": "Has insect-like features (antennae, compound eyes, many legs, exoskeleton) (0=none, 1=clearly insect/bug)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "water_theme",
+      "definition": "Has water/aquatic theme (fins, flippers, water droplets, aquatic body shape) (0=none, 1=clearly aquatic)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "fire_theme",
+      "definition": "Has fire-like features (flame patterns, fire mane, fiery colors) (0=none, 1=clearly fire-themed)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "ghost_dark_theme",
+      "definition": "Has ghost or dark/spooky appearance (floating, wispy, dark aura) (0=none, 1=clearly ghost/dark)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "eye_prominence",
+      "definition": "Eyes are unusually large or prominent relative to body (0=normal eyes, 1=very large/prominent eyes)",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "complexity_detail",
+      "definition": "Overall visual complexity and detail level (0=very simple/minimal, 1=very complex/detailed)",
+      "kind": "scale",
+      "weight": 0.0
+    },
+    {
+      "id": "natural_organic_appearance",
+      "definition": "Has a natural, organic, earth-toned appearance without strong artificial or elemental (water/fire/electric/steel) visual theme - looks like it belongs in a forest or natural environment (0=strongly elemental or artificial, 1=purely natural/organic)",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "yellow_tan_accent",
+      "definition": "Has yellow, tan, or golden accents or secondary colors prominently visible (0=no yellow/tan accents, 1=clearly has yellow or tan highlights)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "is_mechanical_artificial",
+      "definition": "The Pokémon appears to be made of metal, machinery, manufactured objects, or artificial materials rather than flesh/organic matter. Score 1 if clearly mechanical/artificial (gears, bolts, metal body, manufactured appearance), 0 if clearly biological/organic.",
+      "kind": "scale",
+      "weight": 5.0
+    },
+    {
+      "id": "blue_or_dark_organic",
+      "definition": "The Pokémon has a predominantly blue or dark (dark blue, dark gray, black) color scheme AND appears to be a biological/organic creature (not mechanical). Score 1 if clearly blue/dark-colored and organic, 0 if mechanical, brightly colored non-blue (red/yellow/green dominant), or not organic.",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "armor_plated",
+      "definition": "The Pokémon appears to have heavy armor plating, thick shell, or heavily armored body segments that give it an artificial or heavily protected appearance (like armor or exoskeleton plates). Score 1 if clearly heavily armored/plated, 0 if no armor plating.",
+      "kind": "scale",
+      "weight": 2.0
+    }
+  ],
+  "notes": "The user groups blue/dark-colored organic Pokémon together (item_027, item_034, item_038, item_039 all share blue coloring and organic nature). item_007 is mechanical, item_049 is red/armored semi-mechanical, item_005 is yellow. The key separators are: blue/dark organic vs mechanical vs other-colored organic. Need to boost blue_dominant and dark_color_scheme while keeping mechanical features heavily penalized. natural_organic_appearance should stay high weight. The group seems to be 'blue/dark organic' creatures.",
+  "criterion": ""
+}

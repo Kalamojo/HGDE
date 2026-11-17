@@ -1,0 +1,48 @@
+{
+  "features": [
+    {
+      "id": "normal_flying_type",
+      "definition": "Score 1 if the Pokémon is described as an ordinary animal or bird with no strong elemental, supernatural, or plant features: plain coloration, typical animal body, bird without mystical markings or psychic traits, no totem/spiritual design. Score 0 if it has clear elemental, psychic, ghostly, plant, or dark features.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "water_ice_type",
+      "definition": "Score 1 if the Pokémon's description strongly suggests Water or Ice affinity: aquatic body parts (fins, gills, flippers), water stored in body, blue watery coloration with amphibious traits, or ice/snow features. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "fire_electric_type",
+      "definition": "Score 1 if the Pokémon's description suggests Fire or Electric affinity: flame-like features, ember coloration (orange/red/yellow with heat connotations), lightning bolt markings, electrical organs, or spark-like body parts. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "grass_poison_type",
+      "definition": "Score 1 if the Pokémon's description suggests Grass or Poison affinity: plant parts integrated into body (leaves, vines, bulbs, flowers, roots), green plant-like coloration of a bulb or vegetable shape, or toxic/venomous features (purple bruise-like spots, dripping liquid, wounds suggesting venom, dark fur hiding injuries). Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "psychic_ghost_steel_type",
+      "definition": "Score 1 if the Pokémon's description suggests Psychic, Ghost, or Steel affinity: explicitly mentioned psychic powers or multiple brains, ghostly or spectral appearance, gelatinous or ethereal body substance, bell-shaped or hollow metallic body, totem-pole or kachina-doll spiritual design with eye-like markings on wings or body, spoon-wielding humanoid, or ominous single eye. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "dark_fighting_rock_ground_type",
+      "definition": "Score 1 if the Pokémon's description suggests Dark, Fighting, Rock, or Ground affinity: dark black fur concealing the face, body covered in wounds or bruises suggesting a sinister/dark nature, muscular humanoid fighter body, stone or rocky texture explicitly described, metallic fighting parts, or described as biologically close to stone/earth. Score 0 if no such traits.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "mystical_bird",
+      "definition": "Score 1 if the Pokémon is described as a bird (avian, feathered, beak, wings used for flight) AND has mystical, spiritual, psychic, or totem-like design elements (eye patterns on wings, totem pole resemblance, kachina doll design, described psychic abilities). Score 0 otherwise.",
+      "kind": "binary",
+      "weight": 2.0
+    }
+  ],
+  "notes": "The core problem: item_042 (Xatu - Psychic/Flying green trogon with totem/kachina design and eye markings on wings) was scoring on grass_poison_type due to green coloration, but it should group with item_007 (Bronzong-like bell/totem pole - Psychic/Steel), item_021 (Duosion/Exeggcute-like with two brains and psychic powers - Psychic), and item_043 (parrot bird). item_034 (Deino - Dark type, dark fur concealing face, wounds/bruises) and item_038 (Oddish - blue plant bulb with green leaves) should be in different groups. The key fix: item_042's green color should NOT score on grass_poison; instead its totem/kachina/eye-marking design should score on psychic_ghost_steel. I've redefined grass_poison to focus on plant body parts and bulb/vegetable shapes and toxic/dark-wound features. I've defined psychic_ghost_steel to include totem-pole and kachina-doll spiritual designs with eye markings. I've also added a mystical_bird binary to help item_042 cluster with psychic types. item_043 (parrot) should score on normal_flying. item_034 scores on dark_fighting_rock_ground due to dark concealing fur and wounds/bruises.",
+  "criterion": "Group each Pokémon by its primary type category as implied by its described appearance, body features, coloration, and any explicitly mentioned abilities or materials. The six categories are: (1) Normal/Flying — ordinary animals, birds, plain coloration, no strong elemental features; (2) Water/Ice — aquatic features, blue watery coloration, fins, amphibious; (3) Fire/Electric — flames, ember colors, lightning markings, electrical organs; (4) Grass/Poison — plant parts, green plant coloration, toxic features, purple bruise-like markings, wounds suggesting venom; (5) Psychic/Flying-Psychic/Ghost/Steel-Bell — psychic features (multiple brains, spoon, gelatinous psychic substance), ghostly/spectral bodies, totem-pole or bell-shaped metallic forms, bird Pokémon with mystical eye markings or spiritual designs; (6) Dark/Fighting/Rock/Ground — dark shadowy fur concealing face, muscular fighters, stone or rocky bodies, dark coloration with sinister traits."
+}

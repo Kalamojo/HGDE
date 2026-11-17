@@ -1,0 +1,156 @@
+{
+  "features": [
+    {
+      "id": "is_avian",
+      "definition": "1 if the Pokémon has a bird-like body (beak, feathers, wings as primary limbs), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_aquatic",
+      "definition": "1 if the Pokémon has an aquatic body form (fish, dolphin, whale, seahorse, octopus, etc.), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_insect_bug",
+      "definition": "1 if the Pokémon resembles an insect, arachnid, or arthropod, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_mammal_quadruped",
+      "definition": "1 if the Pokémon resembles a four-legged mammal (dog, cat, bear, etc.), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_humanoid",
+      "definition": "1 if the Pokémon has a clearly humanoid/bipedal body with two arms and two legs, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_shell",
+      "definition": "1 if the Pokémon visibly has a shell (turtle shell, snail shell, ammonite shell), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_wings",
+      "definition": "1 if the Pokémon has visible wings (feathered, membranous, or insect wings), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_tentacles_or_fins",
+      "definition": "1 if the Pokémon has tentacles, fins, or similar appendages, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "plant_based",
+      "definition": "1 if the Pokémon incorporates plant elements (leaves, flowers, vines, bark), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "rock_or_mineral",
+      "definition": "1 if the Pokémon is primarily made of rock, stone, mineral, or metallic material, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "ice_element",
+      "definition": "1 if the Pokémon visually suggests ice (icy blue-white coloring, ice crystals, frozen features), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "primary_color_green",
+      "definition": "Degree to which green is the dominant color: 0 = no green, 1 = entirely green",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "primary_color_blue",
+      "definition": "Degree to which blue is the dominant color: 0 = no blue, 1 = entirely blue",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "primary_color_brown_tan",
+      "definition": "Degree to which brown/tan/beige is the dominant color: 0 = none, 1 = entirely brown/tan",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "primary_color_dark",
+      "definition": "Degree to which dark colors (black, dark grey, dark purple) dominate: 0 = none, 1 = entirely dark",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "body_size_large",
+      "definition": "Perceived body bulk/size: 0 = very small and compact, 1 = very large and massive",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "has_eyes_prominent",
+      "definition": "1 if the Pokémon has very large or prominently featured eyes relative to body, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "ghostly_cosmic",
+      "definition": "1 if the Pokémon has a ghostly, cosmic, or ethereal appearance (floating, translucent, cloud-like, starry), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_claws_or_pincers",
+      "definition": "1 if the Pokémon has visible claws, pincers, or scythes as notable features, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_tail",
+      "definition": "1 if the Pokémon has a clearly visible tail, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_spikes_or_horns",
+      "definition": "1 if the Pokémon has visible spikes, horns, or sharp protrusions on its body, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "cute_round_form",
+      "definition": "Degree of roundness/cuteness: 0 = angular/menacing, 1 = very round and cute",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "bipedal_standing",
+      "definition": "1 if the Pokémon stands upright on two legs, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_fur_or_feathers",
+      "definition": "1 if the Pokémon is visibly covered in fur or feathers, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_hard_exoskeleton",
+      "definition": "1 if the Pokémon has a hard outer shell or exoskeleton (not counting turtle shells), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    }
+  ],
+  "notes": "These appear to be Pokémon sprites. Key grouping dimensions include: body type (bird/avian, fish/aquatic, insect/bug, mammal/quadruped, humanoid/bipedal, shell-based, plant-based, etc.), primary color palette, presence of wings, aquatic vs terrestrial vs aerial, shell or hard armor, size/bulk, and elemental/type hints (ice, fire, grass, water, rock, etc.). Some are clearly bird-like (item_031, item_068, item_124, item_010, item_092), some are aquatic (item_375, item_321, item_115, item_396, item_365), some are insect/bug (item_379, item_250, item_306, item_154), some have shells (item_320, item_094, item_349, item_107, item_279), some are quadruped mammals (item_402, item_147, item_256), some are humanoid (item_040, item_041, item_038, item_010), some are plant-based (item_026, item_042, item_038), some are rock/ground (item_019, item_040, item_072), some are ghost/cosmic (item_268, item_318, item_224). Color is a strong grouping signal. Body plan (number of limbs, wings presence, fins, tentacles) is also key.",
+  "criterion": ""
+}

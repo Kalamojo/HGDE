@@ -25,6 +25,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
 from clustering import cluster_embeddings
+from src.utils.metrics import all_metrics, sample_pairs   # TEMP (Chris): unified metrics + held-out test set
 from scripts.triplet_learning_testing import (
     Net,
     load_pokemon,
@@ -90,18 +91,20 @@ def compute_metrics(clusters, classes):
     return {"f1": float(f1), "recall": recall, "precision": precision, "ari": ari}
 
 # Simulate one round of user feedback and generates triplets to train the model. Returns the new embeddings, the model, and the optimizer
-def select_feedback(predicted, targets, rng, used_anchors, triplets_per_round):
+def select_feedback(predicted, targets, rng, used_anchors, triplets_per_round, test_mask=None):
+    # TEMP (Chris): held-out test items are never an anchor, positive or negative
+    train = np.ones(len(targets), dtype=bool) if test_mask is None else ~test_mask
     # Store pokemon that are candidates for feedback
     candidates = []
 
     # Loop through each pokemon in the dataset
-    for anchor in range(len(targets)):
+    for anchor in np.flatnonzero(train):
         # Finds pokemon that have the same target metadata label
-        same = targets == targets[anchor]
+        same = (targets == targets[anchor]) & train
         # Set the anchor to False so it is not included in the same group (dont want the anchor to be its own positive example)
         same[anchor] = False
         # Finds pokemon that have a different target metadata label
-        different = targets != targets[anchor]
+        different = (targets != targets[anchor]) & train
 
         # Skip the anchor if it has no same or different pokemon to compare to
         if not same.any() or not different.any():
@@ -125,8 +128,8 @@ def select_feedback(predicted, targets, rng, used_anchors, triplets_per_round):
     _, anchor, split, mixed = pool[int(rng.integers(len(pool)))]
 
     # Find positive and negative candidates for the selected anchor
-    positive_candidates = np.flatnonzero((targets == targets[anchor]) & (np.arange(len(targets)) != anchor))
-    negative_candidates = np.flatnonzero(targets != targets[anchor])
+    positive_candidates = np.flatnonzero((targets == targets[anchor]) & (np.arange(len(targets)) != anchor) & train)
+    negative_candidates = np.flatnonzero((targets != targets[anchor]) & train)
 
     # Prioritize examples that are incorrectly clustered
     preferable_pos = positive_candidates[predicted[positive_candidates] != predicted[anchor]]
@@ -194,6 +197,7 @@ def parse_args():
     p.add_argument("--goal-ari", type=float, default=0.95)
     # Random seed for reproducibility
     p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--test-fraction", type=float, default=0.2, help="TEMP (Chris): held-out items never used in feedback")
     # Output directory for results
     p.add_argument("--output-dir", type=Path, default=None)
     return p.parse_args()
@@ -244,6 +248,16 @@ def main():
     )
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    # TEMP (Chris): fixed held-out test set (own RNG so the rest of the run is unchanged) + fixed AUC pairs
+    test_rng = np.random.default_rng([args.seed, 1])
+    test_mask = np.zeros(len(X), dtype=bool)
+    test_mask[test_rng.choice(len(X), int(round(args.test_fraction * len(X))), replace=False)] = True
+    auc_pairs = sample_pairs(np.flatnonzero(test_mask), 5000, test_rng) if test_mask.any() else None
+    metrics_of = lambda emb, pred: all_metrics(emb, pred, y, test_mask if test_mask.any() else None, auc_pairs)
+    fmt = lambda m: (f"ARI={m['ari']:.4f}, test ARI={m['test_ari']:.4f}, test pair AUC={m['test_pair_auc']:.3f}, "
+                     f"pair P/R={m['pair_precision']:.3f}/{m['pair_recall']:.3f}, "
+                     f"homog/compl={m['homogeneity']:.3f}/{m['completeness']:.3f}, F1={m['f1']:.4f}")
+
     # Create initial clustering and transformation model
     baseline, _ = cluster_embeddings(X, algorithm="kmeans", n_clusters=k, random_state=args.seed)
     predicted = baseline.copy()
@@ -253,7 +267,7 @@ def main():
     all_triplets = []
     used_anchors = set()
     edits = []
-    history = [{"round": 0, **compute_metrics(predicted, y),
+    history = [{"round": 0, **metrics_of(X, predicted),
                 "triplets_total": 0, "new_triplets_before": "",
                 "new_triplets_after": "", "all_triplets_satisfied": "",
                 "last_epoch_loss": ""}]
@@ -261,7 +275,8 @@ def main():
     print(f"Testing metadata column {args.column!r} | modality={args.modality}")
     print(f"Rows={len(X)}, dimension={X.shape[1]}, target classes={n_classes}, KMeans clusters={k}")
     print(f"Sampled class counts: {dict(Counter(y.tolist()))}")
-    print(f"Round 0: F1={history[-1]['f1']:.4f}, ARI={history[-1]['ari']:.4f}")
+    print(f"Held-out test items: {int(test_mask.sum())}")
+    print(f"Round 0: {fmt(history[-1])}")
 
     # Feedback loop
     for round_number in range(1, args.rounds + 1):
@@ -269,7 +284,7 @@ def main():
             print("Reached target ARI; stopping.")
             break
         feedback = select_feedback(predicted, y, rng, used_anchors,
-                                   args.triplets_per_round)
+                                   args.triplets_per_round, test_mask)
         if feedback is None:
             print("No remaining actionable label/cluster disagreement; stopping.")
             break
@@ -287,7 +302,7 @@ def main():
         # Evaluation
         after = triplet_stats(current_X, new_triplets, predicted)
         overall = triplet_stats(current_X, all_triplets, predicted)
-        metrics = compute_metrics(predicted, y)
+        metrics = metrics_of(current_X, predicted)
         row = {"round": round_number, **metrics,
                "triplets_total": len(all_triplets),
                "new_triplets_before": before["distance_triplet_satisfaction"],
@@ -299,7 +314,7 @@ def main():
                       "name": metadata[anchor]["name"], "target_label": str(y[anchor]),
                       "feedback_type": kind, "triplets_added": len(new_triplets)})
         print(f"Round {round_number}: {metadata[anchor]['name']} ({kind}), "
-              f"F1={metrics['f1']:.4f}, ARI={metrics['ari']:.4f}, "
+              f"{fmt(metrics)}, "
               f"new triplets satisfied {before['distance_triplet_satisfaction']:.3f}"
               f" -> {after['distance_triplet_satisfaction']:.3f}")
 

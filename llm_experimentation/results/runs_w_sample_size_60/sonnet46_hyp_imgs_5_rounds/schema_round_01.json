@@ -1,0 +1,48 @@
+{
+  "features": [
+    {
+      "id": "normal_animal_like",
+      "definition": "Does the Pokémon resemble a real-world animal (mammal, bird, insect, fish, etc.) without strong elemental or fantastical features dominating its design? 1 = clearly based on a real animal with no strong elemental motif, 0 = has strong elemental/fantastical design features.",
+      "kind": "binary",
+      "weight": 4.0
+    },
+    {
+      "id": "blue_water_cues",
+      "definition": "How strongly does the Pokémon show blue/cyan coloration or water-related design features (fins, water droplets, aquatic body shape)? 0 = none, 1 = strongly blue or water-themed.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "green_plant_cues",
+      "definition": "How strongly does the Pokémon show green coloration combined with plant-related features (leaves, vines, petals, grass)? 0 = no green plant features, 1 = body dominated by green plant motifs.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "red_fire_cues",
+      "definition": "How strongly does the Pokémon show red/orange coloration combined with fire-related features (flames, ember patterns, fiery mane)? 0 = none, 1 = strongly red/orange with fire motifs.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "dragon_features",
+      "definition": "How strongly does the Pokémon exhibit dragon-like features such as wings, scales, elongated serpentine body, horns, and a reptilian or draconic silhouette? 0 = no dragon features, 1 = very strongly dragon-like in body plan and features.",
+      "kind": "scale",
+      "weight": 3.5
+    },
+    {
+      "id": "gray_metallic_cues",
+      "definition": "How strongly does the Pokémon show gray, black, or metallic coloration suggesting Steel or Dark type? 0 = none, 1 = body is predominantly gray, metallic, or dark-toned.",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "fighting_ground_cues",
+      "definition": "How strongly does the Pokémon show muscular, bulky, humanoid or rock/earth-toned features suggesting Fighting or Ground type (large arms, rocky texture, brown/gray earth tones with no plant or fire motifs)? 0 = none, 1 = very strongly muscular/earth-toned.",
+      "kind": "scale",
+      "weight": 2.5
+    }
+  ],
+  "notes": "The key insight from the feedback is that item_033 (a weasel/ferret Normal-type) and item_046 (a pigeon Normal-type) should group together. Both are clearly based on real animals with no strong elemental motifs - they are Normal types. item_035 looks like a Grass/Fighting type (gorilla with leaves) and item_030 looks like a Dragon/Ground type. By adding a strong 'normal_animal_like' binary dimension, Normal-type Pokémon that resemble real animals will cluster together regardless of their exact color. The other dimensions capture the main elemental types through combined color + motif cues.",
+  "criterion": "Group Pokémon by their primary elemental type, inferred from visual cues such as body color, anatomical features, and design motifs (e.g., animal-like Normal types, blue Water types, green plant-featuring Grass types, red/flame Fire types, dragon-featured Dragon types, gray/metallic Steel types)."
+}
