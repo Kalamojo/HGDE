@@ -32,8 +32,8 @@ Embedding Transformation Models:
 MLP
 Deep Q Network
 Baseline Frontier Models:
-Gemini Pro
-GPT 5.6
+Sonnet 4.6
+Opus 4.6
 ## Compute
 The only model we will be training is our embedding transformation model, which should also require minimal training examples (as a requirement for the effectiveness of this framework). We estimate standard CPU use, and no more than a 6 GB GPU, is necessary for these purposes (which we currently have).
 We may need a more capable GPU (like an AWS instance or a good local graphics card) to process our initial dataset through ImageBind. We already have access to an AWS account with compute credits for these purposes
