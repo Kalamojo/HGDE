@@ -36,17 +36,17 @@ from types import SimpleNamespace
 
 config = SimpleNamespace(
     column="color",
-    modality="text",
+    modality="text", # modality = "text"
     top_labels=0,
     sample_size=200,
     clusters=None,
     rounds=10,
-    triplets_per_round=32,
-    epochs=20,
-    batch_size=16,
-    lr=0.001,
-    scale=0.1,
-    preservation=0.05,
+    triplets_per_round=32, # triplets_per_round = 16
+    epochs=20, # epochs = 40
+    batch_size=16, # batch_size = 32
+    lr=0.001, # lr = 0.003
+    scale=0.1, # scale = 0.01
+    preservation=0.05, # preservation = 0.5
     goal_ari=1.1,
     test_fraction=0.2,
     db=REPO_ROOT / "data" / "pokemon_db",
@@ -56,8 +56,8 @@ config = SimpleNamespace(
 )
 
 # metrics used for summary and plots
-# Using test_air because it is the most relevant metric for evaluating the quality of the learned embedding
-# Using test_pair_auc because it is a more stable metric that can be computed even when the number of clusters is small
+# Using ARI because it is the most relevant metric for evaluating the quality of the learned embedding
+# Using pair AUC because it is a more stable metric that can be computed even when the number of clusters is small
 metrics = ("test_ari", "test_pair_auc")
 
 # reads history.csv that is made from triplet_by_column.py and converts it to a list of dicts
