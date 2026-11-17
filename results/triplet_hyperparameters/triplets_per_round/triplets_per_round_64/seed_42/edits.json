@@ -1,0 +1,82 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 60,
+    "name": "Obstagoon",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 64
+  },
+  {
+    "round": 2,
+    "anchor_index": 183,
+    "name": "Deerling",
+    "target_label": "pink",
+    "feedback_type": "split+mixed",
+    "triplets_added": 64
+  },
+  {
+    "round": 3,
+    "anchor_index": 124,
+    "name": "Celesteela",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 64
+  },
+  {
+    "round": 4,
+    "anchor_index": 6,
+    "name": "Cherubi",
+    "target_label": "pink",
+    "feedback_type": "split+mixed",
+    "triplets_added": 64
+  },
+  {
+    "round": 5,
+    "anchor_index": 91,
+    "name": "Ampharos",
+    "target_label": "yellow",
+    "feedback_type": "split+mixed",
+    "triplets_added": 64
+  },
+  {
+    "round": 6,
+    "anchor_index": 143,
+    "name": "Cubchoo",
+    "target_label": "white",
+    "feedback_type": "split+mixed",
+    "triplets_added": 64
+  },
+  {
+    "round": 7,
+    "anchor_index": 34,
+    "name": "Smoliv",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 64
+  },
+  {
+    "round": 8,
+    "anchor_index": 141,
+    "name": "Landorus",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 64
+  },
+  {
+    "round": 9,
+    "anchor_index": 35,
+    "name": "Feebas",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 64
+  },
+  {
+    "round": 10,
+    "anchor_index": 57,
+    "name": "Magmar",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 64
+  }
+]

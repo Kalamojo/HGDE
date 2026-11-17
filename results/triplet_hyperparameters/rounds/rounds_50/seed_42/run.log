@@ -1,0 +1,61 @@
+C:\Users\jaych\Downloads\HGDE\tests\triplet_by_column.py:51: DeprecationWarning: table_names() is deprecated, use list_tables() instead
+  tables = db.table_names()
+Testing metadata column 'color' | modality=text
+Rows=200, dimension=1024, target classes=10, KMeans clusters=10
+Sampled class counts: {'yellow': 16, 'brown': 33, 'pink': 16, 'purple': 16, 'blue': 37, 'gray': 23, 'red': 16, 'white': 15, 'green': 22, 'black': 6}
+Held-out test items: 40
+Round 0: ARI=0.1256, test ARI=0.0550, test pair AUC=0.675, pair P/R=0.231/0.213, homog/compl=0.284/0.278, F1=0.0116
+Round 1: Obstagoon (split+mixed), ARI=0.1594, test ARI=0.1544, test pair AUC=0.692, pair P/R=0.257/0.254, homog/compl=0.306/0.306, F1=0.0126, new triplets satisfied 0.000 -> 1.000
+Round 2: Heatran (split+mixed), ARI=0.1545, test ARI=0.2199, test pair AUC=0.714, pair P/R=0.246/0.263, homog/compl=0.295/0.300, F1=0.0103, new triplets satisfied 0.000 -> 0.969
+Round 3: Bouffalant (split+mixed), ARI=0.0957, test ARI=0.1109, test pair AUC=0.641, pair P/R=0.206/0.180, homog/compl=0.253/0.245, F1=0.0115, new triplets satisfied 0.000 -> 1.000
+Round 4: Charjabug (split+mixed), ARI=0.1085, test ARI=0.0987, test pair AUC=0.660, pair P/R=0.206/0.225, homog/compl=0.286/0.291, F1=0.0089, new triplets satisfied 0.000 -> 1.000
+Round 5: Virizion (split+mixed), ARI=0.2135, test ARI=0.1612, test pair AUC=0.652, pair P/R=0.313/0.288, homog/compl=0.364/0.358, F1=0.0186, new triplets satisfied 0.000 -> 1.000
+Round 6: Crustle (split+mixed), ARI=0.1316, test ARI=0.0589, test pair AUC=0.601, pair P/R=0.236/0.219, homog/compl=0.308/0.302, F1=0.0119, new triplets satisfied 0.000 -> 1.000
+Round 7: Timburr (split+mixed), ARI=0.1521, test ARI=0.0599, test pair AUC=0.614, pair P/R=0.260/0.227, homog/compl=0.339/0.328, F1=0.0130, new triplets satisfied 0.000 -> 1.000
+Round 8: Ledyba (split+mixed), ARI=0.2211, test ARI=0.0901, test pair AUC=0.600, pair P/R=0.323/0.290, homog/compl=0.399/0.389, F1=0.0147, new triplets satisfied 0.000 -> 1.000
+Round 9: Feebas (split+mixed), ARI=0.2040, test ARI=0.0651, test pair AUC=0.598, pair P/R=0.306/0.276, homog/compl=0.379/0.370, F1=0.0155, new triplets satisfied 0.000 -> 1.000
+Round 10: Thwackey (split+mixed), ARI=0.1629, test ARI=0.0656, test pair AUC=0.623, pair P/R=0.252/0.275, homog/compl=0.345/0.352, F1=0.0099, new triplets satisfied 0.000 -> 1.000
+Round 11: Combee (split+mixed), ARI=0.2282, test ARI=0.0513, test pair AUC=0.628, pair P/R=0.328/0.298, homog/compl=0.403/0.394, F1=0.0162, new triplets satisfied 0.000 -> 1.000
+Round 12: Wynaut (split+mixed), ARI=0.1878, test ARI=0.0152, test pair AUC=0.642, pair P/R=0.285/0.272, homog/compl=0.381/0.377, F1=0.0126, new triplets satisfied 0.000 -> 1.000
+Round 13: Goldeen (split+mixed), ARI=0.1639, test ARI=0.1150, test pair AUC=0.684, pair P/R=0.269/0.242, homog/compl=0.361/0.352, F1=0.0141, new triplets satisfied 0.000 -> 1.000
+Round 14: Buneary (split+mixed), ARI=0.1857, test ARI=0.0340, test pair AUC=0.694, pair P/R=0.280/0.276, homog/compl=0.392/0.391, F1=0.0109, new triplets satisfied 0.000 -> 1.000
+Round 15: Oricorio (split+mixed), ARI=0.2864, test ARI=0.0936, test pair AUC=0.705, pair P/R=0.374/0.359, homog/compl=0.426/0.422, F1=0.0226, new triplets satisfied 0.000 -> 1.000
+Round 16: Tandemaus (split+mixed), ARI=0.3027, test ARI=0.1391, test pair AUC=0.676, pair P/R=0.393/0.368, homog/compl=0.460/0.452, F1=0.0211, new triplets satisfied 0.000 -> 1.000
+Round 17: Meowstic (split+mixed), ARI=0.3646, test ARI=0.1840, test pair AUC=0.734, pair P/R=0.445/0.427, homog/compl=0.511/0.504, F1=0.0301, new triplets satisfied 0.000 -> 1.000
+Round 18: Swablu (split+mixed), ARI=0.4505, test ARI=0.3203, test pair AUC=0.744, pair P/R=0.527/0.497, homog/compl=0.593/0.583, F1=0.0398, new triplets satisfied 0.000 -> 1.000
+Round 19: Starmie (split+mixed), ARI=0.3592, test ARI=0.1043, test pair AUC=0.780, pair P/R=0.452/0.407, homog/compl=0.522/0.509, F1=0.0277, new triplets satisfied 0.000 -> 1.000
+Round 20: Phantump (split+mixed), ARI=0.3442, test ARI=0.2354, test pair AUC=0.788, pair P/R=0.417/0.423, homog/compl=0.525/0.526, F1=0.0229, new triplets satisfied 0.000 -> 1.000
+Round 21: Squirtle (split+mixed), ARI=0.4671, test ARI=0.2704, test pair AUC=0.798, pair P/R=0.550/0.503, homog/compl=0.577/0.565, F1=0.0430, new triplets satisfied 0.031 -> 1.000
+Round 22: Mankey (split+mixed), ARI=0.4183, test ARI=0.3229, test pair AUC=0.771, pair P/R=0.479/0.493, homog/compl=0.547/0.550, F1=0.0393, new triplets satisfied 0.000 -> 1.000
+Round 23: Infernape (split+mixed), ARI=0.5573, test ARI=0.3194, test pair AUC=0.814, pair P/R=0.620/0.595, homog/compl=0.655/0.650, F1=0.0810, new triplets satisfied 0.000 -> 1.000
+Round 24: Ponyta (split+mixed), ARI=0.5572, test ARI=0.3549, test pair AUC=0.801, pair P/R=0.604/0.613, homog/compl=0.598/0.601, F1=0.0621, new triplets satisfied 0.000 -> 1.000
+Round 25: Wingull (split+mixed), ARI=0.5695, test ARI=0.3490, test pair AUC=0.807, pair P/R=0.620/0.618, homog/compl=0.626/0.625, F1=0.0691, new triplets satisfied 0.125 -> 1.000
+Round 26: Pheromosa (split+mixed), ARI=0.5664, test ARI=0.5018, test pair AUC=0.824, pair P/R=0.639/0.591, homog/compl=0.665/0.652, F1=0.0706, new triplets satisfied 0.000 -> 1.000
+Round 27: Lickilicky (split+mixed), ARI=0.5126, test ARI=0.3291, test pair AUC=0.808, pair P/R=0.590/0.544, homog/compl=0.617/0.605, F1=0.0532, new triplets satisfied 0.000 -> 1.000
+Round 28: Glimmet (split+mixed), ARI=0.5965, test ARI=0.4005, test pair AUC=0.838, pair P/R=0.674/0.610, homog/compl=0.694/0.677, F1=0.0806, new triplets satisfied 0.000 -> 1.000
+Round 29: Klink (split+mixed), ARI=0.5645, test ARI=0.2365, test pair AUC=0.818, pair P/R=0.635/0.591, homog/compl=0.684/0.671, F1=0.0726, new triplets satisfied 0.031 -> 1.000
+Round 30: Tentacool (split+mixed), ARI=0.6293, test ARI=0.4133, test pair AUC=0.827, pair P/R=0.702/0.640, homog/compl=0.731/0.714, F1=0.0878, new triplets satisfied 0.031 -> 1.000
+Round 31: Machoke (split+mixed), ARI=0.7383, test ARI=0.3629, test pair AUC=0.823, pair P/R=0.760/0.777, homog/compl=0.763/0.765, F1=0.1460, new triplets satisfied 0.000 -> 1.000
+Round 32: Mewtwo (split+mixed), ARI=0.7206, test ARI=0.2828, test pair AUC=0.797, pair P/R=0.749/0.756, homog/compl=0.758/0.757, F1=0.1458, new triplets satisfied 0.000 -> 1.000
+Round 33: Cubchoo (split+mixed), ARI=0.7213, test ARI=0.3317, test pair AUC=0.821, pair P/R=0.761/0.745, homog/compl=0.764/0.761, F1=0.1551, new triplets satisfied 0.000 -> 1.000
+Round 34: Omastar (split+mixed), ARI=0.7198, test ARI=0.2635, test pair AUC=0.817, pair P/R=0.767/0.736, homog/compl=0.772/0.762, F1=0.1522, new triplets satisfied 0.000 -> 1.000
+Round 35: Dewpider (split+mixed), ARI=0.7302, test ARI=0.3917, test pair AUC=0.817, pair P/R=0.798/0.725, homog/compl=0.808/0.788, F1=0.1372, new triplets satisfied 0.000 -> 1.000
+Round 36: Zeraora (split+mixed), ARI=0.7373, test ARI=0.2936, test pair AUC=0.802, pair P/R=0.781/0.753, homog/compl=0.780/0.773, F1=0.1686, new triplets satisfied 0.000 -> 1.000
+Round 37: Stonjourner (split+mixed), ARI=0.7250, test ARI=0.2828, test pair AUC=0.780, pair P/R=0.751/0.763, homog/compl=0.770/0.771, F1=0.1364, new triplets satisfied 0.000 -> 1.000
+Round 38: Zebstrika (split+mixed), ARI=0.7279, test ARI=0.3604, test pair AUC=0.811, pair P/R=0.795/0.724, homog/compl=0.816/0.797, F1=0.1487, new triplets satisfied 0.000 -> 1.000
+Round 39: Relicanth (split+mixed), ARI=0.7306, test ARI=0.3807, test pair AUC=0.789, pair P/R=0.781/0.741, homog/compl=0.805/0.794, F1=0.1513, new triplets satisfied 0.000 -> 1.000
+Round 40: Woobat (split+mixed), ARI=0.6593, test ARI=0.1902, test pair AUC=0.783, pair P/R=0.729/0.667, homog/compl=0.763/0.747, F1=0.1071, new triplets satisfied 0.000 -> 1.000
+Round 41: Psyduck (split+mixed), ARI=0.7425, test ARI=0.3562, test pair AUC=0.816, pair P/R=0.802/0.742, homog/compl=0.814/0.797, F1=0.1794, new triplets satisfied 0.000 -> 1.000
+Round 42: Fomantis (split+mixed), ARI=0.7511, test ARI=0.3288, test pair AUC=0.797, pair P/R=0.820/0.741, homog/compl=0.843/0.821, F1=0.1904, new triplets satisfied 0.000 -> 1.000
+Round 43: Rampardos (split+mixed), ARI=0.7803, test ARI=0.3326, test pair AUC=0.816, pair P/R=0.818/0.792, homog/compl=0.843/0.833, F1=0.2357, new triplets satisfied 0.000 -> 1.000
+Round 44: Marshtomp (split), ARI=0.8354, test ARI=0.3749, test pair AUC=0.790, pair P/R=0.868/0.841, homog/compl=0.862/0.855, F1=0.3245, new triplets satisfied 0.906 -> 1.000
+Round 45: Gimmighoul (split+mixed), ARI=0.8297, test ARI=0.3930, test pair AUC=0.811, pair P/R=0.864/0.835, homog/compl=0.858/0.849, F1=0.2662, new triplets satisfied 0.000 -> 1.000
+Round 46: Salazzle (split+mixed), ARI=0.8056, test ARI=0.3254, test pair AUC=0.823, pair P/R=0.834/0.821, homog/compl=0.824/0.820, F1=0.2859, new triplets satisfied 0.000 -> 1.000
+Round 47: Swalot (split+mixed), ARI=0.7833, test ARI=0.3154, test pair AUC=0.809, pair P/R=0.811/0.805, homog/compl=0.812/0.808, F1=0.2569, new triplets satisfied 0.000 -> 1.000
+Round 48: Bastiodon (split+mixed), ARI=0.8319, test ARI=0.3349, test pair AUC=0.842, pair P/R=0.871/0.831, homog/compl=0.863/0.851, F1=0.2672, new triplets satisfied 0.062 -> 1.000
+Round 49: Happiny (split+mixed), ARI=0.8451, test ARI=0.3963, test pair AUC=0.821, pair P/R=0.877/0.848, homog/compl=0.869/0.861, F1=0.3646, new triplets satisfied 0.000 -> 1.000
+Round 50: Shuppet (split+mixed), ARI=0.8142, test ARI=0.2549, test pair AUC=0.819, pair P/R=0.856/0.815, homog/compl=0.843/0.830, F1=0.2972, new triplets satisfied 0.000 -> 1.000
+
+Finished: initial ARI=0.1256, final ARI=0.8142
+Initial F1=0.0116, final F1=0.2972
+Files saved to: C:\Users\jaych\Downloads\HGDE\results\triplet_hyperparameters\rounds\rounds_50\seed_42

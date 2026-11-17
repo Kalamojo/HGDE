@@ -1,0 +1,82 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 60,
+    "name": "Obstagoon",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 16
+  },
+  {
+    "round": 2,
+    "anchor_index": 166,
+    "name": "Geodude",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 16
+  },
+  {
+    "round": 3,
+    "anchor_index": 192,
+    "name": "Regirock",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 16
+  },
+  {
+    "round": 4,
+    "anchor_index": 184,
+    "name": "Bouffalant",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 16
+  },
+  {
+    "round": 5,
+    "anchor_index": 30,
+    "name": "Spinda",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 16
+  },
+  {
+    "round": 6,
+    "anchor_index": 177,
+    "name": "Roggenrola",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 16
+  },
+  {
+    "round": 7,
+    "anchor_index": 155,
+    "name": "Goldeen",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 16
+  },
+  {
+    "round": 8,
+    "anchor_index": 142,
+    "name": "Houndstone",
+    "target_label": "white",
+    "feedback_type": "split+mixed",
+    "triplets_added": 16
+  },
+  {
+    "round": 9,
+    "anchor_index": 38,
+    "name": "Cutiefly",
+    "target_label": "yellow",
+    "feedback_type": "split+mixed",
+    "triplets_added": 16
+  },
+  {
+    "round": 10,
+    "anchor_index": 140,
+    "name": "Aerodactyl",
+    "target_label": "purple",
+    "feedback_type": "split+mixed",
+    "triplets_added": 16
+  }
+]

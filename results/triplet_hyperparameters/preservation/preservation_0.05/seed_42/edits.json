@@ -1,0 +1,82 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 60,
+    "name": "Obstagoon",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 2,
+    "anchor_index": 1,
+    "name": "Heatran",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 3,
+    "anchor_index": 184,
+    "name": "Bouffalant",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 4,
+    "anchor_index": 63,
+    "name": "Charjabug",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 5,
+    "anchor_index": 55,
+    "name": "Virizion",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 6,
+    "anchor_index": 186,
+    "name": "Crustle",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 7,
+    "anchor_index": 79,
+    "name": "Timburr",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 8,
+    "anchor_index": 26,
+    "name": "Ledyba",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 9,
+    "anchor_index": 35,
+    "name": "Feebas",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 10,
+    "anchor_index": 122,
+    "name": "Thwackey",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  }
+]
