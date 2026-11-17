@@ -29,8 +29,13 @@ class ClusterState:
         current_embeddings = self.sampler.embeddings
         original_embeddings = torch.tensor(current_embeddings)
 
+        best_metrics = {'test_ari': -2}
+
         for round in tqdm(range(rounds)):
-            current_embeddings = self.recluster_round(current_embeddings, original_embeddings)
+            current_embeddings, metrics = self.recluster_round(current_embeddings, original_embeddings)
+            if metrics['test_ari'] > best_metrics['test_ari']:
+                best_metrics = metrics
+        return metrics, best_metrics
 
     def recluster_round(self, current_embeddings: NDArray[np.float64], original_embeddings: torch.Tensor) -> NDArray[np.float64]:
         # collect suggestion and prepare eval data
@@ -45,9 +50,9 @@ class ClusterState:
         new_pred_labels = self.clusterer.run(new_embeddings)
 
         # log results
-        self.log_results(new_pred_labels, losses, new_embeddings)
+        metrics = self.log_results(new_pred_labels, losses, new_embeddings)
 
-        return new_embeddings
+        return new_embeddings, metrics
 
     def log_results(self, pred_labels: NDArray[np.int_], losses: list[float], embeddings: NDArray[np.float64]):
         # please feel more than welcome to add to this
@@ -60,3 +65,4 @@ class ClusterState:
               f"test pair AUC {row['test_pair_auc']:.3f} | pair P/R {row['pair_precision']:.3f}/{row['pair_recall']:.3f} | "
               f"homog/compl {row['homogeneity']:.3f}/{row['completeness']:.3f} | "
               f"Jay F1/P/R {row['f1']:.3f}/{row['precision']:.3f}/{row['recall']:.3f} | loss {row['loss']:.4f}")
+        return row
