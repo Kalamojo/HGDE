@@ -111,7 +111,7 @@ def train_loop(data, epochs, loss_function, optim, batch_size, model, weight = 1
     m = len(inputs) * (len(inputs) - 1) # total number of distance calulations
     n = sum(1 for x in user_specified if x != 0) # number of user weighted constraints
     m = m - n # total - user weighted
-    l1_lambda = 0.001
+    l1_lambda = 0.0001
     for epoch in range(1,epochs+1): # for the given epochs
         model.eval()
         with torch.no_grad():

@@ -86,7 +86,7 @@ def train(data, hypers, model=None, optim=None, weighting=1, loss=user_weighted_
         loss: string shorthand for different loss function variations to test
         epoch_weighting: if true, the weighting given above increases by 1 for every epoch
 '''
-def main(max_corrections=100, goal_acc=0.9, epochs=4, lr=0.0001, batch_size=32, label_column='color', sample_size=200, easy=True, clusters=3, weighting=1, loss='no_cluster', epoch_weighted=False):
+def main(max_corrections=100, goal_acc=0.9, epochs=4, lr=0.0001, batch_size=32, label_column='color', sample_size=250, easy=True, clusters=3, weighting=1, loss='no_cluster', epoch_weighted=False):
 
     # initial setup and evaluation
     torch.manual_seed(42)

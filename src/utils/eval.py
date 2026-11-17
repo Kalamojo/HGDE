@@ -94,7 +94,7 @@ class ContrastiveEval(ClusterEval):
         # I want to add parameters
         # mask percent - number of parameters we pull out, 1.0 = no mask
         mask_percent = 1.0
-        goal_oriented = False
+        goal_oriented = True
         item1, item2, label1, label2, closer, total_items, unconstrained, pred_label = batch["item1"], batch["item2"], batch["label1"], batch["label2"], batch["closer"], batch["total_items"], batch["unconstrained"], batch["pred_labels"]
         item1_out, item2_out = model(item1), model(item2)
 
@@ -146,7 +146,10 @@ class ContrastiveEval(ClusterEval):
                     unconstrained_loss.append(uncon_weight * distance2.square())
                 else:
                     unconstrained_loss.append(uncon_weight * F.relu(self.margin - distance2).square())
-        unconstrained_loss_mean = torch.stack(unconstrained_loss).mean()
+        if unconstrained_loss:
+            unconstrained_loss_mean = torch.stack(unconstrained_loss).mean()
+        else:
+            unconstrained_loss_mean = 0
         
         if non_goal_indices:
             non_goal_closer = closer.index_select(0, indices)
