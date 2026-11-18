@@ -1,0 +1,21 @@
+C:\Users\jaych\Downloads\HGDE\tests\triplet_by_column.py:51: DeprecationWarning: table_names() is deprecated, use list_tables() instead
+  tables = db.table_names()
+Testing metadata column 'color' | modality=text
+Rows=200, dimension=1024, target classes=10, KMeans clusters=10
+Sampled class counts: {'yellow': 16, 'brown': 33, 'pink': 16, 'purple': 16, 'blue': 37, 'gray': 23, 'red': 16, 'white': 15, 'green': 22, 'black': 6}
+Held-out test items: 40
+Round 0: ARI=0.1256, test ARI=0.0550, test pair AUC=0.675, pair P/R=0.231/0.213, homog/compl=0.284/0.278, F1=0.0116
+Round 1: Obstagoon (split+mixed), ARI=0.1255, test ARI=0.0627, test pair AUC=0.686, pair P/R=0.216/0.255, homog/compl=0.290/0.304, F1=0.0102, new triplets satisfied 0.000 -> 1.000
+Round 2: Deerling (split+mixed), ARI=0.1123, test ARI=0.0629, test pair AUC=0.581, pair P/R=0.220/0.198, homog/compl=0.280/0.273, F1=0.0109, new triplets satisfied 0.000 -> 1.000
+Round 3: Celesteela (split+mixed), ARI=0.1077, test ARI=0.0625, test pair AUC=0.655, pair P/R=0.213/0.202, homog/compl=0.272/0.270, F1=0.0088, new triplets satisfied 0.000 -> 1.000
+Round 4: Cherubi (split+mixed), ARI=0.1572, test ARI=0.1130, test pair AUC=0.678, pair P/R=0.259/0.243, homog/compl=0.327/0.325, F1=0.0140, new triplets satisfied 0.000 -> 1.000
+Round 5: Ampharos (split+mixed), ARI=0.1460, test ARI=0.0568, test pair AUC=0.641, pair P/R=0.251/0.228, homog/compl=0.333/0.325, F1=0.0154, new triplets satisfied 0.000 -> 1.000
+Round 6: Cubchoo (split+mixed), ARI=0.1251, test ARI=0.1636, test pair AUC=0.603, pair P/R=0.230/0.214, homog/compl=0.308/0.303, F1=0.0130, new triplets satisfied 0.000 -> 1.000
+Round 7: Smoliv (split+mixed), ARI=0.1645, test ARI=0.1026, test pair AUC=0.601, pair P/R=0.260/0.259, homog/compl=0.366/0.364, F1=0.0095, new triplets satisfied 0.000 -> 1.000
+Round 8: Landorus (split+mixed), ARI=0.1508, test ARI=0.0659, test pair AUC=0.586, pair P/R=0.254/0.234, homog/compl=0.329/0.322, F1=0.0128, new triplets satisfied 0.000 -> 1.000
+Round 9: Feebas (split+mixed), ARI=0.1856, test ARI=0.0596, test pair AUC=0.522, pair P/R=0.286/0.265, homog/compl=0.352/0.346, F1=0.0174, new triplets satisfied 0.000 -> 1.000
+Round 10: Magmar (split+mixed), ARI=0.1677, test ARI=0.0723, test pair AUC=0.559, pair P/R=0.277/0.237, homog/compl=0.337/0.326, F1=0.0166, new triplets satisfied 0.000 -> 1.000
+
+Finished: initial ARI=0.1256, final ARI=0.1677
+Initial F1=0.0116, final F1=0.0166
+Files saved to: C:\Users\jaych\Downloads\HGDE\results\triplet_hyperparameters\triplets_per_round\triplets_per_round_64\seed_42

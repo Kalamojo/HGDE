@@ -1,0 +1,82 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 60,
+    "name": "Obstagoon",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 8
+  },
+  {
+    "round": 2,
+    "anchor_index": 193,
+    "name": "Drampa",
+    "target_label": "white",
+    "feedback_type": "split+mixed",
+    "triplets_added": 8
+  },
+  {
+    "round": 3,
+    "anchor_index": 25,
+    "name": "Omastar",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 8
+  },
+  {
+    "round": 4,
+    "anchor_index": 190,
+    "name": "Wynaut",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 8
+  },
+  {
+    "round": 5,
+    "anchor_index": 115,
+    "name": "Glimmet",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 8
+  },
+  {
+    "round": 6,
+    "anchor_index": 90,
+    "name": "Ponyta",
+    "target_label": "yellow",
+    "feedback_type": "split+mixed",
+    "triplets_added": 8
+  },
+  {
+    "round": 7,
+    "anchor_index": 127,
+    "name": "Luvdisc",
+    "target_label": "pink",
+    "feedback_type": "split+mixed",
+    "triplets_added": 8
+  },
+  {
+    "round": 8,
+    "anchor_index": 92,
+    "name": "Unfezant",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 8
+  },
+  {
+    "round": 9,
+    "anchor_index": 29,
+    "name": "Boltund",
+    "target_label": "yellow",
+    "feedback_type": "split+mixed",
+    "triplets_added": 8
+  },
+  {
+    "round": 10,
+    "anchor_index": 166,
+    "name": "Geodude",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 8
+  }
+]

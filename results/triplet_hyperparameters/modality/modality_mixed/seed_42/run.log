@@ -1,0 +1,21 @@
+C:\Users\jaych\Downloads\HGDE\tests\triplet_by_column.py:51: DeprecationWarning: table_names() is deprecated, use list_tables() instead
+  tables = db.table_names()
+Testing metadata column 'color' | modality=mixed
+Rows=200, dimension=1024, target classes=10, KMeans clusters=10
+Sampled class counts: {'yellow': 16, 'brown': 33, 'pink': 16, 'purple': 16, 'blue': 37, 'gray': 23, 'red': 16, 'white': 15, 'green': 22, 'black': 6}
+Held-out test items: 40
+Round 0: ARI=0.0361, test ARI=0.0149, test pair AUC=0.565, pair P/R=0.143/0.181, homog/compl=0.169/0.180, F1=0.0087
+Round 1: Obstagoon (split+mixed), ARI=0.0256, test ARI=0.0711, test pair AUC=0.504, pair P/R=0.137/0.143, homog/compl=0.162/0.163, F1=0.0095, new triplets satisfied 0.031 -> 1.000
+Round 2: Heatran (split+mixed), ARI=0.0822, test ARI=0.0845, test pair AUC=0.530, pair P/R=0.185/0.197, homog/compl=0.242/0.244, F1=0.0098, new triplets satisfied 0.000 -> 1.000
+Round 3: Bouffalant (split+mixed), ARI=0.0840, test ARI=0.0826, test pair AUC=0.568, pair P/R=0.191/0.181, homog/compl=0.241/0.239, F1=0.0090, new triplets satisfied 0.000 -> 1.000
+Round 4: Charjabug (split+mixed), ARI=0.0833, test ARI=0.0633, test pair AUC=0.585, pair P/R=0.186/0.198, homog/compl=0.223/0.226, F1=0.0090, new triplets satisfied 0.000 -> 1.000
+Round 5: Virizion (split+mixed), ARI=0.1160, test ARI=0.1763, test pair AUC=0.616, pair P/R=0.218/0.214, homog/compl=0.261/0.259, F1=0.0113, new triplets satisfied 0.000 -> 1.000
+Round 6: Shaymin (split+mixed), ARI=0.1204, test ARI=0.1277, test pair AUC=0.673, pair P/R=0.228/0.204, homog/compl=0.273/0.265, F1=0.0132, new triplets satisfied 0.000 -> 1.000
+Round 7: Happiny (split+mixed), ARI=0.1152, test ARI=0.1382, test pair AUC=0.686, pair P/R=0.218/0.212, homog/compl=0.249/0.248, F1=0.0109, new triplets satisfied 0.062 -> 1.000
+Round 8: Eelektrik (split+mixed), ARI=0.1593, test ARI=0.1860, test pair AUC=0.639, pair P/R=0.263/0.240, homog/compl=0.311/0.304, F1=0.0122, new triplets satisfied 0.000 -> 1.000
+Round 9: Plusle (split+mixed), ARI=0.1597, test ARI=0.2068, test pair AUC=0.651, pair P/R=0.257/0.253, homog/compl=0.308/0.307, F1=0.0155, new triplets satisfied 0.000 -> 1.000
+Round 10: Glimmet (split+mixed), ARI=0.1550, test ARI=0.1072, test pair AUC=0.635, pair P/R=0.248/0.260, homog/compl=0.312/0.316, F1=0.0126, new triplets satisfied 0.000 -> 1.000
+
+Finished: initial ARI=0.0361, final ARI=0.1550
+Initial F1=0.0087, final F1=0.0126
+Files saved to: C:\Users\jaych\Downloads\HGDE\results\triplet_hyperparameters\modality\modality_mixed\seed_42

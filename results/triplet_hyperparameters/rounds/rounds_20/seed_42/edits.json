@@ -1,0 +1,162 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 60,
+    "name": "Obstagoon",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 2,
+    "anchor_index": 1,
+    "name": "Heatran",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 3,
+    "anchor_index": 184,
+    "name": "Bouffalant",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 4,
+    "anchor_index": 63,
+    "name": "Charjabug",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 5,
+    "anchor_index": 55,
+    "name": "Virizion",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 6,
+    "anchor_index": 186,
+    "name": "Crustle",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 7,
+    "anchor_index": 79,
+    "name": "Timburr",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 8,
+    "anchor_index": 26,
+    "name": "Ledyba",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 9,
+    "anchor_index": 35,
+    "name": "Feebas",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 10,
+    "anchor_index": 122,
+    "name": "Thwackey",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 11,
+    "anchor_index": 94,
+    "name": "Combee",
+    "target_label": "yellow",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 12,
+    "anchor_index": 190,
+    "name": "Wynaut",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 13,
+    "anchor_index": 155,
+    "name": "Goldeen",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 14,
+    "anchor_index": 120,
+    "name": "Buneary",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 15,
+    "anchor_index": 195,
+    "name": "Oricorio",
+    "target_label": "red",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 16,
+    "anchor_index": 103,
+    "name": "Tandemaus",
+    "target_label": "white",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 17,
+    "anchor_index": 187,
+    "name": "Meowstic",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 18,
+    "anchor_index": 149,
+    "name": "Swablu",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 19,
+    "anchor_index": 44,
+    "name": "Starmie",
+    "target_label": "purple",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 20,
+    "anchor_index": 16,
+    "name": "Phantump",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "column": "color",
+  "modality": "text",
+  "top_labels": 0,
+  "sample_size": 200,
+  "clusters": null,
+  "rounds": 10,
+  "triplets_per_round": 32,
+  "epochs": 5,
+  "batch_size": 16,
+  "lr": 0.001,
+  "scale": 0.1,
+  "preservation": 0.05,
+  "goal_ari": 1.1,
+  "test_fraction": 0.2,
+  "db": "C:\\Users\\jaych\\Downloads\\HGDE\\data\\pokemon_db",
+  "seed": 42
+}
