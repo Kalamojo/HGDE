@@ -150,7 +150,7 @@ class PokemonBenchmark(DataSampler):
         table_name = "pokemon"
         super().__init__(db_path, table_name, vector_col, label_col, test_fraction, categories,  seed)
 
-class PokemonRedBlueBenchmark(PokemonBenchmark):
-    def __init__(self, db_path: Path, vector_col: str, test_fraction: float = 0.0, seed: int = 0):
-        label_col = "color"
-        super().__init__(db_path, vector_col, label_col, test_fraction, ['red', 'blue'], seed)
+class CelebaBenchmark(DataSampler):
+    def __init__(self, db_path: Path, vector_col: str, label_col: str, test_fraction: float = 0.0, categories: list[str] = None, seed: int = 0):
+        table_name = "celeba"
+        super().__init__(db_path, table_name, vector_col, label_col, test_fraction, categories,  seed)

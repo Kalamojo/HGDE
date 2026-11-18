@@ -85,7 +85,7 @@ class ContrastiveEval(ClusterEval):
         if self.loader is None:
             self.setup_loader()
 
-    def train_model(self, model, optimizer, l1_reg=0.0001):
+    def train_model(self, model, optimizer, l1_reg=0.00001):
         return super().train_model(model, optimizer, l1_reg)
 
     def loss(
@@ -175,8 +175,9 @@ class TripletEval(ClusterEval):
     
     def setup_data(self, sampler: DataSampler):
         self.dataset: TripletDataset = TripletDataset(sampler.embeddings)
-    
-    def update(self, pred_labels: NDArray[np.int_], sampler: DataSampler):
+
+    # current_embeddings is unused but its an argument for uniformity sake
+    def update(self, pred_labels: NDArray[np.int_], current_embeddings: NDArray[np.float64], sampler: DataSampler):
         super().update(pred_labels, sampler)
         
         sampled_moves = sampler.sample_triplets(pred_labels)
