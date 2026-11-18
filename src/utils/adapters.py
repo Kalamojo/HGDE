@@ -1,6 +1,18 @@
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+
+class EmbeddingAdapter:
+    def __init__(self, dimensions: int, hidden_size: int):
+        self.dimensions = dimensions
+        self.hidden_size = hidden_size
+    
+    def learn(self):
+        pass;
+    
+    def predict(self):
+        pass;
 
 # Architecture of the model (can change)
 # This sets it up to have 1 hidden layer and the input and output dimensions are the dimensions of the embeddings
@@ -20,6 +32,17 @@ class JohnNet(nn.Module):
         x = self.layer2(x)
         x = F.normalize(x, p=2, dim=1)
         return x
+
+class JohnModel(EmbeddingAdapter):
+    def __init__(self, dimensions: int, hidden_size: int = 1024, dropout: float = 0.1):
+        super().__init__(dimensions, hidden_size)
+
+        self.dropout = dropout
+        self.model = JohnNet(self.dimensions, self.hidden_size, self.dropout)
+    
+    def predict(self, embedding: torch.Tensor):
+
+        
 
 # Architecture of the model (can change)
 class JayNet(nn.Module):

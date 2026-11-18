@@ -1,0 +1,71 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 39,
+    "anon_id": "item_299",
+    "name": "Geodude",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "feat_7": 1.95,
+        "feat_10": 0.44,
+        "feat_6": 0.45
+      },
+      "drop": [],
+      "add": [
+        "new_1"
+      ],
+      "rejected": []
+    },
+    "criterion": "",
+    "notes": "fake revision 1"
+  },
+  {
+    "round": 2,
+    "anchor_index": 141,
+    "anon_id": "item_413",
+    "name": "Wailord",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "feat_6": 1.01,
+        "feat_7": 0.63,
+        "feat_1": 1.21
+      },
+      "drop": [],
+      "add": [
+        "new_2"
+      ],
+      "rejected": []
+    },
+    "criterion": "",
+    "notes": "fake revision 2"
+  },
+  {
+    "round": 3,
+    "anchor_index": 250,
+    "anon_id": "item_364",
+    "name": "Swadloon",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32,
+    "changes": {
+      "weights": {
+        "feat_9": 1.12,
+        "feat_6": 0.47,
+        "feat_7": 1.02
+      },
+      "drop": [],
+      "add": [
+        "new_3"
+      ],
+      "rejected": []
+    },
+    "criterion": "",
+    "notes": "fake revision 3"
+  }
+]

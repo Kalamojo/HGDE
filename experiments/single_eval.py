@@ -10,7 +10,7 @@ from src.utils.state import ClusterState
 from src.utils.data.benchmarks import PokemonBenchmark
 from src.utils.clusterings import HDBSCANClusterer
 from src.utils.eval import ContrastiveEval, TripletEval
-from src.utils.models import JohnNet, JayNet
+from src.utils.adapters import JohnNet, JayNet
 
 
 if __name__ == "__main__":
