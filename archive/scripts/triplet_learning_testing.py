@@ -33,7 +33,7 @@ from sklearn.preprocessing import normalize
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
-from clustering import cluster_embeddings
+from archive.clustering import cluster_embeddings
 
 # This is  the neural network that will be used to learn a transformation of the original embeddings
 class Net(nn.Module):

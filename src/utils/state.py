@@ -7,6 +7,7 @@ from src.utils.data.benchmarks import Benchmark
 from src.utils.eval import ClusterEval
 from src.utils.clusterings import Clusterer
 from src.utils.metrics import all_metrics, sample_pairs
+from src.utils.predictions import Predictions
 
 
 class ClusterState:
@@ -15,6 +16,7 @@ class ClusterState:
         self.clusterer = clusterer
         self.eval = eval
         self.adapter = adapter
+        self.predictions = Predictions()
         self.history: list[dict] = []       # one row of metrics per round
         # fixed pairs of held-out items, so test_pair_auc is scored on the same pairs every round
         test_mask = getattr(benchmark, "test_mask", None)
@@ -25,7 +27,9 @@ class ClusterState:
     
     def full_recluster(self, rounds: int):
         self.eval.setup_data(self.benchmark)
-        current_embeddings = self.benchmark.embeddings
+        initial_embeddings = self.benchmark.embeddings
+        pred_labels = self.clusterer.run(initial_embeddings)
+        self.predictions.update(pred_labels)
 
         best_metrics = {'test_f1': -1,
                         'f1': -1}
@@ -34,7 +38,7 @@ class ClusterState:
                         'round': 1}
 
         for round in tqdm(range(rounds)):
-            current_embeddings, metrics = self.recluster_round(current_embeddings)
+            pred_labels, metrics = self.recluster_round(pred_labels)
             if self.test_mask is not None:
                 if metrics['test_f1'] > best_metrics['test_f1']:
                     best_metrics = metrics
@@ -47,10 +51,9 @@ class ClusterState:
                     best_iteration = metrics
         return metrics, best_metrics, best_iteration
 
-    def recluster_round(self, current_embeddings: NDArray[np.float64]) -> tuple[NDArray[np.float64], dict]:
+    def recluster_round(self, pred_labels: NDArray[np.int_]) -> tuple[NDArray[np.int_], dict]:
         # collect suggestion and prepare eval data
-        pred_labels = self.clusterer.run(current_embeddings)
-        self.eval.update(pred_labels, current_embeddings, self.benchmark)
+        self.eval.update(self.predictions, self.benchmark)
 
         # training loop
         losses = self.adapter.learn(self.eval)
@@ -64,7 +67,7 @@ class ClusterState:
 
         return new_embeddings, metrics
 
-    def log_results(self, pred_labels: NDArray[np.int_], losses: Optional[list[float]], embeddings: NDArray[np.float64]):
+    def log_results(self, pred_labels: NDArray[np.int_], losses: Optional[list[float]], embeddings: Optional[NDArray[np.float64]]):
         # please feel more than welcome to add to this
         row = {"round": len(self.history) + 1,
                **all_metrics(embeddings, pred_labels, self.benchmark.true_labels,

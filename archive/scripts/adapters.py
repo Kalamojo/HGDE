@@ -22,8 +22,8 @@ repo_root = Path(__file__).resolve().parent.parent
 if str(repo_root) not in sys.path:
     sys.path.append(str(repo_root))
 
-from clustering import cluster_embeddings
-from src.embedding_transformer.embedding_transformer import (
+from archive.clustering import cluster_embeddings
+from archive.embedding_transformer.embedding_transformer import (
     Net,
     train_loop,
     user_weighted_contrasting_loss,

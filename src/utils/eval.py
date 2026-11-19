@@ -7,6 +7,7 @@ from numpy.typing import NDArray
 from typing import Any, Optional
 from src.utils.data.datasets import ContrastiveDataset, TripletDataset
 from src.utils.data.benchmarks import Benchmark
+from src.utils.predictions import Predictions
 
 
 class ClusterEval:
@@ -24,7 +25,7 @@ class ClusterEval:
     def setup_loader(self):
         self.loader = DataLoader(self.dataset, self.batch_size, self.shuffle_data)
     
-    def update(self, pred_labels: NDArray[np.int_], current_embeddings: NDArray[np.float64], benchmark: Benchmark):
+    def update(self, predictions: Predictions, benchmark: Benchmark):
         if self.dataset is None:
             self.setup_data(benchmark)
 
@@ -46,8 +47,8 @@ class ContrastiveEval(ClusterEval):
     def setup_data(self, benchmark: Benchmark):
         self.dataset: ContrastiveDataset = ContrastiveDataset(benchmark.embeddings)
     
-    def update(self, pred_labels: NDArray[np.int_], current_embeddings: NDArray[np.float64], benchmark: Benchmark):
-        super().update(pred_labels, benchmark)
+    def update(self, predictions: Predictions, benchmark: Benchmark):
+        super().update(predictions, benchmark)
         
         sampled_move = benchmark.sample_pair(pred_labels)
         self.dataset.append_data(sampled_move)
@@ -62,7 +63,7 @@ class ContrastiveEval(ClusterEval):
         # I want to add parameters
         # mask percent - number of parameters we pull out, 1.0 = no mask
         goal_oriented = True
-        item1, item2, label1, label2, closer, total_items, unconstrained, pred_label = batch["item1"], batch["item2"], batch["label1"], batch["label2"], batch["closer"], batch["total_items"], batch["unconstrained"], batch["pred_labels"]
+        item1, item2, label1, label2, closer, total_items, unconstrained, pred_labels = batch["item1"], batch["item2"], batch["label1"], batch["label2"], batch["closer"], batch["total_items"], batch["unconstrained"], batch["pred_labels"]
         item1_out, item2_out = model(item1), model(item2)
 
         mask = [0]*item1.shape[-1]
@@ -100,8 +101,8 @@ class ContrastiveEval(ClusterEval):
             for con in range(len(item1)):
                 if goal[con]:
                     continue
-                positive1 = (label1[con] == pred_label[uncon][-1] and not closer[con]) or (closer[con] and label2[con] == pred_label[uncon][-1])
-                positive2 = (label2[con] == pred_label[uncon][-1] and not closer[con]) or (closer[con] and label1[con] == pred_label[uncon][-1])
+                positive1 = (label1[con] == pred_labels[uncon][-1] and not closer[con]) or (closer[con] and label2[con] == pred_labels[uncon][-1])
+                positive2 = (label2[con] == pred_labels[uncon][-1] and not closer[con]) or (closer[con] and label1[con] == pred_labels[uncon][-1])
                 masked_uncon = F.normalize(unconstrained[uncon][-1] * mask, p=2, dim=-1)
                 distance1 = torch.linalg.vector_norm(item1_out[con] - masked_uncon, dim=0)
                 distance2 = torch.linalg.vector_norm(item2_out[con] - masked_uncon, dim=0)

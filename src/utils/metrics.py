@@ -107,5 +107,5 @@ def all_metrics(embeddings, pred_labels, true_labels, test_mask=None, auc_pairs=
         test_metrics = compute_metrics(pred[test_mask], true[test_mask])
         row['test_f1'], row['test_recall'], row['test_precision'], row['test_ari'] = test_metrics['f1'], test_metrics['recall'], test_metrics['precision'], test_metrics['ari']
         row['test_pairwise_precision'], row['test_pairwise_recall'], row['test_pairwise_f1'] = pairwise_precision_recall(pred[test_mask], true[test_mask])
-    row["test_pair_auc"] = pair_auc(embeddings, true, auc_pairs) if auc_pairs is not None else float("nan")
+    row["test_pair_auc"] = pair_auc(embeddings, true, auc_pairs) if auc_pairs is not None and embeddings is not None else float("nan")
     return row

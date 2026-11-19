@@ -22,7 +22,7 @@ import numpy as np
 repo_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(repo_root))
 
-from scripts.pipeline_controller import ActiveLearningPipeline, StubProjectionModel, WarmStartClustering
+from archive.scripts.pipeline_controller import ActiveLearningPipeline, StubProjectionModel, WarmStartClustering
 
 
 class FixedClustering:

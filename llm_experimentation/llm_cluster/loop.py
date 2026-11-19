@@ -23,8 +23,8 @@ from .feedback import next_feedback, render_triplets
 from .items import REPO_ROOT, Selection, load_jay_module
 from .schema import MAX_WEIGHT, Feature, Schema, ScoreStore, raw_matrix, score_key, vectorize
 
-from clustering import cluster_embeddings  # noqa: E402  (repo root is on sys.path via .items)
-from scripts.triplet_learning_testing import triplet_stats, write_csv  # noqa: E402
+from archive.clustering import cluster_embeddings  # noqa: E402  (repo root is on sys.path via .items)
+from archive.scripts.triplet_learning_testing import triplet_stats, write_csv  # noqa: E402
 from src.utils.metrics import all_metrics  # noqa: E402
 
 

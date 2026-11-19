@@ -24,9 +24,9 @@ from sklearn.metrics import adjusted_rand_score
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT))
 
-from clustering import cluster_embeddings
+from archive.clustering import cluster_embeddings
 from src.utils.metrics import all_metrics, sample_pairs   # TEMP (Chris): unified metrics + held-out test set
-from scripts.triplet_learning_testing import (
+from archive.scripts.triplet_learning_testing import (
     Net,
     load_pokemon,
     train_round,

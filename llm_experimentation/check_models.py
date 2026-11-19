@@ -20,9 +20,9 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from llm_cluster.client import BedrockClient, FakeClient, Image, Text  # noqa: E402
-from llm_cluster.items import REPO_ROOT, load_png  # noqa: E402
-from llm_cluster.models import MODELS, ModelSpec  # noqa: E402
+from llm_experimentation.llm_cluster.client import BedrockClient, FakeClient, Image, Text  # noqa: E402
+from llm_experimentation.llm_cluster.items import REPO_ROOT, load_png  # noqa: E402
+from llm_experimentation.llm_cluster.models import MODELS, ModelSpec  # noqa: E402
 
 KEYWORDS = ("sonnet", "opus", "terra")
 TEST_IMAGE = REPO_ROOT / "data" / "pokemon_data" / "images" / "0025_Pikachu.png"

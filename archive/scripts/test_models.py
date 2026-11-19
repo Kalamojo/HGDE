@@ -18,7 +18,7 @@ import numpy as np
 repo_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(repo_root))
 
-from src.gravity_warp import GravityWarp, must_link_groups
+from archive.src.gravity_warp import GravityWarp, must_link_groups
 
 
 def _data(seed=0, n=120, d=16):
