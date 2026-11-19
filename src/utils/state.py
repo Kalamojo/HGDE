@@ -68,6 +68,8 @@ class ClusterState:
                              getattr(self.benchmark, "test_mask", None), self.auc_pairs),
                "loss": float(losses[-1]) if losses else float("nan")}
         self.history.append(row)
+        print("Predicted:", pred_labels)
+        print("True:", self.benchmark.true_labels)
         print(f"Round {row['round']}: ARI {row['ari']:.3f} | test ARI {row['test_ari']:.3f} | "
               f"test pair AUC {row['test_pair_auc']:.3f} | pair P/R {row['pair_precision']:.3f}/{row['pair_recall']:.3f} | "
               f"homog/compl {row['homogeneity']:.3f}/{row['completeness']:.3f} | "
