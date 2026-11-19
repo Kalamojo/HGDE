@@ -18,6 +18,7 @@ class ClusterState:
         self.history: list[dict] = []       # one row of metrics per round
         # fixed pairs of held-out items, so test_pair_auc is scored on the same pairs every round
         test_mask = getattr(benchmark, "test_mask", None)
+        self.test_mask = test_mask
         self.auc_pairs = None
         if test_mask is not None and test_mask.any():
             self.auc_pairs = sample_pairs(np.flatnonzero(test_mask), 5000, np.random.default_rng(0))
@@ -26,13 +27,25 @@ class ClusterState:
         self.eval.setup_data(self.benchmark)
         current_embeddings = self.benchmark.embeddings
 
-        best_metrics = {'test_ari': -2}
+        best_metrics = {'test_f1': -1,
+                        'f1': -1}
+        best_iteration = {'test_f1': -1,
+                        'f1': -1,
+                        'round': 1}
 
         for round in tqdm(range(rounds)):
             current_embeddings, metrics = self.recluster_round(current_embeddings)
-            if metrics['test_ari'] > best_metrics['test_ari']:
-                best_metrics = metrics
-        return metrics, best_metrics
+            if self.test_mask is not None:
+                if metrics['test_f1'] > best_metrics['test_f1']:
+                    best_metrics = metrics
+                if metrics['test_f1']**metrics['round'] > best_iteration['test_f1']**best_iteration['round']:
+                    best_iteration = metrics
+            else:
+                if metrics['f1'] > best_metrics['f1']:
+                    best_metrics = metrics
+                if metrics['f1']**metrics['round'] > best_iteration['f1']**best_iteration['round']:
+                    best_iteration = metrics
+        return metrics, best_metrics, best_iteration
 
     def recluster_round(self, current_embeddings: NDArray[np.float64]) -> NDArray[np.float64]:
         # collect suggestion and prepare eval data
