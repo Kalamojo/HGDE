@@ -47,7 +47,7 @@ class ClusterState:
                     best_iteration = metrics
         return metrics, best_metrics, best_iteration
 
-    def recluster_round(self, current_embeddings: NDArray[np.float64]) -> NDArray[np.float64]:
+    def recluster_round(self, current_embeddings: NDArray[np.float64]) -> tuple[NDArray[np.float64], dict]:
         # collect suggestion and prepare eval data
         pred_labels = self.clusterer.run(current_embeddings)
         self.eval.update(pred_labels, current_embeddings, self.benchmark)
