@@ -44,7 +44,7 @@ if str(repo_root) not in sys.path:
 
 def load_models(sigmas=(1.0,)):
     """Model factories: seed -> model with _setup(X) / _fit() / transform(X) / .constraints."""
-    from src.gravity_warp import GravityWarp
+    from archive.src.gravity_warp import GravityWarp
     return {f"warp sigma={sig:g}": (lambda s, sig=sig: GravityWarp(sigma_scale=sig, seed=s)) for sig in sigmas}
 
 
@@ -118,7 +118,7 @@ def main():
     parser.add_argument("--ground_truth", default="ground_truth_visual.npy")
     args = parser.parse_args()
 
-    from scripts.ingest_lancedb import load_lancedb_embeddings
+    from archive.scripts.ingest_lancedb import load_lancedb_embeddings
     X = load_lancedb_embeddings(db_path=str(repo_root / "data" / "pokemon_db"), vector_column=args.vector_column)
     gt = np.load(str(repo_root / "data" / args.ground_truth))
     assert X is not None and len(X) == len(gt), "embeddings / ground truth mismatch"

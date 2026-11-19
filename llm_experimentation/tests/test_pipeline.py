@@ -18,9 +18,9 @@ import numpy as np
 HERE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(HERE))
 
-from llm_cluster.client import extract_json  # noqa: E402
-from llm_cluster.items import REPO_ROOT, make_redactor, select_items  # noqa: E402
-from llm_cluster.schema import Feature, Schema, ScoreStore, score_key, vectorize  # noqa: E402
+from llm_experimentation.llm_cluster.client import extract_json  # noqa: E402
+from llm_experimentation.llm_cluster.items import REPO_ROOT, make_redactor, select_items  # noqa: E402
+from llm_experimentation.llm_cluster.schema import Feature, Schema, ScoreStore, score_key, vectorize  # noqa: E402
 
 JAY_RUN = REPO_ROOT / "results" / "triplet_by_column" / "color_3c_all"
 
@@ -85,7 +85,7 @@ def test_dry_run_hypothesis_end_to_end():
 def test_resume_continues_identically():
     """Stop after round 2, resume to round 4. Round 3's feedback depends only on restored state (round-2
     clusters + Jay's rng), so it must equal an uninterrupted run's; rounds 1-2 must be untouched."""
-    import run_experiment
+    import llm_experimentation.run_experiment as run_experiment
 
     tmp = Path(tempfile.mkdtemp())
     try:
@@ -107,7 +107,7 @@ def test_resume_continues_identically():
 
 
 def _dry_run(strategy):
-    import run_experiment
+    import llm_experimentation.run_experiment as run_experiment
 
     tmp = Path(tempfile.mkdtemp())
     try:

@@ -36,8 +36,8 @@ current_dir = Path(__file__).resolve().parent
 repo_root = current_dir.parent
 sys.path.append(str(repo_root))
 
-from src.simulation_suite.simulator import SyntheticUser
-from scripts.ingest_lancedb import load_lancedb_embeddings
+from archive.simulation_suite.simulator import SyntheticUser
+from archive.scripts.ingest_lancedb import load_lancedb_embeddings
 
 logger = logging.getLogger(__name__)
 
@@ -201,9 +201,9 @@ if __name__ == "__main__":
     logger.info(f"User feedback: batches of {args.batch_size} Must-Links")
 
     # Instantiate the modules and run the pipeline
-    from scripts.adapters import ClusteringAdapter
+    from archive.scripts.adapters import ClusteringAdapter
 
-    from scripts.adapters import ClusteringAdapter
+    from archive.scripts.adapters import ClusteringAdapter
 
     clust_algo = WarmStartClustering(ClusteringAdapter(n_clusters=n_clusters, algorithm="kmeans", random_state=123),
                                      n_clusters)
@@ -211,7 +211,7 @@ if __name__ == "__main__":
         logger.info("BASELINE run: identity projection (no learning).")
         proj_model = StubProjectionModel()
     else:
-        from src.gravity_warp import GravityWarp
+        from archive.src.gravity_warp import GravityWarp
         proj_model = GravityWarp(strength=args.strength, sigma_scale=args.sigma, seed=args.seed)
 
     pipeline = ActiveLearningPipeline(
@@ -241,7 +241,7 @@ if __name__ == "__main__":
     logger.info(f"Saved history to {history_path}")
 
     try:
-        from scripts.visualize_metrics import plot_convergence
+        from archive.scripts.visualize_metrics import plot_convergence
         graph_output = results_dir / f"final-convergence-{tag}{timestamp}.png"
         plot_convergence(final_history, save_path=str(graph_output))
     except ImportError:

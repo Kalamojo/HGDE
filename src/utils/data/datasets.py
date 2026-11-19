@@ -25,7 +25,7 @@ class ContrastiveDataset(Dataset):
     
     def update_stuff(self, unconstrained: NDArray[np.float64], pred_labels):
         self.unconstrained = torch.tensor(unconstrained)
-        self.pred_labels =torch.tensor(pred_labels)
+        self.pred_labels = torch.tensor(pred_labels)
 
     def __getitem__(self, idx) -> dict[str, torch.Tensor]:
         ind1, ind2, closer = self.pairs[idx]

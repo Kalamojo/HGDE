@@ -21,7 +21,7 @@ import numpy as np
 repo_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(repo_root))
 
-from src.simulation_suite.simulator import SyntheticUser
+from archive.simulation_suite.simulator import SyntheticUser
 
 
 def User(gt, **kw):

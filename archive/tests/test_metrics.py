@@ -17,7 +17,7 @@ repo_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(repo_root))
 
 from src.utils.metrics import all_metrics, compute_metrics, pair_auc, pairwise_precision_recall, sample_pairs
-from src.utils.data.samplers import DataSampler
+from src.utils.data.benchmarks import Benchmark
 
 
 class TestClusteringMetrics(unittest.TestCase):
@@ -79,7 +79,7 @@ class TestPairAUC(unittest.TestCase):
 
 class TestSamplerTestItems(unittest.TestCase):
     def make_sampler(self, test_fraction):
-        s = DataSampler.__new__(DataSampler)            # skip load_data (needs LanceDB)
+        s = Benchmark.__new__(Benchmark)            # skip load_data (needs LanceDB)
         s.true_labels = np.array(["red", "blue", "green", "pink"] * 25, dtype=object)
         s.embeddings = np.zeros((100, 4), dtype=np.float32)
         s.set_test_items(test_fraction, seed=0)

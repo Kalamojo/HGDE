@@ -15,15 +15,15 @@ from sklearn.preprocessing import LabelEncoder
 current_dir = Path(__file__).resolve().parent
 repo_root = current_dir.parent
 sys.path.append(str(repo_root))
-from scripts.ingest_lancedb import load_lancedb_embeddings
-from src.embedding_transformer.embedding_transformer import Net
-from src.embedding_transformer.embedding_transformer import train_loop
-from src.embedding_transformer.embedding_transformer import user_weighted_contrasting_loss
-from src.embedding_transformer.embedding_transformer import user_weighted_whole_cluster_loss
-from src.embedding_transformer.embedding_transformer import user_weighted_goal_loss
-from src.embedding_transformer.embedding_transformer import user_weighted_no_cluster_loss
-from src.embedding_transformer.embedding_transformer import user_weighted_one_cluster_item_loss
-from src.embedding_transformer.embedding_transformer import user_weighted_selective_feature_loss
+from archive.scripts.ingest_lancedb import load_lancedb_embeddings
+from archive.embedding_transformer.embedding_transformer import Net
+from archive.embedding_transformer.embedding_transformer import train_loop
+from archive.embedding_transformer.embedding_transformer import user_weighted_contrasting_loss
+from archive.embedding_transformer.embedding_transformer import user_weighted_whole_cluster_loss
+from archive.embedding_transformer.embedding_transformer import user_weighted_goal_loss
+from archive.embedding_transformer.embedding_transformer import user_weighted_no_cluster_loss
+from archive.embedding_transformer.embedding_transformer import user_weighted_one_cluster_item_loss
+from archive.embedding_transformer.embedding_transformer import user_weighted_selective_feature_loss
 
 # computes the recall and precision of the configuation given and multiplies them to compute accuracy
 def compute_accuracy(clusters, classes):

@@ -2,10 +2,10 @@ import torch
 import numpy as np
 import sys
 from pathlib import Path
-from embedding_transformer import Net # it might say its unused but its required for torch.load
-from embedding_transformer import train_loop
-from embedding_transformer import user_weighted_contrasting_loss
-from embedding_transformer import temp_loss
+from archive.embedding_transformer.embedding_transformer import Net # it might say its unused but its required for torch.load
+from archive.embedding_transformer.embedding_transformer import train_loop
+from archive.embedding_transformer.embedding_transformer import user_weighted_contrasting_loss
+from archive.embedding_transformer.embedding_transformer import temp_loss
 
 def main():
     # Start with any embeddings that you have

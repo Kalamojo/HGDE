@@ -23,7 +23,7 @@ class JohnNet(nn.Module):
 
 # Architecture of the model (can change)
 class JayNet(nn.Module):
-    def __init__(self, dimensions: int, hidden_size: int = 256, scaling_factor: float=0.1):
+    def __init__(self, dimensions: int, hidden_size: int = 256, scaling_factor: float = 0.1):
         super(JayNet, self).__init__()
         self.dimensions = dimensions
         self.layer1 = nn.Linear(dimensions, hidden_size)

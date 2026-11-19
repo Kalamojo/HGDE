@@ -22,13 +22,14 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+repo_root = HERE.parent
 sys.path.insert(0, str(HERE))
 
-from llm_cluster import prompts  # noqa: E402
-from llm_cluster.client import make_client  # noqa: E402
-from llm_cluster.items import select_items  # noqa: E402
-from llm_cluster.loop import Config, Experiment  # noqa: E402
-from llm_cluster.models import MODELS  # noqa: E402
+from llm_experimentation.llm_cluster import prompts  # noqa: E402
+from llm_experimentation.llm_cluster.client import make_client  # noqa: E402
+from llm_experimentation.llm_cluster.items import select_items  # noqa: E402
+from llm_experimentation.llm_cluster.loop import Config, Experiment  # noqa: E402
+from llm_experimentation.llm_cluster.models import MODELS  # noqa: E402
 
 
 def parse_args(argv=None):
@@ -94,7 +95,7 @@ def main(argv=None):
     config_name = f"{args.top_labels}c" if args.top_labels else "allc"
     config_name += f"_{args.sample_size}" if args.sample_size else "_all"
     suffix = "_hyp" if args.strategy == "hypothesis" else ""
-    out = args.output_dir or HERE / "results" / f"{args.column}_{config_name}_{args.inputs.replace('+', '_')}_{args.model}{suffix}"
+    out = args.output_dir or repo_root / "results" / "llm_experimentation" / f"{args.column}_{config_name}_{args.inputs.replace('+', '_')}_{args.model}{suffix}"
     if args.resume and args.overwrite:
         raise SystemExit("--resume and --overwrite contradict each other")
     if args.resume:

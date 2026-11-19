@@ -3,7 +3,7 @@ import sys
 current_dir = Path(__file__).resolve().parent
 repo_root = current_dir.parent
 sys.path.append(str(repo_root))
-from tests.cluster_by_column import main
+from archive.tests.cluster_by_column import main
 
 if __name__ == "__main__":
     epoch_options = [2,4]
