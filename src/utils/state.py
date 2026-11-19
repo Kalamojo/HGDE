@@ -5,18 +5,14 @@ from typing import Optional
 from src.utils.adapters import EmbeddingAdapter
 from src.utils.data.benchmarks import Benchmark
 from src.utils.eval import ClusterEval
-from src.utils.clusterings import Clusterer
 from src.utils.metrics import all_metrics, sample_pairs
-from src.utils.predictions import Predictions
 
 
 class ClusterState:
-    def __init__(self, benchmark: Benchmark, clusterer: Clusterer, eval: ClusterEval, adapter: EmbeddingAdapter):
+    def __init__(self, benchmark: Benchmark, eval: ClusterEval, adapter: EmbeddingAdapter):
         self.benchmark = benchmark
-        self.clusterer = clusterer
         self.eval = eval
         self.adapter = adapter
-        self.predictions = Predictions()
         self.history: list[dict] = []       # one row of metrics per round
         # fixed pairs of held-out items, so test_pair_auc is scored on the same pairs every round
         test_mask = getattr(benchmark, "test_mask", None)
@@ -27,9 +23,7 @@ class ClusterState:
     
     def full_recluster(self, rounds: int):
         self.eval.setup_data(self.benchmark)
-        initial_embeddings = self.benchmark.embeddings
-        pred_labels = self.clusterer.run(initial_embeddings)
-        self.predictions.update(pred_labels)
+        self.adapter.setup_predictions(self.benchmark)
 
         best_metrics = {'test_f1': -1,
                         'f1': -1}
@@ -38,7 +32,7 @@ class ClusterState:
                         'round': 1}
 
         for round in tqdm(range(rounds)):
-            pred_labels, metrics = self.recluster_round(pred_labels)
+            metrics = self.recluster_round()
             if self.test_mask is not None:
                 if metrics['test_f1'] > best_metrics['test_f1']:
                     best_metrics = metrics
@@ -51,21 +45,21 @@ class ClusterState:
                     best_iteration = metrics
         return metrics, best_metrics, best_iteration
 
-    def recluster_round(self, pred_labels: NDArray[np.int_]) -> tuple[NDArray[np.int_], dict]:
+    def recluster_round(self) -> dict:
         # collect suggestion and prepare eval data
-        self.eval.update(self.predictions, self.benchmark)
+        self.eval.update(self.adapter.predictions, self.benchmark)
 
         # training loop
         losses = self.adapter.learn(self.eval)
 
         # recluster and evaluate new clusters
-        new_embeddings = self.adapter.predict(self.benchmark)
-        new_pred_labels = self.clusterer.run(new_embeddings)
+        new_pred_labels = self.adapter.predict(self.benchmark)
+        new_embeddings = self.adapter.predictions.embeddings
 
         # log results
         metrics = self.log_results(new_pred_labels, losses, new_embeddings)
 
-        return new_embeddings, metrics
+        return metrics
 
     def log_results(self, pred_labels: NDArray[np.int_], losses: Optional[list[float]], embeddings: Optional[NDArray[np.float64]]):
         # please feel more than welcome to add to this

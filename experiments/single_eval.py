@@ -22,9 +22,9 @@ if __name__ == "__main__":
 
     benchmark = PokemonBenchmark(repo_root / "data" / "pokemon_db", vector_col, label_col, test_fraction=0.2, seed=42)
     clusterer = KMeansClusterer(benchmark.unique_labels.shape[0])
-    eval = TripletEval(batch_size)
-    adapter = JayAdapter(epochs, learning_rate, benchmark.embeddings.shape[1])
+    adapter = JohnAdapter(clusterer, epochs, learning_rate, benchmark.embeddings.shape[1])
+    eval = ContrastiveEval(batch_size)
     
     
-    cluster_state = ClusterState(benchmark, clusterer, eval, adapter)
+    cluster_state = ClusterState(benchmark, eval, adapter)
     cluster_state.full_recluster(rounds)

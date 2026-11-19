@@ -28,7 +28,7 @@ class Benchmark:
             self.test_mask[np.random.default_rng(seed).choice(n, n_test, replace=False)] = True
         self.test_items = set(np.flatnonzero(self.test_mask).tolist())
 
-    def load_data(self, categories: list[str] = None) -> tuple[NDArray[np.float32], NDArray[np.object_], NDArray[np.uint32]]:
+    def load_data(self, categories: list[str] = None) -> tuple[NDArray[np.float32], NDArray[np.object_], NDArray[np.uint32], NDArray[np.object_]]:
         if not self.db_path.exists():
             raise ValueError(f"LanceDB database not found at {self.db_path}")
         
@@ -151,7 +151,7 @@ class PokemonBenchmark(Benchmark):
         table_name = "pokemon"
         super().__init__(db_path, table_name, vector_col, label_col, test_fraction, categories,  seed)
 
-class CelebaBenchmark(DataSampler):
+class CelebaBenchmark(Benchmark):
     def __init__(self, db_path: Path, vector_col: str, label_col: str, test_fraction: float = 0.0, categories: list[str] = None, seed: int = 0):
         table_name = "celeba"
         super().__init__(db_path, table_name, vector_col, label_col, test_fraction, categories,  seed)

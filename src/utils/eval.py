@@ -2,8 +2,6 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, Dataset
-import numpy as np
-from numpy.typing import NDArray
 from typing import Any, Optional
 from src.utils.data.datasets import ContrastiveDataset, TripletDataset
 from src.utils.data.benchmarks import Benchmark
@@ -49,10 +47,12 @@ class ContrastiveEval(ClusterEval):
     
     def update(self, predictions: Predictions, benchmark: Benchmark):
         super().update(predictions, benchmark)
+        if predictions.labels is None or predictions.embeddings is None:
+            raise ValueError("Prediction labels and embeddings must be initialized to call eval update")
         
-        sampled_move = benchmark.sample_pair(pred_labels)
+        sampled_move = benchmark.sample_pair(predictions.labels)
         self.dataset.append_data(sampled_move)
-        self.dataset.update_stuff(current_embeddings, pred_labels)
+        self.dataset.update_stuff(predictions.embeddings, predictions.labels)
         
         if self.loader is None:
             self.setup_loader()
@@ -147,10 +147,12 @@ class TripletEval(ClusterEval):
     def setup_data(self, benchmark: Benchmark):
         self.dataset: TripletDataset = TripletDataset(benchmark.embeddings)
     
-    def update(self, pred_labels: NDArray[np.int_], current_embeddings: NDArray[np.float64], benchmark: Benchmark):
-        super().update(pred_labels, current_embeddings, benchmark)
+    def update(self, predictions: Predictions, benchmark: Benchmark):
+        super().update(predictions, benchmark)
+        if predictions.labels is None:
+            raise ValueError("Prediction labels and embeddings must be initialized to call eval update")
         
-        sampled_moves = benchmark.sample_triplets(pred_labels)
+        sampled_moves = benchmark.sample_triplets(predictions.labels)
         self.dataset.append_data(sampled_moves)
         
         if self.loader is None:
