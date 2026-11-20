@@ -44,7 +44,7 @@ def _contingency(clusters, classes) -> NDArray[np.float64]:
     return counts
 
 
-def pairwise_precision_recall(clusters, classes) -> tuple[float, float]:
+def pairwise_precision_recall(clusters, classes) -> tuple[float, float, float]:
     """Over all pairs of items:
     precision = of the pairs put in the same cluster, the fraction that share a class;
     recall    = of the pairs that share a class, the fraction put in the same cluster."""
