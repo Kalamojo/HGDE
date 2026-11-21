@@ -1,14 +1,14 @@
-# Runs every strategy x model x arm cell of the LLM baseline (seed 42, color, top 3 labels, all items).
+# Runs every strategy x model x inputs cell of the LLM baseline (seed 42, color, top 3 labels, all items).
 # Usage, from the repo root:
 #   $env:AWS_BEARER_TOKEN_BEDROCK = "<bedrock api key>"
 #   .\llm_experimentation\run_all.ps1 -MaxUsd 25
-#   .\llm_experimentation\run_all.ps1 -Models sonnet,opus -Strategies hypothesis -Inputs image
+#   .\llm_experimentation\run_all.ps1 -Models sonnet,opus -Strategies open -Inputs image
 param(
     [string]$Region = "us-east-2",
     [double]$MaxUsd = 25,                                  # per run
     [int]$Rounds = 30,
     [string[]]$Models = @("sonnet", "terra", "opus"),
-    [string[]]$Strategies = @("schema", "hypothesis"),
+    [string[]]$Strategies = @("schema", "open", "direct"),
     [string[]]$Inputs = @("image", "image+text", "text")
 )
 

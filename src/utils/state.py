@@ -58,5 +58,4 @@ class ClusterState:
         self.history.append(row)
         print(f"Round {row['round']}: ARI {row['ari']:.3f} | test ARI {row['test_ari']:.3f} | "
               f"test pair AUC {row['test_pair_auc']:.3f} | pair P/R {row['pair_precision']:.3f}/{row['pair_recall']:.3f} | "
-              f"homog/compl {row['homogeneity']:.3f}/{row['completeness']:.3f} | "
               f"Jay F1/P/R {row['f1']:.3f}/{row['precision']:.3f}/{row['recall']:.3f} | loss {row['loss']:.4f}")

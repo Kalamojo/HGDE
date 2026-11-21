@@ -1,0 +1,179 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 6,
+    "anon_id": "item_052",
+    "name": "Gumshoos",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "changes": {
+      "approach": "Strongly separate bird-shaped Pok\u00e9mon from all others using a very high weight on the bird dimension, then add secondary features to differentiate non-birds",
+      "committed": "new",
+      "method_changed": true,
+      "drafts_tested": 2,
+      "satisfied_before": {
+        "all": 0.0,
+        "new": 0.0
+      },
+      "drafts": [
+        {
+          "draft": 1,
+          "sat_all": 0.0,
+          "sat_new": 0.0,
+          "method": {
+            "approach": "Encode Pok\u00e9mon by their official body shape category. The key distinction seems to be bird/winged vs non-bird. Use a multi-dimensional encoding based on body shape: upright bipedal, quadruped, bird/winged, serpentine/legless, insectoid, etc.",
+            "instructions": "Look at the item image and identify the Pok\u00e9mon's body shape. Assign values based on these body shape dimensions: (1) Has wings/is a bird shape (2) Is quadruped/four-legged (3) Is upright bipedal (4) Has a tail and no wings (5) Is insectoid (6) Has fins/aquatic features. Use reference items to calibrate body shapes.",
+            "outputs": [
+              "1 if bird/winged body shape, else 0",
+              "1 if quadruped (4 legs, no wings), else 0",
+              "1 if upright bipedal humanoid, else 0",
+              "1 if serpentine or worm-like, else 0",
+              "1 if insectoid, else 0",
+              "1 if has prominent fins or fully aquatic shape, else 0",
+              "1 if plant/inanimate object shape, else 0",
+              "1 if multi-legged (more than 4 legs), else 0"
+            ],
+            "reference_items": [
+              "item_024",
+              "item_027",
+              "item_053",
+              "item_035",
+              "item_008",
+              "item_050",
+              "item_007",
+              "item_013",
+              "item_018",
+              "item_046",
+              "item_028",
+              "item_031"
+            ],
+            "notes": "Testing body shape encoding - birds (item_044, item_043) should be in separate group from others"
+          }
+        },
+        {
+          "draft": 2,
+          "sat_all": 0.34375,
+          "sat_new": 0.34375,
+          "method": {
+            "approach": "Identify whether a Pok\u00e9mon is a bird/avian shape vs non-bird. Birds (avian shaped with wings as primary limbs, beak) should be one cluster. Use strong binary encoding with multiple dimensions to separate birds from non-birds, and further distinguish subgroups.",
+            "instructions": "Look at the item image. Determine if the Pok\u00e9mon is bird-shaped (has a beak, feathers, wings as primary limbs - like a parrot, sparrow, swan). Then identify secondary features. Reference items: item_043=bird(Chatot), item_044=bird(Swablu), item_046=bird(Pidgeot). All others are non-birds.",
+            "outputs": [
+              "10 if bird-shaped (has beak + feathers + wings as primary limbs), else 0",
+              "1 if has fire coloring/flames visible, else 0",
+              "1 if primarily green/plant-like, else 0",
+              "1 if primarily blue/water features, else 0",
+              "1 if quadruped land animal, else 0",
+              "1 if bipedal humanoid, else 0",
+              "1 if rocky/brown stone-like appearance, else 0"
+            ],
+            "reference_items": [
+              "item_043",
+              "item_044",
+              "item_046",
+              "item_053",
+              "item_036",
+              "item_003",
+              "item_051",
+              "item_019",
+              "item_049",
+              "item_005",
+              "item_052",
+              "item_027"
+            ],
+            "notes": "Testing strong bird vs non-bird separation"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "round": 2,
+    "anchor_index": 27,
+    "anon_id": "item_004",
+    "name": "Azelf",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "changes": {
+      "approach": "Classify Pok\u00e9mon by whether they resemble inanimate objects/mechanical constructs vs living organic creatures, with bird/flying as a sub-feature",
+      "committed": "draft 2",
+      "method_changed": true,
+      "drafts_tested": 2,
+      "satisfied_before": {
+        "all": 0.171875,
+        "new": 0.0
+      },
+      "drafts": [
+        {
+          "draft": 1,
+          "sat_all": 0.234375,
+          "sat_new": 0.0,
+          "method": {
+            "approach": "Encode Pok\u00e9mon by their generation (Gen 1-5) as the primary feature, since hints suggest items from same generation cluster together. Use strong weights for generation, with secondary features for sub-clustering within generation.",
+            "instructions": "Look at the item image and identify which Pok\u00e9mon it is. Then determine its generation (1=Gen1 Kanto, 2=Gen2 Johto, 3=Gen3 Hoenn, 4=Gen4 Sinnoh, 5=Gen5 Unova). Output: gen1=1 if Gen1 else 0, gen2=1 if Gen2 else 0, gen3=1 if Gen3 else 0, gen4=1 if Gen4 else 0, gen5=1 if Gen5 else 0. Also check: is bird-shaped (beak+wings as main feature)=1 else 0, is primarily blue/water=1 else 0, is primarily green/plant=1 else 0, is fire/orange-red=1 else 0, is dark/purple/ghost=1 else 0.",
+            "outputs": [
+              "5 if Gen1, else 0",
+              "5 if Gen2, else 0",
+              "5 if Gen3, else 0",
+              "5 if Gen4, else 0",
+              "5 if Gen5, else 0",
+              "2 if bird-shaped with beak and wings as primary limbs, else 0",
+              "1 if primarily blue or water-type appearance, else 0",
+              "1 if primarily green or plant-like, else 0",
+              "1 if fire/flame or orange-red main color, else 0",
+              "1 if dark/purple/ghost-like coloring, else 0"
+            ],
+            "reference_items": [
+              "item_043",
+              "item_044",
+              "item_046",
+              "item_053",
+              "item_036",
+              "item_003",
+              "item_051",
+              "item_019",
+              "item_049",
+              "item_005",
+              "item_052",
+              "item_027"
+            ],
+            "notes": "Testing generation-based clustering"
+          }
+        },
+        {
+          "draft": 2,
+          "sat_all": 0.40625,
+          "sat_new": 0.125,
+          "method": {
+            "approach": "Classify Pok\u00e9mon by whether they resemble inanimate objects/mechanical constructs vs living organic creatures, with bird/flying as a sub-feature",
+            "instructions": "Look at the item image. Determine: (1) Does it look like an inanimate object or mechanical construct (bell, gear, magnet, etc.)? If yes, inanimate=10, else 0. (2) Is it a bird-shaped Pok\u00e9mon with beak, feathers, wings as primary limbs? If yes, bird=10, else 0. (3) Is it primarily blue? blue=2 else 0. (4) Is it primarily green/plant? green=2 else 0. (5) Is it primarily dark/black? dark=2 else 0. (6) Is it a small round/cute creature? cute=2 else 0. (7) Is it a large imposing creature? large=1 else 0. (8) Is it a legendary/mythical appearing Pok\u00e9mon (sleek, jeweled, ethereal)? legendary=2 else 0.",
+            "outputs": [
+              "10 if looks like an inanimate object or mechanical/steel construct, else 0",
+              "10 if bird-shaped with beak and wings as primary limbs, else 0",
+              "2 if primarily blue coloring, else 0",
+              "2 if primarily green or plant-like, else 0",
+              "2 if primarily dark or black, else 0",
+              "2 if small round cute creature, else 0",
+              "1 if large imposing creature, else 0",
+              "2 if legendary/mythical appearance (sleek, jeweled, ethereal), else 0"
+            ],
+            "reference_items": [
+              "item_043",
+              "item_044",
+              "item_046",
+              "item_053",
+              "item_036",
+              "item_003",
+              "item_051",
+              "item_019",
+              "item_049",
+              "item_005",
+              "item_052",
+              "item_007"
+            ],
+            "notes": "Testing inanimate object vs living creature separation"
+          }
+        }
+      ]
+    }
+  }
+]

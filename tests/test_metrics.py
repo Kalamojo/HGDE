@@ -1,5 +1,5 @@
 """
-Tests for src/utils/metrics.py and the held-out test items in src/utils/data/samplers.py.
+Tests for src/utils/metrics.py and the held-out test items in src/utils/data/benchmarks.py.
 Synthetic data only (no LanceDB).
 
 Usage (from the repo root):
@@ -17,7 +17,7 @@ repo_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(repo_root))
 
 from src.utils.metrics import all_metrics, compute_metrics, pair_auc, pairwise_precision_recall, sample_pairs
-from src.utils.data.samplers import DataSampler
+from src.utils.data.benchmarks import DataSampler
 
 
 class TestClusteringMetrics(unittest.TestCase):
@@ -25,7 +25,7 @@ class TestClusteringMetrics(unittest.TestCase):
         true = np.array(["red"] * 4 + ["blue"] * 4)
         pred = np.array([1] * 4 + [0] * 4)
         m = all_metrics(np.zeros((8, 2)), pred, true)
-        for key in ("ari", "f1", "precision", "recall", "pair_precision", "pair_recall", "homogeneity", "completeness"):
+        for key in ("ari", "f1", "precision", "recall", "pair_precision", "pair_recall"):
             self.assertAlmostEqual(m[key], 1.0, msg=key)
 
     def test_compute_metrics_keys_unchanged(self):
@@ -40,15 +40,6 @@ class TestClusteringMetrics(unittest.TestCase):
         p, r = pairwise_precision_recall(pred, true)
         self.assertAlmostEqual(p, 4 / 6)
         self.assertAlmostEqual(r, 4 / 7)
-
-    def test_split_lowers_completeness_merge_lowers_homogeneity(self):
-        true = np.array([0] * 4 + [1] * 4)
-        split = all_metrics(np.zeros((8, 2)), np.array([0, 0, 2, 2, 1, 1, 1, 1]), true)
-        self.assertAlmostEqual(split["homogeneity"], 1.0)
-        self.assertLess(split["completeness"], 1.0)
-        merged = all_metrics(np.zeros((8, 2)), np.zeros(8, dtype=int), true)
-        self.assertAlmostEqual(merged["completeness"], 1.0)
-        self.assertLess(merged["homogeneity"], 1.0)
 
     def test_test_metrics_nan_without_test_items(self):
         m = all_metrics(np.zeros((4, 2)), [0, 0, 1, 1], ["a", "a", "b", "b"])

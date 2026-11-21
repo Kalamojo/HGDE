@@ -1,0 +1,30 @@
+{
+  "approach": "Strongly separate bird-shaped Pokémon from all others using a very high weight on the bird dimension, then add secondary features to differentiate non-birds",
+  "instructions": "Look at the item image. First check: is this a bird-shaped Pokémon? A bird has a beak, feathers, and wings as its primary limbs (like item_043=Chatot parrot, item_044=Swablu cloud-bird, item_046=Pidgeot eagle). If yes, set bird=20, else bird=0. Then for non-birds, identify: fire/flame coloring=2, green/plant features=2, blue/water features=2, rocky/brown earth=2, bipedal humanoid=1, quadruped=1, yellow coloring=1, purple/dark=1.",
+  "outputs": [
+    "20 if bird-shaped (beak+feathers+wings as primary limbs), else 0",
+    "2 if has visible fire or flame elements or warm orange-red coloring as main feature, else 0",
+    "2 if primarily green or plant-like in appearance, else 0",
+    "2 if primarily blue or has water/aquatic features, else 0",
+    "2 if rocky, earthy brown, or stone-like appearance, else 0",
+    "1 if bipedal humanoid shape, else 0",
+    "1 if quadruped (walks on four legs), else 0",
+    "1 if primarily yellow, else 0",
+    "1 if purple, dark, or ghost-like coloring, else 0"
+  ],
+  "reference_items": [
+    "item_043",
+    "item_044",
+    "item_046",
+    "item_053",
+    "item_036",
+    "item_003",
+    "item_051",
+    "item_019",
+    "item_049",
+    "item_005",
+    "item_052",
+    "item_027"
+  ],
+  "notes": "Birds get very high bird score (20) to ensure they cluster together far from non-birds. Non-birds differentiated by color/features."
+}

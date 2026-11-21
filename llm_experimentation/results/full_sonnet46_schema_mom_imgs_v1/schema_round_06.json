@@ -1,0 +1,214 @@
+{
+  "features": [
+    {
+      "id": "is_avian",
+      "definition": "1 if the Pokémon clearly resembles a bird (feathers, beak, wings as primary limbs), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.240625
+    },
+    {
+      "id": "is_aquatic",
+      "definition": "1 if the Pokémon resembles a fish, cetacean, or aquatic invertebrate (fins, tail flukes, gills, fully aquatic body plan), 0 otherwise",
+      "kind": "binary",
+      "weight": 2.234375
+    },
+    {
+      "id": "is_insectoid",
+      "definition": "1 if the Pokémon resembles an insect, arachnid, or arthropod (exoskeleton, 6+ legs, mandibles, antenna), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.221875
+    },
+    {
+      "id": "is_reptilian",
+      "definition": "1 if the Pokémon resembles a reptile or amphibian (scales, lizard/turtle/frog body), 0 otherwise",
+      "kind": "binary",
+      "weight": 2.53125
+    },
+    {
+      "id": "is_mammalian",
+      "definition": "1 if the Pokémon resembles a mammal (fur, four-legged dog/cat/bear-like body), 0 otherwise",
+      "kind": "binary",
+      "weight": 2.3625
+    },
+    {
+      "id": "is_humanoid",
+      "definition": "1 if the Pokémon stands upright on two legs with arm-like appendages in a roughly humanoid form, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.120313
+    },
+    {
+      "id": "has_shell_or_armor",
+      "definition": "1 if the Pokémon has a prominent shell, carapace, or heavy armor plating, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.148438
+    },
+    {
+      "id": "has_wings",
+      "definition": "1 if wings are clearly visible (feathered, membranous, or insect wings), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.164062
+    },
+    {
+      "id": "dominant_green",
+      "definition": "Scale 0-1: how dominant green hues are in the overall color palette (0=no green, 1=almost entirely green)",
+      "kind": "scale",
+      "weight": 0.573438
+    },
+    {
+      "id": "dominant_blue",
+      "definition": "Scale 0-1: how dominant blue/cyan hues are in the overall color palette (0=no blue, 1=almost entirely blue)",
+      "kind": "scale",
+      "weight": 2.604687
+    },
+    {
+      "id": "dominant_brown_tan",
+      "definition": "Scale 0-1: how dominant brown/tan/beige hues are in the overall palette (0=none, 1=almost entirely brown/tan)",
+      "kind": "scale",
+      "weight": 2.60625
+    },
+    {
+      "id": "dominant_dark",
+      "definition": "Scale 0-1: how dark/black/purple the overall color palette is (0=light/bright, 1=very dark)",
+      "kind": "scale",
+      "weight": 0.823438
+    },
+    {
+      "id": "body_size_large",
+      "definition": "Scale 0-1: perceived body bulk/size relative to typical small Pokémon (0=tiny/small, 1=very large/bulky)",
+      "kind": "scale",
+      "weight": 0.126563
+    },
+    {
+      "id": "has_tentacles_or_appendages",
+      "definition": "1 if the Pokémon has tentacles, tendrils, or multiple unusual appendages beyond standard limbs, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.15
+    },
+    {
+      "id": "rocky_or_mineral",
+      "definition": "1 if the Pokémon appears to be made of or heavily features rock, stone, mineral, or metallic material, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.146875
+    },
+    {
+      "id": "plant_or_nature_elements",
+      "definition": "1 if the Pokémon incorporates visible plant elements (leaves, flowers, vines, wood), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.323437
+    },
+    {
+      "id": "icy_or_snow",
+      "definition": "1 if the Pokémon incorporates ice, snow, or frost elements visually, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.242188
+    },
+    {
+      "id": "ghostly_or_ethereal",
+      "definition": "1 if the Pokémon has a ghostly, wispy, cloud-like, or ethereal appearance, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.275
+    },
+    {
+      "id": "has_prominent_eyes",
+      "definition": "Scale 0-1: how prominent/large the eyes are relative to the body (0=small/hidden eyes, 1=extremely large prominent eyes)",
+      "kind": "scale",
+      "weight": 0.120313
+    },
+    {
+      "id": "bipedal_stance",
+      "definition": "1 if the Pokémon is primarily standing/posed on two legs, 0 if quadruped, legless, or floating",
+      "kind": "binary",
+      "weight": 0.120313
+    },
+    {
+      "id": "has_tail",
+      "definition": "1 if a distinct tail is clearly visible, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.132812
+    },
+    {
+      "id": "spiky_protrusions",
+      "definition": "Scale 0-1: degree of spiky, pointed, or jagged protrusions on the body (0=smooth/rounded, 1=very spiky all over)",
+      "kind": "scale",
+      "weight": 0.120313
+    },
+    {
+      "id": "cute_or_round",
+      "definition": "Scale 0-1: how cute/round/soft the design appears (0=aggressive/sharp/scary, 1=very round/cute/gentle)",
+      "kind": "scale",
+      "weight": 0.120313
+    },
+    {
+      "id": "mechanical_or_artificial",
+      "definition": "1 if the Pokémon appears mechanical, robotic, or artificially constructed, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.167187
+    },
+    {
+      "id": "is_terrestrial_non_reptile",
+      "definition": "1 if the Pokémon is a land-dwelling creature that is NOT primarily reptilian, avian, aquatic, or insectoid - includes mammals, rocky creatures, and similar land animals; 0 otherwise",
+      "kind": "binary",
+      "weight": 0.23125
+    },
+    {
+      "id": "has_fur_or_mammal_texture",
+      "definition": "1 if the Pokémon visibly has fur, hair, or a soft mammalian body texture covering most of its body; 0 otherwise",
+      "kind": "binary",
+      "weight": 0.43125
+    },
+    {
+      "id": "is_vertebrate_animal",
+      "definition": "1 if the Pokémon is clearly based on a vertebrate animal (mammal, reptile, amphibian, fish, or aquatic vertebrate like whale/seal/dolphin), 0 if based on invertebrate, plant, mineral, ghost, mechanical, or other non-vertebrate",
+      "kind": "binary",
+      "weight": 2.5625
+    },
+    {
+      "id": "is_bird_or_avian",
+      "definition": "Binary: 1 if the Pokémon is clearly based on a bird (has feathers, beak, and wings as primary limbs like an actual bird), 0 otherwise. This should capture Pokémon like Pidgey, Swellow, Staraptor, Pelipper, etc.",
+      "kind": "binary",
+      "weight": 0.375
+    },
+    {
+      "id": "non_vertebrate_invertebrate",
+      "definition": "Binary: 1 if the Pokémon is primarily based on an invertebrate animal (insect, spider, worm, jellyfish, squid, crab, snail) or a non-animal entity (plant, rock, ghost, machine, mineral), 0 if based on a vertebrate animal (mammal, reptile, amphibian, fish, whale, seal, dolphin)",
+      "kind": "binary",
+      "weight": 0.2875
+    },
+    {
+      "id": "is_aquatic_animal",
+      "definition": "Binary: 1 if the Pokémon is clearly based on an aquatic animal with an animal body plan - including fish, sharks, whales, dolphins, seals, seahorses, jellyfish, squid, octopus, eels, or other water creatures with recognizable animal morphology. 0 if it is an insect, plant, rock, ghost, or machine.",
+      "kind": "binary",
+      "weight": 2.125
+    },
+    {
+      "id": "is_insect_plant_rock_ghost_machine",
+      "definition": "Binary: 1 if the Pokémon is primarily based on an insect/bug/spider, plant/fungus, rock/mineral/sand, ghost/spirit/wisp, or mechanical/robotic construct. 0 if it resembles a vertebrate animal or aquatic creature (fish, mammal, reptile, jellyfish, etc.)",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "is_animal_bodied",
+      "definition": "Binary: 1 if the Pokémon is based on any real animal body plan - including vertebrates (mammals, reptiles, amphibians, fish, birds) AND marine/aquatic invertebrates (jellyfish, squid, octopus, crab, shrimp, clam, shellfish, sea cucumber, starfish). 0 if the Pokémon is primarily based on a plant, fungus, rock/mineral, ghost/spirit, machine/robot, or a pure land-dwelling insect/spider/worm with no animal-like features.",
+      "kind": "binary",
+      "weight": 1.4
+    },
+    {
+      "id": "is_marine_invertebrate",
+      "definition": "Binary: 1 if the Pokémon is based on a marine or aquatic invertebrate animal - including jellyfish, squid, octopus, crab, lobster, shrimp, clam, oyster, scallop, sea slug, nudibranch, starfish, sea urchin, barnacle, or similar water-dwelling invertebrates. 0 otherwise.",
+      "kind": "binary",
+      "weight": 1.15
+    },
+    {
+      "id": "dominant_red_orange",
+      "definition": "Scale 0-1: how dominant red, orange, or fiery hues are in the overall color palette (0=no red/orange, 1=almost entirely red/orange)",
+      "kind": "scale",
+      "weight": 1.0
+    }
+  ],
+  "notes": "The user's grouping criterion appears to be primarily COLOR-BASED: blue/cyan/teal-colored Pokémon form one group, while brown/tan/earth-toned Pokémon form another group. item_018 (Phanpy) is blue/teal and should group with other blue Pokémon (sharks, jellyfish, aquatic types, blue reptiles) rather than with brown mammals (bison, beavers, wolves, horses). The animal-type features are less important than the dominant color.",
+  "criterion": "",
+  "fading": [
+    "is_insect_plant_rock_ghost_machine",
+    "non_vertebrate_invertebrate"
+  ]
+}

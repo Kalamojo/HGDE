@@ -256,7 +256,7 @@ def main():
     metrics_of = lambda emb, pred: all_metrics(emb, pred, y, test_mask if test_mask.any() else None, auc_pairs)
     fmt = lambda m: (f"ARI={m['ari']:.4f}, test ARI={m['test_ari']:.4f}, test pair AUC={m['test_pair_auc']:.3f}, "
                      f"pair P/R={m['pair_precision']:.3f}/{m['pair_recall']:.3f}, "
-                     f"homog/compl={m['homogeneity']:.3f}/{m['completeness']:.3f}, F1={m['f1']:.4f}")
+                     f"F1={m['f1']:.4f}")
 
     # Create initial clustering and transformation model
     baseline, _ = cluster_embeddings(X, algorithm="kmeans", n_clusters=k, random_state=args.seed)

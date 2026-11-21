@@ -1,14 +1,14 @@
 """Clustering and embedding-quality metrics logged by ClusterState.log_results.
 
 Scopes:
-  * all items: ari, Jay's f1/precision/recall, pairwise precision/recall, homogeneity/completeness
+  * all items: ari, Jay's f1/precision/recall, pairwise precision/recall
   * test items only (never used in any feedback pair or triplet): test_ari, test_pair_auc
 """
 
 import numpy as np
 from numpy.typing import NDArray
 from scipy.stats import rankdata
-from sklearn.metrics import adjusted_rand_score, homogeneity_completeness_v_measure
+from sklearn.metrics import adjusted_rand_score
 
 
 # Copied unchanged from Jay's tests/triplet_by_column.py.
@@ -92,8 +92,6 @@ def all_metrics(embeddings, pred_labels, true_labels, test_mask=None, auc_pairs=
     true = np.asarray(true_labels)
     row = compute_metrics(pred, true)
     row["pair_precision"], row["pair_recall"] = pairwise_precision_recall(pred, true)
-    h, c, _ = homogeneity_completeness_v_measure(true, pred)
-    row["homogeneity"], row["completeness"] = float(h), float(c)
 
     row["test_ari"] = float("nan")
     if test_mask is not None and test_mask.sum() >= 2 and len(np.unique(true[test_mask])) >= 2:

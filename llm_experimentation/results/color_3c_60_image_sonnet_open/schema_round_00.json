@@ -1,0 +1,38 @@
+{
+  "approach": "Identify each Pokémon's primary type based on visual appearance (color, design elements) and encode as a one-hot vector over the main Pokémon types: Water, Fire, Grass, Normal, Bug, Psychic, Ghost, Steel, Dark, Dragon, Rock, Ground, Flying, Poison, Electric, Ice, Fighting",
+  "instructions": "Look at the item image and identify which Pokémon it is, then determine its primary type. Assign 1 to the matching type dimension and 0 to all others. Use the reference items to calibrate: item_024=Water(Frogadier), item_027=Water(Greninja), item_053=Fire(Growlithe), item_035=Grass(Rillaboom-like), item_008=Grass, item_031=Bug/Grass, item_028=Ice, item_050=Steel(Metagross), item_007=Steel, item_013=Dragon, item_018=Dragon, item_046=Normal(bird), item_059=Normal(Girafarig)",
+  "outputs": [
+    "1 if Water type, else 0",
+    "1 if Fire type, else 0",
+    "1 if Grass type, else 0",
+    "1 if Normal type, else 0",
+    "1 if Bug type, else 0",
+    "1 if Psychic type, else 0",
+    "1 if Ghost type, else 0",
+    "1 if Steel type, else 0",
+    "1 if Dark type, else 0",
+    "1 if Dragon type, else 0",
+    "1 if Rock type, else 0",
+    "1 if Ground type, else 0",
+    "1 if Flying type, else 0",
+    "1 if Poison type, else 0",
+    "1 if Electric type, else 0",
+    "1 if Ice type, else 0",
+    "1 if Fighting type, else 0"
+  ],
+  "reference_items": [
+    "item_024",
+    "item_027",
+    "item_053",
+    "item_035",
+    "item_008",
+    "item_050",
+    "item_007",
+    "item_013",
+    "item_018",
+    "item_046",
+    "item_028",
+    "item_031"
+  ],
+  "notes": "First attempt using primary Pokémon type as one-hot encoding. Will adjust based on hints."
+}

@@ -1,0 +1,29 @@
+{
+  "approach": "Classify Pokémon by whether they resemble inanimate objects/mechanical constructs vs living organic creatures, with bird/flying as a sub-feature",
+  "instructions": "Look at the item image. Determine: (1) Does it look like an inanimate object or mechanical construct (bell, gear, magnet, etc.)? If yes, inanimate=10, else 0. (2) Is it a bird-shaped Pokémon with beak, feathers, wings as primary limbs? If yes, bird=10, else 0. (3) Is it primarily blue? blue=2 else 0. (4) Is it primarily green/plant? green=2 else 0. (5) Is it primarily dark/black? dark=2 else 0. (6) Is it a small round/cute creature? cute=2 else 0. (7) Is it a large imposing creature? large=1 else 0. (8) Is it a legendary/mythical appearing Pokémon (sleek, jeweled, ethereal)? legendary=2 else 0.",
+  "outputs": [
+    "10 if looks like an inanimate object or mechanical/steel construct, else 0",
+    "10 if bird-shaped with beak and wings as primary limbs, else 0",
+    "2 if primarily blue coloring, else 0",
+    "2 if primarily green or plant-like, else 0",
+    "2 if primarily dark or black, else 0",
+    "2 if small round cute creature, else 0",
+    "1 if large imposing creature, else 0",
+    "2 if legendary/mythical appearance (sleek, jeweled, ethereal), else 0"
+  ],
+  "reference_items": [
+    "item_043",
+    "item_044",
+    "item_046",
+    "item_053",
+    "item_036",
+    "item_003",
+    "item_051",
+    "item_019",
+    "item_049",
+    "item_005",
+    "item_052",
+    "item_007"
+  ],
+  "notes": "Testing inanimate object vs living creature separation"
+}
