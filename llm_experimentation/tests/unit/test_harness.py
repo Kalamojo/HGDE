@@ -7,6 +7,7 @@ from pydantic import BaseModel
 
 import helpers
 from llm_cluster.harness import Harness, HarnessConfig, StopRun, Strategy
+from src.utils.clusterings import KMeansClusterer
 
 
 class Step(BaseModel):
@@ -18,7 +19,7 @@ class ToyStrategy(Strategy):
     state_cls = Step
 
     def __init__(self, sel, stop_at=None):
-        self.k, self.seed, self.stop_at = 3, 0, stop_at
+        self.stop_at = stop_at
         self.truth = np.eye(3)[np.unique(sel.y, return_inverse=True)[1]]
         self.noise = np.random.default_rng(0).normal(size=self.truth.shape)
 
@@ -37,7 +38,8 @@ class ToyStrategy(Strategy):
 
 def run(sel, out, rounds, resume=False, stop_at=None, goal=1.5):
     out.mkdir(exist_ok=True)
-    Harness(sel, ToyStrategy(sel, stop_at), HarnessConfig(rounds, 8, goal, resume), out).run()
+    Harness(sel, ToyStrategy(sel, stop_at), HarnessConfig(rounds, 8, goal, resume), out,
+            KMeansClusterer(3, random_state=0)).run()
     with (out / "history.csv").open(encoding="utf-8") as f:
         return [r["round"] for r in csv.DictReader(f)]
 

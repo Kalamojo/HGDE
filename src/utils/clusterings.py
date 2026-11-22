@@ -18,6 +18,6 @@ class HDBSCANClusterer(Clusterer):
         super().__init__(method)
 
 class KMeansClusterer(Clusterer):
-    def __init__(self, n_clusters: int):
-        method = KMeans(n_clusters=n_clusters)
+    def __init__(self, n_clusters: int, random_state: int | None = None):
+        method = KMeans(n_clusters=n_clusters, random_state=random_state)
         super().__init__(method)

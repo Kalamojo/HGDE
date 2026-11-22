@@ -44,7 +44,7 @@ def main(argv=None):
         r, ch = e["round"], e["changes"]
         drafts = ", ".join(f"d{x['draft']} {pct(x['sat_all'])}/{pct(x['sat_new'])}" for x in ch.get("drafts", [])) or "none"
         before = ch.get("satisfied_before", {})
-        print(f"\nRound {r}: anchor {e['name']} ({e['feedback_type']}) | test ARI {float(hist[r]['test_ari']):.3f} | "
+        print(f"\nRound {r}: anchor {e['name']} (to cluster {e.get('target_cluster', e.get('feedback_type'))}) | test ARI {float(hist[r]['test_ari']):.3f} | "
               f"hints satisfied all/new: before {pct(before.get('all'))}/{pct(before.get('new'))}, "
               f"after {pct(hist[r]['all_triplets_satisfied'])}/{pct(hist[r]['new_triplets_after'])}")
         print(f"  drafts tested (all/new): {drafts} | committed: {ch.get('committed')}")

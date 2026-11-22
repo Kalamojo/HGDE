@@ -9,9 +9,11 @@ Examples (from the repo root, PowerShell):
     python llm_experimentation/run_experiment.py --model sonnet --inputs image
     python llm_experimentation/run_experiment.py --model terra --inputs image+text --strategy open
     python llm_experimentation/run_experiment.py --model opus --inputs image --strategy direct
+    python llm_experimentation/run_experiment.py --model sonnet --categories red blue green brown --clusters k
 
-The defaults match results/triplet_by_column/color_3c_all (color, top 3 labels, all items,
-20% held-out, 30 rounds, 32 triplets per round, seed 42).
+The items, held-out test set, feedback, clusterer and metrics are the src/utils objects
+experiments/run_benchmarks.py uses for Jay's and John's models. The defaults match its benchmark1
+(color, red + blue, 20% held-out, seed 0, HDBSCAN), with 30 rounds of up to 32 triplets.
 """
 
 from __future__ import annotations
@@ -29,28 +31,33 @@ from llm_cluster import STRATEGIES  # noqa: E402
 from llm_cluster.data import select_items  # noqa: E402
 from llm_cluster.harness import Harness, HarnessConfig  # noqa: E402
 from llm_cluster.llm import MODELS, LLMSettings, make_client  # noqa: E402
+from src.utils.clusterings import HDBSCANClusterer, KMeansClusterer  # noqa: E402  (repo root on sys.path via llm_cluster.data)
 
 # settings that define a run: --resume refuses to continue if any of them changed
-RESUME_KEYS = ("column", "top_labels", "sample_size", "triplets_per_round", "goal_ari", "seed", "test_fraction",
-               "inputs", "strategy", "drafts", "model")
+RESUME_KEYS = ("column", "categories", "triplets_per_round", "goal_ari", "seed", "test_fraction",
+               "inputs", "strategy", "clusters", "drafts", "model")
 
 
 def parse_args(argv=None):
-    p = argparse.ArgumentParser(description="LLM baseline: an LLM clusters Pokémon with Jay's triplet feedback")
-    # same as tests/triplet_by_column.py
+    p = argparse.ArgumentParser(description="LLM baseline: an LLM clusters Pokémon with src/utils triplet feedback")
+    # the benchmark, as in experiments/run_benchmarks.py
     p.add_argument("--column", default="color", help="hidden ground-truth metadata field")
-    p.add_argument("--top-labels", type=int, default=3, help="restrict to the N most common values; 0 = all")
-    p.add_argument("--sample-size", type=int, default=0, help="randomly sample N eligible items; 0 = all")
+    p.add_argument("--categories", nargs="+", default=["red", "blue"],
+                   help="values of --column to keep (as PokemonBenchmark's categories); 'all' = every value")
     p.add_argument("--rounds", type=int, default=30)
     p.add_argument("--triplets-per-round", type=int, default=32)
     p.add_argument("--goal-ari", type=float, default=0.95)
-    p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--seed", type=int, default=0, help="test split, feedback, k-means and the LLM's sampling")
     p.add_argument("--test-fraction", type=float, default=0.2)
+    p.add_argument("--clusters", choices=("auto", "k"), default="auto",
+                   help="auto = the method decides how many clusters (schema / open: HDBSCAN, as Jay's model is "
+                        "run; direct: the LLM picks); k = exactly k = the number of categories (schema / open: "
+                        "k-means; direct: the LLM makes k groups)")
     # LLM-specific
     p.add_argument("--inputs", choices=("image", "image+text", "text"), default="image")
     p.add_argument("--strategy", choices=tuple(STRATEGIES), default="schema",
-                   help="schema = LLM-designed features + k-means; open = the LLM designs its own per-item "
-                        "method + k-means; direct = the LLM clusters every item itself")
+                   help="schema = LLM-designed features + the clusterer; open = the LLM designs its own per-item "
+                        "method + the clusterer; direct = the LLM clusters every item itself")
     p.add_argument("--drafts", type=int, default=3,
                    help="open / direct: steps per round (the LLM may test drafts against the hints before committing)")
     p.add_argument("--model", choices=sorted(MODELS), default="sonnet")
@@ -85,9 +92,9 @@ def main(argv=None):
     if args.inputs != "text" and not spec.supports_images:
         raise SystemExit(f"{args.model} is text-only; use --inputs text")
 
-    dataset = f"{args.top_labels}c" if args.top_labels else "allc"
-    dataset += f"_{args.sample_size}" if args.sample_size else "_all"
-    suffix = "" if args.strategy == "schema" else f"_{args.strategy}"
+    categories = None if args.categories == ["all"] else args.categories
+    dataset = "-".join(categories) if categories else "all"
+    suffix = ("" if args.strategy == "schema" else f"_{args.strategy}") + ("_k" if args.clusters == "k" else "")
     out = args.output_dir or repo_root / "results" / "llm_experimentation" / f"{args.column}_{dataset}_{args.inputs.replace('+', '_')}_{args.model}{suffix}"
     if args.resume:
         check_resumable(out, args)
@@ -98,19 +105,23 @@ def main(argv=None):
         for stale in ("llm_calls.jsonl", "scores.jsonl", "vectors.jsonl"):
             (out / stale).unlink(missing_ok=True)
 
-    sel = select_items(args.column, args.top_labels, args.sample_size, args.seed, args.test_fraction)
+    sel = select_items(args.column, categories, args.seed, args.test_fraction)
+    # the same src/utils clusterers run_benchmarks.py uses (the direct strategy ignores it)
+    clusterer = HDBSCANClusterer() if args.clusters == "auto" else KMeansClusterer(sel.n_classes, random_state=args.seed)
     (out / "run_config.json").write_text(json.dumps({
         **{k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()},
         "model_id": spec.model_id, "n_items": len(sel.items), "n_test": int(sel.test_mask.sum())}, indent=2),
         encoding="utf-8")
 
     client = make_client(spec, args.region, out / "llm_calls.jsonl", args.max_usd, args.seed)
-    print(f"Model {spec.name} ({spec.model_id}) | strategy={args.strategy} | column={args.column!r} | output -> {out}")
-    settings = LLMSettings(inputs=args.inputs, seed=args.seed, drafts=args.drafts, workers=args.workers)
+    print(f"Model {spec.name} ({spec.model_id}) | strategy={args.strategy} | clusters={args.clusters} | "
+          f"column={args.column!r} | output -> {out}")
+    settings = LLMSettings(inputs=args.inputs, seed=args.seed, clusters=args.clusters, drafts=args.drafts,
+                           workers=args.workers)
     strategy = STRATEGIES[args.strategy](sel, client, settings, out, HERE / "cache")
     harness_cfg = HarnessConfig(rounds=args.rounds, triplets_per_round=args.triplets_per_round,
                                 goal_ari=args.goal_ari, resume=args.resume)
-    Harness(sel, strategy, harness_cfg, out).run()
+    Harness(sel, strategy, harness_cfg, out, clusterer).run()
     print(f"Files saved to: {out}")
 
 

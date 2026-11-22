@@ -51,7 +51,8 @@ class ContrastiveEval(ClusterEval):
             raise ValueError("Prediction labels and embeddings must be initialized to call eval update")
         
         sampled_move = benchmark.sample_pair(predictions.labels)
-        self.dataset.append_data(sampled_move)
+        if sampled_move is not None:            # None = nothing left to fix
+            self.dataset.append_data(sampled_move)
         self.dataset.update_stuff(predictions.embeddings, predictions.labels)
         
         if self.loader is None:

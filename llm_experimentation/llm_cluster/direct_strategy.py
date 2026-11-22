@@ -1,13 +1,14 @@
-"""Strategy "direct": the LLM does the whole clustering itself (no representation, no k-means).
+"""Strategy "direct": the LLM does the whole clustering itself (no representation, no clustering algorithm).
 
     every call  the LLM sees ALL items: as labelled contact sheets (6 x 6 tiles, each item's id under its
                 picture), grouped by its current clustering, and/or as descriptions
-    round 0     it puts every item into exactly k groups (k = 3, the number Jay's k-means is given)
+    round 0     it puts every item into groups: as many as it judges best (--clusters auto, at least 2),
+                or exactly k (--clusters k, k = the number of categories)
     update      it sees all hints so far and which ones its clustering violates; up to --drafts steps, in
                 which it may TEST a new clustering against all hints before committing one
 
 For the harness the clustering is turned into one-hot vectors (group c -> unit vector e_c), so all metrics
-and Jay's feedback work unchanged. On one-hot vectors a hint is satisfied exactly when A and P share a
+and the feedback work unchanged. On one-hot vectors a hint is satisfied exactly when A and P share a
 group and N doesn't (distances are 0 or sqrt 2, against the margin 0.2).
 
 Fairness: hinted items can be placed exactly, so ARI on all items includes memorization. Compare direct
@@ -59,14 +60,19 @@ GOAL = (
 )
 
 
-def rules(k: int) -> str:
-    return (f"Rules: put every item into exactly one of exactly {k} groups. A hint \"A should be closer to B than "
+def rules(k: int | None) -> str:
+    """The clustering rules. k = None: the LLM picks how many groups (at least 2); otherwise exactly k."""
+    if k is None:
+        how_many, count = "exactly one group; use as many groups as you judge best (at least 2)", "at least 2 groups"
+    else:
+        how_many, count = f"exactly one of exactly {k} groups", f"exactly {k} groups"
+    return (f"Rules: put every item into {how_many}. A hint \"A should be closer to B than "
             "to C\" is satisfied when A and B are in the same group and C is in a different group.\n\n"
             "A clustering is written as JSON:\n"
             '{"approach": "<in plain words: how you are clustering and why>", '
             '"groups": {"<group name>": ["item_xxx", ...], ...}, '
             '"notes": "<anything you want to remember for later rounds>"}\n'
-            f"with exactly {k} groups and every item id exactly once.\n")
+            f"with {count} and every item id exactly once.\n")
 
 
 def revise_prompt(s: DirectStrategy, g: Grouping, inp: RoundInput, current: dict, past: list[str],
@@ -101,11 +107,15 @@ def revise_prompt(s: DirectStrategy, g: Grouping, inp: RoundInput, current: dict
     return parts
 
 
-def validate_grouping(groups: dict[str, list[str]], all_ids: list[str], k: int) -> str | None:
-    """What is wrong with a clustering (None = valid): exactly k non-empty groups, every id exactly once."""
+def validate_grouping(groups: dict[str, list[str]], all_ids: list[str], k: int | None) -> str | None:
+    """What is wrong with a clustering (None = valid): exactly k non-empty groups (k = None: at least 2),
+    every id exactly once."""
     listed = [a for ids in groups.values() for a in ids]
     problems = []
-    if sum(1 for ids in groups.values() if ids) != k:
+    n_groups = sum(1 for ids in groups.values() if ids)
+    if k is None and n_groups < 2:
+        problems.append("there must be at least 2 non-empty groups")
+    elif k is not None and n_groups != k:
         problems.append(f"there must be exactly {k} non-empty groups")
     if sorted(listed) != sorted(all_ids):
         dup = sorted({a for a in listed if listed.count(a) > 1})
@@ -164,9 +174,10 @@ class DirectStrategy(LLMStrategy):
         return validate_grouping(groups or {}, self.ids, self.k)
 
     def one_hot(self, g: Grouping) -> np.ndarray:
-        """Item i in the c-th non-empty group -> row i is the unit vector e_c."""
-        V = np.zeros((self.n, self.k))
-        for c, ids in enumerate(ids for ids in g.groups.values() if ids):
+        """Item i in the c-th non-empty group -> row i is the unit vector e_c (one column per group)."""
+        groups = [ids for ids in g.groups.values() if ids]
+        V = np.zeros((self.n, len(groups)))
+        for c, ids in enumerate(groups):
             V[[self.by_anon[a] for a in ids], c] = 1.0
         return V
 
@@ -183,8 +194,9 @@ class DirectStrategy(LLMStrategy):
     def embed(self, g: Grouping) -> np.ndarray:
         return self.one_hot(g)
 
-    def cluster(self, V: np.ndarray) -> np.ndarray:
-        """No k-means: the clusters are the LLM's groups, read back from the one-hot vectors."""
+    def cluster(self, V: np.ndarray, clusterer=None) -> np.ndarray:
+        """No clustering algorithm (the clusterer is ignored): the clusters are the LLM's groups, read
+        back from the one-hot vectors."""
         return V.argmax(axis=1)
 
     def update(self, g: Grouping, inp: RoundInput):

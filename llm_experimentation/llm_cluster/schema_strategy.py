@@ -3,7 +3,7 @@
     round 0   the LLM sees 40 sample items and designs 15-30 features ("body is mostly blue, 0-1"),
               all at weight 1
     embed     separate scoring calls score EVERY item on every feature (0-1); each feature is z-scored
-              across items and multiplied by its weight -> V; Jay's k-means clusters V
+              across items and multiplied by its weight -> V; the run's clusterer (HDBSCAN or k-means) clusters V
     update    the LLM sees the hints, the share satisfied and the hinted items' scores, and may only
               change the feature set: reweight (0-5), drop, add up to 5 features. It can never set an
               item's scores, so test items are placed by the features alone (generalization).

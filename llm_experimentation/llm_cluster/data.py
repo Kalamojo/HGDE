@@ -1,48 +1,33 @@
 """What is being clustered, and the simulated user who gives feedback.
 
-This plays the role of src/utils/data/benchmarks.py (Benchmark) in Kolade's framework, but the item
-selection and the feedback are Jay's (archive/tests/triplet_by_column.py), reproduced exactly, so every LLM
-run sees the same items, the same held-out test set and the same kind of hints as Jay's model.
+Both come from Kolade's src/utils framework, exactly as experiments/run_benchmarks.py uses them for Jay's
+and John's models: the items, labels and held-out test set are a PokemonBenchmark, the feedback is
+Benchmark.sample_triplets (what TripletEval calls), and the fixed AUC pairs are ClusterState's. So every
+LLM run is scored on the same terms as those models.
 
 Nothing in this file talks to an LLM.
 """
 
 from __future__ import annotations
 
-import importlib.util
 import io
 import json
 import re
 import sys
-from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-if str(REPO_ROOT) not in sys.path:          # so `src.utils` and `archive` import from anywhere
+if str(REPO_ROOT) not in sys.path:          # so `src.utils` imports from anywhere
     sys.path.insert(0, str(REPO_ROOT))
 
-from src.utils.metrics import sample_pairs  # noqa: E402
+from src.utils.data.benchmarks import Benchmark, PokemonBenchmark  # noqa: E402
+from src.utils.state import ClusterState  # noqa: E402
 
 MANIFEST = REPO_ROOT / "data" / "pokemon_data" / "manifest.jsonl"   # dex_num -> image path + description
 METADATA = REPO_ROOT / "data" / "pokemon_data" / "metadata.jsonl"   # every Pokémon name (for redaction)
-
-
-def load_jay_module():
-    """Import archive/tests/triplet_by_column.py by file path and return it as a module.
-
-    A plain `import tests.triplet_by_column` would be ambiguous (llm_experimentation/tests also
-    exists). Teammate code is only imported, never modified. Cached in sys.modules after the first call."""
-    name = "_jay_triplet_by_column"
-    if name in sys.modules:
-        return sys.modules[name]
-    spec = importlib.util.spec_from_file_location(name, REPO_ROOT / "archive" / "tests" / "triplet_by_column.py")
-    module = importlib.util.module_from_spec(spec)
-    sys.modules[name] = module
-    spec.loader.exec_module(module)
-    return module
 
 
 # ---------- items ----------
@@ -65,40 +50,20 @@ class Selection:
     y: np.ndarray                # true labels, one per item
     test_mask: np.ndarray        # True = held-out item: never in any hint, only used for test metrics
     auc_pairs: np.ndarray | None # fixed pairs of test items for test_pair_auc
-    rng: np.random.Generator     # Jay's rng, already advanced past selection: the feedback draws from it
-    n_classes: int               # k, the number of clusters k-means is asked for
+    benchmark: Benchmark         # gives the feedback (sample_triplets, drawing from benchmark.rng)
+    n_classes: int               # number of true classes: k for --clusters k
 
 
-def select_items(column: str = "color", top_labels: int = 3, sample_size: int = 0, seed: int = 42,
+def select_items(column: str = "color", categories: list[str] | None = ("red", "blue"), seed: int = 0,
                  test_fraction: float = 0.2, db: Path | None = None) -> Selection:
-    """Pick the items exactly as Jay's script does (same rng calls in the same order), so the items,
-    labels, test mask and AUC pairs match results/triplet_by_column/<run>, and `rng` ends in the
-    state Jay's feedback loop starts from. Then attach each item's image, redacted text and anonymous id."""
-    jay = load_jay_module()
+    """The items of a PokemonBenchmark built exactly as run_benchmarks.py builds it (categories=None:
+    every value of `column`), with each item's image, redacted text and anonymous id attached."""
     db = db or (REPO_ROOT / "data" / "pokemon_db")
-
-    # --- verbatim logic from archive/tests/triplet_by_column.py main() ---
-    rng = np.random.default_rng(seed)
-    X, metadata, y = jay.load_embeddings_and_targets(db, "image", column)   # X unused: only the row order matters
-    counts = Counter(y.tolist())
-    if top_labels:                                  # keep only the N most common label values
-        top_values = sorted(counts, key=lambda value: (-counts[value], value))[:top_labels]
-        eligible = np.flatnonzero(np.isin(y, top_values))
-    else:
-        eligible = np.arange(len(y))
-    if sample_size:
-        if sample_size > len(eligible):
-            raise ValueError(f"sample-size={sample_size} exceeds {len(eligible)} eligible rows")
-        selected = rng.choice(eligible, size=sample_size, replace=False)
-    else:
-        selected = eligible
-    y = y[selected]
-    metadata = [metadata[int(i)] for i in selected]
-    test_rng = np.random.default_rng([seed, 1])     # a separate stream, so the test set doesn't move the main rng
-    test_mask = np.zeros(len(y), dtype=bool)
-    test_mask[test_rng.choice(len(y), int(round(test_fraction * len(y))), replace=False)] = True
-    auc_pairs = sample_pairs(np.flatnonzero(test_mask), 5000, test_rng) if test_mask.any() else None
-    # --- end verbatim ---
+    benchmark = PokemonBenchmark(db, "image_vector", column, test_fraction,       # the vectors are unused
+                                 categories=list(categories) if categories else None, seed=seed)
+    y, test_mask = benchmark.true_labels.astype(str), benchmark.test_mask
+    auc_pairs = ClusterState(benchmark, eval=None, adapter=None).auc_pairs        # the pairs Jay's runs use
+    metadata = benchmark.metadata
 
     manifest = {row["dex_num"]: row for row in map(json.loads, MANIFEST.open(encoding="utf-8"))}
     redact = make_redactor()
@@ -115,7 +80,7 @@ def select_items(column: str = "color", top_labels: int = 3, sample_size: int = 
             raise FileNotFoundError(image_path)
         items.append(Item(idx=i, anon_id=f"item_{perm[i]:03d}", dex_num=meta["dex_num"], name=meta["name"],
                           label=str(y[i]), image_path=image_path, text=redact(row["text"], row["name"])))
-    return Selection(items, y, test_mask, auc_pairs, rng, len(np.unique(y)))
+    return Selection(items, y, test_mask, auc_pairs, benchmark, len(benchmark.unique_labels))
 
 
 def make_redactor():
@@ -159,20 +124,22 @@ def load_png(path: Path, px: int, cache_dir: Path) -> bytes:
 
 # ---------- the simulated user ----------
 
-def next_feedback(predicted: np.ndarray, y: np.ndarray, rng: np.random.Generator, used_anchors: set,
-                  triplets_per_round: int, test_mask: np.ndarray):
-    """One round of hints: Jay's select_feedback, called exactly as his loop calls it.
+def next_feedback(benchmark: Benchmark, predicted: np.ndarray, triplets_per_round: int):
+    """One round of hints: Benchmark.sample_triplets, the call TripletEval makes for Jay's model.
 
-    It looks at the current clusters (`predicted`) versus the true labels, picks one wrongly placed
-    training item as the anchor A (not used before), and returns (anchor, kind, triplets): up to
-    `triplets_per_round` (A, P, N) index triplets meaning "A should be closer to P than to N", where P
-    shares A's true label and N doesn't. Held-out test items never appear. None = nothing left to fix."""
-    jay = load_jay_module()
-    return jay.select_feedback(predicted, y, rng, used_anchors, triplets_per_round, test_mask)
+    It picks one training item A that shares its true label with an item in another cluster, and returns
+    (anchor, target_cluster, triplets): up to `triplets_per_round` (A, P, N) index triplets meaning "A should
+    be closer to P than to N", with P from the cluster A should move to (target_cluster) and N from A's
+    current cluster. Held-out test items never appear. None = nothing left to fix."""
+    triplets = benchmark.sample_triplets(predicted, triplets_per_round)
+    if not triplets:
+        return None
+    triplets = [tuple(int(i) for i in t) for t in triplets]
+    anchor, positive = triplets[0][0], triplets[0][1]
+    return anchor, int(predicted[positive]), triplets
 
 
 def render_triplets(triplets, items: list[Item]) -> list[str]:
-    """Each (A, P, N) triplet as the sentence the LLM reads. Order and duplicates are kept: Jay samples
-    triplets with replacement, so a repeated triplet carries extra weight in his loss too."""
+    """Each (A, P, N) triplet as the sentence the LLM reads."""
     return [f"{items[a].anon_id} should be closer to {items[p].anon_id} than to {items[n].anon_id}"
             for a, p, n in triplets]

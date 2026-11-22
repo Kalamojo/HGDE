@@ -56,13 +56,6 @@ def test_pair_auc_nan_without_both_kinds_of_pair():
     assert np.isnan(pair_auc(np.zeros((4, 2)), np.array([0, 0, 0, 0]), np.array([[0, 1], [2, 3]])))
 
 
-def test_compute_metrics_same_as_jays_original():
-    from llm_cluster.data import load_jay_module
-    rng = np.random.default_rng(0)
-    pred, true = rng.integers(0, 4, 50), rng.integers(0, 3, 50)
-    assert compute_metrics(pred, true) == pytest.approx(load_jay_module().compute_metrics(pred, true))
-
-
 def test_compute_metrics_split_class():
     # class 0 split over 4 clusters of 5: per-class recall 1 - (3/4)^4; the other classes are 1
     m = compute_metrics(np.r_[np.repeat([0, 3, 4, 5], 5), [1] * 20, [2] * 20], TRUE)

@@ -4,8 +4,8 @@
               item into 1-32 numbers (what each number means is up to it), optionally naming up to 12
               reference items to compare against
     embed     separate executor calls apply the method to every item; the executor sees only the method,
-              the reference items and its batch (never the hints). The numbers go straight to Jay's
-              k-means, with no z-scoring: the LLM controls the scale.
+              the reference items and its batch (never the hints). The numbers go straight to the run's
+              clusterer (HDBSCAN or k-means), with no z-scoring: the LLM controls the scale.
     update    up to --drafts steps: the LLM may TEST a draft method (executed on every hinted item and
               scored against all hints) before committing one
 

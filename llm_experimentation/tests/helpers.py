@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import json
+import random
 import sys
 from pathlib import Path
 
@@ -20,6 +21,7 @@ for p in (str(LLM_DIR), str(REPO_ROOT)):
 
 from llm_cluster.data import Item, Selection  # noqa: E402
 from llm_cluster.llm import MODELS, LLMSettings, UsageLog  # noqa: E402
+from src.utils.data.benchmarks import Benchmark  # noqa: E402
 from src.utils.metrics import sample_pairs  # noqa: E402
 
 LABELS = ("red", "blue", "green")
@@ -31,8 +33,8 @@ def make_toy_sel(img_dir: Path, n_per_class: int = 10) -> Selection:
     from PIL import Image as PILImage
 
     y = np.repeat(LABELS, n_per_class)
-    test_mask = np.zeros(len(y), dtype=bool)
-    test_mask[np.random.default_rng(1).choice(len(y), len(y) // 5, replace=False)] = True
+    benchmark = make_toy_benchmark(y)
+    test_mask = benchmark.test_mask
     perm = np.random.default_rng(3).permutation(len(y))
     items = []
     for i, label in enumerate(y):
@@ -42,7 +44,16 @@ def make_toy_sel(img_dir: Path, n_per_class: int = 10) -> Selection:
         items.append(Item(idx=i, anon_id=f"item_{perm[i]:03d}", dex_num=f"{i:04d}", name=f"Toymon{i}",
                           label=str(label), image_path=img, text=f"A small creature, number {i}."))
     auc_pairs = sample_pairs(np.flatnonzero(test_mask), 500, np.random.default_rng(2))
-    return Selection(items, y, test_mask, auc_pairs, np.random.default_rng(42), len(LABELS))
+    return Selection(items, y, test_mask, auc_pairs, benchmark, len(LABELS))
+
+
+def make_toy_benchmark(labels, test_fraction: float = 0.2, seed: int = 0) -> Benchmark:
+    """A src/utils Benchmark without a database: __init__ is skipped, so set what it would set."""
+    b = Benchmark.__new__(Benchmark)
+    b.true_labels = np.asarray(labels, dtype=object)
+    b.rng = random.Random(seed)
+    b.set_test_items(test_fraction, seed)
+    return b
 
 
 class ScriptedClient:

@@ -40,7 +40,8 @@ class NNAdapter(EmbeddingAdapter):
         initial_embeddings = benchmark.embeddings
         pred_labels = self.clusterer.run(initial_embeddings)
         self.predictions.update_labels(pred_labels)
-    
+        self.predictions.update_embeddings(initial_embeddings)   # scored by test_pair_auc; needed by ContrastiveEval
+
     def learn(self, eval: ClusterEval) -> list[float]:
         if eval.loader is None:
             raise ValueError("Data loader has not yet been initialized. Perform eval update first")
@@ -74,6 +75,7 @@ class NNAdapter(EmbeddingAdapter):
         new_embeddings = self.model(original_embeddings).detach().numpy()
         new_pred_labels = self.clusterer.run(new_embeddings)
         self.predictions.update_labels(new_pred_labels)
+        self.predictions.update_embeddings(new_embeddings)
 
         return new_pred_labels
 
@@ -82,21 +84,6 @@ class JohnAdapter(NNAdapter):
         model = JohnNet(dimensions, hidden_size, dropout)
         optimizer = optim.Adam(model.parameters(), lr=learning_rate)
         super().__init__(clusterer, epochs, model, optimizer)
-    
-    def setup_predictions(self, benchmark: Benchmark):
-        super().setup_predictions(benchmark)
-        initial_embeddings = benchmark.embeddings
-        self.predictions.update_embeddings(initial_embeddings)
-    
-    def predict(self, benchmark: Benchmark) -> NDArray[np.int_]:
-        original_embeddings = torch.from_numpy(benchmark.embeddings)
-        self.model.eval()
-        new_embeddings = self.model(original_embeddings).detach().numpy()
-        new_pred_labels = self.clusterer.run(new_embeddings)
-        self.predictions.update_labels(new_pred_labels)
-        self.predictions.update_embeddings(new_embeddings)
-
-        return new_pred_labels
 
 class JayAdapter(NNAdapter):
     def __init__(self, clusterer: Clusterer, epochs: int, learning_rate: float, dimensions: int, hidden_size: int = 256, scaling_factor: float = 0.1):

@@ -1,22 +1,19 @@
 """llm_cluster/data.py: the items and the simulated user."""
 
-import csv
-
 import numpy as np
 
 import helpers
 from llm_cluster.data import make_redactor, next_feedback, select_items
+from src.utils.data.benchmarks import PokemonBenchmark
 
 
-def test_selection_matches_jay(needs_real_data):
-    sel = select_items("color", 3, 0, 42, 0.2)
-    assert len(sel.items) == 439 and int(sel.test_mask.sum()) == 88 and sel.n_classes == 3
-    jay = helpers.REPO_ROOT / "results" / "triplet_by_column" / "color_3c_all" / "assignments.csv"
-    if jay.exists():
-        with jay.open(encoding="utf-8") as f:
-            rows = list(csv.DictReader(f))
-        assert [r["dex_num"] for r in rows] == [it.dex_num for it in sel.items]
-        assert [r["color"] for r in rows] == [it.label for it in sel.items]
+def test_selection_is_the_benchmark(needs_real_data):
+    sel = select_items("color", ["red", "blue"], 0, 0.2)
+    assert len(sel.items) == 261 and int(sel.test_mask.sum()) == 52 and sel.n_classes == 2
+    # the same items, labels and test split as run_benchmarks.py's benchmark1
+    b = PokemonBenchmark(helpers.REPO_ROOT / "data" / "pokemon_db", "image_vector", "color", 0.2, categories=["red", "blue"])
+    assert [it.label for it in sel.items] == b.true_labels.tolist() and (sel.test_mask == b.test_mask).all()
+    assert [it.dex_num for it in sel.items] == [m["dex_num"] for m in b.metadata]
     ids = [it.anon_id for it in sel.items]
     assert len(set(ids)) == len(ids) and ids != sorted(ids), "anonymous ids must be unique and not in dex order"
 
@@ -30,7 +27,11 @@ def test_redaction(needs_real_data):
 
 def test_feedback_never_uses_test_items(toy_sel):
     pred = np.random.default_rng(0).integers(0, 3, 30)
-    anchor, kind, triplets = next_feedback(pred, toy_sel.y, toy_sel.rng, set(), 8, toy_sel.test_mask)
-    y = toy_sel.y
-    assert all(a == anchor and y[a] == y[p] != y[n] for a, p, n in triplets)
+    anchor, target, triplets = next_feedback(toy_sel.benchmark, pred, 8)
+    assert 0 < len(triplets) <= 8 and all(a == anchor and pred[p] == target != pred[n] for a, p, n in triplets)
     assert not toy_sel.test_mask[np.array(triplets)].any()
+
+
+def test_no_feedback_once_the_clustering_is_right(toy_sel):
+    perfect = np.unique(toy_sel.y, return_inverse=True)[1]
+    assert next_feedback(toy_sel.benchmark, perfect, 8) is None

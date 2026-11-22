@@ -152,7 +152,8 @@ class FakeClient:
             r.shuffle(ids)
             if r.random() < 0.2:
                 ids.pop()                         # sometimes leave an item out, to exercise the retry
-            grouping = {"approach": "fake clustering", "groups": {f"g{c + 1}": ids[c::meta["k"]] for c in range(meta["k"])}}
+            k = meta["k"] or r.randint(2, 5)      # k = None: the LLM picks how many groups
+            grouping = {"approach": "fake clustering", "groups": {f"g{c + 1}": ids[c::k] for c in range(k)}}
             out = grouping if task == "direct_design" else self.step(meta, grouping)
         else:
             out = {}
@@ -252,7 +253,8 @@ class JsonlCache:
 @dataclass
 class LLMSettings:
     inputs: str                     # what the LLM sees per item: "image", "image+text" or "text"
-    seed: int = 42
+    seed: int = 0
+    clusters: str = "auto"          # "auto": the method picks how many clusters; "k": exactly k (= number of classes)
     drafts: int = 3                 # open / direct: steps per round (test drafts, then commit)
     workers: int = 4                # parallel scoring / executor calls (speed only)
 
@@ -260,7 +262,8 @@ class LLMSettings:
 class LLMStrategy(Strategy):
     def __init__(self, sel: Selection, client, cfg: LLMSettings, out_dir: Path, cache_dir: Path):
         self.client, self.cfg, self.out, self.cache_dir = client, cfg, out_dir, cache_dir
-        self.items, self.n, self.k, self.seed = sel.items, len(sel.items), sel.n_classes, cfg.seed
+        self.items, self.n, self.seed = sel.items, len(sel.items), cfg.seed
+        self.k = sel.n_classes if cfg.clusters == "k" else None     # None: the method picks how many clusters
         self.by_anon = {it.anon_id: it.idx for it in self.items}     # "item_317" -> row index
         self.system = system_prompt(cfg.inputs)
         self.filled = 0             # values the LLM never gave, filled with a default

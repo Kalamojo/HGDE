@@ -5,22 +5,23 @@ same across methods so their curves can be compared:
 
     round 0:  state = strategy.start()
     each round:
-        V = strategy.embed(state)            item vectors (n_items x d)
-        pred = strategy.cluster(V)           cluster labels (default: Jay's k-means call)
-        metrics(V, pred)                     src/utils/metrics.all_metrics, incl. test ARI on held-out items
-        hints = Jay's select_feedback(pred)  the simulated user (data.next_feedback)
+        V = strategy.embed(state)                 item vectors (n_items x d)
+        pred = strategy.cluster(V, clusterer)     cluster labels (default: the src/utils Clusterer on V)
+        metrics(V, pred)                          src/utils/metrics.all_metrics, incl. test ARI on held-out items
+        hints = benchmark.sample_triplets(pred)   the simulated user (data.next_feedback)
         state = strategy.update(state, hints)
     until --rounds, the goal ARI, no more hints, or a StopRun (e.g. out of budget).
 
-How this maps onto Kolade's src/utils framework (ClusterState.recluster_round):
+How this maps onto Kolade's src/utils framework (ClusterState.recluster_round). The data, feedback,
+clusterer and metrics are the same src/utils objects; only the learning step differs:
 
     src/utils                                  here
     -----------------------------------------  -----------------------------------------------
-    Benchmark (items, labels, test_mask)       data.Selection (Jay's selection, exactly)
-    benchmark.sample_triplets(pred)            data.next_feedback (Jay's select_feedback)
-    Clusterer.run(embeddings)                  Strategy.cluster(V)
-    ClusterEval.update + train_model           Strategy.update(state, RoundInput)
-    model(original_embeddings)                 Strategy.embed(state)
+    Benchmark (items, labels, test_mask)       data.Selection wraps the same PokemonBenchmark
+    benchmark.sample_triplets(pred)            data.next_feedback calls it
+    Clusterer.run(embeddings)                  Strategy.cluster(V, clusterer) calls it (direct: the LLM's groups)
+    ClusterEval.update + adapter.learn         Strategy.update(state, RoundInput)
+    adapter.predict / model(embeddings)        Strategy.embed(state)
     ClusterState.log_results / all_metrics     Harness.metrics / all_metrics (the same function)
 """
 
@@ -35,11 +36,12 @@ import numpy as np
 from pydantic import BaseModel
 from sklearn.preprocessing import normalize
 
-from .data import Selection, load_jay_module, next_feedback
+from .data import Selection, next_feedback
 
-from archive.clustering import cluster_embeddings  # noqa: E402  (repo root is on sys.path via .data)
-from archive.scripts.triplet_learning_testing import triplet_stats, write_csv  # noqa: E402
+from src.utils.clusterings import Clusterer  # noqa: E402  (repo root is on sys.path via .data)
 from src.utils.metrics import all_metrics  # noqa: E402
+
+MARGIN = 0.2        # a hint counts as satisfied when d(A, P) + MARGIN <= d(A, N)
 
 
 @dataclass
@@ -61,15 +63,45 @@ class RoundInput:
     round: int
     new_triplets: list              # this round's (A, P, N) index triplets
     earlier_triplets: list          # all triplets from earlier rounds
-    E: np.ndarray                   # current vectors, L2-normalized (the space k-means clusters in)
+    E: np.ndarray                   # current vectors, L2-normalized (the space the clusterer runs in)
     pred: np.ndarray                # current cluster labels
     history: list[dict]             # history.csv rows so far
     edits: list[dict]               # edits.json entries so far
 
 
-def kmeans(V: np.ndarray, k: int, seed: int) -> np.ndarray:
-    """Jay's clustering call, unchanged (L2-normalizes the rows, then KMeans with n_init=20)."""
-    return np.asarray(cluster_embeddings(V, algorithm="kmeans", n_clusters=k, random_state=seed)[0])
+def satisfied(E: np.ndarray, triplets) -> float:
+    """Share of (A, P, N) triplets with d(A, P) + MARGIN <= d(A, N) in E (nan if there are none)."""
+    if not len(triplets):
+        return float("nan")
+    a, p, n = np.asarray(triplets, dtype=int).T
+    return float(np.mean(np.linalg.norm(E[a] - E[p], axis=1) + MARGIN <= np.linalg.norm(E[a] - E[n], axis=1) + 1e-6))
+
+
+def write_csv(path: Path, rows: list[dict]):
+    """rows -> a CSV file, with the first row's keys as the header."""
+    if rows:
+        with path.open("w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=list(rows[0]))
+            writer.writeheader()
+            writer.writerows(rows)
+
+
+def plot_history(path: Path, history: list[dict]):
+    """ARI and test ARI per round, saved as a PNG."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    rounds = [row["round"] for row in history]
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.plot(rounds, [row["ari"] for row in history], marker="o", label="ARI (all items)")
+    ax.plot(rounds, [row["test_ari"] for row in history], marker="s", label="test ARI (held-out items)")
+    ax.set(xlabel="Feedback round", ylabel="ARI", title="Clustering vs. the hidden labels")
+    ax.grid(alpha=0.25)
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
+    plt.close(fig)
 
 
 class Strategy:
@@ -78,8 +110,6 @@ class Strategy:
 
     state_cls: type[BaseModel]
     name = "strategy"
-    k: int                          # clusters to make; subclasses set it
-    seed: int                       # for k-means; subclasses set it
 
     def start(self) -> BaseModel:
         """Round 0: the initial state."""
@@ -89,9 +119,9 @@ class Strategy:
         """Vectors for all items under this state."""
         raise NotImplementedError
 
-    def cluster(self, V: np.ndarray) -> np.ndarray:
-        """Cluster labels from vectors. Default: Jay's k-means call."""
-        return kmeans(V, self.k, self.seed)
+    def cluster(self, V: np.ndarray, clusterer: Clusterer) -> np.ndarray:
+        """Cluster labels from vectors. Default: the run's src/utils Clusterer on the L2-normalized rows."""
+        return clusterer.run(normalize(V))
 
     def update(self, state, inp: RoundInput) -> tuple[BaseModel, dict]:
         """Learn from this round's hints. Returns (new state, what changed, for edits.json)."""
@@ -110,13 +140,12 @@ class Strategy:
 
 
 class Harness:
-    def __init__(self, sel: Selection, strategy: Strategy, cfg: HarnessConfig, out_dir: Path):
-        self.sel, self.strategy, self.cfg, self.out = sel, strategy, cfg, out_dir
+    def __init__(self, sel: Selection, strategy: Strategy, cfg: HarnessConfig, out_dir: Path, clusterer: Clusterer):
+        self.sel, self.strategy, self.cfg, self.out, self.clusterer = sel, strategy, cfg, out_dir, clusterer
         self.items = sel.items
         self.history: list[dict] = []       # -> history.csv
         self.edits: list[dict] = []         # -> edits.json
         self.all_triplets: list = []        # -> triplets.npy
-        self.used_anchors: set = set()      # Jay's feedback never picks the same anchor twice
 
     def metrics(self, E, pred) -> dict:
         s = self.sel
@@ -125,7 +154,7 @@ class Harness:
     def represent(self, state):
         """state -> (V, E = V with unit-length rows, pred)."""
         V = self.strategy.embed(state)
-        return V, normalize(V), self.strategy.cluster(V)
+        return V, normalize(V), self.strategy.cluster(V, self.clusterer)
 
     def run(self):
         cfg, sel, strat = self.cfg, self.sel, self.strategy
@@ -150,13 +179,12 @@ class Harness:
             if float(self.history[-1]["ari"]) >= cfg.goal_ari:
                 stop_reason = "reached goal ARI"
                 break
-            fb = next_feedback(pred, sel.y, sel.rng, self.used_anchors, cfg.triplets_per_round, sel.test_mask)
+            fb = next_feedback(sel.benchmark, pred, cfg.triplets_per_round)
             if fb is None:
                 stop_reason = "no remaining label/cluster disagreement"
                 break
-            anchor, kind, new_triplets = fb
-            self.used_anchors.add(anchor)
-            before = triplet_stats(E, new_triplets)      # share of the new hints satisfied before the update
+            anchor, target_cluster, new_triplets = fb
+            before = satisfied(E, new_triplets)          # share of the new hints satisfied before the update
             try:
                 state, changes = strat.update(state, RoundInput(r, new_triplets, list(self.all_triplets), E, pred,
                                                                 self.history, self.edits))
@@ -166,15 +194,15 @@ class Harness:
                 break
             self.all_triplets.extend(new_triplets)
             self.history.append({"round": r, **self.metrics(E, pred), "triplets_total": len(self.all_triplets),
-                                 "new_triplets_before": before["distance_triplet_satisfaction"],
-                                 "new_triplets_after": triplet_stats(E, new_triplets)["distance_triplet_satisfaction"],
-                                 "all_triplets_satisfied": triplet_stats(E, self.all_triplets)["distance_triplet_satisfaction"],
+                                 "new_triplets_before": before,
+                                 "new_triplets_after": satisfied(E, new_triplets),
+                                 "all_triplets_satisfied": satisfied(E, self.all_triplets),
                                  **strat.log_columns(state)})
             it = self.items[anchor]
             self.edits.append({"round": r, "anchor_index": int(anchor), "anon_id": it.anon_id, "name": it.name,
-                               "target_label": it.label, "feedback_type": kind, "changes": changes})
+                               "target_label": it.label, "target_cluster": target_cluster, "changes": changes})
             self.save(state, V, r, baseline, pred)
-            self.report(self.history[-1], f"{it.name} ({kind}), {strat.summary(state, changes)}")
+            self.report(self.history[-1], f"{it.name} (to cluster {target_cluster}), {strat.summary(state, changes)}")
         print(f"Stopped: {stop_reason}")
         (self.out / "stop_reason.txt").write_text(stop_reason, encoding="utf-8")
 
@@ -193,12 +221,11 @@ class Harness:
              "is_test": bool(self.sel.test_mask[it.idx]), "cluster_before": int(baseline[it.idx]),
              "cluster_after": int(pred[it.idx])} for it in self.items])
         (self.out / "edits.json").write_text(json.dumps(self.edits, indent=2, default=str), encoding="utf-8")
-        # the feedback rng and used anchors: all --resume needs to continue the feedback exactly
-        (self.out / "feedback_state.json").write_text(json.dumps(
-            {"rng": self.sel.rng.bit_generator.state, "used_anchors": sorted(int(a) for a in self.used_anchors)}),
-            encoding="utf-8")
+        # the feedback rng (benchmark.rng): all --resume needs to continue the feedback exactly
+        (self.out / "feedback_state.json").write_text(json.dumps({"rng": self.sel.benchmark.rng.getstate()}),
+                                                      encoding="utf-8")
         if len(self.history) > 1:
-            load_jay_module().plot_history(self.out / "scores.png", self.history)
+            plot_history(self.out / "scores.png", self.history)
 
     def restore(self):
         """--resume: load the end of the last saved round from the output folder."""
@@ -208,9 +235,8 @@ class Harness:
             self.history = [{k: _parse_cell(v) for k, v in row.items()} for row in csv.DictReader(f)]
         self.edits = json.loads((self.out / "edits.json").read_text(encoding="utf-8"))
         self.all_triplets = [tuple(t) for t in np.load(self.out / "triplets.npy").tolist()]
-        fb = json.loads((self.out / "feedback_state.json").read_text(encoding="utf-8"))
-        self.sel.rng.bit_generator.state = fb["rng"]
-        self.used_anchors = set(fb["used_anchors"])
+        version, internal, gauss = json.loads((self.out / "feedback_state.json").read_text(encoding="utf-8"))["rng"]
+        self.sel.benchmark.rng.setstate((version, tuple(internal), gauss))     # JSON turned the tuples into lists
         with (self.out / "assignments.csv").open(encoding="utf-8") as f:
             rows = list(csv.DictReader(f))
         baseline = np.array([int(r["cluster_before"]) for r in rows])

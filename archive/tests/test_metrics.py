@@ -82,6 +82,7 @@ class TestSamplerTestItems(unittest.TestCase):
         s = Benchmark.__new__(Benchmark)            # skip load_data (needs LanceDB)
         s.true_labels = np.array(["red", "blue", "green", "pink"] * 25, dtype=object)
         s.embeddings = np.zeros((100, 4), dtype=np.float32)
+        s.rng = random.Random(0)                    # normally created in __init__
         s.set_test_items(test_fraction, seed=0)
         return s
 
