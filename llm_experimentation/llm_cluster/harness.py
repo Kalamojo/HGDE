@@ -16,8 +16,8 @@ How this maps onto Kolade's src/utils framework (ClusterState.recluster_round):
 
     src/utils                                  here
     -----------------------------------------  -----------------------------------------------
-    DataSampler (items, labels, test_mask)     data.Selection (Jay's selection, exactly)
-    sampler.sample_triplets(pred)              data.next_feedback (Jay's select_feedback)
+    Benchmark (items, labels, test_mask)       data.Selection (Jay's selection, exactly)
+    benchmark.sample_triplets(pred)            data.next_feedback (Jay's select_feedback)
     Clusterer.run(embeddings)                  Strategy.cluster(V)
     ClusterEval.update + train_model           Strategy.update(state, RoundInput)
     model(original_embeddings)                 Strategy.embed(state)
@@ -37,8 +37,8 @@ from sklearn.preprocessing import normalize
 
 from .data import Selection, load_jay_module, next_feedback
 
-from clustering import cluster_embeddings  # noqa: E402  (repo root is on sys.path via .data)
-from scripts.triplet_learning_testing import triplet_stats, write_csv  # noqa: E402
+from archive.clustering import cluster_embeddings  # noqa: E402  (repo root is on sys.path via .data)
+from archive.scripts.triplet_learning_testing import triplet_stats, write_csv  # noqa: E402
 from src.utils.metrics import all_metrics  # noqa: E402
 
 

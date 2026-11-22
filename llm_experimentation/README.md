@@ -31,7 +31,7 @@ llm_cluster/             read in this order:
   open_strategy.py
   direct_strategy.py
 tests/                   offline tests (see tests/README.md)
-results/                 one folder per run; results/archive/ is ignored by compare_results.py
+(run output goes to the repo-level results/llm_experimentation/, one folder per run; its archive/ is ignored by compare_results.py)
 ```
 
 ## The harness (`llm_cluster/harness.py`)
@@ -46,7 +46,7 @@ Every method runs the same loop. A method is a `Strategy` with:
 | `update(state, RoundInput)` | learn from this round's hints; returns the new state + what changed |
 | `log_columns`, `summary`, `restore` | extra `history.csv` columns, a console line, counters on `--resume` |
 
-1. **Items.** `data.select_items` repeats Jay's `tests/triplet_by_column.py` selection exactly: color,
+1. **Items.** `data.select_items` repeats Jay's `archive/tests/triplet_by_column.py` selection exactly: color,
    top 3 labels, all 439 items, the same 20% held-out test set (88 items) and AUC pairs, and Jay's rng
    in the same state. Each item gets an anonymous id from a seeded permutation (dex order would leak
    evolution families), and every Pokémon name is redacted from the descriptions.
@@ -69,7 +69,7 @@ The harness has the same shape as Kolade's `src/utils` framework (`ClusterState.
 
 | `src/utils` | here |
 |---|---|
-| `DataSampler` (items, labels, `test_mask`) | `data.Selection` |
+| `Benchmark` (items, labels, `test_mask`) | `data.Selection` |
 | `sampler.sample_triplets(pred)` | `data.next_feedback` (Jay's `select_feedback`) |
 | `Clusterer.run(embeddings)` | `Strategy.cluster(V)` |
 | `ClusterEval.update` + `train_model` | `Strategy.update(state, RoundInput)` |
@@ -78,7 +78,7 @@ The harness has the same shape as Kolade's `src/utils` framework (`ClusterState.
 
 A projection model fits as a `Strategy` (`start` = init the net, `embed` = `net(X)`, `update` = train
 on the triplets). Two things differ and must be settled when merging: the feedback (Jay's
-`select_feedback` vs `DataSampler.sample_triplets`) and the test split (Jay's vs `set_test_items`).
+`select_feedback` vs `Benchmark.sample_triplets`) and the test split (Jay's vs `set_test_items`).
 
 ### What the LLM strategies share (`LLMStrategy` in `llm.py`)
 

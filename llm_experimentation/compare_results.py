@@ -4,8 +4,8 @@
     python llm_experimentation/compare_results.py --config color_3c_60  # the 60-item smoke runs
     python llm_experimentation/compare_results.py --list                # show every run found
 
-Runs are found by their run_config.json anywhere under llm_experimentation/results/ (except
-results/archive/). --config picks the dataset, named <column>_<N>c_<all|sample size> like
+Runs are found by their run_config.json anywhere under results/llm_experimentation/ (except
+results/llm_experimentation/archive/). --config picks the dataset, named <column>_<N>c_<all|sample size> like
 results/triplet_by_column/; Jay's run of that name, if it exists, is drawn as the reference.
 Colour = model, line style = input arm, marker = strategy.
 """
@@ -19,6 +19,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO_ROOT = HERE.parent
+RESULTS = REPO_ROOT / "results" / "llm_experimentation"   # every LLM run folder lives here
 
 MODEL_COLORS = {"sonnet": "#2a78d6", "terra": "#eb6834", "opus": "#1baf7a", "fake": "#6250d6"}
 ARM_STYLES = {"image": "-", "image+text": "--", "text": ":"}
@@ -45,7 +46,7 @@ def dataset_name(cfg: dict) -> str:
 def find_runs() -> list[dict]:
     """Every results folder with run_config.json + history.csv."""
     runs = []
-    for cfg_path in sorted((HERE / "results").rglob("run_config.json")):
+    for cfg_path in sorted(RESULTS.rglob("run_config.json")):
         d = cfg_path.parent
         if not (d / "history.csv").exists() or "archive" in d.parts:
             continue
@@ -96,7 +97,7 @@ def main(argv=None):
     fig.legend(handles, labels, loc="lower center", ncol=2, frameon=False, fontsize=8)
     fig.suptitle(f"LLM baselines vs. triplet model: {args.config}")
     fig.tight_layout(rect=(0, 0.05 + 0.03 * (len(labels) // 2), 1, 0.95))
-    out_png = HERE / "results" / f"comparison_{args.config}.png"
+    out_png = RESULTS / f"comparison_{args.config}.png"
     fig.savefig(out_png, dpi=150)
 
     summary = []
@@ -106,7 +107,7 @@ def main(argv=None):
                         "test_ari_start": test[0], "test_ari_final": test[-1], "test_ari_best": max(test),
                         "usd_total": rows[-1].get("usd_total", "")})
         print(f"{label:<60} ARI {ari[0]:.3f} -> {ari[-1]:.3f} | test ARI {test[0]:.3f} -> {test[-1]:.3f}")
-    out_csv = HERE / "results" / f"summary_{args.config}.csv"
+    out_csv = RESULTS / f"summary_{args.config}.csv"
     with out_csv.open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=list(summary[0]))
         w.writeheader()

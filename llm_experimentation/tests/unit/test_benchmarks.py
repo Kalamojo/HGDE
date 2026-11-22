@@ -5,11 +5,11 @@ import random
 import numpy as np
 
 import helpers  # noqa: F401
-from src.utils.data.benchmarks import DataSampler
+from src.utils.data.benchmarks import Benchmark
 
 
 def make_sampler(test_fraction):
-    s = DataSampler.__new__(DataSampler)             # skip __init__ (it needs LanceDB)
+    s = Benchmark.__new__(Benchmark)             # skip __init__ (it needs LanceDB)
     s.true_labels = np.array(["red", "blue", "green", "pink"] * 25, dtype=object)
     s.set_test_items(test_fraction, seed=0)
     return s

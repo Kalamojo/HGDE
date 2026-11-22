@@ -88,7 +88,7 @@ def main(argv=None):
     dataset = f"{args.top_labels}c" if args.top_labels else "allc"
     dataset += f"_{args.sample_size}" if args.sample_size else "_all"
     suffix = "" if args.strategy == "schema" else f"_{args.strategy}"
-    out = args.output_dir or HERE / "results" / f"{args.column}_{dataset}_{args.inputs.replace('+', '_')}_{args.model}{suffix}"
+    out = args.output_dir or repo_root / "results" / "llm_experimentation" / f"{args.column}_{dataset}_{args.inputs.replace('+', '_')}_{args.model}{suffix}"
     if args.resume:
         check_resumable(out, args)
     elif out.exists() and any(out.iterdir()) and not args.overwrite:

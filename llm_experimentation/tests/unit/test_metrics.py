@@ -20,7 +20,7 @@ def test_contingency_by_hand():
 def test_pairwise_precision_recall_worked_example():
     # clusters {0,1,2} {3,4,5}; classes {0,1,2,3} {4,5}
     # same-cluster pairs: 6, of which same-class: 4; same-class pairs: 6 + 1 = 7
-    p, r = pairwise_precision_recall(np.array([0, 0, 0, 1, 1, 1]), np.array([0, 0, 0, 0, 1, 1]))
+    p, r, _ = pairwise_precision_recall(np.array([0, 0, 0, 1, 1, 1]), np.array([0, 0, 0, 0, 1, 1]))
     assert p == pytest.approx(4 / 6) and r == pytest.approx(4 / 7)
 
 
@@ -31,7 +31,7 @@ def test_pairwise_precision_recall_equals_listing_every_pair():
     together = [(i, j) for i, j in pairs if pred[i] == pred[j]]
     same = [(i, j) for i, j in pairs if true[i] == true[j]]
     both = [(i, j) for i, j in together if true[i] == true[j]]
-    assert pairwise_precision_recall(pred, true) == pytest.approx((len(both) / len(together), len(both) / len(same)))
+    assert pairwise_precision_recall(pred, true)[:2] == pytest.approx((len(both) / len(together), len(both) / len(same)))
 
 
 def test_sample_pairs():

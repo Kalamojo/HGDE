@@ -1,7 +1,7 @@
 """What is being clustered, and the simulated user who gives feedback.
 
-This plays the role of src/utils/data/benchmarks.py (DataSampler) in Kolade's framework, but the item
-selection and the feedback are Jay's (tests/triplet_by_column.py), reproduced exactly, so every LLM
+This plays the role of src/utils/data/benchmarks.py (Benchmark) in Kolade's framework, but the item
+selection and the feedback are Jay's (archive/tests/triplet_by_column.py), reproduced exactly, so every LLM
 run sees the same items, the same held-out test set and the same kind of hints as Jay's model.
 
 Nothing in this file talks to an LLM.
@@ -21,7 +21,7 @@ from pathlib import Path
 import numpy as np
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-if str(REPO_ROOT) not in sys.path:          # so `src.utils`, `clustering` and `scripts` import from anywhere
+if str(REPO_ROOT) not in sys.path:          # so `src.utils` and `archive` import from anywhere
     sys.path.insert(0, str(REPO_ROOT))
 
 from src.utils.metrics import sample_pairs  # noqa: E402
@@ -31,14 +31,14 @@ METADATA = REPO_ROOT / "data" / "pokemon_data" / "metadata.jsonl"   # every Pok√
 
 
 def load_jay_module():
-    """Import tests/triplet_by_column.py by file path and return it as a module.
+    """Import archive/tests/triplet_by_column.py by file path and return it as a module.
 
     A plain `import tests.triplet_by_column` would be ambiguous (llm_experimentation/tests also
     exists). Teammate code is only imported, never modified. Cached in sys.modules after the first call."""
     name = "_jay_triplet_by_column"
     if name in sys.modules:
         return sys.modules[name]
-    spec = importlib.util.spec_from_file_location(name, REPO_ROOT / "tests" / "triplet_by_column.py")
+    spec = importlib.util.spec_from_file_location(name, REPO_ROOT / "archive" / "tests" / "triplet_by_column.py")
     module = importlib.util.module_from_spec(spec)
     sys.modules[name] = module
     spec.loader.exec_module(module)
@@ -77,7 +77,7 @@ def select_items(column: str = "color", top_labels: int = 3, sample_size: int = 
     jay = load_jay_module()
     db = db or (REPO_ROOT / "data" / "pokemon_db")
 
-    # --- verbatim logic from tests/triplet_by_column.py main() ---
+    # --- verbatim logic from archive/tests/triplet_by_column.py main() ---
     rng = np.random.default_rng(seed)
     X, metadata, y = jay.load_embeddings_and_targets(db, "image", column)   # X unused: only the row order matters
     counts = Counter(y.tolist())

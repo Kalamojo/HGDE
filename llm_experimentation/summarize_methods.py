@@ -1,6 +1,6 @@
 """What did the LLM decide to do? Round-by-round summary of an open or direct run.
 
-    python llm_experimentation/summarize_methods.py llm_experimentation/results/<run folder>
+    python llm_experimentation/summarize_methods.py results/llm_experimentation/<run folder>
     python llm_experimentation/summarize_methods.py <run folder> --full     # full state JSON every round
 
 Per round: the anchor, each tested draft's share of hints satisfied (all / this round), what was
