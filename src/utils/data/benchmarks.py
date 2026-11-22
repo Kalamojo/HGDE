@@ -7,15 +7,16 @@ from pathlib import Path
 from collections import defaultdict
 
 
-class DataSampler:
-    def __init__(self, db_path: Path, table_name: str, vector_col: str, label_col: str,
-                 test_fraction: float = 0.0, seed: int = 0):
+class Benchmark:
+    def __init__(self, db_path: Path, table_name: str, vector_col: str | list[str], label_col: str,
+                 test_fraction: float = 0.0, categories: list[str] = None, seed: int = 0):
         self.db_path = db_path
         self.table_name = table_name
         self.vector_col = vector_col
         self.label_col = label_col
         self.id_col = "index"
-        self.embeddings, self.true_labels, self.ids = self.load_data()
+        self.seed = seed
+        self.embeddings, self.true_labels, self.ids, self.unique_labels = self.load_data(categories)
         self.set_test_items(test_fraction, seed)
 
     def set_test_items(self, test_fraction: float = 0.0, seed: int = 0):
@@ -28,7 +29,7 @@ class DataSampler:
             self.test_mask[np.random.default_rng(seed).choice(n, n_test, replace=False)] = True
         self.test_items = set(np.flatnonzero(self.test_mask).tolist())
 
-    def load_data(self) -> tuple[NDArray[np.float32], NDArray[np.object_], NDArray[np.uint32]]:
+    def load_data(self, categories: list[str] = None) -> tuple[NDArray[np.float32], NDArray[np.object_], NDArray[np.uint32], NDArray[np.object_]]:
         if not self.db_path.exists():
             raise ValueError(f"LanceDB database not found at {self.db_path}")
         
@@ -43,7 +44,8 @@ class DataSampler:
         table = db.open_table(self.table_name)
         df = table.search().to_polars().with_row_index()
 
-        required_columns = {self.vector_col, self.label_col, self.id_col}
+        vector_columns = self.vector_col if isinstance(self.vector_col, list) else [self.vector_col]
+        required_columns = set(vector_columns) | {self.label_col, self.id_col}
         missing = required_columns - set(df.columns)
         if missing:
             raise ValueError(
@@ -51,11 +53,36 @@ class DataSampler:
                 f"Available: {list(df.columns)}"
             )
 
-        embeddings = df[self.vector_col].to_numpy()
+        if isinstance(self.vector_col, list):
+            column_embeddings = []
+            for column in self.vector_col:
+                values = np.asarray(df[column].to_list())
+                if values.ndim == 1:
+                    values = values.reshape(-1, 1)
+                column_embeddings.append(values)
+
+            rng = np.random.default_rng(self.seed)
+            selected_columns = rng.integers(0, len(column_embeddings), size=len(df))
+            embeddings = np.asarray([
+                column_embeddings[column_index][row_index]
+                for row_index, column_index in enumerate(selected_columns)
+            ], dtype=np.float32)
+        else:
+            embeddings = df[self.vector_col].to_numpy()
         labels = df[self.label_col].to_numpy()
         ids = df[self.id_col].to_numpy()
 
-        return embeddings, labels, ids
+        if categories is not None:
+            idx = []
+            for i in range(len(labels)):
+                if labels[i] in categories:
+                    idx.append(i)
+            embeddings = embeddings[idx] 
+            labels = labels[idx]
+            ids = ids[idx]
+
+        unique_labels = np.unique(labels)
+        return embeddings, labels, ids, unique_labels
 
     def sample_pair(self, pred_labels: NDArray[np.int_]) -> tuple[int, int, bool]:
         must_links = self.fetch_must_links(pred_labels)
@@ -136,11 +163,12 @@ class DataSampler:
 
         return clusters
 
-class PokemonBenchmark(DataSampler):
-    def __init__(self, db_path: Path, vector_col: str, label_col: str, test_fraction: float = 0.0, seed: int = 0):
+class PokemonBenchmark(Benchmark):
+    def __init__(self, db_path: Path, vector_col: str|list[str], label_col: str, test_fraction: float = 0.0, categories: list[str] = None, seed: int = 0):
         table_name = "pokemon"
-        super().__init__(db_path, table_name, vector_col, label_col, test_fraction, seed)
+        super().__init__(db_path, table_name, vector_col, label_col, test_fraction, categories,  seed)
 
-class PokemonRedBlueBenchmark(PokemonBenchmark):
-    def __init__(self, db_path: Path, vector_col: str, label_col: str, test_fraction: float = 0.0, seed: int = 0):
-        super().__init__(db_path, vector_col, label_col, test_fraction, seed)
+class CelebaBenchmark(Benchmark):
+    def __init__(self, db_path: Path, vector_col: str, label_col: str, test_fraction: float = 0.0, categories: list[str] = None, seed: int = 0):
+        table_name = "celeba"
+        super().__init__(db_path, table_name, vector_col, label_col, test_fraction, categories,  seed)

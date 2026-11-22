@@ -1,7 +1,7 @@
 import numpy as np
 from numpy.typing import NDArray
 from sklearn.base import ClusterMixin
-from sklearn.cluster import HDBSCAN
+from sklearn.cluster import HDBSCAN, KMeans
 
 
 class Clusterer:
@@ -13,6 +13,11 @@ class Clusterer:
         return np.array(labels)
 
 class HDBSCANClusterer(Clusterer):
-    def __init__(self, min_clusters: int = 2):
-        method = HDBSCAN(min_cluster_size=min_clusters)
+    def __init__(self, min_clusters_size: int = 2):
+        method = HDBSCAN(min_cluster_size=min_clusters_size)
+        super().__init__(method)
+
+class KMeansClusterer(Clusterer):
+    def __init__(self, n_clusters: int):
+        method = KMeans(n_clusters=n_clusters)
         super().__init__(method)

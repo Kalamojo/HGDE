@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+repo_root = HERE.parent
 sys.path.insert(0, str(HERE))
 
 from llm_cluster import STRATEGIES  # noqa: E402

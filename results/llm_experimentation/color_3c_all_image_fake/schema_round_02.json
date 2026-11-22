@@ -1,0 +1,90 @@
+{
+  "features": [
+    {
+      "id": "feat_0",
+      "definition": "random feature 0",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "feat_1",
+      "definition": "random feature 1",
+      "kind": "scale",
+      "weight": 1.21
+    },
+    {
+      "id": "feat_2",
+      "definition": "random feature 2",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "feat_3",
+      "definition": "random feature 3",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "feat_4",
+      "definition": "random feature 4",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "feat_5",
+      "definition": "random feature 5",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "feat_6",
+      "definition": "random feature 6",
+      "kind": "scale",
+      "weight": 1.01
+    },
+    {
+      "id": "feat_7",
+      "definition": "random feature 7",
+      "kind": "scale",
+      "weight": 0.63
+    },
+    {
+      "id": "feat_8",
+      "definition": "random feature 8",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "feat_9",
+      "definition": "random feature 9",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "feat_10",
+      "definition": "random feature 10",
+      "kind": "scale",
+      "weight": 0.44
+    },
+    {
+      "id": "feat_11",
+      "definition": "random feature 11",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "new_1",
+      "definition": "new random feature 1",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "new_2",
+      "definition": "new random feature 2",
+      "kind": "scale",
+      "weight": 1.0
+    }
+  ],
+  "notes": "fake revision 2",
+  "criterion": ""
+}

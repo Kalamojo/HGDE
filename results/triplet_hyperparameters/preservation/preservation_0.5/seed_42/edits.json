@@ -1,0 +1,82 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 60,
+    "name": "Obstagoon",
+    "target_label": "gray",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 2,
+    "anchor_index": 1,
+    "name": "Heatran",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 3,
+    "anchor_index": 184,
+    "name": "Bouffalant",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 4,
+    "anchor_index": 63,
+    "name": "Charjabug",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 5,
+    "anchor_index": 55,
+    "name": "Virizion",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 6,
+    "anchor_index": 159,
+    "name": "Shaymin",
+    "target_label": "green",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 7,
+    "anchor_index": 2,
+    "name": "Happiny",
+    "target_label": "pink",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 8,
+    "anchor_index": 59,
+    "name": "Rampardos",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 9,
+    "anchor_index": 125,
+    "name": "Plusle",
+    "target_label": "yellow",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  },
+  {
+    "round": 10,
+    "anchor_index": 115,
+    "name": "Glimmet",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "triplets_added": 32
+  }
+]
