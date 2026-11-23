@@ -27,27 +27,27 @@ import argparse
         python3 experiments/run_benchmarks.py --model contrastive --eval contrastive --lr 0.0001 --save_file results/benchmark_results/contrastive_run.json --rounds 20
 '''
 
-def make_string(metrics, best_metrics, best_iteration, args, description='"none"'):
-    the_string = '{"test": ' + json.dumps(vars(args)) + ',\n"description": ' + description + ',\n"final_metrics": ' + json.dumps(metrics) + ',\n"best_metrics": ' + json.dumps(best_metrics) + ',\n"best_iteration": ' + json.dumps(best_iteration) + '}\n'
+def make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"none"'):
+    the_string = '{"test": ' + json.dumps(vars(args)) + ',\n"description": ' + description + ',\n"final_metrics": ' + json.dumps(metrics) + ',\n"best_metrics": ' + json.dumps(best_metrics) + ',\n"best_iteration": ' + json.dumps(best_iteration) + ',\n"test_pairwise_f1": ' + f"{test_pairwise_f1}" + ',\n"pairwise_f1": ' + f"{pairwise_f1}" + ',\n"test_ari": ' + f"{test_ari}" + ',\n"ari": ' + f"{ari}" + ',\n"loss": ' + f"{loss}" + '}\n'
     return the_string
     
 def pokemon_color_benchmark(eval, adapter, rounds, colors, vector):
     db_path = repo_root / "data" / "pokemon_db"
     benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,'color',0.20,categories=colors,),eval,adapter)
-    metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
-    return metrics, best_metrics, best_iteration
+    metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = benchmark.full_recluster(rounds)
+    return metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss
 
 def pokemon_benchmark(eval, adapter, rounds, labels, vector):
     db_path = repo_root / "data" / "pokemon_db"
     benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,labels,0.20,),eval,adapter)
-    metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
-    return metrics, best_metrics, best_iteration
+    metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = benchmark.full_recluster(rounds)
+    return metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss
 
 def celeba_benchmark(eval, adapter, rounds, label):
     db_path = repo_root / "data" / "celeba_db"
     benchmark = states.ClusterState(benchmarks.CelebaBenchmark(db_path,'vector',label,0.20,),eval,adapter)
-    metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
-    return metrics, best_metrics, best_iteration
+    metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = benchmark.full_recluster(rounds)
+    return metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss
 
 def main(eval, adapter, rounds, save_file, args):
     save_file = Path(save_file)
@@ -56,37 +56,37 @@ def main(eval, adapter, rounds, save_file, args):
 
     the_string = '{ '
     # to add a benchmark, copy the next two lines and replace benchmark1 with your benchmark
-    metrics, best_metrics, best_iteration = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue'], 'image_vector')
-    the_string += '"benchmark1": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs image vector clustering by red and blue"') + ',\n'
-    metrics, best_metrics, best_iteration = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue'], 'text_vector')
-    the_string += '"benchmark2": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs text vector clustering by red and blue"') + ',\n'
-    metrics, best_metrics, best_iteration = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue'], ['image_vector','text_vector'])
-    the_string += '"benchmark3": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs image and text vector clustering by red and blue"') + ',\n'
-    metrics, best_metrics, best_iteration = pokemon_benchmark(eval, adapter, rounds, 'primary_type', 'image_vector')
-    the_string += '"benchmark4": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs image vector clustering by primary type"') + ',\n'
-    metrics, best_metrics, best_iteration = pokemon_benchmark(eval, adapter, rounds, 'is_baby', 'image_vector')
-    the_string += '"benchmark5": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs image vector clustering by baby pokemon"') + ',\n'
+    metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue'], 'image_vector')
+    the_string += '"benchmark1": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs image vector clustering by red and blue"') + ',\n'
+    metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue'], 'text_vector')
+    the_string += '"benchmark2": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs text vector clustering by red and blue"') + ',\n'
+    metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue'], ['image_vector','text_vector'])
+    the_string += '"benchmark3": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs image and text vector clustering by red and blue"') + ',\n'
+    metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_benchmark(eval, adapter, rounds, 'primary_type', 'image_vector')
+    the_string += '"benchmark4": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs image vector clustering by primary type"') + ',\n'
+    metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_benchmark(eval, adapter, rounds, 'is_baby', 'image_vector')
+    the_string += '"benchmark5": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs image vector clustering by baby pokemon"') + ',\n'
     if not args.simple: # the following are not run when using the simple benchmarks for time
-        metrics, best_metrics, best_iteration = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue','green','brown'], 'image_vector')
-        the_string += '"benchmark6": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs image vector clustering by red, blue, green, and brown pokemon"') + ',\n'
-        metrics, best_metrics, best_iteration = pokemon_color_benchmark(eval, adapter, rounds, None, 'image_vector')
-        the_string += '"benchmark7": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs image vector clustering by all colors"') + ',\n'
-        metrics, best_metrics, best_iteration = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue','green','brown'], 'text_vector')
-        the_string += '"benchmark8": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs text vector clustering by red, blue, green, and brown pokemon"') + ',\n'
-        metrics, best_metrics, best_iteration = pokemon_color_benchmark(eval, adapter, rounds, None, 'text_vector')
-        the_string += '"benchmark9": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs text vector and clusters by all colors"') + ',\n'
-        metrics, best_metrics, best_iteration = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue','green','brown'], ['image_vector','text_vector'])
-        the_string += '"benchmark10": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs image and text vector clustering by red, blue, green, and brown pokemon"') + ',\n'
-        metrics, best_metrics, best_iteration = pokemon_color_benchmark(eval, adapter, rounds, None, ['image_vector','text_vector'])
-        the_string += '"benchmark11": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs image and text vector and clusters by all colors"') + ',\n'
-        metrics, best_metrics, best_iteration = pokemon_benchmark(eval, adapter, rounds, 'primary_type', 'text_vector')
-        the_string += '"benchmark12": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs text vector clustering by primary type"') + ',\n'
-        metrics, best_metrics, best_iteration = pokemon_benchmark(eval, adapter, rounds, 'primary_type', ['image_vector','text_vector'])
-        the_string += '"benchmark13": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs image and text vector clustering by primary type"') + ',\n'
-        metrics, best_metrics, best_iteration = pokemon_benchmark(eval, adapter, rounds, 'is_baby', 'text_vector')
-        the_string += '"benchmark14": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs text vector clustering by baby pokemon"') + ',\n'
-        metrics, best_metrics, best_iteration = pokemon_benchmark(eval, adapter, rounds, 'is_baby', ['image_vector','text_vector'])
-        the_string += '"benchmark15": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs image and text vector clustering by baby pokemon"') + ',\n'
+        metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue','green','brown'], 'image_vector')
+        the_string += '"benchmark6": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs image vector clustering by red, blue, green, and brown pokemon"') + ',\n'
+        metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_color_benchmark(eval, adapter, rounds, None, 'image_vector')
+        the_string += '"benchmark7": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs image vector clustering by all colors"') + ',\n'
+        metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue','green','brown'], 'text_vector')
+        the_string += '"benchmark8": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs text vector clustering by red, blue, green, and brown pokemon"') + ',\n'
+        metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_color_benchmark(eval, adapter, rounds, None, 'text_vector')
+        the_string += '"benchmark9": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs text vector and clusters by all colors"') + ',\n'
+        metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue','green','brown'], ['image_vector','text_vector'])
+        the_string += '"benchmark10": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs image and text vector clustering by red, blue, green, and brown pokemon"') + ',\n'
+        metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_color_benchmark(eval, adapter, rounds, None, ['image_vector','text_vector'])
+        the_string += '"benchmark11": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs image and text vector and clusters by all colors"') + ',\n'
+        metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_benchmark(eval, adapter, rounds, 'primary_type', 'text_vector')
+        the_string += '"benchmark12": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs text vector clustering by primary type"') + ',\n'
+        metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_benchmark(eval, adapter, rounds, 'primary_type', ['image_vector','text_vector'])
+        the_string += '"benchmark13": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs image and text vector clustering by primary type"') + ',\n'
+        metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_benchmark(eval, adapter, rounds, 'is_baby', 'text_vector')
+        the_string += '"benchmark14": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs text vector clustering by baby pokemon"') + ',\n'
+        metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss = pokemon_benchmark(eval, adapter, rounds, 'is_baby', ['image_vector','text_vector'])
+        the_string += '"benchmark15": ' + make_string(metrics, best_metrics, best_iteration, args, test_pairwise_f1, pairwise_f1, test_ari, ari, loss, description='"runs image and text vector clustering by baby pokemon"') + ',\n'
         #metrics, best_metrics, best_iteration = celeba_benchmark(eval, adapter, rounds, 'Chubby')
         #the_string += '"benchmark16": ' + make_string(metrics, best_metrics, best_iteration, args, description='"runs celeba dataset and clusters by chubby"') + ',\n'
         #metrics, best_metrics, best_iteration = celeba_benchmark(eval, adapter, rounds, 'Black_Hair')

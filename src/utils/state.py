@@ -30,6 +30,11 @@ class ClusterState:
         best_iteration = {'test_pairwise_f1': -1,
                         'pair_f1': -1,
                         'round': 1}
+        test_pairwise_f1 = []
+        pairwise_f1 = []
+        test_ari = []
+        ari = []
+        loss = []
 
         for round in tqdm(range(rounds)):
             metrics = self.recluster_round()
@@ -43,7 +48,12 @@ class ClusterState:
                     best_metrics = metrics
                 if metrics['pair_f1']**metrics['round'] > best_iteration['pair_f1']**best_iteration['round']:
                     best_iteration = metrics
-        return metrics, best_metrics, best_iteration
+            test_pairwise_f1.append(metrics['test_pairwise_f1'])
+            pairwise_f1.append(metrics['pair_f1'])
+            test_ari.append(metrics['test_ari'])
+            ari.append(metrics['ari'])
+            loss.append(metrics['loss'])
+        return metrics, best_metrics, best_iteration, test_pairwise_f1, pairwise_f1, test_ari, ari, loss
 
     def recluster_round(self) -> dict:
         # collect suggestion and prepare eval data
