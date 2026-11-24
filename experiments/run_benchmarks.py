@@ -103,55 +103,55 @@ def main(rounds, save_file, args, verbose):
 
     the_string = '{ '
     # to add a benchmark, copy the next two lines and replace benchmark1 with your benchmark
-    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue'], 'image_vector', verbose)
+    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue'], 'image_vector', args, verbose)
     the_string += '"benchmark1": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image vector clustering by red and blue"') + ',\n'
     save(save_file, the_string)
-    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue'], 'text_vector', verbose)
+    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue'], 'text_vector', args, verbose)
     the_string += '"benchmark2": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs text vector clustering by red and blue"') + ',\n'
     save(save_file, the_string)
-    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue'], ['image_vector','text_vector'], verbose)
+    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue'], ['image_vector','text_vector'], args, verbose)
     the_string += '"benchmark3": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image and text vector clustering by red and blue"') + ',\n'
     save(save_file, the_string)
-    metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'primary_type', 'image_vector', verbose)
+    metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'primary_type', 'image_vector', args, verbose)
     the_string += '"benchmark4": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image vector clustering by primary type"') + ',\n'
     save(save_file, the_string)
-    metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'is_baby', 'image_vector', v)
+    metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'is_baby', 'image_vector', args, verbose)
     the_string += '"benchmark5": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image vector clustering by baby pokemon"') + ',\n'
     save(save_file, the_string)
     if not args.simple: # the following are not run when using the simple benchmarks for time
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue','green','brown'], 'image_vector', verbose)
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue','green','brown'], 'image_vector', args, verbose)
         the_string += '"benchmark6": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image vector clustering by red, blue, green, and brown pokemon"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, None, 'image_vector', verbose)
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, None, 'image_vector', args, verbose)
         the_string += '"benchmark7": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image vector clustering by all colors"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue','green','brown'], 'text_vector', verbose)
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue','green','brown'], 'text_vector', args, verbose)
         the_string += '"benchmark8": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs text vector clustering by red, blue, green, and brown pokemon"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, None, 'text_vector', verbose)
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, None, 'text_vector', args, verbose)
         the_string += '"benchmark9": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs text vector and clusters by all colors"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark( rounds, ['red','blue','green','brown'], ['image_vector','text_vector'], verbose)
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark( rounds, ['red','blue','green','brown'], ['image_vector','text_vector'], args, verbose)
         the_string += '"benchmark10": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image and text vector clustering by red, blue, green, and brown pokemon"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, None, ['image_vector','text_vector'], verbose)
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, None, ['image_vector','text_vector'], args, verbose)
         the_string += '"benchmark11": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image and text vector and clusters by all colors"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'primary_type', 'text_vector', verbose)
+        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'primary_type', 'text_vector', args, verbose)
         the_string += '"benchmark12": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs text vector clustering by primary type"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'primary_type', ['image_vector','text_vector'], verbose)
+        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'primary_type', ['image_vector','text_vector'], args, verbose)
         the_string += '"benchmark13": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image and text vector clustering by primary type"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'is_baby', 'text_vector', verbose)
+        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'is_baby', 'text_vector', args, verbose)
         the_string += '"benchmark14": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs text vector clustering by baby pokemon"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'is_baby', ['image_vector','text_vector'], verbose)
+        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'is_baby', ['image_vector','text_vector'], args, verbose)
         the_string += '"benchmark15": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image and text vector clustering by baby pokemon"') + ',\n'
         save(save_file, the_string)
-        #metrics, best_metrics, best_iteration, history = celeba_benchmark(rounds, 'Chubby', verbose)
+        #metrics, best_metrics, best_iteration, history = celeba_benchmark(rounds, 'Chubby', args, verbose)
         #the_string += '"benchmark16": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs celeba dataset and clusters by chubby"') + ',\n'
-        #metrics, best_metrics, best_iteration, history = celeba_benchmark(rounds, 'Black_Hair', verbose)
+        #metrics, best_metrics, best_iteration, history = celeba_benchmark(rounds, 'Black_Hair', args, verbose)
         #the_string += '"benchmark17": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs celeba dataset and clusters by black hair"') + ',\n'
 
 if __name__ == "__main__":
