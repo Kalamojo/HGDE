@@ -1,6 +1,7 @@
 import numpy as np
 from numpy.typing import NDArray
 import lancedb
+import polars as pl
 import random
 import itertools
 from pathlib import Path
@@ -16,7 +17,8 @@ class Benchmark:
         self.label_col = label_col
         self.id_col = "index"
         self.seed = seed
-        self.embeddings, self.true_labels, self.ids, self.unique_labels = self.load_data(categories)
+        self.rng = random.Random(seed)      # all feedback sampling draws from this, so runs are reproducible
+        self.embeddings, self.true_labels, self.ids, self.unique_labels, self.metadata = self.load_data(categories)
         self.set_test_items(test_fraction, seed)
 
     def set_test_items(self, test_fraction: float = 0.0, seed: int = 0):
@@ -29,7 +31,7 @@ class Benchmark:
             self.test_mask[np.random.default_rng(seed).choice(n, n_test, replace=False)] = True
         self.test_items = set(np.flatnonzero(self.test_mask).tolist())
 
-    def load_data(self, categories: list[str] = None) -> tuple[NDArray[np.float32], NDArray[np.object_], NDArray[np.uint32], NDArray[np.object_]]:
+    def load_data(self, categories: list[str] = None) -> tuple[NDArray[np.float32], NDArray[np.object_], NDArray[np.uint32], NDArray[np.object_], list[dict]]:
         if not self.db_path.exists():
             raise ValueError(f"LanceDB database not found at {self.db_path}")
         
@@ -71,31 +73,40 @@ class Benchmark:
             embeddings = df[self.vector_col].to_numpy()
         labels = df[self.label_col].to_numpy()
         ids = df[self.id_col].to_numpy()
+        # every column except the embedding vectors (e.g. dex_num, name), one dict per row
+        info_columns = [c for c, t in df.schema.items()
+                        if not (isinstance(t, (pl.List, pl.Array)) and t.inner.is_float())]
+        metadata = df.select(info_columns).to_dicts()
 
         if categories is not None:
             idx = []
             for i in range(len(labels)):
                 if labels[i] in categories:
                     idx.append(i)
-            embeddings = embeddings[idx] 
+            embeddings = embeddings[idx]
             labels = labels[idx]
             ids = ids[idx]
+            metadata = [metadata[i] for i in idx]
 
         unique_labels = np.unique(labels)
-        return embeddings, labels, ids, unique_labels
+        return embeddings, labels, ids, unique_labels, metadata
 
-    def sample_pair(self, pred_labels: NDArray[np.int_]) -> tuple[int, int, bool]:
+    def sample_pair(self, pred_labels: NDArray[np.int_]) -> tuple[int, int, bool] | None:
+        """One (i, j, must_link) correction, or None when the clustering has nothing left to fix."""
         must_links = self.fetch_must_links(pred_labels)
         must_not_links = self.fetch_must_not_links(pred_labels)
-        
+
         all_links = must_links + must_not_links
         all_direction_flags = [(True,)] * len(must_links) + [(False,)] * len(must_not_links)
         all_pairs = [link + flag for link, flag in zip(all_links, all_direction_flags)]
+        if not all_pairs:
+            return None
 
-        pair = random.choice(all_pairs)
+        pair = self.rng.choice(all_pairs)
         return pair
 
     def sample_triplets(self, pred_labels: NDArray[np.int_], count: int = 32) -> list[tuple[int, int, int]]:
+        """Up to `count` (anchor, positive, negative) triplets for one item to move; [] when nothing is left to fix."""
         must_links = self.fetch_must_links(pred_labels)
         pred_clusters = self.build_clusters(pred_labels)
 
@@ -116,11 +127,13 @@ class Benchmark:
             for item, positives, negatives in all_moves_dict.values()
             if len(negatives) > 0
         ]
-        chosen_item, positives, negatives = random.choice(all_moves)
+        if not all_moves:
+            return []
+        chosen_item, positives, negatives = self.rng.choice(all_moves)
 
         triplet_options = list(itertools.product([chosen_item], positives, negatives))
         to_choose = min(len(triplet_options), count)
-        triplets = random.sample(triplet_options, to_choose)
+        triplets = self.rng.sample(triplet_options, to_choose)
         return triplets
 
     def fetch_must_links(self, pred_labels: NDArray[np.int_]) -> list[tuple[int, int]]:

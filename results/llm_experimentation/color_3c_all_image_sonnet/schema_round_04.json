@@ -1,0 +1,203 @@
+{
+  "features": [
+    {
+      "id": "is_avian",
+      "definition": "1 if the Pokémon is clearly bird-like (has beak, feathers, wings as primary feature), 0 otherwise",
+      "kind": "binary",
+      "weight": 2.5
+    },
+    {
+      "id": "is_aquatic",
+      "definition": "1 if the Pokémon is clearly fish, dolphin, whale, seahorse, or ocean-creature based, 0 otherwise",
+      "kind": "binary",
+      "weight": 5.0
+    },
+    {
+      "id": "is_insect_bug",
+      "definition": "1 if the Pokémon resembles an insect, arachnid, or arthropod (has exoskeleton, multiple legs/claws, antennae typical of bugs), 0 otherwise",
+      "kind": "binary",
+      "weight": 2.5
+    },
+    {
+      "id": "is_reptile_turtle",
+      "definition": "1 if the Pokémon is based on a reptile, turtle, or dinosaur, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.5
+    },
+    {
+      "id": "is_mammal_quadruped",
+      "definition": "1 if the Pokémon resembles a four-legged furry mammal (dog, cat, bear, etc.), 0 otherwise",
+      "kind": "binary",
+      "weight": 2.0
+    },
+    {
+      "id": "is_humanoid",
+      "definition": "1 if the Pokémon stands upright on two legs with arm-like appendages in a roughly humanoid form, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "is_amorphous",
+      "definition": "1 if the Pokémon has no clear defined body structure (blob, gas, cloud-like), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.5
+    },
+    {
+      "id": "has_shell",
+      "definition": "1 if the Pokémon has a visible hard shell (turtle shell, snail shell, crustacean shell), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_wings",
+      "definition": "1 if the Pokémon has visible wings (feathered, membranous, or insect wings), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "dominant_color_green",
+      "definition": "1 if green is the dominant or one of the two main body colors, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "dominant_color_blue",
+      "definition": "1 if blue is the dominant or one of the two main body colors, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "dominant_color_brown_tan",
+      "definition": "1 if brown or tan is the dominant color, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "dominant_color_dark",
+      "definition": "1 if the Pokémon is primarily dark-colored (black, dark gray, dark purple/navy), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "dominant_color_light",
+      "definition": "1 if the Pokémon is primarily light-colored (white, light gray, pale cream), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "body_size_large",
+      "definition": "Scale from 0 to 1 estimating perceived body bulk/size: 0 = very small and compact, 1 = very large and massive",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "aggression_level",
+      "definition": "Scale from 0 (looks cute, friendly, calm) to 1 (looks fierce, threatening, aggressive based on posture, expression, spikes)",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "has_claws_or_horns",
+      "definition": "1 if the Pokémon has prominent claws, horns, or sharp protrusions as notable features, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "has_tail",
+      "definition": "1 if the Pokémon has a clearly visible tail, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "has_antenna",
+      "definition": "1 if the Pokémon has visible antennae or antenna-like protrusions on the head, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "rocky_or_mineral",
+      "definition": "1 if the Pokémon appears to be made of or heavily incorporates rock, stone, metal, or mineral materials, 0 otherwise",
+      "kind": "binary",
+      "weight": 2.0
+    },
+    {
+      "id": "plant_based",
+      "definition": "1 if the Pokémon incorporates plant features (leaves, flowers, vines, roots), 0 otherwise",
+      "kind": "binary",
+      "weight": 2.5
+    },
+    {
+      "id": "has_multiple_limbs",
+      "definition": "1 if the Pokémon visibly has more than 4 limbs (e.g., 6+ legs like spiders/insects/octopus tentacles), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "tentacle_or_appendage",
+      "definition": "1 if the Pokémon has tentacles, tendrils, or similar flexible appendages, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "glowing_or_sparkle",
+      "definition": "1 if the Pokémon has glowing elements, sparkles, or luminescent features visible, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "cloud_or_smoke",
+      "definition": "1 if the Pokémon incorporates cloud, smoke, or gaseous elements as part of its body, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "is_small_cute",
+      "definition": "Scale from 0 to 1: how small and cute/friendly the Pokémon appears. 1 = very small body with round friendly features (like a small rodent, puppy, or baby Pokémon), 0 = large intimidating or clearly adult/powerful Pokémon",
+      "kind": "scale",
+      "weight": 0.3
+    },
+    {
+      "id": "dominant_color_orange_red_brown",
+      "definition": "1 if orange, reddish-brown, or warm earthy tones dominate the Pokémon's color scheme (not blue, not green, not pure white/black), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.3
+    },
+    {
+      "id": "is_water_type_appearance",
+      "definition": "1 if the Pokémon has a strongly aquatic or water-associated appearance (fins, gills, water-creature body shape, or is clearly a sea/ocean creature), 0 otherwise",
+      "kind": "binary",
+      "weight": 5.0
+    },
+    {
+      "id": "is_ice_type",
+      "definition": "1 if the Pokémon appears to be Ice-type based on its appearance: made of ice crystals, snow, glacial features, or has a clearly icy/frozen body composition. 0 otherwise.",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "is_flying_type",
+      "definition": "1 if the Pokémon is primarily a flying creature (bird, bat, or other airborne creature) where flight is its primary identity, not just having wings. 0 otherwise.",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "is_rock_ground_type",
+      "definition": "1 if the Pokémon appears to be Rock or Ground type: made of rock, stone, earth, or geological materials as its primary body composition. 0 otherwise.",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "is_grass_type",
+      "definition": "1 if the Pokémon incorporates significant plant/grass features (leaves, flowers, vines, seeds, grass) as a primary part of its body or identity, suggesting Grass type. 0 otherwise.",
+      "kind": "binary",
+      "weight": 3.0
+    },
+    {
+      "id": "is_psychic_ghost_type",
+      "definition": "1 if the Pokémon has a mysterious, ethereal, or supernatural appearance suggesting Psychic or Ghost type: floating without visible means, glowing eyes, translucent body, eerie expression, or dream-like features. 0 otherwise.",
+      "kind": "binary",
+      "weight": 2.5
+    }
+  ],
+  "notes": "The user groups Pokémon by their elemental/battle type, not by color. item_085 (Tentacruel - Water type) should cluster with other Water-type Pokémon (item_163=Empoleon, item_371=Gorebyss, item_421=Huntail, item_345=Lumineon, item_320=Omanyte, item_189=Mantine, item_180=Shellos, item_041=?, item_436=ice type?, item_354=rock type). The key insight: Water-type Pokémon cluster together regardless of color. Blue color was a proxy but many non-water blue Pokémon (item_311, item_378) are in different clusters. Need to heavily weight aquatic/water appearance and reduce color weights dramatically."
+}

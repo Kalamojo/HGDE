@@ -1,0 +1,169 @@
+{
+  "features": [
+    {
+      "id": "blue_dominant",
+      "definition": "Dominant body color is blue (0=not blue at all, 1=entirely blue)",
+      "kind": "scale",
+      "weight": 1.5
+    },
+    {
+      "id": "green_dominant",
+      "definition": "Dominant body color is green (0=not green at all, 1=entirely green)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "brown_dominant",
+      "definition": "Dominant body color is brown or tan (0=not brown/tan, 1=entirely brown/tan)",
+      "kind": "scale",
+      "weight": 0.75
+    },
+    {
+      "id": "red_orange_dominant",
+      "definition": "Dominant body color is red or orange (0=none, 1=entirely red/orange)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "has_wings",
+      "definition": "1 if the Pokémon has visible wings or wing-like appendages, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_bipedal",
+      "definition": "1 if the Pokémon stands/moves on two legs (biped), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "is_quadrupedal",
+      "definition": "1 if the Pokémon has four legs and moves on all fours (or mostly so), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.75
+    },
+    {
+      "id": "serpentine_body",
+      "definition": "1 if the Pokémon has a long snake-like or eel-like body without prominent limbs, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "amorphous_blob",
+      "definition": "1 if the Pokémon has a blob, slime, or ghost-like amorphous body, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "plant_features",
+      "definition": "Degree to which the Pokémon incorporates plant elements (leaves, vines, flowers, wood) (0=none, 1=entirely plant-based)",
+      "kind": "scale",
+      "weight": 2.0
+    },
+    {
+      "id": "mechanical_features",
+      "definition": "1 if the Pokémon has metallic, mechanical, or robotic features, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "insect_features",
+      "definition": "1 if the Pokémon resembles an insect or arthropod (multiple legs, exoskeleton, antennae, wings as insect), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "aquatic_features",
+      "definition": "Degree to which the Pokémon appears water/aquatic themed (fins, bubbles, wet texture, flipper-like limbs) (0=none, 1=strongly aquatic)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "dragon_features",
+      "definition": "1 if the Pokémon resembles a dragon or dinosaur (scales, horns, tail, reptilian body), 0 otherwise",
+      "kind": "binary",
+      "weight": 2.5
+    },
+    {
+      "id": "bird_features",
+      "definition": "1 if the Pokémon resembles a bird (beak, feathers, talons), 0 otherwise",
+      "kind": "binary",
+      "weight": 2.0
+    },
+    {
+      "id": "mammal_features",
+      "definition": "1 if the Pokémon resembles a mammal (fur, ears, paws), 0 otherwise",
+      "kind": "binary",
+      "weight": 0.75
+    },
+    {
+      "id": "size_large",
+      "definition": "Perceived body size relative to typical Pokémon (0=very small/tiny, 1=very large/imposing)",
+      "kind": "scale",
+      "weight": 1.5
+    },
+    {
+      "id": "cute_expression",
+      "definition": "Degree to which the Pokémon has a cute, friendly, or happy expression (0=aggressive/scary/sad, 1=very cute/friendly)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "humanoid_shape",
+      "definition": "1 if the Pokémon has a roughly humanoid body plan (upright, two arms, two legs, recognizable torso), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_tail",
+      "definition": "1 if the Pokémon has a visible tail, 0 otherwise",
+      "kind": "binary",
+      "weight": 0.65
+    },
+    {
+      "id": "multiple_entities",
+      "definition": "1 if the image shows more than one distinct creature/form together, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "cloud_smoke_element",
+      "definition": "1 if the Pokémon incorporates cloud, smoke, or gas as part of its body, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "spiky_protrusions",
+      "definition": "Degree to which the Pokémon has spikes, horns, or sharp protrusions on its body (0=none, 1=many prominent spikes)",
+      "kind": "scale",
+      "weight": 1.5
+    },
+    {
+      "id": "dark_coloring",
+      "definition": "Degree to which the Pokémon has dark colors (black, dark blue, dark gray) as dominant or significant (0=none, 1=mostly dark)",
+      "kind": "scale",
+      "weight": 1.5
+    },
+    {
+      "id": "glowing_eyes",
+      "definition": "1 if the Pokémon has notably large, prominent, or glowing eyes as a key feature, 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "normal_type_appearance",
+      "definition": "Degree to which the Pokémon looks like a plain, everyday animal or creature without exotic elemental features (no obvious fire/water/electric/dragon theming) - 0=strongly elemental/exotic, 1=plain natural animal",
+      "kind": "scale",
+      "weight": 1.5
+    },
+    {
+      "id": "electric_theme",
+      "definition": "1 if the Pokémon has visible electric/lightning features (yellow stars, lightning bolt markings, sparks, electric patterns), 0 otherwise",
+      "kind": "binary",
+      "weight": 1.0
+    }
+  ],
+  "notes": "The grouping appears to be by Pokémon elemental type or type family. item_033 (Normal-type ferret), item_046 (Normal/Flying bird), item_019 (Grass-type), item_051 (Grass-type tree) form one group - normal/grass types. item_018 and item_034 are Dragon-types, item_054 is Electric-type. Need to boost dragon_features weight to separate dragons, boost plant_features, reduce mammal_features and quadrupedal overlap. Also need features to distinguish electric/dark types. The key seems to be: non-dragon, non-electric/dark types vs dragon types vs electric/dark types.",
+  "criterion": "",
+  "fading": []
+}
