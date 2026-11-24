@@ -9,7 +9,7 @@ from src.utils.metrics import all_metrics, sample_pairs
 
 
 class ClusterState:
-    def __init__(self, benchmark: Benchmark, eval: ClusterEval, adapter: EmbeddingAdapter):
+    def __init__(self, benchmark: Benchmark, eval: ClusterEval, adapter: EmbeddingAdapter, verbose: bool):
         self.benchmark = benchmark
         self.eval = eval
         self.adapter = adapter
@@ -18,6 +18,7 @@ class ClusterState:
         test_mask = getattr(benchmark, "test_mask", None)
         self.test_mask = test_mask
         self.auc_pairs = None
+        self.verbose = verbose
         if test_mask is not None and test_mask.any():
             self.auc_pairs = sample_pairs(np.flatnonzero(test_mask), 5000, np.random.default_rng(0))
     
@@ -41,7 +42,7 @@ class ClusterState:
             else:
                 if metrics['pair_f1'] > best_metrics['pair_f1']:
                     best_metrics = metrics
-                if metrics['pair_f1']**metrics['round'] > best_iteration['pair_f1']**best_iteration['round']:
+                if metrics['pair_f1']**((metrics['round']+1)/2) > best_iteration['pair_f1']**((best_iteration['round']+1)/2):
                     best_iteration = metrics
         return metrics, best_metrics, best_iteration
 
@@ -68,7 +69,8 @@ class ClusterState:
                              getattr(self.benchmark, "test_mask", None), self.auc_pairs),
                "loss": float(losses[-1]) if losses else float("nan")}
         self.history.append(row)
-        print(f"Round {row['round']}: ARI {row['ari']:.3f} | test ARI {row['test_ari']:.3f} | "
-              f"test pair AUC {row['test_pair_auc']:.3f} | pair P/R {row['pair_precision']:.3f}/{row['pair_recall']:.3f} | "
-              f"Jay F1/P/R {row['f1']:.3f}/{row['precision']:.3f}/{row['recall']:.3f} | loss {row['loss']:.4f}")
+        if self.verbose:
+          print(f"Round {row['round']}: ARI {row['ari']:.3f} | test ARI {row['test_ari']:.3f} | "
+                f"test pair AUC {row['test_pair_auc']:.3f} | pair P/R {row['pair_precision']:.3f}/{row['pair_recall']:.3f} | "
+                f"Jay F1/P/R {row['f1']:.3f}/{row['precision']:.3f}/{row['recall']:.3f} | loss {row['loss']:.4f}")
         return row

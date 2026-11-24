@@ -31,21 +31,63 @@ def make_string(metrics, best_metrics, best_iteration, history, args, descriptio
     the_string = '{"test": ' + json.dumps(vars(args)) + ',\n"description": ' + description + ',\n"final_metrics": ' + json.dumps(metrics) + ',\n"best_metrics": ' + json.dumps(best_metrics) + ',\n"best_iteration": ' + json.dumps(best_iteration) + ',\n"history": ' + json.dumps(history) + '}\n'
     return the_string
     
-def pokemon_color_benchmark(eval, adapter, rounds, colors, vector):
+def pokemon_color_benchmark(rounds, colors, vector, args, verbose):
+    if args.model == 'contrastive':
+        if colors is not None:
+            adapter = adapters.JohnAdapter(clusterings.KMeansClusterer(len(colors)), epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, dropout=args.dropout, verbose=args.verbose)
+        else:
+            adapter = adapters.JohnAdapter(clusterings.HDBSCANClusterer(), epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, dropout=args.dropout, verbose=args.verbose)
+    elif args.model == 'triplet':
+        if colors is not None:
+            adapter = adapters.JayAdapter(clusterings.KMeansClusterer(len(colors)), epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, scaling_factor=args.scaling_factor, verbose=args.verbose)
+        else:
+            adapter = adapters.JayAdapter(clusterings.HDBSCANClusterer(), epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, scaling_factor=args.scaling_factor, verbose=args.verbose)
+    else:
+        print('unrecognized model choose between contrastive or triplet')
+    if args.eval == 'contrastive':
+        eval = evals.ContrastiveEval(batch_size=args.batch_size, l1_reg=args.l1_reg)
+    elif args.eval == 'triplet':
+        eval = evals.TripletEval(batch_size=args.batch_size, preservation_weight=args.preservation_weight)
+    else:
+        print('unrecognized eval choose between contrastive or triplet')
     db_path = repo_root / "data" / "pokemon_db"
-    benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,'color',0.20,categories=colors,),eval,adapter)
+    benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,'color',0.20,categories=colors,),eval,adapter,verbose)
     metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
     return metrics, best_metrics, best_iteration, benchmark.history   # history: every round's metrics
 
-def pokemon_benchmark(eval, adapter, rounds, labels, vector):
+def pokemon_benchmark(rounds, labels, vector, args, verbose):
+    if args.model == 'contrastive':
+        adapter = adapters.JohnAdapter(clusterings.HDBSCANClusterer(), epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, dropout=args.dropout, verbose=args.verbose)
+    elif args.model == 'triplet':
+        adapter = adapters.JayAdapter(clusterings.HDBSCANClusterer(), epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, scaling_factor=args.scaling_factor, verbose=args.verbose)
+    else:
+        print('unrecognized model choose between contrastive or triplet')
+    if args.eval == 'contrastive':
+        eval = evals.ContrastiveEval(batch_size=args.batch_size, l1_reg=args.l1_reg)
+    elif args.eval == 'triplet':
+        eval = evals.TripletEval(batch_size=args.batch_size, preservation_weight=args.preservation_weight)
+    else:
+        print('unrecognized eval choose between contrastive or triplet')
     db_path = repo_root / "data" / "pokemon_db"
-    benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,labels,0.20,),eval,adapter)
+    benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,labels,0.20,),eval,adapter,verbose)
     metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
     return metrics, best_metrics, best_iteration, benchmark.history   # history: every round's metrics
 
-def celeba_benchmark(eval, adapter, rounds, label):
+def celeba_benchmark(rounds, label, args, verbose):
+    if args.model == 'contrastive':
+        adapter = adapters.JohnAdapter(clusterings.KMeansClusterer(2), epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, dropout=args.dropout, verbose=args.verbose)
+    elif args.model == 'triplet':
+            adapter = adapters.JayAdapter(clusterings.KMeansClusterer(2), epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, scaling_factor=args.scaling_factor, verbose=args.verbose)
+    else:
+        print('unrecognized model choose between contrastive or triplet')
+    if args.eval == 'contrastive':
+        eval = evals.ContrastiveEval(batch_size=args.batch_size, l1_reg=args.l1_reg)
+    elif args.eval == 'triplet':
+        eval = evals.TripletEval(batch_size=args.batch_size, preservation_weight=args.preservation_weight)
+    else:
+        print('unrecognized eval choose between contrastive or triplet')
     db_path = repo_root / "data" / "celeba_db"
-    benchmark = states.ClusterState(benchmarks.CelebaBenchmark(db_path,'vector',label,0.20,),eval,adapter)
+    benchmark = states.ClusterState(benchmarks.CelebaBenchmark(db_path,'vector',label,0.20,),eval,adapter,verbose)
     metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
     return metrics, best_metrics, best_iteration, benchmark.history   # history: every round's metrics
 
@@ -53,7 +95,7 @@ def save(save_file, the_string):
     # writes every benchmark finished so far (trailing , replaced by }), so stopping mid-run keeps them
     save_file.write_text(the_string[:-2] + '}', encoding='utf-8')
 
-def main(eval, adapter, rounds, save_file, args):
+def main(rounds, save_file, args, verbose):
     save_file = Path(save_file)
     if not save_file.is_absolute():
         save_file = repo_root / save_file
@@ -61,55 +103,55 @@ def main(eval, adapter, rounds, save_file, args):
 
     the_string = '{ '
     # to add a benchmark, copy the next two lines and replace benchmark1 with your benchmark
-    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue'], 'image_vector')
+    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue'], 'image_vector', args, verbose)
     the_string += '"benchmark1": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image vector clustering by red and blue"') + ',\n'
     save(save_file, the_string)
-    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue'], 'text_vector')
+    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue'], 'text_vector', args, verbose)
     the_string += '"benchmark2": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs text vector clustering by red and blue"') + ',\n'
     save(save_file, the_string)
-    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue'], ['image_vector','text_vector'])
+    metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue'], ['image_vector','text_vector'], args, verbose)
     the_string += '"benchmark3": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image and text vector clustering by red and blue"') + ',\n'
     save(save_file, the_string)
-    metrics, best_metrics, best_iteration, history = pokemon_benchmark(eval, adapter, rounds, 'primary_type', 'image_vector')
+    metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'primary_type', 'image_vector', args, verbose)
     the_string += '"benchmark4": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image vector clustering by primary type"') + ',\n'
     save(save_file, the_string)
-    metrics, best_metrics, best_iteration, history = pokemon_benchmark(eval, adapter, rounds, 'is_baby', 'image_vector')
+    metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'is_baby', 'image_vector', args, verbose)
     the_string += '"benchmark5": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image vector clustering by baby pokemon"') + ',\n'
     save(save_file, the_string)
     if not args.simple: # the following are not run when using the simple benchmarks for time
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue','green','brown'], 'image_vector')
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue','green','brown'], 'image_vector', args, verbose)
         the_string += '"benchmark6": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image vector clustering by red, blue, green, and brown pokemon"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(eval, adapter, rounds, None, 'image_vector')
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, None, 'image_vector', args, verbose)
         the_string += '"benchmark7": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image vector clustering by all colors"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue','green','brown'], 'text_vector')
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, ['red','blue','green','brown'], 'text_vector', args, verbose)
         the_string += '"benchmark8": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs text vector clustering by red, blue, green, and brown pokemon"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(eval, adapter, rounds, None, 'text_vector')
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, None, 'text_vector', args, verbose)
         the_string += '"benchmark9": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs text vector and clusters by all colors"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(eval, adapter, rounds, ['red','blue','green','brown'], ['image_vector','text_vector'])
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark( rounds, ['red','blue','green','brown'], ['image_vector','text_vector'], args, verbose)
         the_string += '"benchmark10": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image and text vector clustering by red, blue, green, and brown pokemon"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(eval, adapter, rounds, None, ['image_vector','text_vector'])
+        metrics, best_metrics, best_iteration, history = pokemon_color_benchmark(rounds, None, ['image_vector','text_vector'], args, verbose)
         the_string += '"benchmark11": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image and text vector and clusters by all colors"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_benchmark(eval, adapter, rounds, 'primary_type', 'text_vector')
+        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'primary_type', 'text_vector', args, verbose)
         the_string += '"benchmark12": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs text vector clustering by primary type"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_benchmark(eval, adapter, rounds, 'primary_type', ['image_vector','text_vector'])
+        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'primary_type', ['image_vector','text_vector'], args, verbose)
         the_string += '"benchmark13": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image and text vector clustering by primary type"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_benchmark(eval, adapter, rounds, 'is_baby', 'text_vector')
+        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'is_baby', 'text_vector', args, verbose)
         the_string += '"benchmark14": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs text vector clustering by baby pokemon"') + ',\n'
         save(save_file, the_string)
-        metrics, best_metrics, best_iteration, history = pokemon_benchmark(eval, adapter, rounds, 'is_baby', ['image_vector','text_vector'])
+        metrics, best_metrics, best_iteration, history = pokemon_benchmark(rounds, 'is_baby', ['image_vector','text_vector'], args, verbose)
         the_string += '"benchmark15": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs image and text vector clustering by baby pokemon"') + ',\n'
         save(save_file, the_string)
-        #metrics, best_metrics, best_iteration, history = celeba_benchmark(eval, adapter, rounds, 'Chubby')
+        #metrics, best_metrics, best_iteration, history = celeba_benchmark(rounds, 'Chubby', args, verbose)
         #the_string += '"benchmark16": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs celeba dataset and clusters by chubby"') + ',\n'
-        #metrics, best_metrics, best_iteration, history = celeba_benchmark(eval, adapter, rounds, 'Black_Hair')
+        #metrics, best_metrics, best_iteration, history = celeba_benchmark(rounds, 'Black_Hair', args, verbose)
         #the_string += '"benchmark17": ' + make_string(metrics, best_metrics, best_iteration, history, args, description='"runs celeba dataset and clusters by black hair"') + ',\n'
 
 if __name__ == "__main__":
@@ -127,21 +169,7 @@ if __name__ == "__main__":
     parser.add_argument("--preservation_weight", type=float, default=0.05)
     parser.add_argument("--save_file", required=True, help="The output file to save")
     parser.add_argument("--simple", action='store_true', help="runs only some benchmarks to save time")
+    parser.add_argument("--verbose", action='store_true', help="prints epoch progress")
     args = parser.parse_args()
 
-    if args.model == 'contrastive':
-        adapter = adapters.JohnAdapter(clusterings.HDBSCANClusterer(), epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, dropout=args.dropout)
-    elif args.model == 'triplet':
-        adapter = adapters.JayAdapter(clusterings.HDBSCANClusterer(), epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, scaling_factor=args.scaling_factor)
-    else:
-        print('unrecognized model choose between contrastive or triplet')
-
-    if args.eval == 'contrastive':
-        eval = evals.ContrastiveEval(batch_size=args.batch_size, l1_reg=args.l1_reg)
-    elif args.eval == 'triplet':
-        eval = evals.TripletEval(batch_size=args.batch_size, preservation_weight=args.preservation_weight)
-    else:
-        print('unrecognized eval choose between contrastive or triplet')
-
-    
-    main(eval, adapter, args.rounds, args.save_file, args)
+    main(args.rounds, args.save_file, args, args.verbose)

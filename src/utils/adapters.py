@@ -29,12 +29,13 @@ class EmbeddingAdapter:
 
 class NNAdapter(EmbeddingAdapter):
     def __init__(
-        self, clusterer: Clusterer, epochs: int, model: nn.Module, optimizer: Optimizer
+        self, clusterer: Clusterer, epochs: int, model: nn.Module, optimizer: Optimizer, verbose: bool
     ):
         super().__init__(clusterer)
         self.epochs = epochs
         self.model = model
         self.optimizer = optimizer
+        self.verbose = verbose
     
     def setup_predictions(self, benchmark: Benchmark):
         initial_embeddings = benchmark.embeddings
@@ -54,7 +55,7 @@ class NNAdapter(EmbeddingAdapter):
             
             tqdm_loader = tqdm(
                 enumerate(eval.loader), total=len(eval.loader),
-                desc=f"Epoch {epoch+1}", unit="batch"
+                desc=f"Epoch {epoch+1}", unit="batch", disable=not self.verbose
             )
             for _, batch in tqdm_loader:
                 self.optimizer.zero_grad()
@@ -80,13 +81,13 @@ class NNAdapter(EmbeddingAdapter):
         return new_pred_labels
 
 class JohnAdapter(NNAdapter):
-    def __init__(self, clusterer: Clusterer, epochs: int, learning_rate: float, dimensions: int, hidden_size: int = 1024, dropout: float = 0.1):
+    def __init__(self, clusterer: Clusterer, epochs: int, learning_rate: float, dimensions: int, hidden_size: int = 1024, dropout: float = 0.1, verbose: bool = True):
         model = JohnNet(dimensions, hidden_size, dropout)
         optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-        super().__init__(clusterer, epochs, model, optimizer)
+        super().__init__(clusterer, epochs, model, optimizer, verbose)
 
 class JayAdapter(NNAdapter):
-    def __init__(self, clusterer: Clusterer, epochs: int, learning_rate: float, dimensions: int, hidden_size: int = 256, scaling_factor: float = 0.1):
+    def __init__(self, clusterer: Clusterer, epochs: int, learning_rate: float, dimensions: int, hidden_size: int = 256, scaling_factor: float = 0.1, verbose: bool = True):
         model = JayNet(dimensions, hidden_size, scaling_factor)
         optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-        super().__init__(clusterer, epochs, model, optimizer)
+        super().__init__(clusterer, epochs, model, optimizer, verbose)
