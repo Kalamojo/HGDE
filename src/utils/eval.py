@@ -35,11 +35,10 @@ class ClusterEval:
 class ContrastiveEval(ClusterEval):
     def __init__(
         self, batch_size: int = 16, shuffle_data: bool = True,
-        margin: float = 2.0, mask_percent: float = 1.0, l1_reg: float = 0.0001
+        margin: float = 2.0, l1_reg: float = 0.0001
     ):
         super().__init__(batch_size, shuffle_data)
         self.margin = margin
-        self.mask_percent = mask_percent
         self.l1_reg = l1_reg
 
     def setup_data(self, benchmark: Benchmark):
@@ -115,6 +114,11 @@ class ContrastiveEval(ClusterEval):
 
         l1_norm = sum(p.abs().sum() for name, p in model.named_parameters() if 'bias' not in name)
         final_loss = loss.mean() + unconstrained_loss_mean + self.l1_reg * l1_norm
+        '''together = []
+        for i in range(len(item1)):
+            together.append((item1[i], item2[i], item1_out[i], item2_out[i]))
+        got_closer = [(torch.linalg.vector_norm(one_in - two_in, dim=0) > torch.linalg.vector_norm(one_out - two_out, dim=0)).item() for (one_in, two_in, one_out, two_out) in together]
+        print(f"\ngoal achieved: {goal}\ngot closer: {got_closer}\n")'''
         return final_loss
 
 # JayEval

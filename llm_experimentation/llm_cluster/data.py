@@ -62,7 +62,7 @@ def select_items(column: str = "color", categories: list[str] | None = ("red", "
     benchmark = PokemonBenchmark(db, "image_vector", column, test_fraction,       # the vectors are unused
                                  categories=list(categories) if categories else None, seed=seed)
     y, test_mask = benchmark.true_labels.astype(str), benchmark.test_mask
-    auc_pairs = ClusterState(benchmark, eval=None, adapter=None).auc_pairs        # the pairs Jay's runs use
+    auc_pairs = ClusterState(benchmark, eval=None, adapter=None, verbose=False).auc_pairs        # the pairs Jay's runs use
     metadata = benchmark.metadata
 
     manifest = {row["dex_num"]: row for row in map(json.loads, MANIFEST.open(encoding="utf-8"))}

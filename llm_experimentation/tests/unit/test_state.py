@@ -13,7 +13,7 @@ def make_state():
     mask = np.zeros(30, bool)
     mask[::3] = True
     benchmark = SimpleNamespace(true_labels=np.repeat(["red", "blue", "green"], 10), test_mask=mask)
-    return ClusterState(benchmark, eval=None, adapter=None)
+    return ClusterState(benchmark, eval=None, adapter=None, verbose=False)
 
 
 def test_auc_pairs_are_test_items_only():

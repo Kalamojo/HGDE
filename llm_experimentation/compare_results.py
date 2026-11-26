@@ -57,8 +57,10 @@ def read_reference(path: Path, benchmark: str) -> tuple[str, list[dict]]:
     model = {"triplet": "Jay's triplet model", "contrastive": "John's contrastive model"}.get(
         entry["test"]["model"], f"{entry['test']['model']} model")
     clusterer = entry["test"].get("clusterer", "hdbscan")         # files from before --clusterer used HDBSCAN
+    if clusterer is None:                                         # run_benchmarks.py's default on benchmark1: k-means
+        clusterer = "kmeans"
     if clusterer == "kmeans":
-        clusterer += f" k={entry['test']['k']}"
+        clusterer += f" k={entry['test'].get('k') or 'number of classes'}"
     return f"{model}, {clusterer} ({benchmark}: {entry['description']})", entry["history"]
 
 

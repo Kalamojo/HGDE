@@ -31,13 +31,22 @@ def make_string(metrics, best_metrics, best_iteration, history, args, descriptio
     the_string = '{"test": ' + json.dumps(vars(args)) + ',\n"description": ' + description + ',\n"final_metrics": ' + json.dumps(metrics) + ',\n"best_metrics": ' + json.dumps(best_metrics) + ',\n"best_iteration": ' + json.dumps(best_iteration) + ',\n"history": ' + json.dumps(history) + '}\n'
     return the_string
 
-def make_parts(args):
+def make_clusterer(args, k):
+    # k = this benchmark's number of classes (None = not fixed). default: k-means when k is known, else HDBSCAN
+    choice = args.clusterer or ('kmeans' if k else 'hdbscan')
+    if choice == 'hdbscan':
+        return clusterings.HDBSCANClusterer()
+    if not (args.k or k):
+        raise SystemExit('--clusterer kmeans needs --k for this benchmark')
+    return clusterings.KMeansClusterer(args.k or k, random_state=0)
+
+def make_parts(args, k):
     # a new eval and adapter (fresh model, optimizer and data loader), so no benchmark trains on an earlier one's state
-    clusterer = clusterings.KMeansClusterer(args.k, random_state=0) if args.clusterer == 'kmeans' else clusterings.HDBSCANClusterer()
+    clusterer = make_clusterer(args, k)
     if args.model == 'contrastive':
-        adapter = adapters.JohnAdapter(clusterer, epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, dropout=args.dropout)
+        adapter = adapters.JohnAdapter(clusterer, epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, dropout=args.dropout, verbose=args.verbose)
     elif args.model == 'triplet':
-        adapter = adapters.JayAdapter(clusterer, epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, scaling_factor=args.scaling_factor)
+        adapter = adapters.JayAdapter(clusterer, epochs=args.epochs, learning_rate=args.lr, dimensions=1024, hidden_size=args.hidden_size, scaling_factor=args.scaling_factor, verbose=args.verbose)
     else:
         print('unrecognized model choose between contrastive or triplet')
 
@@ -50,23 +59,23 @@ def make_parts(args):
     return eval, adapter
 
 def pokemon_color_benchmark(args, rounds, colors, vector):
-    eval, adapter = make_parts(args)
+    eval, adapter = make_parts(args, len(colors) if colors else None)
     db_path = repo_root / "data" / "pokemon_db"
-    benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,'color',0.20,categories=colors,),eval,adapter)
+    benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,'color',0.20,categories=colors,),eval,adapter,args.verbose)
     metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
     return metrics, best_metrics, best_iteration, benchmark.history   # history: every round's metrics
 
 def pokemon_benchmark(args, rounds, labels, vector):
-    eval, adapter = make_parts(args)
+    eval, adapter = make_parts(args, None)
     db_path = repo_root / "data" / "pokemon_db"
-    benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,labels,0.20,),eval,adapter)
+    benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,labels,0.20,),eval,adapter,args.verbose)
     metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
     return metrics, best_metrics, best_iteration, benchmark.history   # history: every round's metrics
 
 def celeba_benchmark(args, rounds, label):
-    eval, adapter = make_parts(args)
+    eval, adapter = make_parts(args, 2)
     db_path = repo_root / "data" / "celeba_db"
-    benchmark = states.ClusterState(benchmarks.CelebaBenchmark(db_path,'vector',label,0.20,),eval,adapter)
+    benchmark = states.ClusterState(benchmarks.CelebaBenchmark(db_path,'vector',label,0.20,),eval,adapter,args.verbose)
     metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
     return metrics, best_metrics, best_iteration, benchmark.history   # history: every round's metrics
 
@@ -151,7 +160,8 @@ if __name__ == "__main__":
     parser.add_argument("--save_file", required=True, help="The output file to save")
     parser.add_argument("--simple", action='store_true', help="runs only some benchmarks to save time")
     parser.add_argument("--benchmark1_only", action='store_true', help="runs only benchmark1 (image vector, red and blue)")
-    parser.add_argument("--clusterer", choices=['hdbscan', 'kmeans'], default='hdbscan', help="hdbscan picks the number of clusters, kmeans uses --k")
-    parser.add_argument("--k", type=int, default=2, help="number of clusters for --clusterer kmeans")
+    parser.add_argument("--clusterer", choices=['hdbscan', 'kmeans'], default=None, help="default: kmeans for benchmarks with a fixed number of classes (e.g. red/blue: k=2), else hdbscan")
+    parser.add_argument("--k", type=int, default=None, help="override k for kmeans (default: the benchmark's number of classes)")
+    parser.add_argument("--verbose", action='store_true', help="prints epoch progress")
     args = parser.parse_args()
     main(args.rounds, args.save_file, args)
