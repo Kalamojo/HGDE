@@ -56,7 +56,10 @@ def read_reference(path: Path, benchmark: str) -> tuple[str, list[dict]]:
         raise SystemExit(f"{path} has no per-round history; rerun experiments/run_benchmarks.py to get one")
     model = {"triplet": "Jay's triplet model", "contrastive": "John's contrastive model"}.get(
         entry["test"]["model"], f"{entry['test']['model']} model")
-    return f"{model} ({benchmark}: {entry['description']})", entry["history"]
+    clusterer = entry["test"].get("clusterer", "hdbscan")         # files from before --clusterer used HDBSCAN
+    if clusterer == "kmeans":
+        clusterer += f" k={entry['test']['k']}"
+    return f"{model}, {clusterer} ({benchmark}: {entry['description']})", entry["history"]
 
 
 def find_runs() -> list[dict]:
