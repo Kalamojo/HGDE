@@ -1,0 +1,68 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 5,
+    "anon_id": "item_033",
+    "name": "Yungoos",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "changes": {
+      "approach": "Moving item_033 to grass/green group based on hints showing it should be with item_019 and item_051",
+      "committed": "draft 1",
+      "drafts_tested": 1,
+      "group_sizes": [
+        14,
+        24,
+        22
+      ],
+      "satisfied_before": {
+        "all": 0.0,
+        "new": 0.0
+      },
+      "drafts": [
+        {
+          "draft": 1,
+          "sat_all": 1.0,
+          "sat_new": 1.0,
+          "approach": "Moving item_033 to grass/green group based on hints showing it should be with item_019 and item_051"
+        }
+      ]
+    }
+  },
+  {
+    "round": 2,
+    "anchor_index": 27,
+    "anon_id": "item_004",
+    "name": "Azelf",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "changes": {
+      "approach": "Moving item_038 from Grass_Green to Fire_Other group so that item_004 and item_038 are together, satisfying the remaining hints",
+      "committed": "draft 2",
+      "drafts_tested": 2,
+      "group_sizes": [
+        13,
+        23,
+        24
+      ],
+      "satisfied_before": {
+        "all": 0.5,
+        "new": 0.0
+      },
+      "drafts": [
+        {
+          "draft": 1,
+          "sat_all": 0.921875,
+          "sat_new": 0.84375,
+          "approach": "Moving item_004 from Water_Blue to Fire_Other group, based on hints showing it should be with item_000, item_028, item_034, item_016, item_054"
+        },
+        {
+          "draft": 2,
+          "sat_all": 1.0,
+          "sat_new": 1.0,
+          "approach": "Moving item_038 from Grass_Green to Fire_Other group so that item_004 and item_038 are together, satisfying the remaining hints"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,173 @@
+{
+  "features": [
+    {
+      "id": "blue_dominant",
+      "definition": "Primary body color is blue or blue-gray (0=not blue, 1=predominantly blue)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "green_dominant",
+      "definition": "Primary body color is green (0=not green, 1=predominantly green)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "brown_tan_dominant",
+      "definition": "Primary body color is brown, tan, or beige (0=not brown/tan, 1=predominantly brown/tan)",
+      "kind": "scale",
+      "weight": 4.0
+    },
+    {
+      "id": "red_orange_dominant",
+      "definition": "Primary body color is red or orange (0=not red/orange, 1=predominantly red/orange)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "dark_black_dominant",
+      "definition": "Primary body color is dark gray, black, or very dark (0=not dark, 1=predominantly dark)",
+      "kind": "scale",
+      "weight": 2.0
+    },
+    {
+      "id": "bipedal_humanoid",
+      "definition": "Stands upright on two legs in a humanoid posture (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "quadruped",
+      "definition": "Has four legs and walks on all fours like a typical animal (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "serpentine_worm",
+      "definition": "Body is elongated, snake-like, or worm-like without prominent limbs (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "avian_bird",
+      "definition": "Resembles a bird with wings and beak (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "amorphous_blob",
+      "definition": "Body is blob-like, gelatinous, or lacks a defined solid form (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "insectoid",
+      "definition": "Resembles an insect or arthropod with multiple legs/antennae (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "plant_elements",
+      "definition": "Has visible plant features like leaves, vines, flowers, or grass (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 2.0
+    },
+    {
+      "id": "mechanical_metallic",
+      "definition": "Has mechanical, metallic, or robotic appearance with hard armor-like plating (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 5.0
+    },
+    {
+      "id": "has_tail",
+      "definition": "Has a clearly visible tail (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "has_wings",
+      "definition": "Has visible wings or wing-like appendages (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "has_spikes",
+      "definition": "Has prominent spikes or spines on the body (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "apparent_size_large",
+      "definition": "Appears to be a large or powerful Pokémon based on visual bulk and complexity (0=small/simple, 1=large/complex)",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "cute_friendly",
+      "definition": "Has a cute, friendly, or non-threatening appearance with round features (0=intimidating/aggressive, 1=very cute/friendly)",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "dragon_reptile",
+      "definition": "Resembles a dragon or reptile with scales and dinosaur-like features (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 2.0
+    },
+    {
+      "id": "mammal_like",
+      "definition": "Resembles a mammal (dog, cat, bear, primate, etc.) (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "aquatic_features",
+      "definition": "Has features associated with water/aquatic life (fins, flippers, gills, water droplets) (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "ghostly_spectral",
+      "definition": "Has a ghostly, ethereal, or spectral appearance (semi-transparent, floating, wispy) (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 1.0
+    },
+    {
+      "id": "multiple_entities",
+      "definition": "Image shows more than one creature/entity that form a single Pokémon or pair (1=yes, 0=no)",
+      "kind": "binary",
+      "weight": 0.5
+    },
+    {
+      "id": "eye_prominence",
+      "definition": "Has very large or prominently featured eyes relative to body (0=small/normal eyes, 1=extremely large/prominent eyes)",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "complexity_detail",
+      "definition": "Overall visual complexity and detail level (0=very simple/minimal design, 1=highly complex/detailed design)",
+      "kind": "scale",
+      "weight": 0.5
+    },
+    {
+      "id": "natural_organic",
+      "definition": "The Pokémon has a natural, organic appearance dominated by earth tones (brown, tan, beige) or plant/wood materials, without prominent blue, metallic, or high-tech elements (0=not natural/earthy, 1=strongly natural/earthy organic appearance)",
+      "kind": "scale",
+      "weight": 3.0
+    },
+    {
+      "id": "blue_or_dark",
+      "definition": "The Pokémon's primary or secondary color scheme is blue, dark gray, or black, giving it a cool or shadowy appearance (0=no blue/dark dominance, 1=strongly blue or dark colored)",
+      "kind": "scale",
+      "weight": 1.0
+    },
+    {
+      "id": "is_mechanical_or_inanimate",
+      "definition": "The Pokemon resembles or is based on a man-made object, machine, or inanimate item (bell, gear, magnet, clock, etc.) rather than a living organism (1=clearly based on a man-made object/machine, 0=based on a living creature or natural entity)",
+      "kind": "binary",
+      "weight": 4.0
+    }
+  ],
+  "notes": "The user is grouping by Pokemon type/nature. The key new insight is that mechanical/metallic Pokemon (like Bronzong/item_007) should be in a separate group from organic ones (even blue ones like Azelf/item_004 and Oddish/item_038, and dark ones like Deino/item_034). Mechanical_metallic needs very high weight to push item_007 away. The organic/living creatures (item_004, item_034, item_038) share being non-mechanical regardless of color. Previous feedback shows brown/natural ones (item_033, item_019, item_051) should cluster - so natural_organic and brown_tan features remain important. The grouping seems to be: 1) natural/earthy (brown, plant), 2) organic non-mechanical (blue, dark, dragon), 3) mechanical/metallic."
+}

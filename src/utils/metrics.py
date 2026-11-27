@@ -44,7 +44,7 @@ def _contingency(clusters, classes) -> NDArray[np.float64]:
     return counts
 
 
-def pairwise_precision_recall(clusters, classes) -> tuple[float, float]:
+def pairwise_precision_recall(clusters, classes) -> tuple[float, float, float]:
     """Over all pairs of items:
     precision = of the pairs put in the same cluster, the fraction that share a class;
     recall    = of the pairs that share a class, the fraction put in the same cluster."""
@@ -55,7 +55,8 @@ def pairwise_precision_recall(clusters, classes) -> tuple[float, float]:
     same_class = pairs(counts.sum(axis=1))
     precision = together_and_same / same_cluster if same_cluster else float("nan")
     recall = together_and_same / same_class if same_class else float("nan")
-    return float(precision), float(recall)
+    f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+    return float(precision), float(recall), float(f1)
 
 
 def sample_pairs(idx: NDArray[np.int_], n_pairs: int, rng: np.random.Generator) -> NDArray[np.int_]:
@@ -91,12 +92,20 @@ def all_metrics(embeddings, pred_labels, true_labels, test_mask=None, auc_pairs=
     pred = np.asarray(pred_labels)
     true = np.asarray(true_labels)
     row = compute_metrics(pred, true)
-    row["pair_precision"], row["pair_recall"] = pairwise_precision_recall(pred, true)
+    row["pair_precision"], row["pair_recall"], row["pair_f1"]= pairwise_precision_recall(pred, true)
     h, c, _ = homogeneity_completeness_v_measure(true, pred)
     row["homogeneity"], row["completeness"] = float(h), float(c)
 
+    row['test_f1'] = float("nan")
+    row['test_recall'] = float("nan")
+    row['test_precision'] = float("nan")
     row["test_ari"] = float("nan")
+    row['test_pairwise_f1'] = float("nan")
+    row['test_pairwise_recall'] = float("nan")
+    row['test_pairwise_precision'] = float("nan")
     if test_mask is not None and test_mask.sum() >= 2 and len(np.unique(true[test_mask])) >= 2:
-        row["test_ari"] = float(adjusted_rand_score(true[test_mask], pred[test_mask]))
-    row["test_pair_auc"] = pair_auc(embeddings, true, auc_pairs) if auc_pairs is not None else float("nan")
+        test_metrics = compute_metrics(pred[test_mask], true[test_mask])
+        row['test_f1'], row['test_recall'], row['test_precision'], row['test_ari'] = test_metrics['f1'], test_metrics['recall'], test_metrics['precision'], test_metrics['ari']
+        row['test_pairwise_precision'], row['test_pairwise_recall'], row['test_pairwise_f1'] = pairwise_precision_recall(pred[test_mask], true[test_mask])
+    row["test_pair_auc"] = pair_auc(embeddings, true, auc_pairs) if auc_pairs is not None and embeddings is not None else float("nan")
     return row

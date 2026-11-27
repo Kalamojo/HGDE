@@ -1,0 +1,87 @@
+[
+  {
+    "round": 1,
+    "anchor_index": 5,
+    "anon_id": "item_033",
+    "name": "Yungoos",
+    "target_label": "brown",
+    "feedback_type": "split+mixed",
+    "changes": {
+      "weights": {
+        "blue_dominant": 3.0,
+        "green_dominant": 1.0,
+        "brown_tan_dominant": 3.0,
+        "red_orange_dominant": 1.0,
+        "dark_black_dominant": 2.0,
+        "bipedal_humanoid": 0.5,
+        "quadruped": 0.5,
+        "serpentine_worm": 1.0,
+        "avian_bird": 1.0,
+        "amorphous_blob": 1.0,
+        "insectoid": 1.0,
+        "plant_elements": 2.0,
+        "mechanical_metallic": 2.0,
+        "has_tail": 0.5,
+        "has_wings": 1.0,
+        "has_spikes": 1.0,
+        "apparent_size_large": 0.5,
+        "cute_friendly": 1.0,
+        "dragon_reptile": 2.0,
+        "mammal_like": 1.0,
+        "aquatic_features": 1.0,
+        "ghostly_spectral": 1.0,
+        "multiple_entities": 0.5,
+        "eye_prominence": 0.5,
+        "complexity_detail": 0.5
+      },
+      "drop": [],
+      "add": [
+        "natural_organic",
+        "blue_or_dark"
+      ]
+    }
+  },
+  {
+    "round": 2,
+    "anchor_index": 27,
+    "anon_id": "item_004",
+    "name": "Azelf",
+    "target_label": "blue",
+    "feedback_type": "split+mixed",
+    "changes": {
+      "weights": {
+        "blue_dominant": 1.0,
+        "green_dominant": 1.0,
+        "brown_tan_dominant": 4.0,
+        "red_orange_dominant": 1.0,
+        "dark_black_dominant": 2.0,
+        "bipedal_humanoid": 0.5,
+        "quadruped": 0.5,
+        "serpentine_worm": 1.0,
+        "avian_bird": 1.0,
+        "amorphous_blob": 1.0,
+        "insectoid": 1.0,
+        "plant_elements": 2.0,
+        "mechanical_metallic": 5.0,
+        "has_tail": 0.5,
+        "has_wings": 1.0,
+        "has_spikes": 1.0,
+        "apparent_size_large": 0.5,
+        "cute_friendly": 0.5,
+        "dragon_reptile": 2.0,
+        "mammal_like": 1.0,
+        "aquatic_features": 1.0,
+        "ghostly_spectral": 1.0,
+        "multiple_entities": 0.5,
+        "eye_prominence": 0.5,
+        "complexity_detail": 0.5,
+        "natural_organic": 3.0,
+        "blue_or_dark": 1.0
+      },
+      "drop": [],
+      "add": [
+        "is_mechanical_or_inanimate"
+      ]
+    }
+  }
+]
