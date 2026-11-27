@@ -1,12 +1,13 @@
-"""Visualize baseline and transformed embeddings with separate PCA bases.
+"""Create a PCA visualization from a result bundle directory.
 
-By default, creates one PNG containing both baseline and transformed views. Add
-``--interactive`` to also write one HTML page containing both interactive views.
-Each embedding set uses its own PCA basis.
+The input directory must contain baseline_embeddings.npy, transformed_embeddings.npy,
+and assignments.csv. The script writes one PNG with baseline and transformed views;
+add ``--interactive`` to also write a combined interactive HTML page. Each view uses
+its own PCA basis. Outputs go into the input directory unless ``--output-dir`` is set.
 
 Run from the repo root:
-    python visualization/visualize_embeddings_using_pca.py
-    python visualization/visualize_embeddings_using_pca.py --interactive
+    python visualization/visualize_embeddings_using_pca.py --input-dir PATH_TO_RESULT_BUNDLE
+    python visualization/visualize_embeddings_using_pca.py --input-dir PATH_TO_RESULT_BUNDLE --interactive
 """
 
 from __future__ import annotations
@@ -21,8 +22,6 @@ import pandas as pd
 from sklearn.decomposition import PCA
 
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DIR = REPO_ROOT / "results" / "triplet_by_column" / "color_3c_all"
 PALETTE = ["#3584c5", "#a96e5c", "#64bdcf", "#d75c62", "#9d78c1", "#d6a448"]
 SEMANTIC_COLORS = {"blue": "#3182bd", "brown": "#8c564b", "green": "#2ca02c"}
 LABEL_COLORS = SEMANTIC_COLORS
@@ -50,7 +49,7 @@ def view_section(view: dict) -> str:
     <svg class="plot" viewBox="0 0 720 430" role="img" aria-label="Interactive 3D PCA scatter plot for {html.escape(view["name"])} embeddings"></svg>
     <div class="tooltip" hidden></div>
   </div>
-  <div class="hint">Drag to rotate · Scroll to zoom · Hover for Pokémon and cluster details</div>
+  <div class="hint">Drag to rotate · Scroll to zoom · Hover for item, ground-truth label, and cluster</div>
   <script type="application/json" class="plot-data">{data}</script>
 </section>'''
 
@@ -182,8 +181,8 @@ def write_page(path: Path, title: str, views: list[dict]) -> None:
         f"<title>{html.escape(title)}</title><style>{STYLE}</style></head><body>"
         f"<h1>{html.escape(title)}</h1>"
         '<label class="color-control" for="color-mode">Color and legend by '
-        '<select id="color-mode"><option value="color">Pokémon color</option>'
-        '<option value="cluster">Cluster number</option></select></label>'
+        '<select id="color-mode"><option value="color">Ground truth label</option>'
+        '<option value="cluster">Predicted cluster</option></select></label>'
         f"{content}"
         f"{SCRIPT.replace('__PALETTE__', json.dumps(PALETTE)).replace('__SEMANTIC__', json.dumps(SEMANTIC_COLORS))}"
         "</body></html>"
@@ -237,34 +236,47 @@ def write_static_pngs(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--baseline", type=Path, default=DEFAULT_DIR / "baseline_embeddings.npy")
-    parser.add_argument("--transformed", type=Path, default=DEFAULT_DIR / "personalized_embeddings.npy")
-    parser.add_argument("--assignments", type=Path, default=DEFAULT_DIR / "assignments.csv")
-    parser.add_argument("--label-column", default="color")
-    parser.add_argument("--output-dir", type=Path, default=DEFAULT_DIR)
+    parser.add_argument("--input-dir", type=Path, required=True,
+                        help="Result bundle directory with baseline_embeddings.npy, transformed_embeddings.npy, and assignments.csv")
+    parser.add_argument("--baseline", type=Path, default=None,
+                        help="Baseline N x D .npy file (overrides --input-dir)")
+    parser.add_argument("--transformed", type=Path, default=None,
+                        help="Transformed N x D .npy file (overrides --input-dir)")
+    parser.add_argument("--assignments", type=Path, default=None,
+                        help="CSV containing row-aligned ground-truth and predicted cluster columns")
+    parser.add_argument("--label-column", default=None,
+                        help="Ground-truth label column (default: true_label, or color for the legacy bundle)")
+    parser.add_argument("--baseline-cluster-column", default="cluster_before")
+    parser.add_argument("--transformed-cluster-column", default="cluster_after")
+    parser.add_argument("--output-dir", type=Path, default=None)
     parser.add_argument(
         "--interactive", action="store_true",
         help="Also create one standalone interactive HTML page containing both views",
     )
     args = parser.parse_args()
 
-    baseline = np.load(args.baseline, allow_pickle=False)
-    transformed = np.load(args.transformed, allow_pickle=False)
-    assignments = pd.read_csv(args.assignments)
+    baseline_path = args.baseline or args.input_dir / "baseline_embeddings.npy"
+    transformed_path = args.transformed or args.input_dir / "transformed_embeddings.npy"
+    assignments_path = args.assignments or args.input_dir / "assignments.csv"
+    output_dir = args.output_dir or args.input_dir
+    baseline = np.load(baseline_path, allow_pickle=False)
+    transformed = np.load(transformed_path, allow_pickle=False)
+    assignments = pd.read_csv(assignments_path)
     if baseline.ndim != 2 or transformed.shape != baseline.shape:
         parser.error(f"baseline and transformed must have matching N x D shapes, got {baseline.shape} and {transformed.shape}")
     if len(assignments) != len(baseline):
         parser.error("assignment CSV rows do not match embeddings")
     if "row_index" in assignments and not np.array_equal(assignments.row_index.to_numpy(), np.arange(len(baseline))):
         parser.error("assignment row_index values do not match embedding row order")
-    if args.label_column not in assignments:
-        parser.error(f"label column {args.label_column!r} not found in assignments")
-    labels = assignments[args.label_column].fillna("unknown").astype(str).to_numpy()
-    write_static_pngs(args.output_dir, baseline, transformed, labels)
+    label_column = args.label_column or ("true_label" if "true_label" in assignments else "color")
+    if label_column not in assignments:
+        parser.error(f"label column {label_column!r} not found in assignments")
+    labels = assignments[label_column].fillna("unknown").astype(str).to_numpy()
+    write_static_pngs(output_dir, baseline, transformed, labels)
     if not args.interactive:
         return
 
-    needed = ("cluster_before", "cluster_after")
+    needed = (args.baseline_cluster_column, args.transformed_cluster_column)
     missing = [column for column in needed if column not in assignments]
     if missing:
         parser.error(f"interactive output requires assignment columns: {missing}")
@@ -273,14 +285,14 @@ def main() -> None:
     baseline_pca = PCA(n_components=3).fit(baseline)
     transformed_pca = PCA(n_components=3).fit(transformed)
     baseline_view = build_view("Baseline", baseline_pca.transform(baseline), labels,
-                               assignments.cluster_before.astype(str).to_numpy(), baseline_pca.explained_variance_ratio_)
+                               assignments[args.baseline_cluster_column].astype(str).to_numpy(), baseline_pca.explained_variance_ratio_)
     transformed_view = build_view("Transformed", transformed_pca.transform(transformed), labels,
-                                  assignments.cluster_after.astype(str).to_numpy(), transformed_pca.explained_variance_ratio_)
+                                  assignments[args.transformed_cluster_column].astype(str).to_numpy(), transformed_pca.explained_variance_ratio_)
     for view, view_names in ((baseline_view, names), (transformed_view, names)):
         for point, name in zip(view["points"], view_names):
             point["name"] = str(name)
 
-    output_path = args.output_dir / "pca_baseline_transformed_interactive.html"
+    output_path = output_dir / "pca_baseline_transformed_interactive.html"
     write_page(output_path, "Baseline and transformed embeddings · 3D PCA", [baseline_view, transformed_view])
     print(f"Wrote one self-contained interactive HTML page to {output_path.resolve()}")
     print(f"Baseline first-three-PC variance: {baseline_pca.explained_variance_ratio_.sum():.1%}")

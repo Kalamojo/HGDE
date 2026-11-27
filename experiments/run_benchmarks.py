@@ -28,7 +28,7 @@ import argparse
 '''
 
 def make_string(metrics, best_metrics, best_iteration, history, args, description='"none"'):
-    the_string = '{"test": ' + json.dumps(vars(args)) + ',\n"description": ' + description + ',\n"final_metrics": ' + json.dumps(metrics) + ',\n"best_metrics": ' + json.dumps(best_metrics) + ',\n"best_iteration": ' + json.dumps(best_iteration) + ',\n"history": ' + json.dumps(history) + '}\n'
+    the_string = '{"test": ' + json.dumps(vars(args), default=str) + ',\n"description": ' + description + ',\n"final_metrics": ' + json.dumps(metrics) + ',\n"best_metrics": ' + json.dumps(best_metrics) + ',\n"best_iteration": ' + json.dumps(best_iteration) + ',\n"history": ' + json.dumps(history) + '}\n'
     return the_string
 
 def make_clusterer(args, k):
@@ -61,27 +61,42 @@ def make_parts(args, k):
 def pokemon_color_benchmark(args, rounds, colors, vector):
     eval, adapter = make_parts(args, len(colors) if colors else None)
     db_path = repo_root / "data" / "pokemon_db"
-    benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,'color',0.20,categories=colors,),eval,adapter,args.verbose)
+    benchmark_data = benchmarks.PokemonBenchmark(db_path,vector,'color',0.20,categories=colors,)
+    benchmark = states.ClusterState(benchmark_data,eval,adapter,args.verbose)
     metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
+    save_visualization_bundle(args, benchmark)
     return metrics, best_metrics, best_iteration, benchmark.history   # history: every round's metrics
 
 def pokemon_benchmark(args, rounds, labels, vector):
     eval, adapter = make_parts(args, None)
     db_path = repo_root / "data" / "pokemon_db"
-    benchmark = states.ClusterState(benchmarks.PokemonBenchmark(db_path,vector,labels,0.20,),eval,adapter,args.verbose)
+    benchmark_data = benchmarks.PokemonBenchmark(db_path,vector,labels,0.20,)
+    benchmark = states.ClusterState(benchmark_data,eval,adapter,args.verbose)
     metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
+    save_visualization_bundle(args, benchmark)
     return metrics, best_metrics, best_iteration, benchmark.history   # history: every round's metrics
 
 def celeba_benchmark(args, rounds, label):
     eval, adapter = make_parts(args, 2)
     db_path = repo_root / "data" / "celeba_db"
-    benchmark = states.ClusterState(benchmarks.CelebaBenchmark(db_path,'vector',label,0.20,),eval,adapter,args.verbose)
+    benchmark_data = benchmarks.CelebaBenchmark(db_path,'vector',label,0.20,)
+    benchmark = states.ClusterState(benchmark_data,eval,adapter,args.verbose)
     metrics, best_metrics, best_iteration = benchmark.full_recluster(rounds)
+    save_visualization_bundle(args, benchmark)
     return metrics, best_metrics, best_iteration, benchmark.history   # history: every round's metrics
 
 def save(save_file, the_string):
     # writes every benchmark finished so far (trailing , replaced by }), so stopping mid-run keeps them
     save_file.write_text(the_string[:-2] + '}', encoding='utf-8')
+
+def save_visualization_bundle(args, benchmark):
+    if args.visualization_dir is None:
+        return
+    output_dir = Path(args.visualization_dir)
+    if not output_dir.is_absolute():
+        output_dir = repo_root / output_dir
+    bundle = benchmark.save_visualization_data(output_dir, vars(args))
+    print(f"Saved visualization data to {bundle}")
 
 def main(rounds, save_file, args):
     save_file = Path(save_file)
@@ -158,6 +173,8 @@ if __name__ == "__main__":
     parser.add_argument("--l1_reg", type=float, default=0.0001)
     parser.add_argument("--preservation_weight", type=float, default=0.05)
     parser.add_argument("--save_file", required=True, help="The output file to save")
+    parser.add_argument("--visualization_dir", type=Path, default=None,
+                        help="Optional directory for aligned baseline/final embeddings and assignments, one bundle per benchmark")
     parser.add_argument("--simple", action='store_true', help="runs only some benchmarks to save time")
     parser.add_argument("--benchmark1_only", action='store_true', help="runs only benchmark1 (image vector, red and blue)")
     parser.add_argument("--clusterer", choices=['hdbscan', 'kmeans'], default=None, help="default: kmeans for benchmarks with a fixed number of classes (e.g. red/blue: k=2), else hdbscan")
