@@ -9,7 +9,7 @@ from src.utils.metrics import all_metrics, sample_pairs
 
 
 class ClusterState:
-    def __init__(self, benchmark: Benchmark, eval: ClusterEval, adapter: EmbeddingAdapter, verbose: bool):
+    def __init__(self, benchmark: Benchmark, eval: ClusterEval, adapter: EmbeddingAdapter, verbose: bool = True):
         self.benchmark = benchmark
         self.eval = eval
         self.adapter = adapter

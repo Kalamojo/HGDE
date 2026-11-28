@@ -42,7 +42,7 @@ class ModelSpec:
 # Check the ids against your account before a real run (python llm_experimentation/check_models.py).
 MODELS = {
     "sonnet": ModelSpec("sonnet", "global.anthropic.claude-sonnet-4-6", True, 2.0, 10.0),
-    "opus": ModelSpec("opus", "global.anthropic.claude-opus-4-6", True, 4.0, 20.0),
+    "opus": ModelSpec("opus", "global.anthropic.claude-opus-4-6-v1", True, 4.0, 20.0),
     #"terra": ModelSpec("terra", "global.openai.gpt-6.1-terra", True, None, None),
     "fake": ModelSpec("fake", "fake", True, 0.0, 0.0),     # offline, used by --dry-run
 }

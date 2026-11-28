@@ -3,3 +3,4 @@ __pycache__/
 src/test_data/*.pt
 .checkpoints/
 .vscode/
+.idea/

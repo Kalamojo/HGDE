@@ -1,5 +1,6 @@
 # on top of the repo's existing requirements (numpy, scikit-learn, lancedb, torch, matplotlib)
 boto3>=1.39        # Bedrock Converse + API-key auth via AWS_BEARER_TOKEN_BEDROCK
+botocore[crt]
 pydantic>=2
 polars             # src/utils/data/benchmarks.py loads the table with it (not listed anywhere else in the repo)
 pillow

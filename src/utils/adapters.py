@@ -4,18 +4,19 @@ from torch import optim
 from torch.optim import Optimizer
 import numpy as np
 from numpy.typing import NDArray
+from pathlib import Path
 from tqdm import tqdm
 from typing import Optional
-from src.utils.models import JohnNet, JayNet
+from src.utils.models.neural_nets import JohnNet, JayNet
+from src.utils.models.llm import ModelSpec, BedrockClient
 from src.utils.clusterings import Clusterer
-from src.utils.data.benchmarks import Benchmark
+from src.utils.data.benchmarks import Benchmark, EmbeddingBenchmark, ModalityBenchmark
 from src.utils.eval import ClusterEval
 from src.utils.predictions import Predictions
 
 
 class EmbeddingAdapter:
-    def __init__(self, clusterer: Clusterer):
-        self.clusterer = clusterer
+    def __init__(self):
         self.predictions = Predictions()
     
     def setup_predictions(self, benchmark: Benchmark):
@@ -27,17 +28,32 @@ class EmbeddingAdapter:
     def predict(self, benchmark: Benchmark) -> NDArray[np.int_]:
         pass;
 
+class LLMAdapter(EmbeddingAdapter):
+    def __init__(
+        self, spec: ModelSpec, log_path: Optional[Path] = None, max_usd: Optional[float] = None
+    ):
+        super().__init__()
+        self.spec = spec
+        self.client = BedrockClient(self.spec, log_path, max_usd)
+
+    def setup_predictions(self, benchmark: ModalityBenchmark):
+        pass;
+
+    def predict_batch(self, batch: list[int], benchmark: ModalityBenchmark) -> NDArray[np.int_]:
+        items_metadata = [benchmark.raw_data[i] for i in batch]
+
 class NNAdapter(EmbeddingAdapter):
     def __init__(
         self, clusterer: Clusterer, epochs: int, model: nn.Module, optimizer: Optimizer, verbose: bool
     ):
-        super().__init__(clusterer)
+        super().__init__()
+        self.clusterer = clusterer
         self.epochs = epochs
         self.model = model
         self.optimizer = optimizer
         self.verbose = verbose
     
-    def setup_predictions(self, benchmark: Benchmark):
+    def setup_predictions(self, benchmark: EmbeddingBenchmark):
         initial_embeddings = benchmark.embeddings
         pred_labels = self.clusterer.run(initial_embeddings)
         self.predictions.update_labels(pred_labels)
@@ -70,7 +86,7 @@ class NNAdapter(EmbeddingAdapter):
 
         return losses
     
-    def predict(self, benchmark: Benchmark) -> NDArray[np.int_]:
+    def predict(self, benchmark: EmbeddingBenchmark) -> NDArray[np.int_]:
         original_embeddings = torch.from_numpy(benchmark.embeddings)
         self.model.eval()
         new_embeddings = self.model(original_embeddings).detach().numpy()
